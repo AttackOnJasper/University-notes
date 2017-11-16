@@ -97,4 +97,22 @@
 		- get an integration of 2 theories
 		- latitude of acceptance: e.g. 10% tuition increase or 3% tuition increase
 		- no arousal within latitude of acceptance (self-perception), and vice versa
+		- most attitude change when high choice & no booth (no explanation / reward)
+
+### Self and Dissonance
+- Self-affirmation theory
+	- Self concept is threatened -> need to change the attitude to remove the threat
+	- Self identity can buffer from self-threat
+		- White coat scientists study (Steele, Hopp and Gonzales)
+	- Self-threat has different effects on people with differnt self-esteem
+		- CD rating study: people with low self-esteem shows more dissonance
+		- only get dissonance when there might be negative consequences
+
+### Attitude Behavior Consistency
+- Attitudes not always predict behaviors (e.g. trump建长城)
+- Strong situational pressure -> attitudes follow behavior
+	- Foot-in-the-door phenomenon (car sign)
+	- Low-ball technique (raise price)
+- Weak situational pressure / strong person factor -> attitudes predict behavior
+
 
