@@ -115,4 +115,44 @@
 	- Low-ball technique (raise price)
 - Weak situational pressure / strong person factor -> attitudes predict behavior
 
+## Module 12 Self-Fulfilling Prophecies and Intergroup Relations
+
+### Self-Fulfilling Prophecies
+- Definition: a prediction made that is initially not true, but becomes true because the prediction is made
+	- e.g. stock market: everyone thinks the market would crash -> sell all stocks -> crash
+- Teacher Expectancy Effect (Rosenthal and Jacobson)
+	- Idea: teacher's expectation about how start a student is going to be actually determines how smart that student will become
+- Zanna and Pack (1975)
+	- Women rate themselves about whether they are traditional, then interact with attractive / not-attractive guys to find out what kind of women they like
+	- Would like to investigate whether the women would change their performance on performing a task based on what the men like
+	- Women would change to become more traditional / non traditional based on their desired men's expectations
+- Word, Zanna, and Cooper 1974
+	- Idea: racial stereotype influence behavior
+	- Let interviewer treat white guys as black guys
+	- Result: white guys perform very bad (worse than black guys)
+- Pieces of self-fulfilling prophecies
+	- **Confirmation bias**: see what u expect to see
+		- Darley & Gross 1983
+			- ask watching a girl taking test & determine what kind of student she is
+			- see 2 backgrounds: rich / poor (social-economic status)
+			- difficult to tell how smart she is from her answers
+			- Result: rich -> smart; poor -> dumb
+	- **Confirmatory Hypothesis Testing**: getting people to say what you expect
+		- Snyder and Swann 1978 (extraverted / interverted)
+			- groups sound like interverts / extraverts based on questions they got asked
+	- **Behavioural Confirmation**: cause people to act the way you expect
+		- e.g. teacher expectancy effect study
+		- Snyder, Tanke, and Berscheid 1977
+			- give men the fake photos of girls they talk to -> behavior changed -> women act in accord with the stereotype
+
+### Stereotypes <-> Self-fulfilling prophecies
+- Crocker and Major 1987
+- Major, Spencer, Schmader, Wolfe, and Crocker
+	- bias primed: black won't feel bad
+	- not primed: black will feel bad
+
+### Stereotypes Threat and Achievement
+- Study (Spencer, Steele, and Quinn, 1999): Women and Math (differe when w/ or w/o gender difference)
+- Study (Steele and Aronson 1995): Black & white verbal performance (differ when diagnostic or non-diagnostic)
+
 

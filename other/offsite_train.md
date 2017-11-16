@@ -51,3 +51,47 @@
 - XSS, SQL, Shell injection
 - CSRF
 - IDOR
+
+## Software Design
+- Steps
+	- System design: determine infrastructure and contracts
+	- Project design: organize project, focus on team and agility
+	- Component design: organize code, optimize individual comprehension and productivity
+- Component design happens everytime we add / change a component of code
+- Justify every line of code added
+- Practices
+	- Separate every class and method into its contract and implementation
+	- Use consistent, precise language
+	- Expose minimum info needed to do the job
+	- Document / comment if necessary
+	- Embrace Dumb Models
+	- Use factory methods librally
+	- Default to Immutability
+	- Use Semantic logging
+		- e.g. logger.info("process {}", id);
+	- Wrap manipulation of Collection (e.g. stream() operation) into an object to increase readability
+
+## How Google deliver software
+- Cider: web based IDE
+	- be able to work & submit CR during commute
+- Code coverage (a measure used to describe the degree to which the source code of a program is executed when a particular test suite runs) visibility
+
+## Software Architecture
+- Layer
+	- presentation
+	- application
+	- infrastrcture
+- Clean 
+- Hex
+- Onion architecture
+
+## JSON Schema
+- A meta language on top of JSON to validate JSON
+
+## Elastic Search Issue
+Lesson:
+- find the right tool
+- know the tool
+- keep it simple
+
+## Guice
