@@ -1,5 +1,10 @@
 # PSYCH 253 Social Psychology
 
+## Module 6 Self
+- Self-reference effect (think about how something relates to self; memory)
+- Self-schemas
+
+
 ## Module 10 Social Comparison Theory
 ### Schachter's fear and affiliation studies
 - Thesis: fear is not an internal state; it's how we relate to other people
@@ -49,7 +54,7 @@
 - Brickman and Bulman
 - Wood, Taylor, and Lichtman (Breast cancer)
 - Lockwood and Kunda 1997: 
-	- Attainability is very important in social comparison: 
+	- Attainability is very important in social comparison: （能不能达到）
 		- upward -> attainability is inspring; unattainability is demoralizing
 
 ## Module 11 Cognitive Dissonance Theory and Attitudes
@@ -154,5 +159,97 @@
 ### Stereotypes Threat and Achievement
 - Study (Spencer, Steele, and Quinn, 1999): Women and Math (differe when w/ or w/o gender difference)
 - Study (Steele and Aronson 1995): Black & white verbal performance (differ when diagnostic or non-diagnostic)
+- Commercials and women's career aspirations (Davis, Spencer)
+	- women fear that others would reduce them to a negative stereotype
+
+
+## Module 13 Social Psychology and Health
+### Health and Control
+- Executive rats: People with more control of bad situations are more healthy
+- Learned helplessness 
+	- Study: put dogs in cage (cannot get out); move -> electric shock
+	- People in learned helplessness make internal, stable, and global attributions
+- Control -> less learned helplessness -> less pessimism -> optimism
+	- Study (Rodin and Langer): Control in nursing home (15 months life)
+		- People with more control are more happy and live longer (mental & physical health)
+- Importance of Value System and Meaning
+	- Children Lost Study (McIntosh, Sylver, and Wortman 1992): length of recovery time of losing child
+		- Make meaning of an event gives sense of control
+
+### Health and Stress
+- Primary Appraisal for a life changing event: is it a threat or challenge?
+- Daily hassle > life changing event
+	- Dorms and illness study: better dorm -> less medical visit
+	- Interpersonal conflict is the worst
+
+### Models of depression
+- Pennebaker: inhibition -> stress & confrontation -> relief
+- Nolen-Hoeksma: negative mood -> self-focus -> negative mood
+
+### Alcohol Myopia
+- Why alcohol has different effects?
+	- alcohol restricts attention & exacerbate the power of situation
+	- usually act as a great distractor (less self-focus)
+	- however sometimes can focus on self, making people more depressed (e.g. 周缘哭)
+- Aggression
+	- "The angry drunk": drunk people only know the straight way to fight back
+	- Cues while drunk are more effective
+- Helpness (by exacerbation of the power of situation)
+	- Strong situational pressure (e.g. face-to-face request) -> drunk people more likely to help
+- Drunk driving (situational pressure)
+	- tends to agree drunk driving after drunk & situation pressure: e.g. short distance, drop off friends (restricted attention to only the situation instead of considering other things)
+- Date rape (酒后乱性)
+	- Power of situation: one is aroused
+	- Attention is restricted to arousal so that the consequence is not considered
+	- Date rape is justified while drunk
+
+### Social Support & Health
+- pros: generally good, aid treatment, help process feelings
+- cons: could be annoying, may develop binge-eating
+
+### Clinician's impact
+- Interaction allows patients to develop trust on doctor, more satisfied, and better health outcome
+
+
+## Module 17 Romantic Relationship
+### Dating 
+- Study (Festinger, Schacter, and Back): closer in geolocation (proximity) -> Better friend relationship
+	- Power of situation
+- Mere exposure phenomenon Study: expose more -> like more
+- Physical attractiveness
+	- Computer Dance I (Walster, Walster, and Berscheid 1966): Tell dancers that they are paired with people suited but actually randomly assigned
+	- Computer Dance II: Let people choose the mate from 9 people
+		- Matching phenomenon: 丑配丑，美配美 (high correlation)
+		- Did not consider possibility of rejection
+	- Pick a date study (Berscheid and Dion): 
+		- rejection does not affect picking mate
+- Similarity and Liking (tend like people that are similar to us)
+	- More similarity -> relationship lasts longer
+
+### From initiation to development
+- Models of development
+	- self-disclosure and self-penetration model
+		- two people ideally should have the same amount of disclosure of self with each other at every time
+		- A has less disclosure than B -> B would wonder why A does not tell a lot of things about A
+		- A has more disclosure than B -> B would think it's wierd for A to tell too much stuff
+	- 2-factor theory of emotion
+		- early stage: all-consuming, passion & love, arousal
+			- Attribution of love: eople tend to like people who show interest in them or people who make them feel good
+			- e.g. suspension bridge study
+		- late stage:
+			- Attribution: People like who they trust
+- Attachments in relationship
+	- Early attachment styles (secure, avoidant, anxious-ambivalent) might define the later relationship attachment style
+	- Everyone is better off with people with secure attachment style
+	- New research shows 4th attachment style: depends on positive / negative views of self and other people
+- Illusions in relationship
+	- Illusion promotes relationship
+	- Study (Murray and Holmes, 1993): 
+		- Couples with / without conflicts under absence / presence of threat -> test amount of rationalization
+		- Low conflicts: low rationalization in no threat; high rationalization in high threat
+	- Study: self-esteem and illusions
+		- high self-esteem people think the other loves them more; low SE -> less
+- Companionate love: compatibility, friendship, continuation of passinate love
+
 
 
