@@ -227,6 +227,23 @@
 		- a button to crash the computer; computer crashes; get an interview and ask them to confess 
 		- check false confession rate & the percentage that believe they did the wrong thing
 
+### Jury
+- How do they decide guilty or not?
+	- Weigh all pros / cons
+	- Try to construct a narrative from pieces of information (e.g. Kobe & women told different stories)
+	- not a solo activity
+- Dynamics
+	- Majority influence
+		- two-thirds rule: 2/3 before walking in -> 100% after
+		- group polarization (everyone's arguments go more extreme)
+		- reassurance
+	- Minority Influence
+
+### Problems of trial
+- Would Excluded Evidence affect the judgment of jury?
+	- Study (Kassin nad Sommers 1997): admissible excluded evidence has a huge effect
+- Publicity: jurors find it hard to ignore pre-trial publicity
+
 ## Module 15 Social Psychology and Environment
 ### Crowding
 - Global warming
