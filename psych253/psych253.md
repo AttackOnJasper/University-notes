@@ -252,6 +252,31 @@
 
 
 ## Module 16 Social Psychology and Business
+- Leadership styles (Lewin, Lipett, and White, 1930s)
+	- Styles: Authoritarian (order), Democratic (vote), Laissez Faire (do nothing) 
+	- Measures aggression & productivity
+	- Democratic style is the best
+- Gourp Polarization
+	- definition: if groups discuss something, the opinion becomes more extreme
+	- Rishy shift: group more risky than individual
+	- Study (Myers and Bishop 1970)
+		- People with high / low prejudice about an issue discuss (after discussion high -> more opposed, low -> more supportive)
+	- why it happens?
+		- social comparison: want to look different if others have same ideas
+		- more and more arguments push the team into an aspect further
+		- Close-mindedness
+		- Pressures towards uniformity
+- Group think e.g. Bay of Pigs Fiasco, Pearl Harbour, spaceshuttle Challenger
+	- Social conditions leading to Group Think: isolated, homegenous groups, directive leader
+	- Symptoms
+- Effect of groups on performance
+	- Social facilitation: other people around -> better / worse performance, why?
+		- Zajonc's explanation: under audience, people perform better in easy tasks & worse in hard tasks
+			- study: cockraches with / without mirror run a mage
+		- Evaluation apprehension
+		- Distraction
+	- Social loafing
+
 
 ## Module 17 Romantic Relationship
 ### Dating 
