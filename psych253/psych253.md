@@ -211,6 +211,48 @@
 - Interaction allows patients to develop trust on doctor, more satisfied, and better health outcome
 
 
+## Module 14 Law
+### Eyewitness 
+- Can be biased; often pick up the wrong person
+- Study (biased line-up procedures): 
+	- conditions: unbiased (culprit may not be here) / biased (culprit should be here) instructions, culprit in / not in the line up
+	- results:
+		- unbiased + culprit in: 100% correct
+		- unbiased + culprit not in: 60% correct
+		- biased + in: 70% correct
+		- biased + not in: 20% correct
+- Questioning might distort people's memory
+	- Study: Making people believe that they did something that they did not do (computer typing task)
+		- conditions: instruct to type fast / slow, control / witness
+		- a button to crash the computer; computer crashes; get an interview and ask them to confess 
+		- check false confession rate & the percentage that believe they did the wrong thing
+
+## Module 15 Social Psychology and Environment
+### Crowding
+- Global warming
+- City get crowded -> performance drops
+	- Study: verbal problem solving
+		- conditions: less / more people with / without perceived control
+		- crowding together in a room -> performance drops
+- Considers crowding if > 1 people in a room
+- Violence increases with more crowding. e.g. in a prison
+
+### Social Dilemmas (how people negotiate splitting up resources)
+- Prisoner's Dilemma
+	- always better off if they confess, but group effect is the worst if both confess
+	- self interest vs group interest
+- Tragedy of the Commons e.g. English fishes, Canadian fishing industry, Global warming (country's benefit vs. world's benefit)
+
+### Money and Happiness
+- There is a weak correlation: money buys happiness if it provides basic necessities
+	- Everybody being better off does not provide happiness (e.g. inflation)
+	- Happiness arised from social comparison 
+	- Adaptation-level phenomenon: people take what they have for granted (less effect the money has)
+	- diminishing returns
+
+
+## Module 16 Social Psychology and Business
+
 ## Module 17 Romantic Relationship
 ### Dating 
 - Study (Festinger, Schacter, and Back): closer in geolocation (proximity) -> Better friend relationship
