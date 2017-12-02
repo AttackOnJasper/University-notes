@@ -7,6 +7,22 @@
 	- Lewin applied this to try to understand the perception of people
 - 3 parts of behavior (situation, perceiver, interaction)
 
+## Module 2 Research Methods
+- Try to revise theories over and over
+- To infer causation: 
+	- correlation
+		- independent vars: control / experimental groups
+		- dependent vars: reliable / valid measures
+	- time order 
+	- eliminate other possible causes 
+		- random assignment to each group
+		- procedural control (keep process of groups as similar as possible)
+- Surveys
+	- random sampling == random selection: everyone has the same chance to be selected (so that small group can represent the whole group)
+	- unbiased questions
+		- Anchoring effects: pushing people in 1 direction
+		- Framing effects: framing questions to seem like there is only one answer
+
 ## Module 6 Self
 - Self-reference effect (think about how something relates to self; memory)
 - Self-schemas
