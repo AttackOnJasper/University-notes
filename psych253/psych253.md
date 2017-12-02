@@ -1,4 +1,11 @@
 # PSYCH 253 Social Psychology
+- the scientific study of how people think about, influence, and relate to one another
+
+## Module 1 History
+- Social Psychology Founder: Kurt Lewin (Germany -> U.S.)
+- Gestalt psychology: the perception of objects
+	- Lewin applied this to try to understand the perception of people
+- 3 parts of behavior (situation, perceiver, interaction)
 
 ## Module 6 Self
 - Self-reference effect (think about how something relates to self; memory)
