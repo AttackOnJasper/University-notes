@@ -37,6 +37,38 @@
 	- 37% subjects gave the wrong answer; 70% subjects gave wrong answer at least once
 	- **Normative influence** go along even if do not agree due to external pressure
 
+## Module 4 helpness
+### Why one would help
+- The good samaritan study
+	- conditions: early / late / on time for an appointment & meet a person needs help half way
+	- situation influences whether people would help
+- Smoke-filled Room Study (Latine Daley): would help only if perceive the incident as an emergency
+- Lady in Distress Study
+	- A lady cries in the middle of way for help under conditions: alone / with stranger / confederate / friend
+	- **Pluralistic ignorance**: a majority of group members privately reject a norm, but incorrectly assume that most others accept it, and therefore go along with it. 
+- Seizure Study
+	- One would help if he / she is responsible
+	- **Diffusion of responsibility** occurs when there r multiple people
+- Decision Tree to help: notice the incident -> treat as emergency -> think I m responsible -> help
+
+### Social Norms Impact
+- Norm of Reciprocity
+- Norm of Equity: overbenefitted should help underbenefitted
+- Norm of Social Responsibility
+- Norm of Justice: help those who deserve it
+
+### Mood Impact
+- Good mood -> help more
+	- Cookie Study: students received cookies -> donated more money
+	- Dime in Phone Booth Study: more likely to help if call back is within 8 min
+	- Why? 
+		- Think helping is positive
+		- Maintain the good mood
+- Bad mood -> may help more (esp. guilt)
+	- The lie study: lied people would feel guilty -> help more
+- Empathy
+	- high empathy -> try to reduce others' distress -> switch off electric shock on someone else
+	- low empathy & watched others suffer from shock -> try to reduce own distress -> switch off
 
 ## Module 6 Self
 - Self-reference effect (think about how something relates to self; memory)
