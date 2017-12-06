@@ -12,7 +12,9 @@
 - To infer causation: 
 	- correlation
 		- independent vars: control / experimental groups
-		- dependent vars: reliable / valid measures
+		- dependent vars: measures
+			- reliable (precise): get consistent results over and over again
+			- valid (accuracy): measure what it is supposed to measure
 	- time order 
 	- eliminate other possible causes 
 		- random assignment to each group
@@ -22,6 +24,19 @@
 	- unbiased questions
 		- Anchoring effects: pushing people in 1 direction
 		- Framing effects: framing questions to seem like there is only one answer
+
+## Module 3 Conformity: A change in behavior or belief to accord with others e.g. sprint planning (how and why people do that?)
+- Subsets: compliance, obedience, acceptance
+- The Sherif Study (1935)
+	- Steady light in dark room -> think it's moving due to autokinetic phenomenon -> cannot tell if it's moving by comparing surrounding -> people come to agree how far it's moved over several days
+	- Transmission of beliefs: 5 generations (Rohrer, 1954)
+	- **Informational influence** value others ideas
+- Asch Study: would one agrees something wrong but other people saying it's right? (try to find out why people follow Hilter)
+	- ask to take part in a study of perceptual judgments
+	- unambigous stimuli; 7 confederates say opposite
+	- 37% subjects gave the wrong answer; 70% subjects gave wrong answer at least once
+	- **Normative influence** go along even if do not agree due to external pressure
+
 
 ## Module 6 Self
 - Self-reference effect (think about how something relates to self; memory)
