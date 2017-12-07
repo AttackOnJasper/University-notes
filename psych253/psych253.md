@@ -70,6 +70,28 @@
 	- high empathy -> try to reduce others' distress -> switch off electric shock on someone else
 	- low empathy & watched others suffer from shock -> try to reduce own distress -> switch off
 
+## Module 5 Aggression (Physical or verbal behavior intended to hurt someone)
+- Heat & aggression are weakly correlated
+
+### Frustration & aggression
+- Study (Dollard, Doob, Miller)
+	- Theory of Frustration
+	- Frustrates when goal is blocked. e.g. American South -> if cotton production is low -> more slaves die
+- Revision: frustration -> anger -> aggression
+	- Aggressive cues
+		- weapons effect studies (presence of weapons)
+		- Black uniform (sports team)
+
+### Modeling & aggression
+- Bobo Doll Study: children watch people beating dolls -> beat dolls many times when they play with it
+- TV -> aggression
+	- make people immune to aggression (adaptive to aggression)
+	- easy to imitate aggression (Bandura study)
+	- tend to commit violence (porn)
+		- justify more on rape
+		- Sexual promiscuity & hostile masculinity -> Coerciveness to women
+
+
 ## Module 6 Self
 - Self-reference effect (think about how something relates to self; memory)
 - Self-schemas
