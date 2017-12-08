@@ -24,18 +24,23 @@
 	- unbiased questions
 		- Anchoring effects: pushing people in 1 direction
 		- Framing effects: framing questions to seem like there is only one answer
+- The ethics of experimentation
+	- mundane realism: Degree to which an experiment is superficially similar to everyday situations.
+	- experimental realism: Degree to which an experiment absorbs and involves its participants.
+	- demand characteristics: Cues in an experiment that tell the participant what behavior is expected
+		- To reduce this effect, experimenter standardize their instructions e.g. video taping
 
 ## Module 3 Conformity: A change in behavior or belief to accord with others e.g. sprint planning (how and why people do that?)
 - Subsets: compliance, obedience, acceptance
 - The Sherif Study (1935)
 	- Steady light in dark room -> think it's moving due to autokinetic phenomenon -> cannot tell if it's moving by comparing surrounding -> people come to agree how far it's moved over several days
-	- Transmission of beliefs: 5 generations (Rohrer, 1954)
+	- Transmission of beliefs: 5 generations (Jacobs and Campbell, 1961)
 	- **Informational influence** value others ideas
-- Asch Study: would one agrees something wrong but other people saying it's right? (try to find out why people follow Hilter)
+- Asch 'comparing lines' Study: would one agrees something wrong but other people saying it's right? (try to find out why people follow Hilter)
 	- ask to take part in a study of perceptual judgments
 	- unambigous stimuli; 7 confederates say opposite
 	- 37% subjects gave the wrong answer; 70% subjects gave wrong answer at least once
-	- **Normative influence** go along even if do not agree due to external pressure
+	- **Normative influence** go along by external pressure when people do not agree
 
 ## Module 4 helpness
 ### Why one would help
@@ -49,7 +54,9 @@
 - Seizure Study
 	- One would help if he / she is responsible
 	- **Diffusion of responsibility** occurs when there r multiple people
+		- reduced if less people & less psychological distance
 - Decision Tree to help: notice the incident -> treat as emergency -> think I m responsible -> help
+- Audience inhibition: embarrassed or worried about how other observers will view them
 
 ### Social Norms Impact
 - Norm of Reciprocity
@@ -66,16 +73,18 @@
 		- Maintain the good mood
 - Bad mood -> may help more (esp. guilt)
 	- The lie study: lied people would feel guilty -> help more
-- Empathy
+- Empathy (Batman's model)
 	- high empathy -> try to reduce others' distress -> switch off electric shock on someone else
 	- low empathy & watched others suffer from shock -> try to reduce own distress -> switch off
+
+
 
 ## Module 5 Aggression (Physical or verbal behavior intended to hurt someone)
 - Heat & aggression are weakly correlated
 
 ### Frustration & aggression
-- Study (Dollard, Doob, Miller)
-	- Theory of Frustration
+- Frustration-aggression theory: frustrate
+	- Study (Dollard, Doob, Miller)
 	- Frustrates when goal is blocked. e.g. American South -> if cotton production is low -> more slaves die
 - Revision: frustration -> anger -> aggression
 	- Aggressive cues
@@ -90,6 +99,12 @@
 	- tend to commit violence (porn)
 		- justify more on rape
 		- Sexual promiscuity & hostile masculinity -> Coerciveness to women
+- ways that prolonged viewing of violence in media can change how we think
+	- develop violent **social scripts** (Culturally provided mental instructions for how to act in various situations.)
+	- desensitization: adaptation e.g. 公开讨论性话题
+	- altered perceptions of reality (e.g. think world is scary)
+	- cognitive priming: think with more aggressive ideas
+
 
 
 ## Module 6 Self
