@@ -164,6 +164,68 @@
 
 
 
+## Module 7 Module 07 - Attribution and Person Perception
+### Definitions
+- **Attribution Theory** The theory of how people explain others’ behavior e.g. internal dispositions (enduring traits, motives, attitudes) or to external situations
+### Person perception
+- Asch's Gestalt Model of Person Perception
+	- Study: perceive people from a list of descriptive words
+		- perception depends on order of words / words with strong meanings / context of other words
+### Perceiving Non-Verbal Behaviour
+- Facial expressions
+- Body language
+
+### Heider Phenomenological Model
+- how do we attribute what type of a person someone is from their behaviors
+	- investigate people's general tendencies
+- Brunswick Lens Model
+	- attribution of causality (person / situation) e.g. worker's fault or workplace's fault?
+	- attribution of responsibility (intention / foreknowledge)
+
+### Two Classic Theories of Attribution
+- Jones and Davis' Correspondent Inference Theory
+	- **Correspondent Inference** behavior reflects traits & types of person
+	- **spontaneous trait inference** An automatic inference of a trait after exposure to someone’s behavior
+	- Factors affecting whether correspondent inference is applicable
+		- if people choose / are forced to do something
+		- whether a behavior is expected
+		- noncommon cause / effect e.g. 为party去某个大学
+- Kelley's Covariation Model
+	- Covariation principle: multiple people engage in same behavior
+	- Figure out the cause of behavior (internal / external)
+	- 3 kinds of information
+		- Consensus: To what extent do others in this situation behave similarly
+			- yes -> external; no -> internal
+		- Distinctiveness: How specific is the person’s behavior to this particular situation
+			- yes -> external (其他都不喜欢就喜欢这部电影，说明是电影好) / no -> internal
+		- Consistency: How consistent is the person’s behavior in this situation
+
+### How Do We Make Attributions
+- Fundamental attribution error
+	- tend to think of people’s actions are due to who they are rather than the situation
+	- Study (Jones and Harris)
+	- Study (Ross, Amabile, and Steinmetz)
+		- everyone (contestatns & observers) thought questioners (subjects who gave questions) were smarter
+- The actor observer bias
+	- attribute more causes to situation for ourselves (self serving)
+	- make situational attributions in first person point of view
+	- make fundamental attribution error when they are self-aware (look at themselves from third person point of view)
+- Two step model of attribution (Gilbert)
+	- person attribution then corrected based on situation
+
+### Schemas (guide our processing of information; context)
+- e.g. instructions to wash clothes
+- e.g. flipping cards with / without schemas -> accuracy varies a lot
+- 2 Heuristics (Daniel Kahneman, Amos Tversky)
+	- Representativeness Heuristic 
+		- stereotype
+	- Availability Heuristic
+		- availability of something influences how likely we think it is
+		- e.g. # of k(.)+ vs # of ..k(.)+
+		- e.g. 美国不安全 (只听过枪击案)
+- guide reconstruction of memory
+	- Study: bring a schema to ask people who just see the car accident  -> recall the speed of vehicle during accident a lot faster
+
 ## Module 10 Social Comparison Theory
 ### Schachter's fear and affiliation studies
 - Thesis: fear is not an internal state; it's how we relate to other people
