@@ -7,6 +7,8 @@
 	- Lewin applied this to try to understand the perception of people
 - 3 parts of behavior (situation, perceiver, interaction)
 
+
+
 ## Module 2 Research Methods
 - Try to revise theories over and over
 - To infer causation: 
@@ -26,9 +28,13 @@
 		- Framing effects: framing questions to seem like there is only one answer
 - The ethics of experimentation
 	- mundane realism: Degree to which an experiment is superficially similar to everyday situations.
-	- experimental realism: Degree to which an experiment absorbs and involves its participants.
+		- a type of external validaty
+	- experimental realism: Degree to which an experiment absorbs and involves its participants
+		- should engage the participants
 	- demand characteristics: Cues in an experiment that tell the participant what behavior is expected
 		- To reduce this effect, experimenter standardize their instructions e.g. video taping
+
+
 
 ## Module 3 Conformity: A change in behavior or belief to accord with others e.g. sprint planning (how and why people do that?)
 - Subsets: compliance, obedience, acceptance
@@ -41,6 +47,7 @@
 	- unambigous stimuli; 7 confederates say opposite
 	- 37% subjects gave the wrong answer; 70% subjects gave wrong answer at least once
 	- **Normative influence** go along by external pressure when people do not agree
+
 
 ## Module 4 helpness
 ### Why one would help
@@ -109,7 +116,52 @@
 
 ## Module 6 Self
 - Self-reference effect (think about how something relates to self; memory)
-- Self-schemas
+
+### Self-schemas (Hazel Markus)
+- how people think about themselves / characteristic
+- influence thinking speed
+- Working self-concept: a subset of self-schemas used at a particular time
+- Study (Markus and Kunda)
+	- answer questions with confederates
+	- too many differences -> tend to activate 'similarity' schema -> say 'me' quickly
+	- too many similarities -> tend to activate 'dissimilar' schema -> say 'not me' quickly
+- Possible selves
+
+### Self concepts formation
+- by other people's perception (Cooley and Mead)
+- by introspections (bad)
+	- Nibett and Wilson Studies: have little understanding of our inside
+		- Tide detergent: words subjects tried to recall affected the brand they came up
+		- Ratings of cold / warm prof
+		- Affective forecasting
+- affected by social context: want to describe self as standing out from rest
+- Social Comparison Theory
+	- gain self concepts by comparing with others / with ourselves in the past
+		- distort memory to derogate self & feel better (self-serving bias)
+
+### Self-serving bias (tendency to perceive self favorably)
+- **False Consensus** tendency to overestimate commnality of one's opinions
+- **False uniqueness** think that few others behave or think like u
+- Unrealistic optimism e.g. I will pass this even if pass rate is 5%
+- Overestimation of contributions and abilities: think contribute more than rest of team
+	- Ross and Sicoly
+- Explanations of success / failure: internal / external attribution e.g. 篮球赛输赢
+- Basking in reflected glory: we win; they lose
+	- Study: feedback & badges
+- Self-handicapping: produce excuses in case if bad performance e.g. exam & drinking / excuse for a bad test
+	- try to prevent self from getting hurt (self-serving bias)
+
+### Why do we have self-serving bias
+- **self-affirmation theory** maintain positive self-image
+- **self-evaluation meaintenance theory** maintain self-esteem
+	- change distance from others
+	- change how important something is to us e.g. score is not important if fail the exam
+	- change our perception of how well we did
+
+### Self-presentation (express oneself in a favorable way)
+- Self monitoring: high / low self-monitors
+- Self verification: present to maintain self-views (even negative views)
+
 
 
 ## Module 10 Social Comparison Theory
@@ -443,4 +495,28 @@
 - Companionate love: compatibility, friendship, continuation of passinate love
 
 
+## Readings
+### Obedience
+- Experimenter asked subjects (teacher) to administer electric shock whenever confederate (learner) gave the wrong answer
+- Measure the max power subjects are willing to impose before they refuse to continue further
+- Result
+	- 26/40 obey all commands even they knew confederates r painful (majority complied)
+	- 14/40 quit at middle
+- What account for such high obedience? 
+	- Yale university 
+	- Subject See victim and self as voluntary 
+	- Pune chance to become the learner/teacher
 
+
+
+### Video gaming & aggressive thoughts
+- 4 main hypotheses emerge from GAAM
+- Study 1 correlation study
+	- 227 college students did questionnaires (Irratation Scale & Aggression Questionnaire)
+	- Result: 
+		- game & aggression positively correlated 
+		- consistent with GAAM formulation
+		- exposure to video games -> aggressive personality
+- Study 2 causation experiment 
+	- 
+- Men have more hostile view of the world 
