@@ -282,6 +282,49 @@
 
 
 
+## Module 09 - Persuasion
+- definition: The process by which a message induces change in beliefs, attitudes, or behaviors.
+
+### The Early Years: Yale prof in WWII; try to boost soldier morale
+- Classic Persuasion Variables
+
+### Two Models of Transferring Persuasive Messages
+- Controlled and Heuristic processing (Chaiken & Eagley)
+	- controlled processing: think about the image
+	- heuristic processing: think without thinking
+- Elaboration Likelihood Model (Petty & Caciopo)
+	- Central Route (thoughts): analytical, high effort, arguments
+		- motivated to think due to the content / argument of message
+	- Peripheral Route (subconscious): focus on cues that trigger automatic acceptance
+
+### The Communicator
+- Credibility (usually peripheral)
+	- Expertise (central) e.g. T.S. Eliot changed more people's opinions about bad poems than a local paper writer did
+	- **Trustworthiness** Persuaded by people who we trust even if they know nothing about a subject 妈妈让尝试一个东西
+	- **Sleeper Effect** delayed persuasion 慢慢洗脑 
+	 	- To have the effect, argument needs to be more memorable than the source (i.e. remember the content but forget who said it)
+		- e.g. Oppenheimer (expert) vs. Pravda (local paper)
+			- initially, most people must expert
+			- with reminder of the source, not much attitude change
+			- withou reminder, most people have the same attitude over 4 weeks
+- Attractiveness
+	- Study: attractive / unattractive women ask to sign petition
+- Similarity 
+
+### The Message
+- The Central Route to persuasion
+	- Discrepancy
+	- 2-sided appeals
+- The Peripheral Route to persuasion
+	- Emotions
+	- Number of Arguments
+	- One-Sided Arguments
+	- Primacy and Recency
+### The Audience
+### Is Attitude Change So Easy?
+
+
+
 ## Module 10 Social Comparison Theory
 ### Schachter's fear and affiliation studies
 - Thesis: fear is not an internal state; it's how we relate to other people
