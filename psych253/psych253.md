@@ -203,7 +203,8 @@
 ### How Do We Make Attributions
 - Fundamental attribution error
 	- tend to think of people’s actions are due to who they are rather than the situation
-	- Study (Jones and Harris)
+	- Study (Jones and Harris 1967): Castro speech
+		- People attributed speech attitudes to speechwriters' even if speechwriters are assigned to write the speech
 	- Study (Ross, Amabile, and Steinmetz)
 		- everyone (contestatns & observers) thought questioners (subjects who gave questions) were smarter
 - The actor observer bias
@@ -225,6 +226,61 @@
 		- e.g. 美国不安全 (只听过枪击案)
 - guide reconstruction of memory
 	- Study: bring a schema to ask people who just see the car accident  -> recall the speed of vehicle during accident a lot faster
+
+
+
+## Module 08 - Stereotyping and Prejudice
+### Motivational Theories of Prejudice
+- Realistic Conflict Theory (Sherif)
+	- Sherif's Robber's Cave Experiment
+		- Ran summer camp & divide 2 groups to compete over scarce resources
+		- Superordinate goal that can only be achieved by 2 groups together helps repair the intergroup relations
+- Social Identity Theory
+  	- **Any distiction** between groups causes favoritism for own group
+	- Minimal Group Experiment: 
+		- Study 1: divided based on trivial difference -> gave more points to own group
+		- Study 2: divided based on preference for abstract art -> still had favorism
+	- Spencer's Minimal Group Study: students from UMichigan & from Ohio State
+- Prejudice and Self-Image Maintenance
+	- Better group & social identity -> better self identity -> feels better
+	- Study (Fein and Spencer) Jewish American Princess
+		- Got negative feedback on IQ test -> Low self-esteem -> think Jewish did much worse in workplace than Italian (to increase self-esteem)
+
+### Cognitive Theories of Stereotyping
+- Too much complexity in world -> form schema to simplify -> categorize people
+- How Do Stereotypes Form?
+	- Out-group Homogeneity Effect 黑人长得都差不多
+	- **Illusory Correlations** Perception of a relationship / correlation where none exists (esp. in minorities) e.g. 认为妹子打游戏都不行
+		- Rare things got overemphasized in memory (esp. undesired behaviors)
+- How Are Stereotypes Perpetuated (保持)?
+	- Cognitive theory accounts for this
+	- Study (Esses and Zanna, 1995) Mood and Stereotype
+		- Bad mood -> distinctive traits become more negative
+
+### The Changing Face of Stereotyping
+- Survey Findings - Past and Present
+	- Princeton Trilogy Study (1933, 1950, 1972)
+		- ask people to assign personality traits to 20 racial groups
+		- Overt stereotypes -> subtle forms e.g. 有黑人邻居就搬家
+- Subtler Forms of Prejudice - Earlier Studies
+	- Pencil Poking study (Sagar and Schofield)
+		- when black children is poking with pencil, all other children see him as trying to hurt the other instead of getting attention
+	- Aversive racism
+		- people would not make overt prejudice comments
+	- Helping study
+		- offer more help to black & ask less help from black
+	- Inadmissable Evidence Study
+- Subtler Forms of Prejudice - Recent Studies
+	- The Amadou Diallo Story
+	- Correll, Park, and Judd (2003)
+		- in video game, more likely to shoot black people
+- Implicit and Explicit Stereotyping
+	- Implicit stereotyping: occur outside our awareness
+	- Study (Spencer, Fein, Wolfe, Fong, 1998): word completion task; more negative words given black faces flashed
+	- Study (Sinclair and Kunda, 1999)
+- Changing Prejudice and Stereotyping
+
+
 
 ## Module 10 Social Comparison Theory
 ### Schachter's fear and affiliation studies
@@ -470,7 +526,7 @@
 - Global warming
 - City get crowded -> performance drops
 	- Study: verbal problem solving
-		- conditions: less / more people with / without perceived control
+		- conditions: less / more people with / without perceived control (Illusion of control)
 		- crowding together in a room -> performance drops
 - Considers crowding if > 1 people in a room
 - Violence increases with more crowding. e.g. in a prison
