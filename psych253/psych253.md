@@ -46,7 +46,8 @@
 	- ask to take part in a study of perceptual judgments
 	- unambigous stimuli; 7 confederates say opposite
 	- 37% subjects gave the wrong answer; 70% subjects gave wrong answer at least once
-	- **Normative influence** go along by external pressure when people do not agree
+	- **Normative influence** Conformity based on a person’s desire to fulfill others’ expectations, often to gain acceptance
+		- go along by external pressure when people do not agree
 
 
 ## Module 4 helpness
@@ -119,7 +120,7 @@
 
 ### Self-schemas (Hazel Markus)
 - how people think about themselves / characteristic
-- influence thinking speed
+- influence thinking speed (self-schema of an aspect -> process that info more quickly)
 - Working self-concept: a subset of self-schemas used at a particular time
 - Study (Markus and Kunda)
 	- answer questions with confederates
@@ -164,7 +165,7 @@
 
 
 
-## Module 7 Module 07 - Attribution and Person Perception
+## Module 7 - Attribution and Person Perception
 ### Definitions
 - **Attribution Theory** The theory of how people explain others’ behavior e.g. internal dispositions (enduring traits, motives, attitudes) or to external situations
 ### Person perception
@@ -217,13 +218,13 @@
 ### Schemas (guide our processing of information; context)
 - e.g. instructions to wash clothes
 - e.g. flipping cards with / without schemas -> accuracy varies a lot
-- 2 Heuristics (Daniel Kahneman, Amos Tversky)
-	- Representativeness Heuristic 
-		- stereotype
+- 2 Heuristics (Daniel Kahneman, Amos Tversky): guide processing of information
+	- Representativeness Heuristic (stereotype)
+		- e.g. Linda sounds like a feminist (has all traits of a typical feminist)
 	- Availability Heuristic
 		- availability of something influences how likely we think it is
 		- e.g. # of k(.)+ vs # of ..k(.)+
-		- e.g. 美国不安全 (只听过枪击案)
+		- e.g. 美国不安全 (一直只报道枪击案)
 - guide reconstruction of memory
 	- Study: bring a schema to ask people who just see the car accident  -> recall the speed of vehicle during accident a lot faster
 
@@ -276,7 +277,7 @@
 		- in video game, more likely to shoot black people
 - Implicit and Explicit Stereotyping
 	- Implicit stereotyping: occur outside our awareness
-	- Study (Spencer, Fein, Wolfe, Fong, 1998): word completion task; more negative words given black faces flashed
+	- Study (Spencer, Fein, Wolfe, Fong, 1998): word completion task; more negative words given black faces flashed + negative feedback on an IQ test
 	- Study (Sinclair and Kunda, 1999)
 - Changing Prejudice and Stereotyping
 
@@ -316,7 +317,7 @@
 	- Discrepancy
 	- 2-sided appeals
 - The Peripheral Route to persuasion
-	- Emotions
+	- Emotions / mood
 	- Number of Arguments
 	- One-Sided Arguments
 	- Primacy and Recency
@@ -325,57 +326,72 @@
 
 
 
-## Module 10 Social Comparison Theory
+## Module 10 Social Comparison Theory 
+- idea: when u want to understand, u look at how others respond
+
 ### Schachter's fear and affiliation studies
 - Thesis: fear is not an internal state; it's how we relate to other people
 - Basic idea: fear is shaped through social comparison
 - Independent variable: warm doctor vs cold doctor
+- Result: people stay together under fear -> want to understand what would happen
 
-**Social Comparison Theory**: when u want to understand, u look at how others respond
-
-### Two Factor Theory of Emotion
-- Social comparison helps us understand emotion
-- Brain get aroused -> compare how others label -> label those arousals as specific emotions
+### Two Factor Theory of Emotion (arousal * its label = emotion)
+- Social comparison helps us understand emotion: Brain get aroused ->  understand arousal by comparing how others label -> label those arousals as specific emotions
 - Study 1: Euphoria
-	- Conditions: Tell participants that pinephrine will make u feel 1. nothing (igorant) 2. calm (misinformed) 3. happy (informed)
+	- Conditions: Tell subjects that pinephrine would feel 1. nothing (igorant) 2. calm (misinformed) 3. happy (informed)
 	- All groups wait together with a hyper person
 	- Result:
 		- No social comparison is done in informed group (everyone treats happyness as expected side effect of vitamin)
 		- Misinformed / ignorant group report feeling happier
 	- Conclusion: people feel happier when they have arousal they cannot explain
-- Study 2: Anger
-	- Keep same conditions as the last one; the only difference is that the confederate is angry.
+- Study 2: Anger - Keep same conditions as above; the only difference is that the confederate is angry
+	- informed group: not angry at all (attribute anger to side effect of drug)
+	- ignorant group: very angry (cannot explain why they are angry)
 - Review: 
-	- When people are aroused and cannot explain it, they look at other people
-	- An example of interaction of person & situation
-	- Perceiver shapes reality
+	- When people are aroused and cannot explain it, they look at other people & take other people's reations on them
+	- An example of interaction of person & situation; perceiver shapes reality
 
 ### Bridge Study (Dutton and Aron)
 - Situation: attrative women approach men in either parking lots or the middle of the bridge, ask them questions, and give them phone numbers. 
-- Questions: How many call backs are there?
 - Result: bridge: 50% call backs; parking lot: 10% call backs
+- Physical arousal accentuates romantic responses
 
 ### How to make social comparison?
 - Mirror others facial expressions to learn emotions & make social comparison
 - Study 1 (James-Laird): let participants move parts of faces -> form smiles -> lead better moods
-- Study 2 (Strack): hold pen with teeth -> good mood; hold pen with lips -> bad mood （近朱者赤）
+- Study 2 (Strack): hold pen with teeth -> good mood; hold pen with lips -> bad mood （facial expression affects emotion）
 
 ### Early Roots of Social Comparison Theory
 - Bennington Study (Newcomb, 1947): 
-	- Conducted in Bennington college: conservative, rich, girl school
-	- Reference group: how and when students change their attitudes (positive / negative)
-- Schachter study, 1950
-	- Confederate opposes the decision made by a group, then group exerts pressure on deviant to bring them in line
+	- Conducted in Bennington college: conservative, rich girls entered a free-spirited environment
+	- **Reference group** is critical in how and when students change their attitudes (参照组 i.e. 跟谁比)
+		- positive reference group: 我觉得和我很像的群体 e.g. 码农
+			- in this study, developing friends who were liberal changed their views quickly
+		- negative reference group: 我觉得和我不像的群体 e.g. 富二代
+			- in this study, feeling they are not like the people back home made them more liberal as well
+- Schachter study, 1950: Confederate opposes the decision made by a group, then group exerts pressure on deviant to bring them in line
 - Festinger study, 1954
 	- Learn measure of attitude & ability by comparing with similar others
-	- **Unidirectional push upwards**: compare with others who is slightly better （跟jeff打乒乓球）
+	- **Unidirectional push upwards**: people want to compare with others who is slightly better （跟jeff打乒乓球）
 
 ### Up / down social comparison
-- Brickman and Bulman
+- Brickman and Bulman (1977)
+	- Downward comparison often feel better, but could feel worse
 - Wood, Taylor, and Lichtman (Breast cancer)
+	- People usually make downward comparison on dimensions where they would not be going to
 - Lockwood and Kunda 1997: 
 	- Attainability is very important in social comparison: （能不能达到）
-		- upward -> attainability is inspring; unattainability is demoralizing
+		- upward -> attainability is inspring; unattainability is demoralizing e.g. 1st year vs. 4th year 看到大神
+
+### Relative Deprivation
+- Study (Merton and Kitt, 1950) 
+	- soldier in U.S. - unhappy; soldier on battlefield - unhappy; soldier in England - very happy
+	- Importance of reference groups
+- Study (Brickman, Coates, and Janoff-Bulman)
+	- 1 Lottery winners: happy for 3 weeks
+	- 2 Paraplegics: people who became paralyzed for 4 months are as happy as normal people
+
+
 
 ## Module 11 Cognitive Dissonance Theory and Attitudes
 ### Cognitive Dissonance Theory （自我安慰）
