@@ -396,26 +396,30 @@
 ## Module 11 Cognitive Dissonance Theory and Attitudes
 ### Cognitive Dissonance Theory （自我安慰）
 - Example: why people keep smoking even they know it's bad
-- Idea: cognitive dissonance is aroused whenever someone holds 2 cognitions that are psychologically inconsistent
-	- How to resolve? Resolve it in the easiest way (try to rationalize their attitudes towards their behaviors)
+- Idea: **cognitive dissonance is aroused whenever someone holds 2 cognitions that are psychologically inconsistent** i.e. behaviors & attitudes do not go along -> aroused
+	- How to resolve? Resolve it in the easiest way (try to rationalize their attitudes to go along with their behaviors)
 - Study 1 (Festinger & Schachter):
 	- The only participant observation study in social psychology
-	- Prophecy Fail: failed prophecy for 1956 leads to conflicting cognitions of the group that believes the prophecy
-	- The group eventually thinks cult saved the world & becomes more committed to the cult 
+	- Prophecy Fail: failed prophecy for 1956 lead to conflicting cognitions of the group that believed the prophecy
+		- try to seek explanation about why prophecy failed
+	- The group eventually rationalized cult saved the world & became more committed to the cult 
 - Study 2 (Brehm): Free Choice Paradigm
-	- People re-rate their choices higher than their rating at the first time
-	- Conflict: bad features of people's choice
-- Insufficient Justification (Festinger & Carlsmith):
+	- People re-rate their choices higher than their rating before choosing that choice
+	- Tried to rationalize their behaviors from the conflict arised by the bad features of people's choice
+- Insufficient Justification (Festinger & Carlsmith)
 	- People change their attitudes to be consistent with their behaviors
-	- e.g. Get $1 to lie about liking something instead of $20 makes people like that thing more (Justify their behavior)
+	- Involved in a boring task, then get paid & ask to lie to the next people that the task is fun
+	- Subjects who get $1 to lie instead of $20 like that task more (Justify their behavior)
+		- $1 is not a good reason for lying -> dissonance -> resolve by changing beliefs
 	- e.g. Go to Amazon with lower salary
-- Forced Compliance Theory: people will not change their attitude to match their behavior that they are forced to do (they think that they are forced to do, so they don't have dissonace)
+- **Forced Compliance Theory** people will not change their attitude to match their behavior that they are forced to do (they think that they are forced to do, so they don't have dissonace)
 	- High choice: a trick that lets participants think that they have many choices
 	- Low choice: force participants to do something
 - Effort Justification (Aronson & Mills, 1960s)
 	- Let women talk about sex in a group
-	- Mild initiation condition (read a list of words) vs. severe initiation condition (read to male experimenter)
-	- Severe condition: women suffer reading in front -> try to justify their behavior -> think that the group is more fun
+	- Mild initiation condition (read a list of words) vs. severe initiation condition (read to a male experimenter)
+	- The group turned out to be grasshopper mating discussion group -> very boring -> mild condition subjects hated it
+	- Severe condition result: women suffer reading in front -> try to justify their behavior -> think that the group is fun
 
 ### Self-perception theory
 - Daryl Bem
@@ -430,24 +434,24 @@
 ### Important difference: Self-perception - no arousal; Cognitive dissonance - arousal due to conflict
 - How to check if aroused?
 	- Dissonance and pill study (Zanna & Cooper 1974)
+		- arousal differ in high choice group (perceived / illsory control)
 		- nervous pill group -> attribute dissonance to pill -> no attitude change
 		- hidden effect pill group -> attitude change a little
 		- calm pill group -> attitude change a lot to resolve dissonance
 		- showed that arousal level matters -> cognitive dissonance is right
-	- Fazio, Zanna, Cooper 1977
-		- get an integration of 2 theories
-		- latitude of acceptance: e.g. 10% tuition increase or 3% tuition increase
+	- Fazio, Zanna, Cooper 1977: try to get an **integration of 2 theories**
+		- **latitude of acceptance** (临界点) e.g. 10% tuition increase or 3% tuition increase
 		- no arousal within latitude of acceptance (self-perception), and vice versa
 		- most attitude change when high choice & no booth (no explanation / reward)
 
 ### Self and Dissonance
-- Self-affirmation theory
-	- Self concept is threatened -> need to change the attitude to remove the threat
+- Self concept is threatened -> dissonance -> need to change the attitude to remove the threat
+- Self-affirmation & dissonance
 	- Self identity can buffer from self-threat
-		- White coat scientists study (Steele, Hopp and Gonzales)
-	- Self-threat has different effects on people with differnt self-esteem
-		- CD rating study: people with low self-esteem shows more dissonance
-		- only get dissonance when there might be negative consequences
+	- White coat scientists study (Steele, Hopp and Gonzales)
+- Self-threat has different effects on people with differnt self-esteem
+	- CD rating study: people with low self-esteem shows more dissonance
+	- only get dissonance when there might be negative consequences
 
 ### Attitude Behavior Consistency
 - Attitudes not always predict behaviors (e.g. trump建长城)
@@ -455,6 +459,8 @@
 	- Foot-in-the-door phenomenon (car sign)
 	- Low-ball technique (raise price)
 - Weak situational pressure / strong person factor -> attitudes predict behavior
+
+
 
 ## Module 12 Self-Fulfilling Prophecies and Intergroup Relations
 
