@@ -331,6 +331,7 @@
 
 ## Module 10 Social Comparison Theory 
 - idea: when u want to understand, u look at how others respond
+- **Social Comparison** Evaluating one’s abilities and opinions by comparing oneself with others.
 
 ### Schachter's fear and affiliation studies
 - Thesis: fear is not an internal state; it's how we relate to other people
@@ -634,55 +635,74 @@
 - Prisoner's Dilemma
 	- always better off if they confess, but group effect is the worst if both confess
 	- self interest vs group interest
-- Tragedy of the Commons e.g. English fishes, Canadian fishing industry, Global warming (country's benefit vs. world's benefit)
+- **Tragedy of the Commons** if everybody try to maximize self-interest -> group suffers e.g. English fishes, Canadian fishing industry, Global warming (country's benefit vs. world's benefit), 国内工厂排污
+- To sacrifice the self interest & help the group, people need to see consequences, political point, consequence & only for short term
 
 ### Money and Happiness
 - There is a weak correlation: money buys happiness if it provides basic necessities
 	- Everybody being better off does not provide happiness (e.g. inflation)
 	- Happiness arised from social comparison 
-	- Adaptation-level phenomenon: people take what they have for granted (less effect the money has)
+	- **Adaptation-level phenomenon** Tendency to adapt to a given level of stimulation and thus to notice and react to changes from that level
+		- people take what they have for granted (less effect the money has)
 	- diminishing returns
 
 
+
 ## Module 16 Social Psychology and Business
-- Leadership styles (Lewin, Lipett, and White, 1930s)
-	- Styles: Authoritarian (order), Democratic (vote), Laissez Faire (do nothing) 
-	- Measures aggression & productivity
-	- Democratic style is the best
-- Gourp Polarization
-	- definition: if groups discuss something, the opinion becomes more extreme
-	- Rishy shift: group more risky than individual
-	- Study (Myers and Bishop 1970)
-		- People with high / low prejudice about an issue discuss (after discussion high -> more opposed, low -> more supportive)
-	- why it happens?
-		- social comparison: want to look different if others have same ideas
-		- more and more arguments push the team into an aspect further
-		- Close-mindedness
-		- Pressures towards uniformity
-- Group think e.g. Bay of Pigs Fiasco, Pearl Harbour, spaceshuttle Challenger
-	- Social conditions leading to Group Think: isolated, homegenous groups, directive leader
-	- Symptoms
-- Effect of groups on performance
-	- Social facilitation: other people around -> better / worse performance, why?
-		- Zajonc's explanation: under audience, people perform better in easy tasks & worse in hard tasks
-			- study: cockraches with / without mirror run a mage
-		- Evaluation apprehension
-		- Distraction
-	- Social loafing
+### Leadership styles (Lewin, Lipett, and White, 1930s)
+- Styles: Authoritarian (order), Democratic (vote), Laissez Faire (do nothing) 
+- Measures aggression & productivity
+- Democratic style is the best
+- **Participatory management**
+
+### Gourp Polarization
+- definition: if groups discuss something, the opinions may become more extreme
+- Rishy shift: group more risky than individual
+- Study (Myers and Bishop 1970)
+	- People with high / low prejudice about an issue discuss 
+	- after discussion high prejudice -> more opposed, low prejudice -> more supportive
+- why it happens?
+	- social comparison: want to look different if others have same ideas
+	- more and more arguments push in directions further
+	- Close-mindedness: one view shuts down other views
+	- Pressures towards uniformity
+
+### Group think 
+- e.g. Bay of Pigs Fiasco (Kennedy send Cuba citizens to suicide), Pearl Harbour, spaceshuttle Challenger
+- Social conditions leading to Group Think: isolated, homegenous groups, directive leader
+- Tendency of decision-making groups to suppress dissent in the interest of group harmony
+- Symptoms: 
+	- overestimation of group's might and right
+	- close-mindedness
+	- pressure to uniformity (conformity pressure)
+	- self-censorship: slient about concerns (since disagreements are uncomfortable)
+	- illusion of unanimity
+	- mindguard
+
+### Effect of groups on performance
+- Social facilitation: other people around -> better / worse performance, why?
+	- Study (Triplett, 1898): boys reeled faster with audience
+	- Zajonc's explanation: under audience, people perform better in easy tasks & worse in hard tasks
+		- study: cockraches with / without mirror run a mage
+	- Evaluation apprehension
+	- Distraction - conflict
+- Social loafing: slack off in groups unless individual input can be monitored / recognized
+
 
 
 ## Module 17 Romantic Relationship
 ### Dating 
 - Study (Festinger, Schacter, and Back): closer in geolocation (proximity) -> Better friend relationship
 	- Power of situation
-- Mere exposure phenomenon Study: expose more -> like more
+- **Mere exposure phenomenon** expose more -> like more
 - Physical attractiveness
-	- Computer Dance I (Walster, Walster, and Berscheid 1966): Tell dancers that they are paired with people suited but actually randomly assigned
+	- Computer Dance I (Walster, Walster, and Berscheid 1966): Tell dancers that they are paired with people suited for them based on personality tests but actually randomly assigned
+		- Result: whether people enjoy the dance depends on physical attractiveness of partners
 	- Computer Dance II: Let people choose the mate from 9 people
-		- Matching phenomenon: 丑配丑，美配美 (high correlation)
+		- **Matching phenomenon** The tendency for men and women to choose as partners those who are a “good match” in attractiveness and other traits 丑配丑，美配美 (high correlation)
 		- Did not consider possibility of rejection
-	- Pick a date study (Berscheid and Dion): 
-		- rejection does not affect picking mate
+	- Pick a date study (Berscheid and Dion) expected strong matching phenomenon, but rejection did not affect picking mate
+	- **Physical-attractiveness stereotype** beautiful people are good at other things as well
 - Similarity and Liking (tend like people that are similar to us)
 	- More similarity -> relationship lasts longer
 
@@ -694,12 +714,11 @@
 		- A has more disclosure than B -> B would think it's wierd for A to tell too much stuff
 	- 2-factor theory of emotion
 		- early stage: all-consuming, passion & love, arousal
-			- Attribution of love: eople tend to like people who show interest in them or people who make them feel good
+			- Attribution of love: tend to like people who show interest to them or people who make them feel good
 			- e.g. suspension bridge study
-		- late stage:
-			- Attribution: People like who they trust
+		- late stage: attribution - People like who they trust
 - Attachments in relationship
-	- Early attachment styles (secure, avoidant, anxious-ambivalent) might define the later relationship attachment style
+	- Early attachment styles (secure - 自身安全感强，自信, avoidant - 不想太近, anxious-ambivalent - 没安全感，不敢付出) might define the later relationship attachment style
 	- Everyone is better off with people with secure attachment style
 	- New research shows 4th attachment style: depends on positive / negative views of self and other people
 - Illusions in relationship
@@ -710,6 +729,8 @@
 	- Study: self-esteem and illusions
 		- high self-esteem people think the other loves them more; low SE -> less
 - Companionate love: compatibility, friendship, continuation of passinate love
+	- even arranged marriages are happy in the long run
+
 
 
 ## Readings
