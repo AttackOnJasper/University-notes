@@ -58,7 +58,9 @@
 - Smoke-filled Room Study (Latine Daley): would help only if perceive the incident as an emergency
 - Lady in Distress Study
 	- A lady cries in the middle of way for help under conditions: alone / with stranger / confederate / friend
-	- **Pluralistic ignorance**: a majority of group members privately reject a norm, but incorrectly assume that most others accept it, and therefore go along with it. 
+	- **Pluralistic ignorance** A false impression of what most other people are thinking or feeling, or how they are responding.
+		- a majority of group members privately reject a norm, but incorrectly assume that most others accept it, and therefore go along with it
+		- in this case, it's difficult to read strangers' responses -> hard to determine if it's emergency because other people have no behavior / signs (do not want to look like a fool - audience inhibition)
 - Seizure Study
 	- One would help if he / she is responsible
 	- **Diffusion of responsibility** occurs when there r multiple people
@@ -69,7 +71,7 @@
 ### Social Norms Impact
 - Norm of Reciprocity
 - Norm of Equity: overbenefitted should help underbenefitted
-- Norm of Social Responsibility
+- Norm of Social Responsibility: adult help children
 - Norm of Justice: help those who deserve it
 
 ### Mood Impact
@@ -91,8 +93,8 @@
 - Heat & aggression are weakly correlated
 
 ### Frustration & aggression
-- Frustration-aggression theory: frustrate
-	- Study (Dollard, Doob, Miller)
+- Frustration-aggression theory: frustration always leads to aggression
+	- Study (Dollard, Doob, Miller) - aggression to the agent that blocks the goal; if cannot reach then displaced
 	- Frustrates when goal is blocked. e.g. American South -> if cotton production is low -> more slaves die
 - Revision: frustration -> anger -> aggression
 	- Aggressive cues
@@ -126,7 +128,7 @@
 	- answer questions with confederates
 	- too many differences -> tend to activate 'similarity' schema -> say 'me' quickly
 	- too many similarities -> tend to activate 'dissimilar' schema -> say 'not me' quickly
-- Possible selves
+- Possible selves (hope / expect / fear to be)
 
 ### Self concepts formation
 - by other people's perception (Cooley and Mead)
@@ -141,7 +143,7 @@
 		- distort memory to derogate self & feel better (self-serving bias)
 
 ### Self-serving bias (tendency to perceive self favorably)
-- **False Consensus** tendency to overestimate commnality of one's opinions
+- **False Consensus** tendency to overestimate commonality of one's opinions
 - **False uniqueness** think that few others behave or think like u
 - Unrealistic optimism e.g. I will pass this even if pass rate is 5%
 - Overestimation of contributions and abilities: think contribute more than rest of team
@@ -154,10 +156,11 @@
 
 ### Why do we have self-serving bias
 - **self-affirmation theory** maintain positive self-image
-- **self-evaluation meaintenance theory** maintain self-esteem
-	- change distance from others
-	- change how important something is to us e.g. score is not important if fail the exam
-	- change our perception of how well we did
+- **self-evaluation maintenance theory** maintain self-esteem
+	- Ways to maintain
+		- change distance from others
+		- change how important something is to us e.g. score is not important if fail the exam
+		- change our perception of how well we did
 
 ### Self-presentation (express oneself in a favorable way)
 - Self monitoring: high / low self-monitors
@@ -170,7 +173,7 @@
 - **Attribution Theory** The theory of how people explain others’ behavior e.g. internal dispositions (enduring traits, motives, attitudes) or to external situations
 ### Person perception
 - Asch's Gestalt Model of Person Perception
-	- Study: perceive people from a list of descriptive words
+	- Study: perceive people from a list of descriptive sentences
 		- perception depends on order of words / words with strong meanings / context of other words
 ### Perceiving Non-Verbal Behaviour
 - Facial expressions
@@ -460,49 +463,64 @@
 	- Low-ball technique (raise price)
 - Weak situational pressure / strong person factor -> attitudes predict behavior
 
+### Theory of planned behavior
+- first level: Attitude toward the behavior, Subjective norms (other people's attitudes & behaviors), perceived control
+- second level: behavior intention (e.g. I m going to start next week)
+- final level: behavior
+
 
 
 ## Module 12 Self-Fulfilling Prophecies and Intergroup Relations
 
 ### Self-Fulfilling Prophecies
-- Definition: a prediction made that is initially not true, but becomes true because the prediction is made
+- Definition: **a prediction made that is initially not true, but becomes true because the prediction is made**
 	- e.g. stock market: everyone thinks the market would crash -> sell all stocks -> crash
-- Teacher Expectancy Effect (Rosenthal and Jacobson)
-	- Idea: teacher's expectation about how start a student is going to be actually determines how smart that student will become
+- Teacher Expectancy Effect / Rosenthal Effect / Pygmalion Effect (Rosenthal and Jacobson) teacher's expectation about how start a student is going to be actually determines how smart that student will become
 - Zanna and Pack (1975)
-	- Women rate themselves about whether they are traditional, then interact with attractive / not-attractive guys to find out what kind of women they like
+	- Women evaluated themselves about whether they are traditional (through anagram test), then interact with attractive / not-attractive guys to find out what kind of women they like
 	- Would like to investigate whether the women would change their performance on performing a task based on what the men like
 	- Women would change to become more traditional / non traditional based on their desired men's expectations
 - Word, Zanna, and Cooper 1974
-	- Idea: racial stereotype influence behavior
+	- Idea: racial stereotypes influence behavior
 	- Let interviewer treat white guys as black guys
-	- Result: white guys perform very bad (worse than black guys)
+	- Result: white guys performed very bad (worse than black guys)
 - Pieces of self-fulfilling prophecies
-	- **Confirmation bias**: see what u expect to see
+	- **Confirmation bias**: see what u expect/ wish to see
 		- Darley & Gross 1983
 			- ask watching a girl taking test & determine what kind of student she is
 			- see 2 backgrounds: rich / poor (social-economic status)
 			- difficult to tell how smart she is from her answers
 			- Result: rich -> smart; poor -> dumb
 	- **Confirmatory Hypothesis Testing**: getting people to say what you expect
+		- ask biased questions that people are likely to answer in ways that support your hypothesis
 		- Snyder and Swann 1978 (extraverted / interverted)
-			- groups sound like interverts / extraverts based on questions they got asked
+			- 1. if people think there are more extraverts in the group, they will pick more extraverted questions
+			- 2. Subjects who interviewed different groups of people would ask with biased questions
 	- **Behavioural Confirmation**: cause people to act the way you expect
 		- e.g. teacher expectancy effect study
 		- Snyder, Tanke, and Berscheid 1977
-			- give men the fake photos of girls they talk to -> behavior changed -> women act in accord with the stereotype
+			- give men the fake photos of girls they talk to -> behavior changed -> use confirmatory hypothesis testing to confirm physical attractiveness stereotypes -> women act in accord with the stereotype
 
 ### Stereotypes <-> Self-fulfilling prophecies
+- Stereotype creates self-fulfilling prophecies -> impair people's abilities
 - Crocker and Major 1987
-- Major, Spencer, Schmader, Wolfe, and Crocker
+	- infer stereotyped people had lower self-esteem
+- Major, Spencer, Schmader, Wolfe, and Crocker	
 	- bias primed: black won't feel bad
 	- not primed: black will feel bad
+	- stereotyped groups do not have low self esteem
 
 ### Stereotypes Threat and Achievement
-- Study (Spencer, Steele, and Quinn, 1999): Women and Math (differe when w/ or w/o gender difference)
+- Study (Spencer, Steele, and Quinn, 1999): Women and Math
+	- women did much better upon being told there were no gender differences
 - Study (Steele and Aronson 1995): Black & white verbal performance (differ when diagnostic or non-diagnostic)
 - Commercials and women's career aspirations (Davis, Spencer)
 	- women fear that others would reduce them to a negative stereotype
+
+### Subtyping & subgrouping
+- **Subtyping** Accommodating individuals who deviate from one’s stereotype by thinking them as “exceptions to the rule.”
+	- e.g. Woody - 四川人不会吃辣, male scientists treat female scientists as exceptions to normal females
+- **subgrouping** Accommodating individuals who deviate from one’s stereotype by forming a new stereotype about this subset of the group. 
 
 
 ## Module 13 Social Psychology and Health
@@ -700,6 +718,5 @@
 		- game & aggression positively correlated 
 		- consistent with GAAM formulation
 		- exposure to video games -> aggressive personality
-- Study 2 causation experiment 
-	- 
+- Study 2 causation experiment
 - Men have more hostile view of the world 
