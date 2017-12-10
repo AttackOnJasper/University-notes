@@ -50,7 +50,7 @@
 		- go along by external pressure when people do not agree
 
 
-## Module 4 helpness
+## Module 4 Helpness
 ### Why one would help
 - The good samaritan study
 	- conditions: early / late / on time for an appointment & meet a person needs help half way
@@ -417,6 +417,7 @@
 	- e.g. Go to Amazon with lower salary
 - **Forced Compliance Theory** people will not change their attitude to match their behavior that they are forced to do (they think that they are forced to do, so they don't have dissonace)
 	- High choice: a trick that lets participants think that they have many choices
+		- **Locus of control** The extent to which people perceive outcomes as internally controllable by their own efforts or as externally controlled by chance or outside forces
 	- Low choice: force participants to do something
 - Effort Justification (Aronson & Mills, 1960s)
 	- Let women talk about sex in a group
@@ -523,28 +524,33 @@
 - **subgrouping** Accommodating individuals who deviate from one’s stereotype by forming a new stereotype about this subset of the group. 
 
 
+
 ## Module 13 Social Psychology and Health
 ### Health and Control
-- Executive rats: People with more control of bad situations are more healthy
-- Learned helplessness 
-	- Study: put dogs in cage (cannot get out); move -> electric shock
-	- People in learned helplessness make internal, stable, and global attributions
+- Executive rats: People with more control (even perceived control) of bad situations are more healthy
+- **Learned helplessness** hopelessness learned when perceive no control over repeated bad events
+	- Study: put dogs in cage (cannot get out), move -> electric shock -> dog don't move even the cage is removed
+	- **Original model** depressed people give up even when they can do something about bad things that happen to them
+	- **Reformulated model** people in learned helplessness make internal, stable, and global attributions
 - Control -> less learned helplessness -> less pessimism -> optimism
 	- Study (Rodin and Langer): Control in nursing home (15 months life)
+		- Fixed routine (food, furniture, clothes) vs. Freedom (clothes, other possessions, do whatever they want)
 		- People with more control are more happy and live longer (mental & physical health)
 - Importance of Value System and Meaning
 	- Children Lost Study (McIntosh, Sylver, and Wortman 1992): length of recovery time of losing child
 		- Make meaning of an event gives sense of control
 
 ### Health and Stress
+- Selye's General Adaptation Syndrome
 - Primary Appraisal for a life changing event: is it a threat or challenge?
 - Daily hassle > life changing event
 	- Dorms and illness study: better dorm -> less medical visit
-	- Interpersonal conflict is the worst
+	- Interpersonal conflict is the worst (hard to resolve - perceive as threat instead of challenge)
 
 ### Models of depression
-- Pennebaker: inhibition -> stress & confrontation -> relief
-- Nolen-Hoeksma: negative mood -> self-focus -> negative mood
+- Pennebaker: inhibition -> stress -> inhibits finding meaning -> less control -> more inhibition (confrontation may help)
+- Nolen-Hoeksma: negative mood -> self-focus -> negative mood (distraction may help)
+- Seems opposite, but both ways suggest ways of controlling thoughts & looking outward
 
 ### Alcohol Myopia
 - Why alcohol has different effects?
@@ -555,12 +561,12 @@
 	- "The angry drunk": drunk people only know the straight way to fight back
 	- Cues while drunk are more effective
 - Helpness (by exacerbation of the power of situation)
-	- Strong situational pressure (e.g. face-to-face request) -> drunk people more likely to help
+	- Strong situational pressure (e.g. face-to-face request) -> drunk people more likely to help (power of situation)
 - Drunk driving (situational pressure)
 	- tends to agree drunk driving after drunk & situation pressure: e.g. short distance, drop off friends (restricted attention to only the situation instead of considering other things)
 - Date rape (酒后乱性)
 	- Power of situation: one is aroused
-	- Attention is restricted to arousal so that the consequence is not considered
+	- Attention is restricted to arousal, and the consequence is not considered
 	- Date rape is justified while drunk
 
 ### Social Support & Health
@@ -569,7 +575,7 @@
 
 ### Clinician's impact
 - Interaction allows patients to develop trust on doctor, more satisfied, and better health outcome
-
+- Study: patients stay more days in hospital if surgery is not explained
 
 ## Module 14 Law
 ### Eyewitness 
