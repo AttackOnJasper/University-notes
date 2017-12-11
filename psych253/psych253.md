@@ -157,6 +157,7 @@
 
 ### Why do we have self-serving bias
 - **self-affirmation theory** maintain positive self-image
+	- theory that (a) people often experience a self-image threat, after engaging in an undesirable behavior; and (b) they can compensate by affirming another aspect of the self. Threaten people’s self-concept in one domain, and they will compensate either by refocusing or by doing good deeds in some other domain.
 - **self-evaluation maintenance theory** maintain self-esteem (sense of self-worth)
 	- Ways to maintain
 		- change distance from others
@@ -345,6 +346,10 @@
 
 ### The Audience
 - **Attitude inoculation** Exposing people to weak attacks upon their attitudes so that when stronger attacks come, they will have refutations / defenses available.
+- Allow audience to process info through central route
+	- Being forewarned e.g. told there would be a speech about the opinion that u disagree
+	- Being involved
+	- Having a high need for cognition
 
 ### Is Attitude Change So Easy? No!
 - easy to change the unimportant ones
@@ -473,7 +478,6 @@
 
 ### Self and Dissonance
 - Self concept is threatened -> dissonance -> need to change the attitude to remove the threat
-- **self-affirmation theory** theory that (a) people often experience a self-image threat, after engaging in an undesirable behavior; and (b) they can compensate by affirming another aspect of the self. Threaten people’s self-concept in one domain, and they will compensate either by refocusing or by doing good deeds in some other domain.
 - Self-affirmation & dissonance
 	- Self identity can buffer from self-threat
 		- White coat scientists study (Steele, Hopp and Gonzales)
@@ -500,7 +504,6 @@
 ### Self-Fulfilling Prophecies
 - **a prediction made that is initially not true, but becomes true because the prediction is made**
 	- e.g. stock market: everyone thinks the market would crash -> sell all stocks -> crash
-- **Behavioral Confirmation** A type of self-fulfilling prophecy whereby people’s social expectations lead them to behave in ways that cause others to confirm their expectations.
 - Teacher Expectancy Effect / Rosenthal Effect / Pygmalion Effect (Rosenthal and Jacobson) teacher's expectation about how start a student is going to be actually determines how smart that student will become
 - Zanna and Pack (1975)
 	- Women evaluated themselves about whether they are traditional (through anagram test), then interact with attractive / not-attractive guys to find out what kind of women they like
@@ -524,7 +527,7 @@
 		- Study 1
 			- ask subjects to interview a group of people; pick 10 out of 25 biased questions
 			- If people think there are more extraverts in the group, they will pick more extraverted questions
-		- 2. Subjects who interviewed different groups of people would ask with biased questions
+		- Study 2: Subjects who interviewed different groups of people would ask with biased questions
 - **Behavioural Confirmation**: cause people to act the way you expect
 	- e.g. teacher expectancy effect study
 	- Snyder, Tanke, and Berscheid 1977
@@ -571,7 +574,7 @@
 		- Make meaning of an event gives sense of control
 
 ### Health and Stress
-- Selye's General Adaptation Syndrome
+- Selye's General Adaptation Syndrome: stress -> alarm
 - Primary Appraisal for a life changing event: is it a threat or challenge?
 - Daily hassle > life changing event
 	- Dorms and illness study: better dorm -> less medical visit
@@ -639,7 +642,7 @@
 			- arised from group deliberation
 		- reassurance
 	- Minority Influence: only have impact if they are strong, consistent, forceful, self-confident
-		- A minority that faviors acquittal stands a better
+		- A minority that faviors acquittal stands a better chance
 	- Leniency bias: doubt -> let the defendant off
 - tend to brush off legal categories of murder
 
@@ -666,8 +669,8 @@
 	- always better off if they confess, but group effect is the worst if both confess
 	- self interest vs group interest
 - **Tragedy of the Commons** if everybody try to maximize self-interest -> group suffers e.g. English fishes, Canadian fishing industry, Global warming (country's benefit vs. world's benefit), 国内工厂排污
-- To sacrifice the self interest & help the group, people need to see consequences, political point, consequence & only for short term
-- **System Justification** people have several underlying needs, which vary from individual to individual, that can be satisfied by the defense and justification of the status quo, even when the system may be disadvantageous to certain people
+- To sacrifice the self interest & help the group, people need to see consequences, political point, other people incorporate & only for short term
+- **System Justification** people have several underlying needs, which vary from individual to individual, that can be satisfied by the defense and justification of the status quo, even when the system may be disadvantageous to certain people 安于现状
 
 ### Money and Happiness
 - There is a weak correlation: money buys happiness if it provides basic necessities
@@ -835,11 +838,16 @@
 ### Decision Making in Altered States (MacDonald, Zanna, Fong)
 - Study 1 Lab Study
 	- Gave alcohol to maintain the same level for each participants
-	- Measure attitudes and intetions to drink and drive
+	- Measure attitudes and intentions to drink and drive
 - Study 2 Telephone Diary Study
 	- early condition: call answering machine as soon as they arrive at bar
 	- late condition: call before they leave the bar
 	- measure same as study 1 & BALs (amount of alcohol)
 
 
-### Seeing virutes in Faults (Sandra Murray & John Holmes)
+### Seeing virutes in Faults: Negativity and Transformation of interpersonal narratives in close relationships (Sandra Murray & John Holmes)
+- Individual develop story-like representations of partners to relieve feelings of doubt from partners' faults
+- Study 1: 
+	- self-report to assess individuals' perceptions -> examine how dating individuals evaluate research
+	- low / high conflicts in partners
+- Study 2
