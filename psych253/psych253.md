@@ -121,7 +121,7 @@
 - Self-reference effect (think about how something relates to self; memory)
 
 ### Self-schemas (Hazel Markus)
-- how people think about themselves / characteristic
+- **Beliefs about self that organize and guide the processing of self-relevant information.**
 - influence thinking speed (self-schema of an aspect -> process that info more quickly)
 - Working self-concept: a subset of self-schemas used at a particular time
 - Study (Markus and Kunda)
@@ -130,7 +130,7 @@
 	- too many similarities -> tend to activate 'dissimilar' schema -> say 'not me' quickly
 - Possible selves (hope / expect / fear to be)
 
-### Self concepts formation
+### Self concepts formation ('who am I?') Self concept = self schema + possible selves
 - by other people's perception (Cooley and Mead)
 - by introspections (bad)
 	- Nibett and Wilson Studies: have little understanding of our inside
@@ -141,36 +141,38 @@
 - Social Comparison Theory
 	- gain self concepts by comparing with others / with ourselves in the past
 		- distort memory to derogate self & feel better (self-serving bias)
+		- University freshman study (Wilson and Ross)
 
 ### Self-serving bias (tendency to perceive self favorably)
 - **False Consensus** tendency to overestimate commonality of one's opinions
 - **False uniqueness** think that few others behave or think like u
 - Unrealistic optimism e.g. I will pass this even if pass rate is 5%
-- Overestimation of contributions and abilities: think contribute more than rest of team
+- **Group-serving bias** Overestimation of contributions and abilities: think contribute more than rest of team
 	- Ross and Sicoly
-- Explanations of success / failure: internal / external attribution e.g. 篮球赛输赢
+- **Self-serving attribution** explanations of success / failure: internal / external attribution e.g. 篮球赛输赢
 - Basking in reflected glory: we win; they lose
 	- Study: feedback & badges
-- Self-handicapping: produce excuses in case if bad performance e.g. exam & drinking / excuse for a bad test
+- Self-handicapping (找理由) produce excuses in case if bad performance e.g. exam & drinking / excuse for a bad test
 	- try to prevent self from getting hurt (self-serving bias)
 
 ### Why do we have self-serving bias
 - **self-affirmation theory** maintain positive self-image
-- **self-evaluation maintenance theory** maintain self-esteem
+- **self-evaluation maintenance theory** maintain self-esteem (sense of self-worth)
 	- Ways to maintain
 		- change distance from others
 		- change how important something is to us e.g. score is not important if fail the exam
 		- change our perception of how well we did
 
-### Self-presentation (express oneself in a favorable way)
-- Self monitoring: high / low self-monitors
-- Self verification: present to maintain self-views (even negative views)
+### Self-presentation (express oneself in a favorable way e.g. 装逼)
+- Self monitoring: high / low self-monitors 分场合表现自己
+- Self verification: present to maintain self-views (even negative views) 让人看真实一面
 
 
 
 ## Module 7 - Attribution and Person Perception
-### Definitions
 - **Attribution Theory** The theory of how people explain others’ behavior e.g. internal dispositions (enduring traits, motives, attitudes) or to external situations
+- dispositional / situational attribution
+
 ### Person perception
 - Asch's Gestalt Model of Person Perception
 	- Study: perceive people from a list of descriptive sentences
@@ -198,11 +200,12 @@
 	- Covariation principle: multiple people engage in same behavior
 	- Figure out the cause of behavior (internal / external)
 	- 3 kinds of information
-		- Consensus: To what extent do others in this situation behave similarly
-			- yes -> external; no -> internal
-		- Distinctiveness: How specific is the person’s behavior to this particular situation
-			- yes -> external (其他都不喜欢就喜欢这部电影，说明是电影好) / no -> internal
 		- Consistency: How consistent is the person’s behavior in this situation
+			- not consistent -> little attribution can be made
+		- Consensus: To what extent do others in this situation behave similarly
+			- high -> external; low (i.e. different from other people) -> internal
+		- Distinctiveness: How specific is the person’s behavior to this particular situation
+			- it can be external or internal; need to be combined with other information	
 
 ### How Do We Make Attributions
 - Fundamental attribution error
@@ -215,14 +218,13 @@
 	- attribute more causes to situation for ourselves (self serving)
 	- make situational attributions in first person point of view
 	- make fundamental attribution error when they are self-aware (look at themselves from third person point of view)
-- Two step model of attribution (Gilbert)
-	- person attribution then corrected based on situation
+- Two step model of attribution (Gilbert) person attribution then corrected based on situation
 
 ### Schemas (guide our processing of information; context)
 - e.g. instructions to wash clothes
 - e.g. flipping cards with / without schemas -> accuracy varies a lot
-- 2 Heuristics (Daniel Kahneman, Amos Tversky): guide processing of information
-	- Representativeness Heuristic (stereotype)
+- 2 Heuristics (Daniel Kahneman, Amos Tversky): guide processing of information / thinking strategy that enables quick, efficient judgments.
+	- **Representativeness Heuristic** The tendency to presume, sometimes despite contrary odds, that someone or something belongs to a particular group if resembling (representing) a typical member.
 		- e.g. Linda sounds like a feminist (has all traits of a typical feminist)
 	- Availability Heuristic
 		- availability of something influences how likely we think it is
@@ -254,7 +256,7 @@
 - Too much complexity in world -> form schema to simplify -> categorize people
 - How Do Stereotypes Form?
 	- Out-group Homogeneity Effect 黑人长得都差不多
-	- **Illusory Correlations** Perception of a relationship / correlation where none exists (esp. in minorities) e.g. 认为妹子打游戏都不行
+	- **Illusory Correlations** Perception of a relationship / correlation where none exists (esp. in minorities) e.g. 认为阿三都很坑
 		- Rare things got overemphasized in memory (esp. undesired behaviors)
 - How Are Stereotypes Perpetuated (保持)?
 	- Cognitive theory accounts for this
@@ -267,22 +269,31 @@
 		- ask people to assign personality traits to 20 racial groups
 		- Overt stereotypes -> subtle forms e.g. 有黑人邻居就搬家
 - Subtler Forms of Prejudice - Earlier Studies
-	- Pencil Poking study (Sagar and Schofield)
-		- when black children is poking with pencil, all other children see him as trying to hurt the other instead of getting attention
-	- Aversive racism
-		- people would not make overt prejudice comments
-	- Helping study
-		- offer more help to black & ask less help from black
-	- Inadmissable Evidence Study
+	- Pencil Poking study (Sagar and Schofield) when black children is poking with pencil, all other children see him as trying to hurt the other instead of getting attention
+	- Aversive racism: people would not make overt prejudice comments
+		- persistent avoidance of interaction with other racial and ethnic groups
+	- Helping study: offer more help to black & ask less help from black
+	- Inadmissable Evidence Study: 
+		- has inadmissable evidence that shows defendant is innocent
+		- white defendant -> people wanna prove he/she is innocent -> ignore judge & consider inadmissable evidence
+		- black defendant -> ignore the evidence -> still guilty
 - Subtler Forms of Prejudice - Recent Studies
 	- The Amadou Diallo Story
-	- Correll, Park, and Judd (2003)
-		- in video game, more likely to shoot black people
+	- Correll, Park, and Judd (2003) in video game, more likely to shoot black people
 - Implicit and Explicit Stereotyping
 	- Implicit stereotyping: occur outside our awareness
 	- Study (Spencer, Fein, Wolfe, Fong, 1998): word completion task; more negative words given black faces flashed + negative feedback on an IQ test
-	- Study (Sinclair and Kunda, 1999)
+	- Study (Sinclair & Kunda, 1999) rating for interview is very bad if a black interviewer gave negative feedback
+		- 2nd study: change black interviewer to black doctor
+			- if positive feedback, doctor stereotype is activated
+			- if negative feedback, black stereotype is activated
+			- motives & desires affect stereotyping
 - Changing Prejudice and Stereotyping
+	- Segregation was changed by 'Brown vs Board of Education' 1954
+	- Contact Hypothesis
+		- school desegregation, interaction, work together towards goal would help reduce stereotypes
+		- may increase subtle / aversive racism
+		- Friendships & Laws may decrease subtle racism
 
 
 
@@ -303,29 +314,41 @@
 
 ### The Communicator
 - Credibility (usually peripheral)
-	- Expertise (central) e.g. T.S. Eliot changed more people's opinions about bad poems than a local paper writer did
-	- **Trustworthiness** Persuaded by people who we trust even if they know nothing about a subject 妈妈让尝试一个东西
+	- Expertise (central) e.g. T.S. Eliot changed more people's opinions about bad poems than a local paper writer
+	- **Trustworthiness** Persuaded by people who we trust even if they have no expertise 妈妈让尝试一个东西
 	- **Sleeper Effect** delayed persuasion 慢慢洗脑 
 	 	- To have the effect, argument needs to be more memorable than the source (i.e. remember the content but forget who said it)
 		- e.g. Oppenheimer (expert) vs. Pravda (local paper)
 			- initially, most people must expert
 			- with reminder of the source, not much attitude change
-			- withou reminder, most people have the same attitude over 4 weeks
-- Attractiveness
-	- Study: attractive / unattractive women ask to sign petition
+			- withou reminder, most people believe Pravda the same amount as Oppoenheimer over 4 weeks
+- Attractiveness - Study: attractive / unattractive women ask to sign petition
 - Similarity 
 
 ### The Message
 - The Central Route to persuasion
-	- Discrepancy
-	- 2-sided appeals
-- The Peripheral Route to persuasion
+	- If message has large discrepancy & want it to be persuasive, then the argument better be good
+		- Study: Ohio State students need to pass a 3-day comprehensive exam
+			- high involvement people's attitudes largely depends on the arguments of the message
+	- 2-sided appeals > 1-side appeal when processed centrally 
+		- Study: Yale school - strength of Japanese Army 1944; 2-sided speech
+			- People who initially disagree the large strength of army think more centrally; have stronger argument
+			- Result: 2-sided arguments work well on central route
+	- argument strength: 质量大于数量
+- The Peripheral Route to persuasion 无意识洗脑 e.g. TV ads
 	- Emotions / mood
-	- Number of Arguments
+		- Good mood e.g. eating -> good mood -> easy to be persuaded
+		- Fear: more persuasive when giving the remedy of that fear
+	- Number of Arguments 数量大于质量
 	- One-Sided Arguments
-	- Primacy and Recency
+	- Primacy and Recency (availability heuristic)
+
 ### The Audience
-### Is Attitude Change So Easy?
+- **Attitude inoculation** Exposing people to weak attacks upon their attitudes so that when stronger attacks come, they will have refutations / defenses available.
+
+### Is Attitude Change So Easy? No!
+- easy to change the unimportant ones
+- may change important ones given the arguments are good & central route
 
 
 
@@ -336,23 +359,23 @@
 ### Schachter's fear and affiliation studies
 - Thesis: fear is not an internal state; it's how we relate to other people
 - Basic idea: fear is shaped through social comparison
-- Independent variable: warm doctor vs cold doctor
+- Independent variable: low fear vs. high fear
 - Result: people stay together under fear -> want to understand what would happen
 
-### Two Factor Theory of Emotion (arousal * its label = emotion)
+### Two Factor Theory of Emotion (Schachter and Singer, 1962) arousal * its label = emotion
 - Social comparison helps us understand emotion: Brain get aroused ->  understand arousal by comparing how others label -> label those arousals as specific emotions
 - Study 1: Euphoria
-	- Conditions: Tell subjects that pinephrine would feel 1. nothing (igorant) 2. calm (misinformed) 3. happy (informed)
+	- Conditions: Tell subjects that pinephrine would feel nothing (igorant) / calm (misinformed) / happy (informed)
 	- All groups wait together with a hyper person
 	- Result:
-		- No social comparison is done in informed group (everyone treats happyness as expected side effect of vitamin)
+		- No social comparison is done in informed group (treats happyness as expected side effect of vitamin)
 		- Misinformed / ignorant group report feeling happier
 	- Conclusion: people feel happier when they have arousal they cannot explain
 - Study 2: Anger - Keep same conditions as above; the only difference is that the confederate is angry
 	- informed group: not angry at all (attribute anger to side effect of drug)
 	- ignorant group: very angry (cannot explain why they are angry)
 - Review: 
-	- When people are aroused and cannot explain it, they look at other people & take other people's reations on them
+	- When people are aroused and cannot explain it, they look at other people & take other people's reations
 	- An example of interaction of person & situation; perceiver shapes reality
 
 ### Bridge Study (Dutton and Aron)
@@ -379,8 +402,7 @@
 	- **Unidirectional push upwards**: people want to compare with others who is slightly better （跟jeff打乒乓球）
 
 ### Up / down social comparison
-- Brickman and Bulman (1977)
-	- Downward comparison often feel better, but could feel worse
+- Brickman and Bulman (1977) Downward comparison often feel better, but could feel worse
 - Wood, Taylor, and Lichtman (Breast cancer)
 	- People usually make downward comparison on dimensions where they would not be going to
 - Lockwood and Kunda 1997: 
@@ -415,7 +437,7 @@
 	- Involved in a boring task, then get paid & ask to lie to the next people that the task is fun
 	- Subjects who get $1 to lie instead of $20 like that task more (Justify their behavior)
 		- $1 is not a good reason for lying -> dissonance -> resolve by changing beliefs
-	- e.g. Go to Amazon with lower salary
+	- e.g. Go to Amazon with lower salary -> 可以回加拿大
 - **Forced Compliance Theory** people will not change their attitude to match their behavior that they are forced to do (they think that they are forced to do, so they don't have dissonace)
 	- High choice: a trick that lets participants think that they have many choices
 		- **Locus of control** The extent to which people perceive outcomes as internally controllable by their own efforts or as externally controlled by chance or outside forces
@@ -451,10 +473,11 @@
 
 ### Self and Dissonance
 - Self concept is threatened -> dissonance -> need to change the attitude to remove the threat
+- **self-affirmation theory** theory that (a) people often experience a self-image threat, after engaging in an undesirable behavior; and (b) they can compensate by affirming another aspect of the self. Threaten people’s self-concept in one domain, and they will compensate either by refocusing or by doing good deeds in some other domain.
 - Self-affirmation & dissonance
 	- Self identity can buffer from self-threat
-	- White coat scientists study (Steele, Hopp and Gonzales)
-- Self-threat has different effects on people with differnt self-esteem
+		- White coat scientists study (Steele, Hopp and Gonzales)
+- Self-threat has different effects on people with different self-esteem
 	- CD rating study: people with low self-esteem shows more dissonance
 	- only get dissonance when there might be negative consequences
 
@@ -466,17 +489,18 @@
 - Weak situational pressure / strong person factor -> attitudes predict behavior
 
 ### Theory of planned behavior
-- first level: Attitude toward the behavior, Subjective norms (other people's attitudes & behaviors), perceived control
-- second level: behavior intention (e.g. I m going to start next week)
-- final level: behavior
+- first: Attitude toward the behavior, Subjective norms (other people's attitudes), perceived control
+- second: behavior intention (e.g. I m going to start next week)
+- finally: behavior
 
 
 
 ## Module 12 Self-Fulfilling Prophecies and Intergroup Relations
 
 ### Self-Fulfilling Prophecies
-- Definition: **a prediction made that is initially not true, but becomes true because the prediction is made**
+- **a prediction made that is initially not true, but becomes true because the prediction is made**
 	- e.g. stock market: everyone thinks the market would crash -> sell all stocks -> crash
+- **Behavioral Confirmation** A type of self-fulfilling prophecy whereby people’s social expectations lead them to behave in ways that cause others to confirm their expectations.
 - Teacher Expectancy Effect / Rosenthal Effect / Pygmalion Effect (Rosenthal and Jacobson) teacher's expectation about how start a student is going to be actually determines how smart that student will become
 - Zanna and Pack (1975)
 	- Women evaluated themselves about whether they are traditional (through anagram test), then interact with attractive / not-attractive guys to find out what kind of women they like
@@ -486,37 +510,42 @@
 	- Idea: racial stereotypes influence behavior
 	- Let interviewer treat white guys as black guys
 	- Result: white guys performed very bad (worse than black guys)
-- Pieces of self-fulfilling prophecies
-	- **Confirmation bias**: see what u expect/ wish to see
-		- Darley & Gross 1983
-			- ask watching a girl taking test & determine what kind of student she is
-			- see 2 backgrounds: rich / poor (social-economic status)
-			- difficult to tell how smart she is from her answers
-			- Result: rich -> smart; poor -> dumb
-	- **Confirmatory Hypothesis Testing**: getting people to say what you expect
-		- ask biased questions that people are likely to answer in ways that support your hypothesis
-		- Snyder and Swann 1978 (extraverted / interverted)
-			- 1. if people think there are more extraverts in the group, they will pick more extraverted questions
-			- 2. Subjects who interviewed different groups of people would ask with biased questions
-	- **Behavioural Confirmation**: cause people to act the way you expect
-		- e.g. teacher expectancy effect study
-		- Snyder, Tanke, and Berscheid 1977
-			- give men the fake photos of girls they talk to -> behavior changed -> use confirmatory hypothesis testing to confirm physical attractiveness stereotypes -> women act in accord with the stereotype
+
+### Pieces of self-fulfilling prophecies
+- **Confirmation bias**: see what u expect/ wish to see; tendency to search for info that confirms preconceptions
+	- Darley & Gross 1983
+		- ask watching a girl taking test & determine what kind of student she is
+		- see 2 backgrounds: rich / poor (social-economic status)
+		- difficult to tell how smart she is from her answers
+		- Result: rich -> smart; poor -> dumb
+- **Confirmatory Hypothesis Testing**: getting people to say what you expect
+	- ask biased questions that people are likely to answer in ways that support your hypothesis
+	- Snyder and Swann 1978 (extraverted / interverted)
+		- Study 1
+			- ask subjects to interview a group of people; pick 10 out of 25 biased questions
+			- If people think there are more extraverts in the group, they will pick more extraverted questions
+		- 2. Subjects who interviewed different groups of people would ask with biased questions
+- **Behavioural Confirmation**: cause people to act the way you expect
+	- e.g. teacher expectancy effect study
+	- Snyder, Tanke, and Berscheid 1977
+		- give men the fake photos of girls they talk to -> behavior changed -> use confirmatory hypothesis testing to confirm physical attractiveness stereotypes -> women act in accord with the stereotype
 
 ### Stereotypes <-> Self-fulfilling prophecies
-- Stereotype creates self-fulfilling prophecies -> impair people's abilities
-- Crocker and Major 1987
-	- infer stereotyped people had lower self-esteem
-- Major, Spencer, Schmader, Wolfe, and Crocker	
-	- bias primed: black won't feel bad
+- Stereotype creates self-fulfilling prophecies -> impair people's abilities (not always)
+- Crocker and Major 1987: tested that stereotyped people **don't have low self-esteem**
+- Major, Spencer, Schmader, Wolfe, and Crocker 1998
+	- bias primed (i.e. notified): black won't feel bad
 	- not primed: black will feel bad
-	- stereotyped groups do not have low self esteem
+	- stereotyped groups do not have low self esteem -> attribute bad performance to existing stereotypes
 
 ### Stereotypes Threat and Achievement
+- Stereotypes **affect performance** and create burden on difficult tasks
+- **Stereotype Threat** A disruptive concern, when facing a negative stereotype, that one will be evaluated based on a negative stereotype.
 - Study (Spencer, Steele, and Quinn, 1999): Women and Math
 	- women did much better upon being told there were no gender differences
-- Study (Steele and Aronson 1995): Black & white verbal performance (differ when diagnostic or non-diagnostic)
+- Study (Steele and Aronson 1995): Black's verbal performance drops if they think a pre-test is diagnostic
 - Commercials and women's career aspirations (Davis, Spencer)
+	- stereotypes affect **aspirations** - govern what careers to choose for each gender
 	- women fear that others would reduce them to a negative stereotype
 
 ### Subtyping & subgrouping
@@ -605,8 +634,9 @@
 	- Try to construct a narrative from pieces of information (e.g. Kobe & women told different stories)
 - Dynamics
 	- Majority influence
-		- two-thirds rule: 2/3 before walking in -> 100% after
+		- two-thirds rule: 2/3 before walking in -> 100% after (Davies et al. 1975, 1977)
 		- **group polarization** everyone's arguments go more extreme (e.g. disagree -> more disagree)
+			- arised from group deliberation
 		- reassurance
 	- Minority Influence: only have impact if they are strong, consistent, forceful, self-confident
 		- A minority that faviors acquittal stands a better
@@ -637,12 +667,13 @@
 	- self interest vs group interest
 - **Tragedy of the Commons** if everybody try to maximize self-interest -> group suffers e.g. English fishes, Canadian fishing industry, Global warming (country's benefit vs. world's benefit), 国内工厂排污
 - To sacrifice the self interest & help the group, people need to see consequences, political point, consequence & only for short term
+- **System Justification** people have several underlying needs, which vary from individual to individual, that can be satisfied by the defense and justification of the status quo, even when the system may be disadvantageous to certain people
 
 ### Money and Happiness
 - There is a weak correlation: money buys happiness if it provides basic necessities
 	- Everybody being better off does not provide happiness (e.g. inflation)
 	- Happiness arised from social comparison 
-	- **Adaptation-level phenomenon** Tendency to adapt to a given level of stimulation and thus to notice and react to changes from that level
+	- **Adaptation-level phenomenon** Tendency to adapt to a given level of stimulation and thus to notice and react to changes from that level 永不知足
 		- people take what they have for granted (less effect the money has)
 	- diminishing returns
 
@@ -650,10 +681,17 @@
 
 ## Module 16 Social Psychology and Business
 ### Leadership styles (Lewin, Lipett, and White, 1930s)
-- Styles: Authoritarian (order), Democratic (vote), Laissez Faire (do nothing) 
+- Styles: 
+	- Authoritarian (order)
+	- Democratic (vote)
+	- Laissez Faire (do nothing) 
+	- Task leadership: Leadership that organizes work, sets standards, and focuses on goals.
+	- Social leadership: Leadership that builds teamwork, mediates conflict, and offers support.
+	- Transformational leadership, enabled by a leader’s vision and inspiration, exerts significant influence.
+	- Transactional leadership: directs a team to focus on a goal while being open to input from team members
 - Measures aggression & productivity
 - Democratic style is the best
-- **Participatory management**
+- **Participatory management** productivity up when ...
 
 ### Gourp Polarization
 - definition: if groups discuss something, the opinions may become more extreme
@@ -673,7 +711,7 @@
 - Tendency of decision-making groups to suppress dissent in the interest of group harmony
 - Symptoms: 
 	- overestimation of group's might and right
-	- close-mindedness
+	- close-mindedness 有意见不敢说
 	- pressure to uniformity (conformity pressure)
 	- self-censorship: slient about concerns (since disagreements are uncomfortable)
 	- illusion of unanimity
@@ -709,6 +747,7 @@
 ### From initiation to development
 - Models of development
 	- self-disclosure and self-penetration model
+		- disclosure reciprocity: 你和我分享了你的秘密，我也想和你分享我的秘密
 		- two people ideally should have the same amount of disclosure of self with each other at every time
 		- A has less disclosure than B -> B would wonder why A does not tell a lot of things about A
 		- A has more disclosure than B -> B would think it's wierd for A to tell too much stuff
@@ -721,6 +760,9 @@
 	- Early attachment styles (secure - 自身安全感强，自信, avoidant - 不想太近, anxious-ambivalent - 没安全感，不敢付出) might define the later relationship attachment style
 	- Everyone is better off with people with secure attachment style
 	- New research shows 4th attachment style: depends on positive / negative views of self and other people
+- **Equity** A condition in which the outcomes people receive from a relationship are proportional to what they contribute to it 
+	- **Long term equity** give in response to partner's need without expecting anything in return
+	- **Perceived equity** feel whether two people are equal in the relationship (no overbenefit / underbenefit)
 - Illusions in relationship
 	- Illusion promotes relationship
 	- Study (Murray and Holmes, 1993): 
@@ -734,6 +776,7 @@
 
 
 ## Readings
+
 ### Obedience
 - Experimenter asked subjects (teacher) to administer electric shock whenever confederate (learner) gave the wrong answer
 - Measure the max power subjects are willing to impose before they refuse to continue further
@@ -745,15 +788,58 @@
 	- Subject See victim and self as voluntary 
 	- Pune chance to become the learner/teacher
 
-
-
 ### Video gaming & aggressive thoughts
+- GAAM: short-term effect of video game violence & aggressive personality
 - 4 main hypotheses emerge from GAAM
 - Study 1 correlation study
 	- 227 college students did questionnaires (Irratation Scale & Aggression Questionnaire)
 	- Result: 
 		- game & aggression positively correlated 
 		- consistent with GAAM formulation
-		- exposure to video games -> aggressive personality
-- Study 2 causation experiment
-- Men have more hostile view of the world 
+		- extensive exposure to video games -> create aggressive personality
+		- exposure to video games + aggressive personality -> high delinquency & aggressive behavior
+- Study 2 causation experiment (short-term effect)
+	- examine effects of violent video game play on aggressive thought
+	- 210 subjects; 2 (violent vs. non-violent) * 2 (low / high irritability) * 2 (gender)
+	- violent & high irritable -> more aggression after lose trials
+	- Men have more hostile view of the world 
+- In short term, video game -> prime aggressive thoughts; long term, video game -> learn & practice aggressive scripts
+
+### People's appraisal of past & present selves (Anne Wilson and Michael Ross)
+- test if people tend to evaluate past selves more negatively than current selves, and even disparage past others
+- study 1: use tape to describe what they were like at 16
+- study 2: close-ended scale
+- result of 1 & 2: depict past selves negatively
+- study 3: compare students Sept.ratings in Sept. and their Sept. ratings in Nov.
+- social comparison - people disparage their past selves for self-serving purposes
+
+
+### Reactions to a Black Professional (Lisa Sinclair & Ziva Kunda)
+- Try to test motivation to form an impression can activate desirable stereotypes & inhibit stereotypes that conflict with that impression
+- Study 1: Criticism or Praise from a black evaluator (manager)
+	- **method** interpersonal questionnaire -> black / white evaluator gave feedback -> assessing activation of black stereotype (word completion task & manager skill rating)
+	- **result** black stereotype activated, but motivation is not quite clearly implicated
+- Study 2: deciphering the role of motivation in stereotype inhibition & activation
+	- **method** received subjects' responses & feedback of managers from subjects in study 1 -> measure activation
+- Study 3: Reactions to a black doctor - exploring the simultaneous activation and inhibition of conflicting sterotypes
+	- lexical-decision task to assess the activation of black stereotype
+	- measure reaction times
+- Study 4: Does prejudice moderate reactions to a black doctor
+	- high / low prejudice 
+	- spoken measure of interpersonal skills then positive evaluation from black doctor
+
+### Cognitive, social, and physiological determinants of emotional state
+
+### TV commercials Elict Stereotype Threat can restrain women academically & professionally
+
+### Decision Making in Altered States (MacDonald, Zanna, Fong)
+- Study 1 Lab Study
+	- Gave alcohol to maintain the same level for each participants
+	- Measure attitudes and intetions to drink and drive
+- Study 2 Telephone Diary Study
+	- early condition: call answering machine as soon as they arrive at bar
+	- late condition: call before they leave the bar
+	- measure same as study 1 & BALs (amount of alcohol)
+
+
+### Seeing virutes in Faults (Sandra Murray & John Holmes)
