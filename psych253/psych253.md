@@ -214,7 +214,7 @@
 	- Study (Jones and Harris 1967): Castro speech
 		- People attributed speech attitudes to speechwriters' even if speechwriters are assigned to write the speech
 	- Study (Ross, Amabile, and Steinmetz)
-		- everyone (contestatns & observers) thought questioners (subjects who gave questions) were smarter
+		- everyone (contestants & observers) thought questioners (subjects who gave questions) were smarter
 - The actor observer bias
 	- attribute more causes to situation for ourselves (self serving)
 	- make situational attributions in first person point of view
@@ -227,8 +227,7 @@
 - 2 Heuristics (Daniel Kahneman, Amos Tversky): guide processing of information / thinking strategy that enables quick, efficient judgments.
 	- **Representativeness Heuristic** The tendency to presume, sometimes despite contrary odds, that someone or something belongs to a particular group if resembling (representing) a typical member.
 		- e.g. Linda sounds like a feminist (has all traits of a typical feminist)
-	- Availability Heuristic
-		- availability of something influences how likely we think it is
+	- **Availability Heuristic** availability of something influences how likely we think it is
 		- e.g. # of k(.)+ vs # of ..k(.)+
 		- e.g. 美国不安全 (一直只报道枪击案)
 - guide reconstruction of memory
