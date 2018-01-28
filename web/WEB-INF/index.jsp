@@ -2,8 +2,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Auto-render test</title>
-  <script src="/WEB-INF/js/katex.min.js" type="text/javascript"></script>
-  <link href="/WEB-INF/css/katex.min.css" rel="stylesheet" type="text/css">
+  <script src="/resources/js/katex.min.js" type="text/javascript"></script>
+  <link href="/resources/css/katex.min.css" rel="stylesheet" type="text/css">
   <style type="text/css">
     body {
       margin: 0px;
