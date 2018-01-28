@@ -4,3 +4,4 @@
 
 ## Module 2 Neural Network
 ### Part 10. Gradient Descent on m examples
+- Cost function J = 
