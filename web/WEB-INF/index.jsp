@@ -19,6 +19,7 @@
     <li><a href="/resources/notes/psych253/psych253.html">Psych 253</a></li>
     <li><a href="/resources/notes/coursera-deep-learning/CourseraDeepLearning.html">Coursera Deep Learning</a></li>
     <li><a href="/resources/notes/cs341/cs341.html">CS 341</a></li>
+    <li><a href="/resources/notes/latex-math-reference/latex.html">Latex Math Reference</a></li>
 </ul>
 </body>
 </html>
