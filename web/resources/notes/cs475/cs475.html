@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta http-equiv="Content-Style-Type" content="text/css" />
-  <title>CourseraDeepLearning | Jasper Wang</title>
+  <title>cs475 | Jasper Wang</title>
   <script src="/resources/js/katex.min.js" type="text/javascript"></script>
   <link href="/resources/css/katex.min.css" rel="stylesheet" type="text/css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-beta/contrib/auto-render.min.js" integrity="sha384-EkJr57fExjeMKAZnlVBuoBoX0EJ4BiDPiAd/JyTzIA65ORu4hna7V6aaq4zsUvJ2" crossorigin="anonymous"></script>
@@ -76,31 +76,101 @@
   <ul class="site_links">
     <span class="divider"></span>
   </ul>
-<h1 id="coursera-deep-learning">Coursera Deep Learning</h1>
-<h2 id="module-1-deep-learning-overview">Module 1 Deep Learning Overview</h2>
-<h3 id="part-2-neural-network-intro">Part 2 Neural Network Intro</h3>
+<h1 id="cs-475">CS 475</h1>
+<h2 id="lecture-1-2018-05-02">Lecture 1 (2018-05-02)</h2>
+<h3 id="prerequisites">Prerequisites</h3>
 <ul>
-<li>Nerual network: a learning algorithm inspired by how the brain works
-<ul>
-<li>e.g. housing prediction model</li>
-</ul></li>
-<li>Relu: rectified linear unit</li>
-<li>Input layer, hidden units, output layer</li>
+<li>Basic linear algebra and calculus</li>
+<li>Scientific programming (Matlab, Python, Julia)</li>
+<li>Mathematical Maturity</li>
 </ul>
-<h2 id="module-2-basics-of-neural-network-programming">Module 2 Basics of Neural Network programming</h2>
-<h3 id="part-1.-binary-classification">Part 1. Binary Classification</h3>
+<h3 id="assignments">Assignments</h3>
 <ul>
-<li>e.g. determine if an image is a cat or not</li>
-<li>Notations
+<li>A1: 05-02 - 05-23 (10%)</li>
+<li>A2: 05-23 - 06-11 (10%)</li>
+<li>A3: 06-13 - 07-04 (10%)</li>
+<li>A4: 07-04 - 07-23 (10%)</li>
+<li>Always acknowledge the source of help (e.g. google, stackoverflow)</li>
+<li>No late submissions</li>
+</ul>
+<h3 id="exams">Exams</h3>
 <ul>
-<li>(x, y): training example or testing example</li>
-<li><span class="math display">\displaystyle  m_{train} </span>: # of training examples; <span class="math display">\displaystyle  m_{test} </span>: # of testing examples</li>
+<li>Midterm: 06-13 10:00 - 11:20 MC 2065 20% (open book)</li>
+<li>Final: 40% (open book)</li>
+</ul>
+<h3 id="outline">Outline</h3>
+<ul>
+<li>Matrix Decompositions
+<ul>
+<li>LU. Gaussion Elimination</li>
+<li>Cholesky</li>
+<li>PDE (partial differiential equation)</li>
+<li>Graph representation and ordering</li>
+<li>Inverse problems</li>
+</ul></li>
+<li>Iterative method
+<ul>
+<li>Splitting</li>
+<li>Steepset descent</li>
+<li>Leaset-squares</li>
+<li>Conjugate greadient</li>
+<li>Projections</li>
+</ul></li>
+<li>Spectral Decomposition
+<ul>
+<li>QR</li>
+<li>Reflection &amp; Rotations</li>
+<li>Eigen-value</li>
+<li>Rayleigh Quotient</li>
+<li>Subspace iteration</li>
+<li>SVD</li>
 </ul></li>
 </ul>
-<h3 id="part-2.-logistic-regression">Part 2. Logistic Regression</h3>
-<h3 id="part-10.-gradient-descent-on-m-examples">Part 10. Gradient Descent on m examples</h3>
+<h3 id="applications">Applications</h3>
 <ul>
-<li>Cost function J = <span class="math display">\displaystyle  \frac{1}{2} </span></li>
+<li>Page Rank (Priority of a search result)
+<ul>
+<li>top 10 algs. in science &amp; engineering for 20th century
+<ul>
+<li>Metropolis alg. for Monte Carlo (covered)</li>
+<li>Simplex</li>
+<li>Krylor Subspace (covered)</li>
+<li>Decomposition algs (covered)</li>
+<li>Fortran (covered)</li>
+<li>QR (covered)</li>
+<li>Quicksort</li>
+<li>FFT (fast fourier transform)</li>
+<li>Integer relation detection</li>
+<li>Fast Muti-pole alg.</li>
+</ul></li>
+<li>Assume n webpages on the internet, pick <span class="math display">\displaystyle  S_{0} </span> = j webpage
+<ul>
+<li>toss a coin at time t</li>
+<li>head: click a link on webpage <span class="math display">\displaystyle  S_{t} </span>, go to <span class="math display">\displaystyle  S_{t+1} </span>. If no link on <span class="math display">\displaystyle  S_{t} </span>, restart from <span class="math display">\displaystyle  S_{0} </span></li>
+<li>tail: gp to <span class="math display">\displaystyle  S_{t+1} = k w.p. v_{k} </span></li>
+<li>in the long run, how often am I on webpage k? (this is how google calculate pagerank)</li>
+</ul></li>
+<li>Math
+<ul>
+<li>Initial distribution</li>
+<li>Transistion Matrix <span class="math display">\displaystyle  P_{ij} = P_{r}(S_{t+1} = i | S_{t} = j) </span>
+<ul>
+<li>column-stockestic matrix</li>
+</ul></li>
+<li>Teleportation</li>
+<li>Biased Coin</li>
+<li>Define <span class="math display">\displaystyle  x_{t}(i) </span> as the prob of being on webpage i at time t, <span class="math display">\displaystyle  \vec x_{t+1} = \alpha * P * \vec x_{t} + (1 - \alpha) * \vec V = [\alpha P + (1 - \alpha)\vec v 1^T ]\bar P * \vec x_{t} </span>. <span class="math display">\displaystyle  \vec x_{t} </span> is a prob vector that sums up to 1 i.e. <span class="math display">\displaystyle  \vec x^T1 = 1 </span></li>
+</ul></li>
+<li>Ergodic Theorem: <span class="math display">\displaystyle  \frac{1}{T} \sum_{t=1}^{T}1(S_{t} = i) -&gt; x(i) </span> where <span class="math display">\displaystyle  \vec x = \bar P * \vec x </span>
+<ul>
+<li>x is an eigenvector of P, with eigenvalue 1</li>
+</ul></li>
+<li><span class="math display">\displaystyle  (I - \alpha * \bar P) * \vec x = (1 - \alpha) * \vec v </span></li>
+<li><span class="math display">\displaystyle  x = \bar P * x </span></li>
+</ul></li>
+<li>Semi-supervised learning / dimensionality reduction</li>
+<li>Graph-cut</li>
+<li>Information retrieval</li>
 </ul>
 <div class="status-banner" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; text-align: center;">
     <div style="display: inline-block; padding: 0.8em 2em 0.5em 2em; background: black; color: white; font-size: 2em;">

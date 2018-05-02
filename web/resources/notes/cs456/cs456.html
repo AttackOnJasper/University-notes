@@ -23,12 +23,37 @@
   <ul class="site_links">
     <span class="divider"></span>
   </ul>
-<h1 id="cs-456-networks">CS 456 Networks</h1>
-<h2 id="module-1-introduction">Module 1 Introduction</h2>
+<h1 id="cs-456-2018-spring">CS 456 2018 Spring</h1>
+<h2 id="lecture-1-introduction-2018-05-01">Lecture 1 Introduction (2018-05-01)</h2>
+<h3 id="course-outline">Course Outline</h3>
+<ul>
+<li>Overall Picture of Internetworking</li>
+<li>Application Layer</li>
+<li>Transport Layer</li>
+<li>Network Layer (will be seperated into 4a and 4b)</li>
+<li>Data Link Layer &amp; Local Area Networks</li>
+</ul>
 <h3 id="internet">Internet</h3>
 <ul>
+<li>billions of connected devices (will go up to 25 bn in 2020)</li>
 <li>a global system of interconnected computer networks that use the Internet protocol suite (TCP/IP) to link devices worldwide.</li>
-<li><strong>Service view</strong>: Infrastructure that provides services + API to applications</li>
+<li>Analogy between data transfer in internet &amp; product shipping</li>
+<li>Network edge: consumer of the network (host, end systems)</li>
+<li>Packet: need to break the data into smaller pieces, which are packets
+<ul>
+<li>Multiple paths for data transfer</li>
+<li><strong>Packet Switch</strong> make the routing decision about which path to choose for data to reach the destination (imagine transfer as a pipe, there is a bandwidth, or limit - constraint of the wire)
+<ul>
+<li>switches is part of access network, which is part of the edge</li>
+<li>why there is bandwidth in wireless network? Many end systems; each only get a frequency band of the network</li>
+</ul></li>
+</ul></li>
+<li>Difference between router &amp; switch
+<ul>
+<li>switch: located at local network</li>
+<li>router: located at core of network (make routing decision based on IP addresses)</li>
+</ul></li>
+<li><strong>Service view</strong>: Infrastructure (treat as blackbox) that provides services + API to applications</li>
 <li><strong>Elements view</strong>
 <ul>
 <li>Hosts: end systems (connected computing devices, including client, server)
@@ -36,18 +61,35 @@
 <li>sends packets of data</li>
 <li>trasmission delay: L (length of packet)/R (transmission rate)</li>
 </ul></li>
+<li>Links</li>
 <li>Packet Switches: forward packets</li>
 </ul></li>
+</ul>
+<h3 id="socket-interface-analogy-to-post-office-during-sending-letters-process">Socket Interface (analogy to post office during sending letters process)</h3>
+<ul>
+<li>Provide the way to communicate between client &amp; server</li>
+<li>Developers can choose the type of 'service' (e.g. guarantee delivery of message, speed of delivery)</li>
 </ul>
 <h3 id="protocols">Protocols</h3>
 <ul>
 <li>control sending / receiving of messages</li>
-<li>define format, order of messages sent and received among network entities, and actions taken on message transmission, receipt</li>
+<li>define format, order of messages sent and received among network entities, and actions taken on message transmission, receipt (make sure everyone can understand each other)</li>
 <li>e.g. TCP, IP, HTTP</li>
+<li>HTTP clients: e.g. browser</li>
+<li>Internet standards
+<ul>
+<li>protocols will be reviewed by standards before released</li>
+<li>RFC</li>
+<li>IETF</li>
+</ul></li>
 </ul>
 <h3 id="network-structures">Network structures</h3>
 <ul>
 <li>Network edge: hosts, data center</li>
+<li>Access networks
+<ul>
+<li>e.g. cellular network</li>
+</ul></li>
 <li>Communication links &amp; Access (bandwidth, shared / dedicated)
 <ul>
 <li>DSL: connect network using a phone line (data -&gt; internet; voice -&gt; phone)</li>
@@ -85,7 +127,7 @@
 <ul>
 <li>Nodal delay = nodal processing + queuing delay + transmission delay + propagation delay</li>
 </ul>
-<h2 id="module-2-application-layer">Module 2 Application Layer</h2>
+<h2 id="lecture-2-application-layer">Lecture 2 Application Layer</h2>
 <h3 id="application-architectures">Application architectures</h3>
 <ul>
 <li>Client-server
