@@ -4,8 +4,8 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <title>cs475 | Jasper Wang</title>
-  <script src="/resources/js/katex.min.js" type="text/javascript"></script>
-  <link href="/resources/css/katex.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.9.0/dist/katex.min.css" integrity="sha384-TEMocfGvRuD1rIAacqrknm5BQZ7W7uWitoih+jMNFXQIbNl16bO8OZmylH/Vi/Ei" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.9.0/dist/katex.min.js" integrity="sha384-jmxIlussZWB7qCuB+PgKG1uLjjxbVVIayPJwi6cG6Zb4YKq0JIw+OMnkkEC7kYCq" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-beta/contrib/auto-render.min.js" integrity="sha384-EkJr57fExjeMKAZnlVBuoBoX0EJ4BiDPiAd/JyTzIA65ORu4hna7V6aaq4zsUvJ2" crossorigin="anonymous"></script>
     <script type="text/javascript">
   window.onload = function() {
@@ -104,7 +104,7 @@
 <ul>
 <li>LU. Gaussion Elimination</li>
 <li>Cholesky</li>
-<li>PDE (partial differiential equation)</li>
+<li>PDEs</li>
 <li>Graph representation and ordering</li>
 <li>Inverse problems</li>
 </ul></li>
@@ -112,23 +112,26 @@
 <ul>
 <li>Splitting</li>
 <li>Steepset descent</li>
-<li>Leaset-squares</li>
-<li>Conjugate greadient</li>
+<li>Least-squares</li>
+<li>Conjugate gradient</li>
 <li>Projections</li>
 </ul></li>
 <li>Spectral Decomposition
 <ul>
-<li>QR</li>
+<li>QR decomposition</li>
 <li>Reflection &amp; Rotations</li>
-<li>Eigen-value</li>
+<li>Eigen-value decomposition</li>
 <li>Rayleigh Quotient</li>
 <li>Subspace iteration</li>
-<li>SVD</li>
+<li>SVD (singular-value decomposition)</li>
 </ul></li>
 </ul>
-<h3 id="applications">Applications</h3>
+<h3 id="definitions">Definitions</h3>
 <ul>
-<li>Page Rank (Priority of a search result)
+<li><strong>Linear algebra</strong> studies the properties and operations of linear maps between 2 vector spaces</li>
+<li><strong>Computational linear algebra</strong> studies the <strong>implementation</strong> of the operations on a modern computer</li>
+</ul>
+<h3 id="applications">Applications</h3>
 <ul>
 <li>top 10 algs. in science &amp; engineering for 20th century
 <ul>
@@ -136,23 +139,27 @@
 <li>Simplex</li>
 <li>Krylor Subspace (covered)</li>
 <li>Decomposition algs (covered)</li>
-<li>Fortran (covered)</li>
+<li>Fortran</li>
 <li>QR (covered)</li>
 <li>Quicksort</li>
 <li>FFT (fast fourier transform)</li>
 <li>Integer relation detection</li>
 <li>Fast Muti-pole alg.</li>
 </ul></li>
-<li>Assume n webpages on the internet, pick <span class="math display">\displaystyle  S_{0} </span> = j webpage
+<li>Page Rank (Priority of a search result)
 <ul>
-<li>toss a coin at time t</li>
-<li>head: click a link on webpage <span class="math display">\displaystyle  S_{t} </span>, go to <span class="math display">\displaystyle  S_{t+1} </span>. If no link on <span class="math display">\displaystyle  S_{t} </span>, restart from <span class="math display">\displaystyle  S_{0} </span></li>
-<li>tail: gp to <span class="math display">\displaystyle  S_{t+1} = k w.p. v_{k} </span></li>
-<li>in the long run, how often am I on webpage k? (this is how google calculate pagerank)</li>
+<li>Assume n webpages on the internet with a probability vector <strong>v</strong>, pick an arbitrary webpage <span class="math display">\displaystyle  S_{0} = j </span>
+<ul>
+<li>toss a coin at time t
+<ul>
+<li>head: click a (random) link on webpage <span class="math display">\displaystyle  S_{t} </span> to transfer to <span class="math display">\displaystyle  S_{t+1} </span>. If no link on <span class="math display">\displaystyle  S_{t} </span>, restart from <span class="math display">\displaystyle  S_{0} </span></li>
+<li>tail: go to <span class="math display">\displaystyle  S_{t+1} = k with probability v_{k} </span></li>
+</ul></li>
+<li>in the long run, how often am I on each webpage k? (the frequency reflects the <strong>importance</strong> of a website; this is how google calculate pagerank)</li>
 </ul></li>
 <li>Math
 <ul>
-<li>Initial distribution</li>
+<li>Initial distribution: start from webpage j</li>
 <li>Transistion Matrix <span class="math display">\displaystyle  P_{ij} = P_{r}(S_{t+1} = i | S_{t} = j) </span>
 <ul>
 <li>column-stockestic matrix</li>
@@ -171,6 +178,80 @@
 <li>Semi-supervised learning / dimensionality reduction</li>
 <li>Graph-cut</li>
 <li>Information retrieval</li>
+</ul>
+<h3 id="notations">Notations</h3>
+<ul>
+<li><strong>x</strong>, <strong>x<span class="math display">\displaystyle _{t}</span></strong>, <span class="math display">\displaystyle x_{i}</span>, <span class="math display">\displaystyle x_{t,i}</span></li>
+</ul>
+<h2 id="lecture-2-2018-05-07">Lecture 2 (2018-05-07)</h2>
+<h3 id="objectives">Objectives</h3>
+<ul>
+<li><span class="math display">\displaystyle  \bar P \vec x = \vec x, \bar P = \alpha P + (1 - \alpha)\vec v 1^T </span></li>
+<li><span class="math display">\displaystyle  (I - \alpha P)\vec x = (1 - \alpha)\vec v </span></li>
+</ul>
+<h3 id="matlab">Matlab</h3>
+<ul>
+<li>j-th column of A - <span class="math display">\displaystyle  A_{:,j} </span></li>
+<li>i-th row: <span class="math display">\displaystyle  A_{i,:} </span></li>
+</ul>
+<h3 id="matrix-multiplication">Matrix Multiplication</h3>
+<ul>
+<li><span class="math display">\displaystyle  A \in \Re^{m*n}, B \in \Re^{n*p}, C = A * B \in \Re^{m*p} </span> complexity O(mnp)</li>
+<li>Strassen's alg. <span class="math display">\displaystyle  O(n^{2.89}) </span></li>
+</ul>
+<h3 id="matrix-inverse">Matrix Inverse</h3>
+<ul>
+<li>A is invertable if and only if <span class="math display">\displaystyle  A \in \Re^{n*n} </span> and <span class="math display">\displaystyle  A^{-1}*A = A * A^{-1} = I </span></li>
+<li>Thm (Sherman-Morrisen-Woodbury): <span class="math display">\displaystyle  A\in\Re^{n*n}, B\in\Re^{m*m}, u\in\Re^{n*m}, V\in\Re^{n*m}, (A + uBV)^{-1} = A^{-1} - A^{-1}u(B^{-1}+v^TA^{-1}u)^{-1}vA^{-1} </span>
+<ul>
+<li>In particular, <span class="math display">\displaystyle  (A + \vec u \vec v)^{-1} = A^{-1} - \frac{1}{1+v^TA^{-1}u}A^{-1}uv^TA^{-1} </span></li>
+<li>Proof: verify that the product is 1</li>
+</ul></li>
+</ul>
+<h3 id="goal-solve-avec-x-vec-b-a-in-renn-a-is-invertible">Goal: solve <span class="math display">\displaystyle  A\vec x = \vec b, A \in \Re^{n*n} </span>, A is invertible</h3>
+<ul>
+<li>$$ x = A^{-1}b</li>
+<li>e.g. <span class="math display">\displaystyle    \begin{cases} 
+            2x + y + 2z = 1 \\
+            4x + 2y -z = 2 \\
+            x + y + 2z = 3
+        \end{cases} </span></li>
+<li>to solve a linear system, try to transform the matrix <span class="math display">\displaystyle  \begin{bmatrix}
+    2 &amp; 1 &amp; 2 \\ 
+    4 &amp; 2 &amp; -1 \\
+    1 &amp; 1 &amp; 2
+\end{bmatrix} </span> to an upper triangular matrix</li>
+<li>Psedo code for solving lower triangular matrix O(n^2)
+<ul>
+<li>Problem: division of <span class="math display">\displaystyle  l_{i,i} </span> could be 0. Solution: add a small number to all diagonals to avoid such issues / pivoting</li>
+</ul></li>
+<li>During implementation, try to use vector instead of for-loop for calculation (avoid loop as much as possible)</li>
+<li>Gaussian Elimination psedo code
+<ul>
+<li>Input: <span class="math display">\displaystyle  A \in \Re^{n*n}, \vec b \in \Re^{n*1} </span></li>
+<li>output: in-place transform A to upper triangular matrix</li>
+<li><p>code:</p>
+<pre><code>for j = 1,2 ... n-1 do
+    for i = j + 1, ..., n do
+    $$  a_{i,j} &lt;- a_{i,j} / a_{j,j} $$
+    $$  \vec a_{i,j+1:n} &lt;- \vec a_{i,j+1:n} - a_{ij} $$</code></pre></li>
+<li>still have the problem of division
+<ul>
+<li>how to guarantee that the diagnals are never zero?</li>
+<li>Answer: compute the <strong>determinent</strong>: <span class="math display">\displaystyle  det(A) = \sum_{\sigma}(-1)^{sgn(\sigma)} * \prod^{n}_{i=1} A_{i, \sigma(i)} </span></li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="thm-lu-factorization-let-and-u-be-the-strict-lower-triangular-and-upper-triangular-of-the-output-of-ge-then-a-lu-l-i">Thm (LU factorization): let  and u be the strict lower triangular and upper triangular of the output of GE, then A = L*u, L =  + I</h3>
+<h3 id="solve-linear-system">Solve linear system</h3>
+<ul>
+<li>note: don't use inverse ever!</li>
+<li><span class="math display">\displaystyle  \begin{aligned}
+    A\vec x = \vec b, A &amp;= L*u \\
+    L*u\vec x &amp;= \vec b \\
+    L * \vec y &amp;= \vec b (forward_solve) \\
+    u \vec x &amp;= \vec y (backward_solve)
+\end{aligned} </span> time complexity <span class="math display">\displaystyle  O(n^3) </span></li>
 </ul>
 <div class="status-banner" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; text-align: center;">
     <div style="display: inline-block; padding: 0.8em 2em 0.5em 2em; background: black; color: white; font-size: 2em;">
