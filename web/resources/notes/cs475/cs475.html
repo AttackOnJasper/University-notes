@@ -202,7 +202,7 @@
 <h3 id="matrix-inverse">Matrix Inverse</h3>
 <ul>
 <li>A is invertable if and only if <span class="math display">\displaystyle  A \in \Re^{n*n} </span> and <span class="math display">\displaystyle  A^{-1}*A = A * A^{-1} = I </span></li>
-<li>Thm (Sherman-Morrisen-Woodbury): <span class="math display">\displaystyle  A\in\Re^{n*n}, B\in\Re^{m*m}, u\in\Re^{n*m}, V\in\Re^{n*m}, (A + uBV)^{-1} = A^{-1} - A^{-1}u(B^{-1}+v^TA^{-1}u)^{-1}vA^{-1} </span>
+<li>Thm (Sherman-Morrisen-Woodbury): <span class="math display">\displaystyle  A\in\Re^{n*n}, B\in\Re^{m*m}, u\in\Re^{n*m}, V\in\Re^{n*m}, (A + uBV)^{-1} = A^{-1} - A^{-1}u(B^{-1}+V^TA^{-1}u)^{-1}V^TA^{-1} </span>
 <ul>
 <li>In particular, <span class="math display">\displaystyle  (A + \vec u \vec v)^{-1} = A^{-1} - \frac{1}{1+v^TA^{-1}u}A^{-1}uv^TA^{-1} </span></li>
 <li>Proof: verify that the product is 1</li>
@@ -210,7 +210,7 @@
 </ul>
 <h3 id="goal-solve-avec-x-vec-b-a-in-renn-a-is-invertible">Goal: solve <span class="math display">\displaystyle  A\vec x = \vec b, A \in \Re^{n*n} </span>, A is invertible</h3>
 <ul>
-<li>$$ x = A^{-1}b</li>
+<li><span class="math display">\displaystyle  \vec x = A^{-1}\vec b </span> is non-trivial for computer implementation</li>
 <li>e.g. <span class="math display">\displaystyle    \begin{cases} 
             2x + y + 2z = 1 \\
             4x + 2y -z = 2 \\
@@ -221,9 +221,14 @@
     4 &amp; 2 &amp; -1 \\
     1 &amp; 1 &amp; 2
 \end{bmatrix} </span> to an upper triangular matrix</li>
-<li>Psedo code for solving lower triangular matrix O(n^2)
+<li>Psedo code for solving lower triangular matrix <span class="math display">\displaystyle  O(n^2) </span>
 <ul>
-<li>Problem: division of <span class="math display">\displaystyle  l_{i,i} </span> could be 0. Solution: add a small number to all diagonals to avoid such issues / pivoting</li>
+<li><pre><code>for n = 1, 2, ... n do
+    $ y_i = (b_i - l^T_{i,1:(i-1)}y_{1:(i-1)})/l_{ii}; $</code></pre></li>
+<li><strong>Problem</strong> division of <span class="math display">\displaystyle  l_{i,i} </span> could be 0.
+<ul>
+<li>solution: add a small number to all diagonals to avoid such issues / pivoting</li>
+</ul></li>
 </ul></li>
 <li>During implementation, try to use vector instead of for-loop for calculation (avoid loop as much as possible)</li>
 <li>Gaussian Elimination psedo code
@@ -238,20 +243,20 @@
 <li>still have the problem of division
 <ul>
 <li>how to guarantee that the diagnals are never zero?</li>
-<li>Answer: compute the <strong>determinent</strong>: <span class="math display">\displaystyle  det(A) = \sum_{\sigma}(-1)^{sgn(\sigma)} * \prod^{n}_{i=1} A_{i, \sigma(i)} </span></li>
+<li>solution: compute the <strong>determinent</strong>: <span class="math display">\displaystyle  det(A) = \sum_{\sigma}(-1)^{sgn(\sigma)} * \prod^{n}_{i=1} A_{i, \sigma(i)} </span></li>
 </ul></li>
 </ul></li>
 </ul>
-<h3 id="thm-lu-factorization-let-and-u-be-the-strict-lower-triangular-and-upper-triangular-of-the-output-of-ge-then-a-lu-l-i">Thm (LU factorization): let  and u be the strict lower triangular and upper triangular of the output of GE, then A = L*u, L =  + I</h3>
+<h3 id="thm-lu-factorization-let-widetildel-and-u-be-the-strict-lower-triangular-and-upper-triangular-part-of-the-output-of-ge-then-a-lu-l-widetildel-i">Thm (LU factorization): let <span class="math display">\displaystyle \widetilde{L}</span> and u be the strict lower triangular and upper triangular part of the output of GE, then A = L*u, <span class="math display">\displaystyle  L = \widetilde{L} + I </span></h3>
 <h3 id="solve-linear-system">Solve linear system</h3>
 <ul>
 <li>note: don't use inverse ever!</li>
 <li><span class="math display">\displaystyle  \begin{aligned}
-    A\vec x = \vec b, A &amp;= L*u \\
-    L*u\vec x &amp;= \vec b \\
-    L * \vec y &amp;= \vec b (forward_solve) \\
-    u \vec x &amp;= \vec y (backward_solve)
-\end{aligned} </span> time complexity <span class="math display">\displaystyle  O(n^3) </span></li>
+    A\vec x = \vec b, A &amp;= Lu \\
+    Lu\vec x &amp;= \vec b \\
+    L\vec y &amp;= \vec b, u\vec x = \vec y
+\end{aligned} </span></li>
+<li>use forward solve to get y and backward solve to get x, time complexity is <span class="math display">\displaystyle  O(n^3) </span></li>
 </ul>
 <div class="status-banner" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; text-align: center;">
     <div style="display: inline-block; padding: 0.8em 2em 0.5em 2em; background: black; color: white; font-size: 2em;">
