@@ -1,0 +1,1300 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <title>cs456 | Jasper Wang</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+
+  <!-- The loading of KaTeX is deferred to speed up page rendering -->
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+
+  <!-- To automatically render math in text elements, include the auto-render extension: -->
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+    <script type="text/javascript">
+  window.onload = function() {
+    document.getElementsByClassName("status-banner")[0].style.display = "block";
+    setTimeout(function() {
+      renderMathElements(document.getElementsByClassName("math"));
+      document.getElementsByClassName("status-banner")[0].style.display = "none";
+    }, 50); // delay to allow status banner to show
+  }
+
+  function renderMathElements(mathElements) {
+    var mathOptions = {
+      macros: {
+        "\\set": "\\left\\{ #1 \\right\\}",
+        "\\tup": "\\left\\langle #1 \\right\\rangle",
+        "\\abs": "\\left\\lvert #1 \\right\\rvert",
+        "\\floor": "\\left\\lfloor #1 \\right\\rfloor",
+        "\\ceil": "\\left\\lceil#1 \\right\\rceil",
+        "\\mb": "\\mathbb{#1}",
+        "\\rem": "\\operatorname{rem}",
+        "\\ord": "\\operatorname{ord}",
+        "\\sign": "\\operatorname{sign}",
+        "\\imag": "\\bm{i}",
+        "\\dee": "\\mathop{}\\!\\mathrm{d}",
+        "\\lH": "\\overset{\\text{l'H}}{=}",
+        "\\evalat": "\\left.\\left(#1\\right)\\right|",
+        "\\sech": "\\operatorname{sech}",
+        "\\spn": "\\operatorname{Span}",
+        "\\proj": "\\operatorname{proj}",
+        "\\prp": "\\operatorname{perp}",
+        "\\refl": "\\operatorname{refl}",
+        "\\magn": "\\left\\lVert #1 \\right\\rVert",
+        "\\rank": "\\operatorname{rank}",
+        "\\sys": "\\left[ #1 \\mid #2\\space \\right]",
+        "\\range": "\\operatorname{Range}",
+        "\\adj": "\\operatorname{adj}",
+        "\\cof": "\\operatorname{cof}",
+        "\\coord": "{\\left\\lbrack #1 \\right\\rbrack}_{#2}",
+        "\\diag": "\\operatorname{diag}",
+        "\\formlp": "\\operatorname{Form}(\\mathcal{L}^P)",
+
+        // not yet available in KaTeX
+        "\\operatorname": "\\mathop{\\text{#1}}\\nolimits", //wip: spacing is slightly off
+        "\\not": "\\rlap{\\kern{7.5mu}/}", //wip: slash angle is slightly off
+        "\\bm": "\\mathbf", //wip: should be italic, but isn't
+      },
+      throwOnError: false,
+    };
+    for (var i=0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      katex.render(texText.data, mathElements[i], mathOptions);
+    }
+  }
+  </script>
+</head>
+<body>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-68271407-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+  <h1>Notes by <a href="/">Jasper Wang</a>.</h1>
+  <ul class="site_links">
+    <span class="divider"></span>
+  </ul>
+<h1 id="cs-456-2018-spring">CS 456 2018 Spring</h1>
+<h2 id="course-outline">Course Outline</h2>
+<ul>
+<li>Overall Picture of Internetworking</li>
+<li>Application Layer</li>
+<li>Transport Layer</li>
+<li>Network Layer (will be seperated into 4a and 4b)</li>
+<li>Data Link Layer &amp; Local Area Networks</li>
+</ul>
+<h2 id="what-is-internet-2018-05-01">1.1 What is Internet (2018-05-01)</h2>
+<h3 id="elements-nuts-and-bolts-view">Elements (nuts and bolts) view</h3>
+<ul>
+<li>a global system of interconnected computer networks that use the Internet protocol suite (TCP/IP) to link devices worldwide.
+<ul>
+<li>billions of connected devices (will go up to 25 bn in 2020)</li>
+</ul></li>
+<li>Analogy between data transfer in internet &amp; product shipping</li>
+<li><strong>Network edge</strong> consumer of the network (host, end systems)</li>
+<li>ISP: internet service provider</li>
+<li><strong>Hosts</strong> end systems (connected computing devices, client, server); sends packets of data</li>
+<li>Links</li>
+<li><strong>Packet</strong> small pieces of data transferred in network</li>
+<li><strong>Packet Switch</strong> make the routing decision about which path to choose for packets to reach the destination &amp; forward packets (imagine transfer as a pipe, there is a bandwidth, or limit - constraint of the wire)
+<ul>
+<li>Why there is bandwidth in wireless network? There are many end systems; each only get a frequency band of the network</li>
+<li>Difference between router &amp; switch
+<ul>
+<li>switch: located at local network; part of access network, which is part of the network edge</li>
+<li>router: located at core of network (make routing decision based on IP addresses)</li>
+</ul></li>
+</ul></li>
+<li><strong>Protocols</strong> control sending / receiving of messages</li>
+<li><strong>Internet standard</strong>
+<ul>
+<li>protocols will be reviewed by standards before released</li>
+<li>RFC (Request for comments)</li>
+<li>IETF (Internet Engineering Task Force)</li>
+</ul></li>
+</ul>
+<h3 id="service-view-infrastructure-treat-as-blackbox-that-provides-services-api-to-applications"><strong>Service view</strong>: Infrastructure (treat as blackbox) that provides services + API to applications</h3>
+<ul>
+<li>Client &amp; Server</li>
+<li>Why distributed? processing power limitation + client/server pattern</li>
+</ul>
+<h3 id="socket-interface-analogy-to-post-office-during-sending-letters-process">Socket Interface (analogy to post office during sending letters process)</h3>
+<ul>
+<li>Provide the way to communicate between client &amp; server</li>
+<li>Developers should follow the guidelines to communicate between client &amp; server</li>
+<li>Developers can choose the type of 'service' (e.g. guarantee delivery of message, speed of delivery)</li>
+</ul>
+<h3 id="protocols">Protocols</h3>
+<ul>
+<li>define format, order of messages sent and received among network entities, and actions taken on message transmission or receipt (make sure everyone can understand each other)</li>
+<li>e.g. TCP, IP, HTTP
+<ul>
+<li>HTTP clients: e.g. browser</li>
+</ul></li>
+</ul>
+<h2 id="network-edge-2018-05-03">1.2 Network edge (2018-05-03)</h2>
+<p>End systems (hosts, data center), access networks, links</p>
+<h3 id="access-networks-bandwidth-shared-dedicated">Access networks (bandwidth, shared / dedicated)</h3>
+<ul>
+<li>Connect end systems to edge router
+<ul>
+<li>e.g. cellular network, residential access network, institutional access network</li>
+</ul></li>
+<li>DSL (digital subscriber line): connect network using a phone line (data -&gt; internet; voice -&gt; phone)
+<ul>
+<li>dedicated access</li>
+<li><strong>frequency division multiplexing</strong>: different channels transmitted in different frequency bands</li>
+<li>DSL modem: convert signal from end systems to analog signals; connect 1 end to router + wireless access, the other end to splitter</li>
+<li>DSLAM (DSL access multiplexier): in central office; split the data and send data to either telephone network or ISP</li>
+<li>1 wire, 3 frequencies (telephone, internet upstream, and internet downstream)</li>
+<li>Splitter: split data and transfer to end system (computer, telephone)</li>
+<li>Central office decides transmission rate of internet</li>
+</ul></li>
+<li>Cable: from home to ISP router
+<ul>
+<li>data, TV transmitted at different frequencies over shared cable</li>
+<li>data is broadcasted</li>
+<li>CMTS: cable modem termination system</li>
+<li>not dedicated
+<ul>
+<li>collision in upstream</li>
+<li>no collision in downstream since CMTS is the only provider</li>
+</ul></li>
+</ul></li>
+<li>Ethernet
+<ul>
+<li><strong>ethernet switch</strong> in network edge; connected to end systems including computers, server, wireless access</li>
+</ul></li>
+<li>Wireless
+<ul>
+<li>collision in both upstream and downstream</li>
+<li>devices -&gt; base station -&gt; router -&gt; ISP</li>
+<li>e.g. Wifi, wide area wireless access: 3G, 4G, LTE</li>
+</ul></li>
+</ul>
+<h3 id="physical-media">Physical media</h3>
+<ul>
+<li>twisted pair</li>
+<li>coaxial cable</li>
+<li>fiber optic cable: light pulse, high speed, low error rate</li>
+<li>radio (unguided)
+<ul>
+<li>electromagnetic spectrum</li>
+<li>e.g. LAN, cellular, satellite, terrestrial microwave</li>
+</ul></li>
+</ul>
+<h2 id="network-core-routers-network-of-networks-2018-05-08">1.3 Network core: routers, network of networks (2018-05-08)</h2>
+<ul>
+<li>collection of interconnected routers</li>
+<li>key network core functions:
+<ul>
+<li><strong>routing</strong>: determines source destination route taken by packets</li>
+<li><strong>forwarding</strong>: move packets from router’s input to appropriate router output</li>
+</ul></li>
+<li><strong>Packet Switching</strong> hosts break application-layer messages into packets &amp; forward packets from one router to next
+<ul>
+<li>each packet transmitted at full link capacity (i.e. as fast (greedy) as possible)</li>
+<li><strong>store and forward</strong> entire packet must arrive at router before it can be transmitted on next link
+<ul>
+<li>Why? Router needs to check the integrity of the message and needs info to determine the output link of the message</li>
+</ul></li>
+<li><strong>Transmission rate</strong> bits/sec, also known as link capacity, link bandwidth</li>
+<li><strong>Transmission delay</strong> time to transmit packet from router to link
+<ul>
+<li><span class="math display">\displaystyle  \frac{NL}{R} </span> where L - bits, R - transmission rate, N - # of links</li>
+<li>for Pth packet going through n links, delay is <span class="math display">\displaystyle  \frac{(N + P - 1)*L}{R} </span></li>
+</ul></li>
+<li>Internet is a packet-switched network</li>
+</ul></li>
+<li><strong>Circuit Switching</strong>
+<ul>
+<li>end-end resources allocated to, reserved for “call” between source &amp; dest (dedicated resource)</li>
+<li>dedicated links</li>
+<li>FDM vs TDM (freq. vs time frame) affects transmission rate</li>
+</ul></li>
+<li>Packet switching vs circuit switching
+<ul>
+<li>packet switching allows more users to use network, but may have congestion (packet delay &amp; loss)</li>
+<li>circuit switching provides dedicated access</li>
+</ul></li>
+<li>Network structure
+<ul>
+<li>Global ISP, content provider</li>
+<li>IXP (support 1-to-many or many-to-many)</li>
+<li>Regional ISP</li>
+<li>Access network</li>
+</ul></li>
+</ul>
+<h2 id="delay-loss-and-throughput-in-networks-2018-05-10">1.4 Delay, Loss, and throughput in networks (2018-05-10)</h2>
+<ul>
+<li><strong>Nodal delay = nodal processing + queueing delay + transmission delay + propagation delay</strong></li>
+<li>Nodal processing: check integrity of message and determine output link (usually &lt; msec)</li>
+<li>Queueing delay (traffic intensity): <span class="math display">\displaystyle \frac{La}{R}</span> where <span class="math display">\displaystyle L</span> is packet length, <span class="math display">\displaystyle a</span> is packet arrival rate, <span class="math display">\displaystyle R</span> is link bandwidth
+<ul>
+<li>if n packets, average delay = <span class="math display">\displaystyle  (n-1)L/2R </span></li>
+<li>if <span class="math display">\displaystyle \frac{La}{R} &gt; 1</span>, then more work coming than serviced; infinite average delay</li>
+</ul></li>
+<li>Propagation delay: distance / speed</li>
+<li>Traceroute program</li>
+<li>Throughput: rate at which bits transferred between sender and receiver
+<ul>
+<li>instantaneous / average</li>
+<li>throughput is bounded by bottleneck link</li>
+</ul></li>
+</ul>
+<h2 id="protocol-layers-security">1.5 Protocol Layers &amp; Security</h2>
+<h3 id="protocol-layers">Protocol Layers</h3>
+<ul>
+<li>each layer implements a different service
+<ul>
+<li>rely on the services other layers provided</li>
+</ul></li>
+<li>why layering?
+<ul>
+<li>allows identification of complex system</li>
+<li>modularization (maintenance)</li>
+</ul></li>
+<li>Application layer: supporting network applications
+<ul>
+<li>e.g. HTTP</li>
+</ul></li>
+<li>Presentation: allow applications to interpret meaning of data</li>
+<li>Session: synchronization, checkpointing</li>
+<li>Transport layer: data transfer between processes
+<ul>
+<li>e.g. TCP provides congestion + flow control</li>
+</ul></li>
+<li>Network layer: routing of datagrams from source to destination
+<ul>
+<li>e.g. IP, routing protocol</li>
+</ul></li>
+<li>Link layer</li>
+<li>Physical layer</li>
+</ul>
+<h3 id="data-naming-for-each-layer">data naming for each layer</h3>
+<ul>
+<li>message</li>
+<li>segment</li>
+<li>datagram</li>
+<li>frame</li>
+</ul>
+<h2 id="security">1.6 Security</h2>
+<ul>
+<li>virus: need execution</li>
+<li>worm: passive</li>
+<li>Denial of Service: overwhelm traffic</li>
+<li>Packet sniffing: record packets in shared network</li>
+<li>IP spoofing: send packet with false source address</li>
+</ul>
+<h2 id="application-layer-overview-2018-05-17">2.1 Application Layer Overview (2018-05-17)</h2>
+<h3 id="application-architectures-on-end-systems-not-network-core">Application architectures (on end systems; not network core)</h3>
+<ul>
+<li>Client-server
+<ul>
+<li>server: always-on host, permenant IP address</li>
+<li>client: communicate with servers</li>
+</ul></li>
+<li>P2P
+<ul>
+<li>arbitrary end systems directly communicate</li>
+<li><strong>self scalability</strong> new peers bring new service capacity and new service demands</li>
+<li>no permenant IP address</li>
+</ul></li>
+</ul>
+<h3 id="processes-communicating">Processes communicating</h3>
+<ul>
+<li><strong>Process</strong> program running within a host
+<ul>
+<li>same host: inter-process communication</li>
+<li>different hosts: exchanging messages</li>
+</ul></li>
+<li><strong>Client process</strong> process that initiates communication</li>
+<li><strong>Server process</strong> process that waits to be contacted</li>
+<li>P2P architecture has client process + server process</li>
+</ul>
+<h3 id="sockets-act-as-door">Sockets (act as door)</h3>
+<ul>
+<li>sending process: push message out of door; picked up by transport layer</li>
+<li>the other process receives the message at door</li>
+<li>Addressing processes: IP address
+<ul>
+<li>to receive messages, process must have identifier, which includes both IP address and port numbers</li>
+</ul></li>
+</ul>
+<h3 id="application-layer-protocol">Application-layer protocol</h3>
+<ul>
+<li>defines
+<ul>
+<li>type of messages exchanged (e.g. request, response)</li>
+<li>message syntax: fields</li>
+<li>message semantics: meaning of each fields</li>
+<li>rules for when and how processes send and respond to messages</li>
+</ul></li>
+<li>application service requirments: reliability, bandwidth, delay</li>
+</ul>
+<h3 id="transport-services">Transport services</h3>
+<ul>
+<li>Transportation requirements for apps
+<ul>
+<li>data integrity</li>
+<li>timing</li>
+<li>throughput</li>
+<li>security</li>
+</ul></li>
+<li>TCP: reliable, flow control (won't overwhelm receiver), congestion control, connection-oriented (need setup)
+<ul>
+<li>but no timing, minimum throughput guarantee, security</li>
+</ul></li>
+<li>UDP: connectionless, fast (no congestion control), small header size</li>
+<li>SSL (encrypted TCP): app layer but talks to TCP</li>
+</ul>
+<h2 id="web-and-http-2018-05-24">2.2 Web and HTTP (2018-05-24)</h2>
+<h3 id="http">HTTP</h3>
+<ul>
+<li>client/server model</li>
+<li>uses TCP, default port 80</li>
+<li>stateless: maintain no information about past client requests</li>
+<li>non-persistent vs persistent
+<ul>
+<li><strong>RTT</strong> time for a small packet to travel from client to server and back</li>
+</ul></li>
+<li>request / response message format
+<ul>
+<li>method types: GET POST PUT DELETE</li>
+<li>status code: 200, 301, 40x, 500</li>
+</ul></li>
+</ul>
+<h3 id="http-2">HTTP 2</h3>
+<ul>
+<li>server PUSH: push resources to clients
+<ul>
+<li>e.g. send 1 request to get html, server pushes other images</li>
+</ul></li>
+<li>binary framing: header frame + data frame</li>
+<li>header compression</li>
+<li>multiplexing requests: break down, interleave in parallel, and reassemble
+<ul>
+<li>fixes head-of-line blocking (packets held up by the first packet)</li>
+</ul></li>
+</ul>
+<h3 id="cookie">Cookie</h3>
+<ul>
+<li>4 components: request, response, local file, server db</li>
+<li>Functionality:
+<ul>
+<li>authorization</li>
+<li>user session state</li>
+</ul></li>
+</ul>
+<h3 id="web-caches-proxy">Web caches (proxy)</h3>
+<ul>
+<li>sends all HTTP requests to cache first</li>
+<li>installed by ISP</li>
+<li>Conditional GET (to update cache if needed)</li>
+</ul>
+<h2 id="electronic-mail-2018-05-29">2.3 Electronic mail (2018-05-29)</h2>
+<h3 id="components">3 components</h3>
+<ul>
+<li>user agents (e.g. mail app, outlook)</li>
+<li>mail servers
+<ul>
+<li>outgoing queue, user mailbox</li>
+<li>both a client and a server</li>
+</ul></li>
+<li>SMTP (simple mail transfer protocol - app layer)
+<ul>
+<li>send mails among mail servers (direct transfer; 3 phases) and store mails to mailbox</li>
+<li>uses TCP, default port 25</li>
+<li>persistent connection (maintain states)</li>
+<li>message in 7-bit ASCII (including image)</li>
+<li>MIME (Multipurpose Internet Mail Extensions): reconstruct images from 7-bit ASCII</li>
+</ul></li>
+</ul>
+<h3 id="process-of-sending-mails">Process of sending mails</h3>
+<p>User agent -&gt; mail server -&gt; TCP connection with destination mail server -&gt; check sender and recipient -&gt; send mail to destination server -&gt; mail access protocol -&gt; destination user agent</p>
+<h3 id="mail-access-protocols-retrieval-from-mail-server">Mail access protocols: retrieval from mail server</h3>
+<ul>
+<li>POP (Post office protocol)
+<ul>
+<li>Authroization phase (user, pass) + transaction phase (list, retr)</li>
+<li>Download message then read / delete</li>
+<li>Stateless</li>
+</ul></li>
+<li>IMAP (Internet Mail Access Protocol)
+<ul>
+<li>Keep all messages in server</li>
+<li>Keep user state across sessions</li>
+</ul></li>
+<li>HTTP (e.g. gmail)</li>
+</ul>
+<h2 id="dns-domain-name-system-2018-06-05">2.4 DNS (Domain name system) (2018-06-05)</h2>
+<h3 id="components-1">Components</h3>
+<ul>
+<li>Distributed db storing resource records including IP address and name mappings
+<ul>
+<li>Hierarchy of name servers
+<ul>
+<li>Root name servers</li>
+<li>TLD (top level doamin) name servers (e.g. .com DNS server)
+<ul>
+<li>maintained by 3-rd party companies</li>
+</ul></li>
+<li>Authoritative (company) DNS (e.g. amazon.com DNS server)</li>
+</ul></li>
+<li>Record format: (name, value, type, ttl)</li>
+<li>Record types
+<ul>
+<li>A: hostname (machine name) -&gt; IP</li>
+<li>NS: domain (e.g. amazon.com) -&gt; hostname</li>
+<li>CNAME: alias (e.g. www.abc.com) -&gt; hostname</li>
+<li>MX: mail server alias -&gt; hostname</li>
+</ul></li>
+<li>To insert a record
+<ul>
+<li>register name xxx.com at DNS registrar</li>
+<li>Cretae a type A record and a type NS record</li>
+</ul></li>
+</ul></li>
+<li>Application-layer protocol
+<ul>
+<li>query IP address by name and vice versa</li>
+<li>message format same for request and response</li>
+<li>fields: Id (16 bit number), flag (query or reply), questions, answer RRs, authority RRs (authoritative server records), additional RRs</li>
+<li>stateless</li>
+</ul></li>
+<li>Local DNS name server (proxy, cache)
+<ul>
+<li>DNS name resolution: iterated query vs. recursive query</li>
+<li>usually cache TLD server records (so does not access root server very often)</li>
+<li>TTL decides when to timeout a cache</li>
+<li>cache may be out-of-date (need update mechanism)</li>
+</ul></li>
+</ul>
+<h3 id="functionality">Functionality</h3>
+<ul>
+<li>Hostname, IP address translation</li>
+<li>Aliasing</li>
+<li>Load distribution</li>
+</ul>
+<h3 id="attacking-dns">Attacking DNS</h3>
+<ul>
+<li>DDoS attack: bombard root server or TLD</li>
+<li>Redirect attacks: intercept queries</li>
+</ul>
+<h2 id="p2p-applications-2018-06-07">2.5 P2P applications (2018-06-07)</h2>
+<ul>
+<li>End systems directly communicate</li>
+<li>Dynamic IP addresses; not always on-host</li>
+<li>File distribution example: BitTorrent
+<ul>
+<li><strong>swarm</strong> group of peers exchanging chunks of a file</li>
+<li><strong>tracker</strong> tracks peers in swarm</li>
+<li><strong>chunk</strong> small pieces of the distributed file</li>
+<li>while downloading, peer uploads chunks to others</li>
+<li>request chunks: request from the peers that have the most different chunks</li>
+<li>send chunks
+<ul>
+<li>send to 4 peers that are sending chunks to me at highest rates; re-evaluate every 10s</li>
+<li>randomly select another peer every 30s</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="video-streaming-and-cdns-2018-06-07">2.6 Video streaming and CDNs (2018-06-07)</h2>
+<ul>
+<li>Problem of video streaming: 1B users; heterogeneity; major consumer of internet bandwidth
+<ul>
+<li>Solution: distributed, application-level infrastructure</li>
+</ul></li>
+<li>Video coding:
+<ul>
+<li>spatial coding (within image) &amp; temporal coding (from one to next)</li>
+<li>CBR vs VBR</li>
+</ul></li>
+<li>DASH: Dynamic adaptive streaming over HTTP
+<ul>
+<li>Server: divide video into multiple chunks (each stored in different rates i.e. VBR) + manifest file (provides URLs for different chunks)</li>
+<li>clients can choose different coding rates at different points in time
+<ul>
+<li>determines when, where, and encoding rate to request chunk</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="cdn">CDN</h3>
+<ul>
+<li>Problem: how to stream content to a lot of users
+<ul>
+<li>Solution: store / serve multiple copies of videos at multiple geographically distributed sites (CDN)</li>
+</ul></li>
+<li>Strategy
+<ul>
+<li><strong>Enter deep</strong>: push CDN servers to access networks (1000+ locations)</li>
+<li><strong>Bring home</strong>: small number of large clusters near access networks (10's, more latency)</li>
+</ul></li>
+<li>Updating content: Pull based approach vs. Push based approach</li>
+<li><strong>OTT</strong> (over the top) can run even in congested network (choose another CDN copy)</li>
+<li>Distributed: no single point of failure</li>
+</ul>
+<h2 id="socket-programming">2.7 Socket Programming</h2>
+<p><strong>Socket</strong> is a door between application process and end-end-transport protocol</p>
+<h3 id="udp">UDP</h3>
+<p>no handshaking<br />
+need to attach server address and IP to each packet</p>
+<h3 id="tcp">TCP</h3>
+<ul>
+<li>have 2 sockets:
+<ul>
+<li>original socket: handshaking process</li>
+<li>connection socket: socket after connection is established</li>
+</ul></li>
+</ul>
+<h2 id="transport-layer-services">3.1 Transport-layer services</h2>
+<p>Provides logical communication between <strong>processes</strong> on different hosts (run in end systems)<br />
+<strong>Network layer</strong> provides logical communication between hosts.<br />
+<strong>Why logical?</strong> successful communication depends on other layers<br />
+<strong>Sender side</strong> breaks app messages into segments &amp; pass to network layer<br />
+<strong>Receiver side</strong> reassembles segments into messages &amp; pass to app layer</p>
+<h3 id="protocols-1">Protocols</h3>
+<p>TCP (reliable, in-order delivery, flow &amp; congestion control, connection setup)<br />
+UDP</p>
+<h2 id="multiplexing-and-demultiplexing">3.2 Multiplexing and demultiplexing</h2>
+<ul>
+<li><strong>Multiplexing</strong> sender handles data from multiple sockets and adds transport header</li>
+<li><strong>Demultiplexing</strong> receiver delivers received segments to correct socket based on IP &amp; port
+<ul>
+<li>Each IP datagram from network layer has source IP, dest IP, and 1 transport-layer segment</li>
+<li>Each segment contains source port number &amp; dest port number, other headers, and payload</li>
+<li>Connectionless (e.g. UDP)
+<ul>
+<li>2 tuple: destination IP &amp; port</li>
+<li>each socket is for a single process and is shared with multiple clients (does not care about source IP / port)</li>
+</ul></li>
+<li>Connection-oriented (TCP): receiver uses all 4 values to direct segment to socket
+<ul>
+<li>servers have different sockets for each connecting clients of a single process</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="udp-1">3.3 UDP</h2>
+<ul>
+<li>Connectionless, 'best effort' service</li>
+<li>Examples: DNS, streaming apps</li>
+<li>Why UDP
+<ul>
+<li>no connection delay</li>
+<li>small header size (8 for UDP vs 20 for TCP)</li>
+<li>no congestion control (as fast as possible)</li>
+</ul></li>
+<li>Segment header: source port num, dest port num, length, checksum</li>
+<li>Checksum calculation</li>
+</ul>
+<h2 id="reliable-data-transfer-in-transport-layer">3.4 Reliable Data Transfer (in transport layer)</h2>
+<p>Complexity of rdt depends on characteristics of unreliable channel</p>
+<h3 id="core-methods-in-the-order-of-data-flow">Core methods (in the order of data flow)</h3>
+<p>rdt_send (calls udt_send)<br />
+udt_send<br />
+rdt_rcv (calls deliver_data)<br />
+deliver_data</p>
+<h3 id="development-of-rdt">Development of rdt</h3>
+<ul>
+<li>1.0 over a reliable channel</li>
+<li>2.0 with bit errors
+<ul>
+<li>detection: checksum</li>
+<li>notification:
+<ul>
+<li><strong>acknowledgements (ACK)</strong></li>
+<li><strong>negative acknowledgements (NAK)</strong> sender would re-transmit</li>
+</ul></li>
+<li>flaw: ACK/NAK corrupted</li>
+</ul></li>
+<li>2.1 handles above flaw by introducing <strong>sequence number</strong>
+<ul>
+<li>since <strong>stop-and-wait</strong>, so we only need 0 and 1 seq number to detect duplicate</li>
+</ul></li>
+<li>2.2 remove NAK
+<ul>
+<li>receiver includes seq number with ACK</li>
+<li>receiver sends the last successful ack'ed seq number each time</li>
+</ul></li>
+<li>3.0 bit errors and loss
+<ul>
+<li>sender waits a period of time for ACK; re-transmit if not received</li>
+<li><span class="math display">\displaystyle  U_{sender} = \frac{L/R}{RTT + L/R} </span></li>
+</ul></li>
+</ul>
+<h3 id="pipeline-all-of-above-are-stop-and-wait-sender-sends-one-packet-then-waits-for-receiver-response">Pipeline (all of above are <strong>stop-and-wait</strong>: sender sends one packet, then waits for receiver response)</h3>
+<ul>
+<li>GBN
+<ul>
+<li>only needs timer for oldest unacked packet
+<ul>
+<li>timeout: retransmit all unacked packets</li>
+</ul></li>
+<li>k-bit seq number: window size N has to be smaller than <span class="math display">\displaystyle  2^k </span></li>
+<li>send_base, nextseqnum</li>
+<li>receiver
+<ul>
+<li>sends cumulative ack of the highest seq number (all ACK's are in order)</li>
+<li>only tracks next sequence number expecting</li>
+<li>discards any out of order packets</li>
+</ul></li>
+</ul></li>
+<li>Selective repeat
+<ul>
+<li>receiver
+<ul>
+<li>sends individual ack
+<ul>
+<li>maintain timer for each un'ack packets</li>
+</ul></li>
+<li>store out-of-order packets in a buffer</li>
+</ul></li>
+<li>window size should be less than or equal to <span class="math display">\displaystyle  2^(k-1) </span>, where k is the number of bits for sequence number</li>
+<li>send_base &amp; rcv_base</li>
+<li>dlemma: duplicate data accepted as new if sequence number space is not enough</li>
+</ul></li>
+</ul>
+<h2 id="tcp-1">3.5 TCP</h2>
+<p>Overview: point-to-point, reliable, in-order, flow &amp; congestion control, full-duplex, connection oriented</p>
+<h3 id="segment-structure">Segment structure</h3>
+<ul>
+<li>32 bits Sequence number in TCP: byte stream number of first byte in segment's data</li>
+<li>32 bits Acknowledgement number: cumulative ack, send the seq number of next expected byte (GBN)</li>
+<li>16 bits <strong>receive window</strong>: flow control</li>
+<li>RTT vs timeout
+<ul>
+<li>Estimated RTT: <span class="math display">\displaystyle  Estimated = (1 - \alpha) * Estimated + \alpha * sampleRTT, \alpha </span> is a hyperparameter, usually set to 0.125</li>
+<li>RTT Deviation (variance): <span class="math display">\displaystyle  dev = (1-\beta)*dev + \beta * |Sample - Estimated|, \beta </span> is a hyperparameter, usually set to 0.25</li>
+<li>Timeout interval <span class="math display">\displaystyle  = Estimated + 4 * dev </span> (safety margin)</li>
+</ul></li>
+</ul>
+<h3 id="reliable-data-transfer">Reliable data transfer</h3>
+<ul>
+<li>RDT in TCP looks like a mixture of GBN and selective repeat
+<ul>
+<li>looks like GBN: send cumulative ACKs</li>
+<li>looks like selective repeat: store out-of-order segments</li>
+</ul></li>
+<li>Sender</li>
+<li>Receiver scenarios
+<ol type="1">
+<li>in-order, no pending: wait for 500ms then ack</li>
+<li>in-order, has pending acks from (1): send ack</li>
+<li>out-of-roder</li>
+<li>fill part of gap from lower end: send ack</li>
+</ol></li>
+<li>fast re-transmit: re-transmit the un'acked segment with smallest seq num if 3 duplicate ACKs (total 4 ACKs) for same data is received</li>
+</ul>
+<h3 id="flow-control-ensure-sender-wont-overflow-receivers-buffer">Flow control (Ensure sender won't overflow receiver's buffer)</h3>
+<ul>
+<li>Receiver buffer size (default 4096 bytes) = rwnd (free space) + buffered data</li>
+<li>Receiver tells the free buffer space through rwnd value in TCP header, and sender maintains that knowledge</li>
+<li>Sender limits num of unacked &amp; in-transit data (i.e. last byte sent - last byte ack'ed) to receiver's <strong>rwnd</strong> value</li>
+</ul>
+<h3 id="connection-management">Connection management</h3>
+<ul>
+<li>agree on connection parameters: seq #, receiveBuffer size of client &amp; server</li>
+<li>2-way handshake failures: half open connection due to delay, re-transmit app data due to message loss</li>
+<li>3-way handshake (ensure both client &amp; server are alive)
+<ul>
+<li>Upon receiving SYN, server returns a SYNACK with an initial seq num that is a hash of the IP addresses and port numbers in the SYN segment, and a secret number only known to the server
+<ul>
+<li>why using special initial seq number? defend against SYN FLOOD attacks</li>
+<li>usually server adds a time stamp in initial seq number with TTL to prevent attackers from using a large range of numbers</li>
+</ul></li>
+</ul></li>
+<li>Teardown
+<ul>
+<li>Wait for a period after teardown: let TCP client resends final acknowledgment in case the ACK is lost</li>
+</ul></li>
+</ul>
+<h2 id="principles-of-congestion-control">3.6 Principles of congestion control</h2>
+<ul>
+<li>End-end congestion control e.g. TCP</li>
+<li>Network-assisted congestion control</li>
+</ul>
+<h2 id="tcp-congestion-control">3.7 TCP congestion control</h2>
+<ul>
+<li>Congestion window (cwnd; managed by sender)
+<ul>
+<li>additive increase (that period is called congestion avoidance)</li>
+<li>multiplicative decrease</li>
+<li>number of un'acked sent packets is bounded by congestion window</li>
+</ul></li>
+<li>TCP sending rate: <span class="math display">\displaystyle  rate = \frac{cwnd}{RTT} </span></li>
+<li>Cwnd size: 1 -&gt; exponentially increase till threshold, then additive increase
+<ul>
+<li>upon loss (3 duplicate acks): threshold -&gt; half of current cwnd. reno -&gt; cut cwnd by half + 3; tahoe -&gt; set cwnd to 1, exponential growth until reaching threshold</li>
+<li>upon timeout: threshold -&gt; half of current cwnd. both reno and tahoe set cwnd to 1, exponential growth</li>
+</ul></li>
+<li>TCP avg throughput: <span class="math display">\displaystyle  \frac{\frac{3}{4}W}{RTT} </span>, where W is max window size before loss occurs</li>
+<li>TCP throughput with segment loss probability L: <span class="math display">\displaystyle  \frac{1.22*MSS}{RTT*\sqrt{L}} </span></li>
+<li>TCP fairness
+<ul>
+<li>achieved by congestion window</li>
+<li>use UDP if don't want to be constrained</li>
+<li>could open parallel connections to get more bandwidth</li>
+</ul></li>
+<li>Explicit Congestion Notification
+<ol type="1">
+<li>router sets 2 bits in ToS field if there is congestion from sender to receiver</li>
+<li>receiver uses ECE (explicit congestion echo) bit to notify the sender about congestion</li>
+<li>sender sends CWR (congestion window reduced) back to receiver to acknowledge cut in transmission rate</li>
+</ol></li>
+</ul>
+<h2 id="overview-of-network-layer">4.1 Overview of Network layer</h2>
+<ul>
+<li>Provided service: transport segments among hosts</li>
+<li>protocol in every host / router</li>
+<li>Core functions: forwarding, routing</li>
+<li>Layers
+<ul>
+<li>Data plane (per-router function; forwarding)</li>
+<li>Control plane (network-wide logic; routing)
+<ul>
+<li><strong>Traditional routing alg</strong> routing alg in every router in the network</li>
+<li><strong>SDN</strong> a centralized remote controller interacts with local control agents</li>
+</ul></li>
+</ul></li>
+<li>Network service model
+<ul>
+<li>Network layer does not provide any guarantees on delivery or maximum delay</li>
+</ul></li>
+</ul>
+<h2 id="router">4.2 Router</h2>
+<ul>
+<li>Input port
+<ul>
+<li>Line termination (physical layer)</li>
+<li>Link layer protocol (data link layer)</li>
+<li>Look up, forwarding, queueing
+<ul>
+<li><strong>Decentralized switching</strong> why? complete processing at 'line speed'
+<ul>
+<li><strong>Destination based forwarding</strong> based on ip address (look up forward table)
+<ul>
+<li>Longest prefix matching
+<ul>
+<li>Achieved by TCAM (Ternary content addressable memories): retrieve address in constant time regardless of time size</li>
+</ul></li>
+</ul></li>
+<li><strong>Generalized forwarding</strong> based on any set of header field values (look up flow table)</li>
+<li>Forward tables &amp; flow tables are computed by control plane</li>
+</ul></li>
+</ul></li>
+<li>Switching fabrics
+<ul>
+<li>switching rate</li>
+<li>3 types: memory, bus, crossbar
+<ul>
+<li>crossbar can send all packets in parallel if go to different output ports</li>
+</ul></li>
+<li>Input queueing
+<ul>
+<li>Head-of-the-Line blocking</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>Output port
+<ul>
+<li>Datagram buffer
+<ul>
+<li>scheduling discipline
+<ul>
+<li>priority scheduling
+<ul>
+<li>multiple classes</li>
+</ul></li>
+<li>FIFO
+<ul>
+<li>3 types of discard policys: tail, priority, random</li>
+</ul></li>
+</ul></li>
+<li>buffer size: <span class="math display">\displaystyle  \frac{RTT*C}{\sqrt{N}} </span>, where C is link capacity, N is number of flows</li>
+</ul></li>
+<li>Link layer protocol</li>
+<li>Line termination</li>
+</ul></li>
+</ul>
+<h2 id="ip">4.3 IP</h2>
+<h3 id="datagram-format">Datagram format</h3>
+<p>Header usually 20 bytes i.e. 5 rows (ignore option field; same length as TCP)</p>
+<h3 id="fragmentation">Fragmentation</h3>
+<p>Fragmentation: fit datagram into MTU of links by dividing one datagram into several ones and reassemble at destination based on ip header offset fields<br />
+Each fragment still has 20 bytes header<br />
+offset in each fragment = (MTU-20)/8 * fragment_index<br />
+flag field in each fragment: if the fragment is full</p>
+<h3 id="ipv4-addressing">IPv4 addressing</h3>
+<ul>
+<li><strong>IP address</strong> 32-bit id for <strong>host, router interface</strong> (network-layer address)
+<ul>
+<li><strong>interface</strong> connection between host/router and physical link</li>
+<li>host usually has 1 or 2 interfaces, whereas routers have multiple</li>
+</ul></li>
+<li>Subnet
+<ul>
+<li>IP address: subnet part - first 24 bits</li>
+<li>can interact within the subnet without intervening router</li>
+</ul></li>
+<li>CIDR (Classless InterDomain Routing)
+<ul>
+<li>Previously classful addressing, subnet part: A.B.C; many spaces will be wasted if assign to A or B or C</li>
+<li>Instead of first 24 bits of subnet part, we can have arbitrary subnet length, specified in x (a.b.c.d/x)</li>
+<li>prefix: network portion of a CDIRized address</li>
+</ul></li>
+<li>How does a host get IP address
+<ul>
+<li>Previously hard-coded by system admin</li>
+<li>DHCP (dynamic host configuration protocol)
+<ul>
+<li>Application layer protocol run on top of UDP</li>
+<li>goal: dynamically get IP address from AS server</li>
+<li>3 features: renew, reuse address, support for mobile users</li>
+<li>transaction phase (broadcast): 4 parts
+<ul>
+<li>Given there is no IP address assigned to client yet, a transaction ID is used to resolve between multiple simultaneous requests</li>
+<li>the second DHCP request is broadcast for the case when there are multiple DHCP servers on the network and the client has received multiple DHCP offer responses</li>
+</ul></li>
+<li>information provided to new client
+<ol type="1">
+<li>allocated IP</li>
+<li>address of first-hop router</li>
+<li>name &amp; IP of DNS server</li>
+<li>network mask (number of bits used as subnet)</li>
+</ol></li>
+</ul></li>
+</ul></li>
+<li>How does a network get subnet? Based on the available space of provider's ISP
+<ul>
+<li>Hierarchical addressing (filters with different scopes)</li>
+</ul></li>
+<li>How does an ISP get block of addresses? ICANN</li>
+</ul>
+<h3 id="nat-network-address-translation">NAT (Network address translation)</h3>
+<ul>
+<li>All datagrams leaving the local network have same single source NAT IP address (one ip address visible to public)
+<ul>
+<li>store mapping in translation table: WAN side (public) -&gt; LAN side (private)</li>
+</ul></li>
+<li>Why NAT?
+<ul>
+<li>only need 1 address from ISP</li>
+<li>can change inner ip w/t notify outside</li>
+<li>can change ISP w/t changing inner ip</li>
+<li>security</li>
+</ul></li>
+<li>Controversial</li>
+</ul>
+<h3 id="ipv6">IPv6</h3>
+<ul>
+<li>Motivation
+<ul>
+<li>32 bit address space full</li>
+<li>header helps speed processing / forwarding</li>
+<li>header change to faciltate QoS</li>
+</ul></li>
+<li>Data format: 40 byte header
+<ul>
+<li>no fragmentation</li>
+<li>new fields:
+<ul>
+<li>priority</li>
+<li>flow Label (identify datagrams in same 'flow')</li>
+<li>next header (identify upper layer protocol for data)</li>
+<li>hop limit (similar to TTL)</li>
+</ul></li>
+<li>16 bytes source addr &amp; 16 bytes dest addr</li>
+<li>removed checksum &amp; moved options field to 'next header'</li>
+</ul></li>
+<li>Not all routers have configured to support IPv6 yet
+<ul>
+<li>Solution: <strong>tunneling</strong> put IPv6 datagram as payload</li>
+</ul></li>
+</ul>
+<h2 id="generalized-forward-and-sdn">4.4 Generalized Forward and SDN</h2>
+<p>Router contains a flow table computed and distributed by a logically centralized router controller</p>
+<h3 id="openflow-data-plane">OpenFlow data plane</h3>
+<ul>
+<li>each table entry has a rule; check if incoming datagrams satisfy a rule -&gt; do corresponding action</li>
+<li>table fields:
+<ul>
+<li>pattern / rule (for matching header fields of datagrams)</li>
+<li>actions (e.g. forward, drop)</li>
+<li>priority</li>
+<li>counters (# of packets, bytes)</li>
+</ul></li>
+</ul>
+<h2 id="network-layer-control-plane-overview">5.1 Network layer control plane overview</h2>
+<p>2 approaches to structure control plane: per-router, SDN (determines how forward table is computed)</p>
+<h2 id="routing-protocol">5.2 Routing Protocol</h2>
+<p>Goal: determine the least cost, fastest, least congested path through network of routers between sending host and receiving host</p>
+<h3 id="abstraction-cost">Abstraction: Cost</h3>
+<ul>
+<li>Cost of link could be 1, inversely related to bandwidth, or inversely related to congestion</li>
+<li>Routing alg classification
+<ul>
+<li>global / decentralized information
+<ul>
+<li>global: link state (know complete topology)</li>
+<li>decentralized: distance vector (only know link costs to neighbours)</li>
+</ul></li>
+<li>static / dynamic (e.g. routes update in response to link cost changes)</li>
+</ul></li>
+</ul>
+<h3 id="link-state">Link state</h3>
+<ul>
+<li>Knowledge is transferred by 'link state broadcast' (all nodes have same info)</li>
+<li>Dijkstra's alg
+<ul>
+<li>computes least cost paths from source to all other nodes</li>
+<li>idea: adds the node w with min distance from set and update costs (distance to source) for all neighbours v of w
+<ul>
+<li><span class="math display">\displaystyle  D(v) = min(D(v), D(w) + c(w,v)) </span></li>
+</ul></li>
+<li>best runtime O(nlogn)</li>
+</ul></li>
+<li>oscillations: real time cost may vary depends on congestion</li>
+<li>Problems: may advertise incorrect link cost</li>
+</ul>
+<h3 id="distance-vector">Distance vector</h3>
+<ul>
+<li>Bellman-Ford equation (dynamic programming)
+<ul>
+<li><span class="math display">\displaystyle  d_x(y) = min(c(x, v) + d_v(y)) </span>, where <span class="math display">\displaystyle  d_x(y) </span> is the least cost from x to y, c(x, v) is the cost from x to one of its neighbours v, min is taken over all neighbours v of x</li>
+</ul></li>
+<li>In Distance vector alg., <span class="math display">\displaystyle  D_x(y) </span> is the estimate cost from x to y, x maintains <strong>distance vectors (DV)</strong> i.e. estimated distances from x to all nodes
+<ul>
+<li>x also knows cost to each neighbour and each neighbour's distance vectors</li>
+<li>Idea of alg.: upon receiving updates from neighbours or detected link cost change, update the node's DVs using BF equation. If any DV has changed, notifies neighbours</li>
+</ul></li>
+<li>Problems:
+<ul>
+<li>count to infinity: 2 neighbours update and notify each other back and forth
+<ul>
+<li>solution: poisoned reverse - if Z -&gt; Y -&gt; X, then Z tells Y the distance of Z and X is infinite (so Y won't route to X via Z)
+<ul>
+<li>Poisoned reverse does not solve the count to infinity problem for routing loops involving three or more nodes</li>
+</ul></li>
+</ul></li>
+<li>advertise incorrect path cost</li>
+</ul></li>
+</ul>
+<h2 id="intra-as-routing">5.3 Intra-AS routing</h2>
+<ul>
+<li>In practice, need to consider scalability &amp; administrative autonomy</li>
+<li>Structures in reality
+<ul>
+<li>Autonomous systems (Domain): aggregate routers into regions
+<ul>
+<li>Gateway routers</li>
+<li>Intra-AS routing (within AS)</li>
+<li>Inter-AS routing (among AS'es)</li>
+<li>Forward table determined by both routing alg.</li>
+</ul></li>
+</ul></li>
+<li>Intra-AS routing (aka. interior gateway routing)
+<ul>
+<li>To transfer packets to correct gateway router, needs help from intra-AS routing to get reachability information</li>
+<li>Common protocols: RIP, OSPF, IGRP</li>
+<li>OSPF (Open Shortest Path First)
+<ul>
+<li>link state alg.</li>
+<li>OSPF is a link-layer protocol, advertise messages directly over IP</li>
+<li>features
+<ul>
+<li>security</li>
+<li>multiple same-cost paths allowed</li>
+<li>multiple cost metrics for different TOS</li>
+</ul></li>
+<li>Hierarchical OSPF
+<ul>
+<li>each nodes runs its own link state routing alg. (has detailed area topology)</li>
+<li><strong>area boarder routers</strong> advertise distances to other areas</li>
+<li><strong>backbone area</strong> route traffic between the other areas in the AS</li>
+<li><strong>boundary routers</strong> connect to other AS'es</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="inter-as-routing-bgp">5.4 Inter-AS routing: BGP</h2>
+<p>BGP: Border Gateway Protocol (used by all inter-AS routing)<br />
+<strong>eBGP</strong> get reachability info from neighbour AS<br />
+<strong>iBGP</strong> propagate info to internal routers<br />
+Note: BGP is an app-layer protocol; it opens TCP sessions with other peers - BGP-enabled routers implement the complete stack to support BGP messages over TCP in the control plane</p>
+<h3 id="basics">Basics</h3>
+<ul>
+<li>Advertise paths (reachability to other AS'es) to different destination network prefixes
+<ul>
+<li>Path attributes:
+<ul>
+<li><strong>AS-PATH</strong> list of ASes (detect looping)</li>
+<li><strong>NEXT-HOP</strong> specify the internal-AS router to next-hop AS (construct forwarding table)</li>
+</ul></li>
+</ul></li>
+<li><strong>Policy-based routing</strong> uses import policy to accept / decline a path</li>
+</ul>
+<h3 id="messages">Messages</h3>
+<ul>
+<li>exchanged between peers over TCP connection</li>
+<li>types
+<ul>
+<li>open: open TCP connection</li>
+<li>update: advertises new path</li>
+<li>keepalive</li>
+<li>notification: report error / close connection</li>
+</ul></li>
+<li>forwarding table entry: destination -&gt; local interface (link to first hop router)</li>
+</ul>
+<h3 id="route-selection">Route Selection</h3>
+<ul>
+<li>Factors (priority from high to low)
+<ul>
+<li>policy decision
+<ul>
+<li>dual-homed: attached to 2 networks</li>
+</ul></li>
+<li>shortest AS-PATH</li>
+<li>closest NEXT-HOP router (choose local gateway with least intra-domain cost)</li>
+</ul></li>
+</ul>
+<h3 id="why-different-intra-inter-as-routing">Why different intra, inter-AS routing</h3>
+<ul>
+<li>Policy or not</li>
+<li>Scale: hierarchical routing saves table size</li>
+<li>Performance (related to policy as well)</li>
+</ul>
+<h2 id="sdn-control-plane">5.5 SDN control plane</h2>
+<ul>
+<li>Logically centralized control plane (typically running on servers in a datacenter)
+<ul>
+<li>Motivations
+<ul>
+<li>easy network management</li>
+<li>easy router programming: compute tables centrally then distribute</li>
+<li>open implementation of control plane</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="features">Features</h3>
+<ul>
+<li>generalized forwarding</li>
+<li>decoupling of data &amp; control plane</li>
+<li>control plane functions external to data-plane switches</li>
+<li>programmable control apps</li>
+</ul>
+<h3 id="perspective">Perspective</h3>
+<ul>
+<li>SDN-controlled switches
+<ul>
+<li>implemented generalized forwarding in hardware</li>
+<li>API for table-based switch control</li>
+</ul></li>
+<li>SDN controller
+<ul>
+<li>maintain network state info</li>
+<li>distributed</li>
+<li>layers
+<ul>
+<li>interface layer to network control apps e.g. network graph, RESTful API</li>
+<li>network-wide state management layer: distributed db for managing state of network links</li>
+<li>communication layer to switches e.g. OpenFlow, SNMP</li>
+</ul></li>
+</ul></li>
+<li>Network-control apps
+<ul>
+<li>implement control functions using API provided by controller (make routing decision)</li>
+</ul></li>
+</ul>
+<h2 id="icmp-internet-control-message-protocol">5.6 ICMP (Internet Control Message Protocol)</h2>
+<ul>
+<li>Used by hosts &amp; routers to communicate network-level information
+<ul>
+<li>error report</li>
+<li>echo request / response</li>
+</ul></li>
+<li>messages carried in IP datagrams</li>
+</ul>
+<h3 id="traceroute">Traceroute</h3>
+<ul>
+<li>source send sets of UDP segments each set has TTL equal to set number (1, 2, ... n)</li>
+<li>when nth set reaches nth router, router will send back TTL expire ICMP</li>
+<li>stop upon reaching destinationi and receiver sends 'port unreachable' message</li>
+</ul>
+<h2 id="link-layer-introduction">6.1 Link layer introduction</h2>
+<p>Datagrams might be transferred by different link layer protocols over different links<br />
+MAC address in frame header to identify source &amp; dest - 48 bits<br />
+Services<br />
+1. Framing<br />
+2. Reliable data transfer (would like to resolve error locally instead of relying on TCP rdt)<br />
+3. Error detection and correction</p>
+<h3 id="location">Location</h3>
+<ul>
+<li>In router: input ports &amp; output ports</li>
+<li>In host: network interface card (adaptor) or on a chip
+<ul>
+<li>attaches into host's system buses</li>
+</ul></li>
+</ul>
+<h2 id="multiple-access-protocols">6.2 Multiple access protocols</h2>
+<p>determines how nodes share a single shared broadcast channel upon sending / receiving packets</p>
+<h3 id="protocols-taxonomy">protocols taxonomy</h3>
+<ul>
+<li><strong>channel partitioning</strong> divide and reserve space for each node to use
+<ul>
+<li>e.g. TDMA: time division multiple access
+<ul>
+<li>n-slot frame repeat, where n is max number of nodes can share at same time</li>
+<li>if number of nodes &lt; n, then some spaces will be wasted</li>
+</ul></li>
+<li>e.g. FDMA: frequency division multiple access</li>
+<li>inefficient in low-load</li>
+</ul></li>
+<li><strong>random access</strong> allow collisions
+<ul>
+<li>protocol specifies how to detect and recover from collisions</li>
+<li>e.g. CSMA (carrier sense multiple access)
+<ul>
+<li>listen to channel: busy - wait; free - transfer</li>
+<li>collisions can still occur due to propagation delay (when both senders send together)</li>
+<li>upon collision, entire packet transmission time wasted</li>
+<li>CSMA/CD
+<ul>
+<li>collisions detected within short time</li>
+<li>colliding transmissions will be aborted to reduce wastage, detector sends a jam signal to all other adapters (e.g., in the Ethernet segment) to inform the other adapters of the collision and that they must not transmit</li>
+<li>easy to detect in wired LANs; difficult to detect in wireless LANs</li>
+<li><strong>binary backoff</strong> after m-th collision, choose k between 0 and <span class="math display">\displaystyle  2^m - 1 </span>, wait for <span class="math display">\displaystyle \frac{k * 512 bits}{R (bits/s)} </span> time, then try re-send
+<ul>
+<li>why varied time? too short - more transmissions than range; too long - unnecessary wait</li>
+<li>512 bits: minimum frame size (too short - cannot detect collision)</li>
+</ul></li>
+<li>efficiency: <span class="math display">\displaystyle  \frac{1}{1 + 5*t_{prop}/t_{trans}}</span>, where <span class="math display">\displaystyle  t_{prop} </span> is max prop delay between 2 nodes, <span class="math display">\displaystyle  t_{trans} </span> is time to transmit max-szie frame</li>
+</ul></li>
+<li>CSMA/CA: collision avoidance
+<ul>
+<li>sense before transmitting</li>
+<li>used in 802.11, which is difficult to sense collisions &amp; receive sense collision signal</li>
+</ul></li>
+</ul></li>
+<li>inefficient in high-load (collision overhead)</li>
+</ul></li>
+<li>'taking turns'
+<ul>
+<li>polling: master node invites slave nodes to transmit in turn
+<ul>
+<li>concerns: overhead, latency, single point of failure</li>
+</ul></li>
+<li>token passing: control token passed from one node to next sequentially</li>
+</ul></li>
+</ul>
+<h2 id="lans-local-area-network">6.3 LANs (local area network)</h2>
+<p>Group of computers and associated devices that share a common communications line or wireless link to a server</p>
+<h3 id="addressing-arp">addressing, ARP</h3>
+<ul>
+<li>MAC address: 48 its burned in NIC ROM (static)
+<ul>
+<li>used ‘locally” to get frame from one interface to another physically-connected interface</li>
+<li>uniqueness is ensured by IEEE: manufacturer buys portion of MAC address space from IEEE</li>
+<li>one MAC address assoicated with each interface</li>
+</ul></li>
+<li>ARP: address resolution protocol
+<ul>
+<li>function: fetch MAC address based on IP
+<ul>
+<li>A broadcasts ARP query, B replies with its MAC address</li>
+</ul></li>
+<li>each IP node has ARP table that stores mapping between IP and MAC</li>
+</ul></li>
+</ul>
+<h3 id="ethernet">Ethernet</h3>
+<ul>
+<li>'dominant' wired LAN technology; cheap; not slow</li>
+<li>physical topology
+<ul>
+<li>bus: may have collisions</li>
+<li>star: nodes do not collide</li>
+</ul></li>
+<li>frame structure
+<ul>
+<li>preamble: synchronize receiver, sender clock rates</li>
+<li>source, destination address: 6 bytes MAC address</li>
+<li>type: higher layer protocol</li>
+<li>CRC: cyclic redundancy check - error detection</li>
+<li>payload: min size - 512; max size - 1500</li>
+</ul></li>
+<li>features
+<ul>
+<li>connectionless between 2 NIC interfaces</li>
+<li>unreliable</li>
+<li>MAC protocol: CSMA/CD with binary backoff</li>
+</ul></li>
+<li>Ethernet standard
+<ul>
+<li>e.g. 100BASE-T4: 100 Mbps, Baseband ethernet, twisted pair (copper), 4 twists</li>
+</ul></li>
+</ul>
+<h3 id="switches">switches</h3>
+<ul>
+<li>ethernet protocol used on each incoming link</li>
+<li>features:
+<ul>
+<li>buffer</li>
+<li>full duplex</li>
+<li>plug-and-play; self-learning: add location of sender to <strong>switch table</strong> upon receiving the sending packet
+<ul>
+<li>switch table entry: MAC address, Interface of the router's port connecting to the MAC address, TTL</li>
+<li>dest. MAC address in switch table ? forward to the output interface : flood</li>
+</ul></li>
+</ul></li>
+<li>switch vs router</li>
+</ul>
+<h2 id="data-center-networking">6.4 Data center networking</h2>
+<ul>
+<li>Load balancer: app-layer routing
+<ul>
+<li>hides data center internals from client</li>
+</ul></li>
+<li>Blade: hosts in data centers; which are stacked together in racks</li>
+<li>Routers
+<ul>
+<li>boarder: connect data center network to public internet (specifically access router)</li>
+<li>access: connect with tier-1 switches</li>
+</ul></li>
+<li>Switches
+<ul>
+<li>tier 1: connect with tier-2 switches &amp; load balancer</li>
+<li>tier 2: connect with TOR switches</li>
+<li>TOR: interconnects the hosts in the rac with each other and with other switches in the data center</li>
+</ul></li>
+</ul>
+<h2 id="send-request-to-www.google.com">6.5 Send request to www.google.com</h2>
+<ol type="1">
+<li>DHCP: get own IP, IP for first hop router, and IP for DNS server</li>
+<li>ARP: get MAC address of first hop router based on IP address</li>
+<li>DNS query: get IP address of google.com</li>
+<li>Open TCP socket to web server</li>
+<li>send HTTP request</li>
+</ol>
+<h2 id="top-10-network-challenges">Top-10 network challenges</h2>
+<ol type="1">
+<li>Reliable data transfer</li>
+<li>Principles of congestion control</li>
+<li>routing</li>
+</ol>
+<div class="status-banner" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; text-align: center;">
+    <div style="display: inline-block; padding: 0.8em 2em 0.5em 2em; background: black; color: white; font-size: 2em;">
+        Rendering <svg xmlns="http://www.w3.org/2000/svg" height="1.4em" viewbox="0 0 1200 500" style="vertical-align: text-bottom"><title>LaTeX logo</title><g transform="matrix(45 0 0 45 40 40)" fill="white"><path d="M5.5 4.4C5.5 4.4 5.2 4.4 5.2 4.4 5.1 5.4 5 6.7 3.2 6.7 3.2 6.7 2.4 6.7 2.4 6.7 1.9 6.7 1.9 6.6 1.9 6.3 1.9 6.3 1.9 1 1.9 1 1.9 0.6 1.9 0.5 2.9 0.5 2.9 0.5 3.2 0.5 3.2 0.5 3.2 0.5 3.2 0.2 3.2 0.2 2.8 0.2 1.9 0.2 1.5 0.2 1.1 0.2 0.3 0.2 0 0.2 0 0.2 0 0.5 0 0.5 0 0.5 0.2 0.5 0.2 0.5 1 0.5 1 0.6 1 0.9 1 0.9 1 6.2 1 6.2 1 6.6 1 6.7 0.2 6.7 0.2 6.7 0 6.7 0 6.7 0 6.7 0 7 0 7 0 7 5.2 7 5.2 7 5.2 7 5.5 4.4 5.5 4.4z"/><path d="M5.3 0.2C5.3 0 5.2 0 5.1 0 5 0 4.9 0 4.9 0.2 4.9 0.2 3.3 4.2 3.3 4.2 3.2 4.4 3.1 4.7 2.5 4.7 2.5 4.7 2.5 5 2.5 5 2.5 5 4 5 4 5 4 5 4 4.7 4 4.7 3.7 4.7 3.5 4.6 3.5 4.4 3.5 4.3 3.5 4.3 3.6 4.2 3.6 4.2 3.9 3.4 3.9 3.4 3.9 3.4 5.9 3.4 5.9 3.4 5.9 3.4 6.3 4.4 6.3 4.4 6.3 4.4 6.3 4.5 6.3 4.5 6.3 4.7 5.9 4.7 5.8 4.7 5.8 4.7 5.8 5 5.8 5 5.8 5 7.7 5 7.7 5 7.7 5 7.7 4.7 7.7 4.7 7.7 4.7 7.6 4.7 7.6 4.7 7.1 4.7 7.1 4.7 7 4.5 7 4.5 5.3 0.2 5.3 0.2zM4.9 0.9C4.9 0.9 5.8 3.1 5.8 3.1 5.8 3.1 4 3.1 4 3.1 4 3.1 4.9 0.9 4.9 0.9z"/><path d="M13.3 0.2C13.3 0.2 7.2 0.2 7.2 0.2 7.2 0.2 7 2.5 7 2.5 7 2.5 7.3 2.5 7.3 2.5 7.4 0.9 7.6 0.5 9.1 0.5 9.3 0.5 9.5 0.5 9.6 0.6 9.8 0.6 9.8 0.7 9.8 0.9 9.8 0.9 9.8 6.2 9.8 6.2 9.8 6.5 9.8 6.7 8.8 6.7 8.8 6.7 8.4 6.7 8.4 6.7 8.4 6.7 8.4 7 8.4 7 8.8 6.9 9.8 6.9 10.3 6.9 10.7 6.9 11.7 6.9 12.2 7 12.2 7 12.2 6.7 12.2 6.7 12.2 6.7 11.8 6.7 11.8 6.7 10.7 6.7 10.7 6.5 10.7 6.2 10.7 6.2 10.7 0.9 10.7 0.9 10.7 0.7 10.7 0.6 10.9 0.6 11 0.5 11.3 0.5 11.5 0.5 13 0.5 13.1 0.9 13.2 2.5 13.2 2.5 13.5 2.5 13.5 2.5 13.5 2.5 13.3 0.2 13.3 0.2z"/><path d="M18.7 6.7C18.7 6.7 18.4 6.7 18.4 6.7 18.2 8.2 17.9 8.9 16.2 8.9 16.2 8.9 14.9 8.9 14.9 8.9 14.4 8.9 14.4 8.8 14.4 8.5 14.4 8.5 14.4 5.9 14.4 5.9 14.4 5.9 15.3 5.9 15.3 5.9 16.3 5.9 16.4 6.2 16.4 7 16.4 7 16.6 7 16.6 7 16.6 7 16.6 4.4 16.6 4.4 16.6 4.4 16.4 4.4 16.4 4.4 16.4 5.2 16.3 5.5 15.3 5.5 15.3 5.5 14.4 5.5 14.4 5.5 14.4 5.5 14.4 3.2 14.4 3.2 14.4 2.8 14.4 2.8 14.9 2.8 14.9 2.8 16.2 2.8 16.2 2.8 17.7 2.8 18 3.3 18.1 4.7 18.1 4.7 18.4 4.7 18.4 4.7 18.4 4.7 18.1 2.5 18.1 2.5 18.1 2.5 12.5 2.5 12.5 2.5 12.5 2.5 12.5 2.8 12.5 2.8 12.5 2.8 12.7 2.8 12.7 2.8 13.5 2.8 13.5 2.9 13.5 3.2 13.5 3.2 13.5 8.4 13.5 8.4 13.5 8.8 13.5 8.9 12.7 8.9 12.7 8.9 12.5 8.9 12.5 8.9 12.5 8.9 12.5 9.2 12.5 9.2 12.5 9.2 18.2 9.2 18.2 9.2 18.2 9.2 18.7 6.7 18.7 6.7z"/><path d="M21.7 3.1C21.7 3.1 23 1.1 23 1.1 23.3 0.8 23.6 0.5 24.5 0.5 24.5 0.5 24.5 0.2 24.5 0.2 24.5 0.2 22.1 0.2 22.1 0.2 22.1 0.2 22.1 0.5 22.1 0.5 22.5 0.5 22.7 0.7 22.7 0.9 22.7 1 22.7 1.1 22.6 1.2 22.6 1.2 21.5 2.8 21.5 2.8 21.5 2.8 20.2 0.9 20.2 0.9 20.2 0.9 20.1 0.8 20.1 0.8 20.1 0.7 20.4 0.5 20.8 0.5 20.8 0.5 20.8 0.2 20.8 0.2 20.4 0.2 19.7 0.2 19.3 0.2 19 0.2 18.4 0.2 18 0.2 18 0.2 18 0.5 18 0.5 18 0.5 18.2 0.5 18.2 0.5 18.8 0.5 19 0.5 19.2 0.8 19.2 0.8 21 3.6 21 3.6 21 3.6 19.4 6 19.4 6 19.2 6.2 18.9 6.7 17.9 6.7 17.9 6.7 17.9 7 17.9 7 17.9 7 20.3 7 20.3 7 20.3 7 20.3 6.7 20.3 6.7 19.8 6.7 19.7 6.4 19.7 6.2 19.7 6.1 19.7 6.1 19.8 6 19.8 6 21.2 3.9 21.2 3.9 21.2 3.9 22.8 6.3 22.8 6.3 22.8 6.3 22.8 6.3 22.8 6.4 22.8 6.5 22.6 6.7 22.2 6.7 22.2 6.7 22.2 7 22.2 7 22.5 6.9 23.2 6.9 23.6 6.9 24 6.9 24.5 7 24.9 7 24.9 7 24.9 6.7 24.9 6.7 24.9 6.7 24.7 6.7 24.7 6.7 24.2 6.7 24 6.6 23.8 6.3 23.8 6.3 21.7 3.1 21.7 3.1z"/></g></svg> math...
+    </div>
+</div>
+<div class="license">
+  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a> This work by <a xmlns:cc="http://creativecommons.org/ns#" href="https://uberi.github.io/" property="cc:attributionName" rel="cc:attributionURL">Jasper Wang</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  Copyright 2013-2018 Jasper Wang.
+</div>
+</body>
+</html>

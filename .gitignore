@@ -1,6 +1,7 @@
-# IntelliJ project files
 lib/
+web/resources/css/fonts/
 .idea
 *.iml
 out
 gen
+

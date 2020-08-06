@@ -1,0 +1,817 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <title>cs489 | Jasper Wang</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+
+  <!-- The loading of KaTeX is deferred to speed up page rendering -->
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+
+  <!-- To automatically render math in text elements, include the auto-render extension: -->
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+    <script type="text/javascript">
+  window.onload = function() {
+    document.getElementsByClassName("status-banner")[0].style.display = "block";
+    setTimeout(function() {
+      renderMathElements(document.getElementsByClassName("math"));
+      document.getElementsByClassName("status-banner")[0].style.display = "none";
+    }, 50); // delay to allow status banner to show
+  }
+
+  function renderMathElements(mathElements) {
+    var mathOptions = {
+      macros: {
+        "\\set": "\\left\\{ #1 \\right\\}",
+        "\\tup": "\\left\\langle #1 \\right\\rangle",
+        "\\abs": "\\left\\lvert #1 \\right\\rvert",
+        "\\floor": "\\left\\lfloor #1 \\right\\rfloor",
+        "\\ceil": "\\left\\lceil#1 \\right\\rceil",
+        "\\mb": "\\mathbb{#1}",
+        "\\rem": "\\operatorname{rem}",
+        "\\ord": "\\operatorname{ord}",
+        "\\sign": "\\operatorname{sign}",
+        "\\imag": "\\bm{i}",
+        "\\dee": "\\mathop{}\\!\\mathrm{d}",
+        "\\lH": "\\overset{\\text{l'H}}{=}",
+        "\\evalat": "\\left.\\left(#1\\right)\\right|",
+        "\\sech": "\\operatorname{sech}",
+        "\\spn": "\\operatorname{Span}",
+        "\\proj": "\\operatorname{proj}",
+        "\\prp": "\\operatorname{perp}",
+        "\\refl": "\\operatorname{refl}",
+        "\\magn": "\\left\\lVert #1 \\right\\rVert",
+        "\\rank": "\\operatorname{rank}",
+        "\\sys": "\\left[ #1 \\mid #2\\space \\right]",
+        "\\range": "\\operatorname{Range}",
+        "\\adj": "\\operatorname{adj}",
+        "\\cof": "\\operatorname{cof}",
+        "\\coord": "{\\left\\lbrack #1 \\right\\rbrack}_{#2}",
+        "\\diag": "\\operatorname{diag}",
+        "\\formlp": "\\operatorname{Form}(\\mathcal{L}^P)",
+
+        // not yet available in KaTeX
+        "\\operatorname": "\\mathop{\\text{#1}}\\nolimits", //wip: spacing is slightly off
+        "\\not": "\\rlap{\\kern{7.5mu}/}", //wip: slash angle is slightly off
+        "\\bm": "\\mathbf", //wip: should be italic, but isn't
+      },
+      throwOnError: false,
+    };
+    for (var i=0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      katex.render(texText.data, mathElements[i], mathOptions);
+    }
+  }
+  </script>
+</head>
+<body>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-68271407-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+  <h1>Notes by <a href="/">Jasper Wang</a>.</h1>
+  <ul class="site_links">
+    <span class="divider"></span>
+  </ul>
+<h1 id="cs-489-spring-2018">CS 489 (Spring 2018)</h1>
+<h2 id="lecture-1-2018-05-02">Lecture 1 (2018-05-02)</h2>
+<h3 id="prerequisites">Prerequisites</h3>
+<ul>
+<li>Algorithm</li>
+<li>Mathematics: linear algebra, probability, calculus</li>
+<li>Programming: matlab, python, julia</li>
+</ul>
+<h3 id="overview">Overview</h3>
+<p>What is machine learning?<br />
+Field of study that gives computers the ability to learn without being explicitly programmed</p>
+<h3 id="learning-categories">3 learning categories</h3>
+<ul>
+<li>Supervised learning (data with labels specifying the correctness of the data)
+<ul>
+<li>Given a traning set of pairs of examples (x, y)</li>
+<li>Return a hypothesis function h(x) -&gt; y
+<ul>
+<li>y is continuous -&gt; regression e.g. housing prices</li>
+<li>y is discrete -&gt; classification (finite set e.g. {0, 1, 2})</li>
+</ul></li>
+<li>Regression
+<ul>
+<li>Need to divide the data into training set and testing set s.t. the hypothesis can be generalized</li>
+<li>Need to determine input
+<ul>
+<li>number of features (too many features -&gt; overfit, hard to generalize; too few features -&gt; underfit)</li>
+<li>what kind of function to choose (e.g. linear, quadratic)</li>
+</ul></li>
+<li>e.g. movie rating prediction
+<ul>
+<li>input: movie name, output: movie learning</li>
+</ul></li>
+</ul></li>
+<li>Classification
+<ul>
+<li>Examples
+<ul>
+<li>ImageNet: put images into classes (deep convolutional neural networks)</li>
+<li>Email spam filtering</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>Unsupervised learning
+<ul>
+<li>There is no output (or label, 'y') compared to supervised learning</li>
+<li>Find 'potential pattern' of the data</li>
+<li>Clustering
+<ul>
+<li>e.g. K-means
+<ul>
+<li>determine the # of clusters</li>
+<li>choose random points based on the # of clusters predicted</li>
+<li>Associate data points with center points in step</li>
+</ul></li>
+<li>e.g. Autoencoders (artificial neural network)
+<ul>
+<li>learn representation for a set of data</li>
+<li>learn generative models of data</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>Reinforcement learning (not covered in this course)</li>
+</ul>
+<h2 id="linear-algebra-review-gbc-chapter-2">Linear Algebra Review (GBC Chapter 2)</h2>
+<h3 id="scalar-vector-matrix-tensor">Scalar, Vector, Matrix, Tensor</h3>
+<ul>
+<li>Scalar: e.g. s <span class="math display">\displaystyle  \in \Re </span></li>
+<li>Vector: e.g. <strong>x</strong> <span class="math display">\displaystyle  \in \Re^n </span>
+<ul>
+<li>ith element: <span class="math display">\displaystyle x_i</span></li>
+<li><span class="math display">\displaystyle  x_S </span> where S is {1,3,6} represents {<span class="math display">\displaystyle  x_1, x_3, x_6 </span>}</li>
+</ul></li>
+<li>Matrix <span class="math display">\displaystyle  A \in \Re^{m*n} </span>
+<ul>
+<li>element: <span class="math display">\displaystyle  A_{i,j} </span>, ith row: <span class="math display">\displaystyle  A_{i,:} </span>, jth column: <span class="math display">\displaystyle  A_{:,j} </span></li>
+<li>main diagonal</li>
+</ul></li>
+<li>Tensor: array with more than 2 axes. e.g. get specific element: <span class="math display">\displaystyle  A_{i,j,k} </span></li>
+<li>Matrix + Vector: <span class="math display">\displaystyle  C_{i,j} = A_{i,j} + b_j </span> (implicit copying of b to many locations is called broadcasting)</li>
+</ul>
+<h3 id="vectors-matrices-multiplication">Vectors, Matrices Multiplication</h3>
+<ul>
+<li>Matrix product</li>
+<li>Hadamard product (element-wise product of 2 matrices)</li>
+<li>Dot product of 2 vectors</li>
+<li>System of linear equations <span class="math display">\displaystyle  Ax = b </span> where <span class="math display">\displaystyle  A \in \Re^{m*n}, x \in \Re^{n}, b \in \Re^{m} </span></li>
+</ul>
+<h3 id="special-matrices-and-vectors">Special Matrices and Vectors</h3>
+<ul>
+<li>Identity</li>
+<li>Inverse: should not be calculated explicitly in practice</li>
+<li>Diagonal</li>
+<li>Symmetric</li>
+<li>unit vector: vector with unit norms i.e. <span class="math display">\displaystyle  ||x|| = 1  </span></li>
+<li>2 vectors x,y are <strong>orthogonal</strong> if <span class="math display">\displaystyle  x^Ty = 0 </span>
+<ul>
+<li>2 vectors are <strong>orthonormal</strong> if they are orthogonal and unit vectors</li>
+</ul></li>
+<li>Orthogonal matrix: <span class="math display">\displaystyle  A^{-1} = A^T </span></li>
+</ul>
+<h3 id="linear-dependence-and-span">Linear dependence and Span</h3>
+<ul>
+<li>Ax = b has a solution iff b is in the <strong>column space</strong> of A (span of A's column vectors)</li>
+<li><strong>Linearly independent</strong> no vector in the set is a linear combination of other vectors</li>
+<li><strong>rank</strong> of a matrix: maximum number of linearly independent column vectors</li>
+</ul>
+<h3 id="eigen-decomposition">Eigen Decomposition</h3>
+<ul>
+<li><span class="math display">\displaystyle  Av = \lambda v </span> where v is an eigenvector and <span class="math display">\displaystyle \lambda </span> is an eigenvalue</li>
+<li><strong>Characteristic equation</strong> <span class="math display">\displaystyle det(A - \lambda I) = 0 </span>
+<ul>
+<li><span class="math display">\displaystyle \lambda </span> is an eigenvalue of <span class="math display">\displaystyle A</span> iff it is a root of characteristic equation
+<ul>
+<li>proof:
+<ul>
+<li>if <span class="math display">\displaystyle  \lambda </span> is an eigenvalue, then <span class="math display">\displaystyle  (\lambda I - A)u = 0 </span> has a non-trivial solution</li>
+<li>so <span class="math display">\displaystyle  \lambda I - A </span> is singular -&gt; <span class="math display">\displaystyle  det(A - \lambda I) = 0 </span> -&gt; <span class="math display">\displaystyle  \lambda </span> is a root</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>Upon similarity transform, eigenvalues do not change</li>
+<li>If <span class="math display">\displaystyle  A \in \Re^{n*n} </span> is a square matrix with rank n, then <span class="math display">\displaystyle  A = V \Lambda V^{-1} </span>, where <span class="math display">\displaystyle V_{:,i}</span> is ith eigenvector, and <span class="math display">\displaystyle  \Lambda_{i,i} </span> is ith eigenvalue</li>
+</ul>
+<h3 id="singular-value-decomposition">Singular Value Decomposition</h3>
+<h2 id="probability-review-gbc-chapter-3">Probability Review (GBC Chapter 3)</h2>
+<h3 id="why-probability-in-machine-learning">Why probability in machine learning?</h3>
+<ul>
+<li>3 possible sources of uncertainty
+<ul>
+<li>Inherent stochasticity in the system being modeled</li>
+<li>Incomplete observability</li>
+<li>Incomplete modeling</li>
+</ul></li>
+<li>Frequentist probability: rates at which events occur</li>
+<li>Bayesian probability: qualitative level of certainty
+<ul>
+<li>Bayesian statistics: the evidence about the true state of the world is expressed in terms of <strong>degrees of belief</strong> known as Bayesian probabilities</li>
+</ul></li>
+</ul>
+<h3 id="definitions">Definitions</h3>
+<ul>
+<li><strong>Random variable</strong> a variable that take on different values randomly</li>
+<li><strong>Probability distribution</strong> description of how likely a random variable or set of random variables is to take on each of its possible states</li>
+<li><strong>probability mass function</strong> A probability distribution over discrete variables
+<ul>
+<li>maps from a state of a random variable to the probability of that random variable taking on that state e.g. <span class="math display">\displaystyle  P(X = x) </span></li>
+<li>domain of P must contain all possible states of the random variable</li>
+</ul></li>
+<li><strong>Probability density function</strong> A probability distribution over continuous variables
+<ul>
+<li>A probability density functionp(x) does not give the probability of a specific state directly; instead the probability of landing inside an infinitesimal region withvolume δx is given by p(x)δx.</li>
+<li><span class="math display">\displaystyle  \int p(x)dx = 1 </span></li>
+</ul></li>
+<li><strong>joint probability distribution</strong> a probability distribution over many variables e.g. <span class="math display">\displaystyle  P(X = x, Y = y) </span>
+<ul>
+<li>probability mass functions that act on many variables at the same time</li>
+</ul></li>
+<li>uniform distribution: <span class="math display">\displaystyle  P(x = x_i) = \frac{1}{k} </span> where i = 1 ... k</li>
+<li><strong>Marginal probability distribution</strong></li>
+</ul>
+<h3 id="conditional-probabilities">Conditional Probabilities</h3>
+<ul>
+<li>Bayes' rule (Probability of an event given that another event happens)
+<ul>
+<li><span class="math display">\displaystyle  P(Y = y | X = x) = \frac{P(Y = y, X = x)}{P(X = x)} </span></li>
+</ul></li>
+<li>Chain rule (general product rule) <span class="math display">\displaystyle  P(A,B) = P(B|A)*P(A) </span>, where P(A,B) is joint, P(B|A) is conditional, and P(A) is marginal</li>
+</ul>
+<h2 id="calculus-review">Calculus Review</h2>
+<ul>
+<li><strong>Partial derivative</strong> of a function of several variables is its derivative w.r.t. one of those variables (other variables are treated as constants)</li>
+<li>Matrix / vector differentiation</li>
+<li><strong>Jacobian matrix</strong> matrix that contains all partial derivatives of a function whose input and output are both vectors</li>
+<li><strong>Hessian matrix</strong> matrix contains all second derivatives; it's the jacobian of the gradient</li>
+</ul>
+<h2 id="optimization-review">Optimization Review</h2>
+<h3 id="notations">Notations</h3>
+<ul>
+<li><strong>Objective function</strong> The function we want to minimize or maximize
+<ul>
+<li>if minimizing, we may also call function as cost function, loss function, or error function</li>
+</ul></li>
+</ul>
+<h2 id="lecture-2">Lecture 2</h2>
+<h3 id="linear-algebra">Linear Algebra</h3>
+<ul>
+<li>Norms (measure size of vector)
+<ul>
+<li><span class="math display">\displaystyle L^P </span> norm: <span class="math display">\displaystyle  ||x||_p = (\sum_i|x_i|^p)^{\frac{1}{p}} </span></li>
+<li>the norm of a vector x measures the distance from origin to x</li>
+<li>L1-norm: <strong>least absoluate deviations</strong> (also least absolute errors)
+<ul>
+<li><span class="math display">\displaystyle  S = \sum^{n}_{i=1}|y_i - f(x_i)| </span></li>
+<li>robust (resistant to outliers in the data), unstable solution, may have multiple solution, built-in feature selection</li>
+</ul></li>
+<li>L2-norm: square root of sum of vectors (Euclidean norm)
+<ul>
+<li>size of vector: <span class="math display">\displaystyle  ||x||_2 = sqrt(x^Tx) </span></li>
+<li><strong>Least Squares</strong> <span class="math display">\displaystyle  S = \sum^{n}_{i=1}(y_i - f(x_i))^2 </span></li>
+<li>when near the origin, L2-norm is undesirable because it increases very slowly</li>
+<li>not very robust, stable solution, always one solution, no feature selection</li>
+</ul></li>
+<li>If p is infinity, then <span class="math display">\displaystyle  ||x||_p </span> is the maximum entry of x</li>
+</ul></li>
+<li>Positive semi-definite matrix: M is postive semi-definite if <span class="math display">\displaystyle z^TMz, z^*Mz </span> must be positive or zero, where z is a random non-zero column vector, <span class="math display">\displaystyle z^*</span> is the conjugate transpose of z
+<ul>
+<li>all eigenvalues are &gt;= 0</li>
+<li>can be decomposed as <span class="math display">\displaystyle A^TA</span></li>
+</ul></li>
+</ul>
+<h3 id="point-estimation-single-estimation-of-a-parameter">Point estimation (single estimation of a parameter)</h3>
+<ul>
+<li>Prefer small bias and small variance</li>
+<li>Likelihood function <span class="math display">\displaystyle  L(\theta | x) = p_{\theta}(X = x) </span></li>
+<li>Maximum likelihood (ML) method
+<ul>
+<li>Assume that data follows a distribution, maximize log-likelihood function to get <span class="math display">\displaystyle \theta</span></li>
+<li>Find an estimation of θ that <strong>maximizes the probability of the observed data set</strong> (most plausible <span class="math display">\displaystyle \theta</span> based on observed data set)</li>
+<li>How many samples do we need? use Hoedffding's inequality</li>
+<li>e.g. Bernoulli distribution: estimate <span class="math display">\displaystyle  P(x = 1) </span></li>
+<li>e.g. Gaussian distribution: estimate <span class="math display">\displaystyle  \mu, \sigma^2 </span></li>
+<li>Limitation: data in practice is never generated from a distribution</li>
+</ul></li>
+<li>Maximum A Posteriori (MAP) method (Bayesian perspective)
+<ul>
+<li><strong>prior probability distribution</strong> the probability distribution that would express one's beliefs about this quantity before some evidence is taken into account</li>
+<li><strong>posterior probability</strong> the conditional probability that is assigned after the relevant evidence or background is taken into account</li>
+<li>Maximizes posterior distribution</li>
+<li>can be seen as ML with regularization (prior term)</li>
+</ul></li>
+</ul>
+<h3 id="bias-variance-tradeoff">Bias-variance tradeoff</h3>
+<p>Mean square error<br />
+high bias -&gt; underfitting; high variance -&gt; overfitting</p>
+<h3 id="feature-scaling">Feature Scaling</h3>
+<ul>
+<li>Standardization
+<ul>
+<li>centering</li>
+<li>scaling</li>
+<li>after this the data will have mean 0 and variance 1</li>
+</ul></li>
+<li>Normalization: add normalization term to change the weight of certain features
+<ul>
+<li>after this the data will be bounded within some range e.g. [0,1]</li>
+</ul></li>
+</ul>
+<h2 id="lecture-3-4-linear-regression">Lecture 3, 4 Linear Regression</h2>
+<h3 id="regression">Regression</h3>
+<ul>
+<li>Learn (find) hypothesis function, a function maps input x to output y</li>
+<li>Try to minimize loss function
+<ul>
+<li>Least squares: <span class="math display">\displaystyle  \underset{f}{\min} \sum[(f(X) - Y)^2] </span></li>
+<li><span class="math display">\displaystyle  f(X) = E(Y|X) </span></li>
+</ul></li>
+</ul>
+<h3 id="linear-regression">Linear regression</h3>
+<ul>
+<li><span class="math display">\displaystyle  E(Y|X) = w^Tx + b </span>, where w is linear coefficient</li>
+<li>Ideally we know the distribution, so we can get <span class="math display">\displaystyle  J(w,b) = \underset{w,b}{\min}E[(w^Tx + b - y)^2] </span>; however, in practice, we need to use empirical risk function: <span class="math display">\displaystyle  J(w,b) =  \underset{w,b}{\min}\frac{1}{N}\sum[(w^Tx + b - y)^2] </span> (i.e. use sample mean to approximate mean)
+<ul>
+<li>Simplification: add b to w, and add 1 to x, then <span class="math display">\displaystyle  J(w) = \underset{w \in \Re^{d+1}}{\min}||Xw-Y||_2^2 </span></li>
+</ul></li>
+<li>Normal equation method
+<ul>
+<li><span class="math display">\displaystyle  J(w) = \underset{w \in \Re^{d+1}}{\min}||Xw-Y||_2^2 = w^T(X^TX)w - 2w^TX^Ty + y^Ty</span></li>
+<li>then take derivative, we get <span class="math display">\displaystyle X^TXw = X^Ty</span>, then we can solve the linear system to get w</li>
+</ul></li>
+<li>Gradient descent method
+<ul>
+<li><span class="math display">\displaystyle w = w - \alpha\frac{\partial J(w)}{\partial w} </span></li>
+<li><span class="math display">\displaystyle  \frac{\partial J(w)}{\partial w} = 2X^TXw - 2X^Ty </span></li>
+<li>Need many iterations</li>
+<li>Work well when number of features is large</li>
+</ul></li>
+<li>After getting w and b, we can use test set to evaluate the learned hypothesis</li>
+</ul>
+<h3 id="generalization">Generalization</h3>
+<p>We can do non-linear regression by using linear regression model: construct non-linear basis function &amp; convert hypothesis space to linear</p>
+<h3 id="regularization">Regularization</h3>
+<ul>
+<li>Overfitting: too many number of features compared to number of training data
+<ul>
+<li>Soln:
+<ul>
+<li>reduce number of features (hard to determine which feature to remove)</li>
+<li>regularization: change weight of features</li>
+</ul></li>
+</ul></li>
+<li>Ridge regression</li>
+<li>Pre-process input and output can eliminate intercept b (Center &amp; standardize)</li>
+<li><span class="math display">\displaystyle  J(w) = \underset{w}{\min}\frac{1}{N}\sum^N_{i=1}(w^Tx_i - y_i)^2 + \lambda||w||^2_2 </span></li>
+<li>Gradient descent: <span class="math display">\displaystyle w = w(1 - 2\alpha\lambda) - \frac{\alpha}{N}(2X^TXw - 2X^Ty) </span></li>
+<li>Lasso: use L1 norm for regularization term instead of L2 norm</li>
+</ul>
+<h3 id="cross-validation">Cross validation</h3>
+<h2 id="lecture-5-knn">Lecture 5 KNN</h2>
+<h3 id="classification">Classification</h3>
+<ul>
+<li>K-NN: assign most frequent label among k-nearest neighbours
+<ul>
+<li>When k increases, training error increases; test error and CV error decreases then increases</li>
+</ul></li>
+<li>How to choose k? select k with the <strong>lowest validation error</strong> (cross validation)</li>
+</ul>
+<h3 id="issues-and-improvements-for-knn">Issues and Improvements for KNN</h3>
+<ul>
+<li>Data might be skewed (e.g. significantly more red balls than blue balls)
+<ul>
+<li>solution: assign larger weight to closer neighbours</li>
+</ul></li>
+<li><strong>Feature scaling</strong> standardize features first so that each feature contributes approximately equally to (euclidean) distance metric</li>
+<li><strong>Dimension reduction</strong></li>
+<li>Changing distance metrics</li>
+</ul>
+<h2 id="lecture-6-logistic-regression">Lecture 6 Logistic Regression</h2>
+<h3 id="bayes-classifier-and-classifer-types">Bayes Classifier and classifer types</h3>
+<ul>
+<li>zero-one loss function: <span class="math display">\displaystyle  L(Y, \hat{Y}) = (Y == \hat{Y}) ? 0 : 1</span></li>
+<li>Expected prediction error (EPE) = <span class="math display">\displaystyle  E(L(Y, \hat{Y})) </span></li>
+<li>error is minimized when posterior distribution <span class="math display">\displaystyle  Pr(y_k | X) </span> is maximized for k = 1 ... K</li>
+<li>Bayes rule: <span class="math display">\displaystyle  Pr(Y_k | X) = \frac{Pr(Y_k, X)}{Pr(X)} </span>, where Pr(X) is evidence</li>
+<li><strong>Generative classifier</strong> model joint distribution <span class="math display">\displaystyle  Pr(Y_k, X) </span> under distributional assumptions
+<ul>
+<li>so <span class="math display">\displaystyle  Pr(Y_k | X) = \frac{Pr(Y_k)Pr(X|Y_k)}{Pr(X)} </span></li>
+<li>e.g. Naive Bayes: probabilistic classifier based on applying Bayes' theorem with assumptions that features are independent
+<ul>
+<li>e.g. a fruit may be an apple if it's red, round, and about 10 cm in diameter, a NB classifier considers those 3 features as independent</li>
+<li>probability model: maximize posterior probability <span class="math display">\displaystyle  Pr(Y_k | X) = Pr(Y_k)\prod_{j=1}^{d}{Pr(X_j|Y_k)} </span></li>
+</ul></li>
+<li>e.g. Gaussian mixture models</li>
+</ul></li>
+<li><strong>Discriminative classifier</strong> model conditional probability based on data w/o distributional assumptions
+<ul>
+<li>e.g. logistic regression, SVM</li>
+</ul></li>
+</ul>
+<h3 id="logistic-regression">Logistic Regression</h3>
+<ul>
+<li>Sigmoid function; linear boundary <span class="math display">\displaystyle w^Tx = 0</span></li>
+<li>Likelihood function</li>
+<li>Loss function: negative log likelihood function - (cross-entropy loss)</li>
+<li>Newton's method</li>
+<li>Regularization</li>
+<li>Multiclass classification
+<ul>
+<li>one vs one</li>
+<li>one vs rest</li>
+<li>direct multiclass classification</li>
+</ul></li>
+</ul>
+<h2 id="lecture-7-perceptron">Lecture 7 Perceptron</h2>
+<p>Activation functions</p>
+<h3 id="perceptron">Perceptron</h3>
+<p>Activation function: <strong>sign</strong> <code>sign(t) = (t &gt;= 0) ? 1 : -1</code><br />
+Prediction: <span class="math display">\displaystyle  \hat{y} = sign(\sum_{d=1}^D{w_dx_d + b}) </span><br />
+Batch vs online<br />
+Perceptron training alg. (online): error driven update</p>
+<h3 id="convergence">Convergence</h3>
+<p>perceptron converges iff data is linearly separable<br />
+Distance between x and hyperplane <span class="math display">\displaystyle  w^Tx + b = 0 </span>: <span class="math display">\displaystyle  \frac{|w^T+b|}{||w||} </span><br />
+Margin(D, w, b): minimum distance to one of the sides of D if w separates D<br />
+- Max margin: have ~ same distance to both sides</p>
+<h3 id="extensions">Extensions</h3>
+<ul>
+<li>Stochastic gradient descent: adjust weight based on only 1 example each time</li>
+<li>Multiclass perceptron</li>
+<li>Linearly non separable? Solutions:
+<ul>
+<li>find another feature representation</li>
+<li>kernel methods</li>
+<li>NN</li>
+</ul></li>
+</ul>
+<h2 id="lecture-8-kernels">Lecture 8 Kernels</h2>
+<p>If the data set is not linearly separable, then perceptron might not converge.<br />
+Solution: by adding new features (mapping the data to a larger feature space), the data might become linearly separable<br />
+- Linear operation in the feature space is equivalent to non-linear operation in input space (e.g. finding non-linear decision boundary)</p>
+<h3 id="kernels">Kernels</h3>
+<p><strong>Feature Space Mapping</strong> given input <span class="math display">\displaystyle x \in \Re^d</span>, a feature space mapping <span class="math display">\displaystyle  \phi: R^d -&gt; R^M </span><br />
+<strong>Input space</strong> the space where x's are located<br />
+<strong>Feature space</strong> the space of <span class="math display">\displaystyle \phi(x)</span> after transformation<br />
+e.g. <span class="math display">\displaystyle  \phi: \Re -&gt; \Re^3, \phi(x) = [1, x, x^2] </span><br />
+<strong>Kernel function</strong> <span class="math display">\displaystyle  k(x,x&#39;) = \phi(x)^T\phi(x&#39;) </span> (<span class="math display">\displaystyle  k:\Re^d * \Re^d -&gt; \Re </span>)</p>
+<h3 id="kernel-verification-and-construction">Kernel verification and construction</h3>
+<ul>
+<li>To verify if a function k is kernel function
+<ol type="1">
+<li>find <span class="math display">\displaystyle \phi</span> s.t. <span class="math display">\displaystyle  k = \phi(x)^T\phi(x) </span></li>
+<li>Gram matrix K (where <span class="math display">\displaystyle  K_{ij} = k(x_i, x_j) </span>) is symmetric and positive semi-definite</li>
+</ol></li>
+<li>To construct k
+<ol type="1">
+<li>find <span class="math display">\displaystyle \phi(x)</span></li>
+<li>construct from other kernels by rules that preserves p.s.d.</li>
+</ol></li>
+</ul>
+<h3 id="kernel-trick">Kernel trick</h3>
+<ul>
+<li>Kernelized Ridge regression
+<ul>
+<li>use dual representations to eliminate <span class="math display">\displaystyle \phi</span></li>
+<li>prediction</li>
+<li>complexity
+<ul>
+<li>primal solution i.e. use <span class="math display">\displaystyle  \phi </span> - depends on number of basis functions M</li>
+<li>dual solution i.e. use kernel trick to eliminate <span class="math display">\displaystyle  \phi </span> - depends on number of training examples N</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="lecture-9-gaussian-process">Lecture 9 Gaussian Process</h2>
+<ul>
+<li>side note: sampling (generate values) from a gaussian distribution - X ~ N(0,1)
+<ul>
+<li>could draw + append to generate a vector of multivariate gaussian variables from gaussian distribution ### Gaussian Process</li>
+</ul></li>
+<li>Random variable</li>
+<li>Gaussian process is a function of 2 variables <span class="math display">\displaystyle  Z(t,w) </span></li>
+<li>covariance function <span class="math display">\displaystyle \leftrightarrows </span> kernel function</li>
+</ul>
+<h3 id="gaussian-processes-for-regression">Gaussian Processes for regression</h3>
+<ul>
+<li>Gaussian LR</li>
+<li>Bayesian LR</li>
+</ul>
+<h3 id="gaussian-processes-for-classification">Gaussian Processes for classification</h3>
+<h2 id="lecture-10-mixture-models-and-em">Lecture 10 Mixture models and EM</h2>
+<h3 id="k-means">K-means</h3>
+<p>Problem: assign n examples to k clusters<br />
+Objective: the sum of the squares of the distances of each data point to its closest vector <span class="math display">\displaystyle \mu_k</span> is minimized<br />
+- need to find <span class="math display">\displaystyle \mu_k </span>, which are centers of k clusters, and <span class="math display">\displaystyle r(n,k)</span>, which indicates whether n-th example belongs to k-th cluster<br />
+2-step optimization<br />
+Hard assignment</p>
+<h3 id="misture-of-gaussians">Misture of Gaussians</h3>
+<h3 id="em-expectation-maximization">EM (Expectation Maximization)</h3>
+<pre><code>iterate:
+    E step: evaluate responsibility term using current params
+    M step: update current params using new responsibility</code></pre>
+<h2 id="lecture-11-hard-margin-svm">Lecture 11 Hard-margin SVM</h2>
+<p>Assume data is linearly separable<br />
+Prediction same as perceptron<br />
+Find w s.t. the decision boundary is the one for which the margin is maximized<br />
+Support vectors: points touching the margin boundary (only those are used for prediction)</p>
+<h3 id="optimization">Optimization</h3>
+<p>Maximum margin is found by solving <span class="math display">\displaystyle  \underset{w,b}{max}\{ \frac{\underset{n}{min}[y_n(w^T\phi(x_n) + b)]}{||w||}\} </span> (i.e. maximize the minimum distance between point x and hyperplane <span class="math display">\displaystyle w^Tx + b</span>)<br />
+Assume w.l.o.g. <span class="math display">\displaystyle  y_n(w^T\phi(x_n) + b) = 1 </span> for the point that is closest to boundary. Then margin is <span class="math display">\displaystyle  \frac{1}{||w||} </span><br />
+- so max margin can be found by quadratic optimization problem</p>
+<h3 id="lagrange-and-dual-problem">Lagrange and Dual Problem</h3>
+<ul>
+<li>Lagrange multiplier</li>
+<li>Primal problem (Linear problem)
+<ul>
+<li>for SVM: <span class="math display">\displaystyle  \underset{w,b}{min} \frac{1}{2}||w||^2 </span> s.t. <span class="math display">\displaystyle  y_n(w^T\phi(x_n) + b &gt;= 1 </span>, for all n</li>
+</ul></li>
+<li>Dual problem: incorporate constraint into objective</li>
+<li>Duality gap; zero duality gap
+<ul>
+<li>KKT conditions for zero duality</li>
+</ul></li>
+<li>Lagrange for SVM (assume <span class="math display">\displaystyle  y_n(w^T\phi(x_n) _+ b) = 1 </span>, which can always be achieved by sacling w and b)
+<ul>
+<li><span class="math display">\displaystyle  L(w,b,a) = \frac{1}{2}||w||^2 - \sum^N_{n=1}a_n[y_n(w^T\phi(x_n) + b) - 1] </span></li>
+<li>Derive w and b</li>
+<li>Derive a</li>
+</ul></li>
+<li>Convex set; Convex hull</li>
+</ul>
+<h3 id="regularization-vs.-constraint">Regularization vs. Constraint</h3>
+<p>Can always transform from regularization form to constraint form</p>
+<h2 id="lecture-12-soft-margin-svm">Lecture 12 Soft-margin SVM</h2>
+<h3 id="soft-margin-svm">Soft-margin SVM</h3>
+<ul>
+<li>Allow data points on the 'wrong side'</li>
+<li>Primal Problem</li>
+<li>Lagrangian: <span class="math display">\displaystyle  L(w,b, \epsilon, a,\mu) </span></li>
+<li>Dual problem
+<ul>
+<li>derive a</li>
+<li>derive b</li>
+</ul></li>
+</ul>
+<h3 id="relation-to-logistic-regression">Relation to logistic regression</h3>
+<p>Zero-one loss<br />
+Hinge loss</p>
+<h2 id="lecture-13">Lecture 13</h2>
+<h3 id="multi-layer-perceptron">Multi-layer perceptron</h3>
+<h3 id="back-propagation">Back-propagation</h3>
+<h2 id="lecture-14-training-of-deep-nns">Lecture 14 Training of Deep NNs</h2>
+<h3 id="activation-functions">Activation functions</h3>
+<ul>
+<li>Methods to avoid vanishing gradients
+<ol type="1">
+<li>Proper initialization of network parameters to avoid saturated region in activation functions</li>
+<li>Choose activation functions that do not saturate e.g. ReLU, leaky ReLU, Maxout</li>
+<li>Use LSTM or GRU</li>
+</ol></li>
+</ul>
+<h3 id="regularization-1">Regularization</h3>
+<ol type="1">
+<li>Parameter norm penalties e.g. ridged regression</li>
+<li>Bagging: combine several models</li>
+<li>Dropout: ignoring some units (hidden / visible) during forward / backward pass in training phase
+<ul>
+<li>inverted dropout: keep the mean value of output unchanged</li>
+<li>Use inverted dropout for each training example</li>
+<li>How to determine hyperparameter p - probability of keeping units
+<ol type="1">
+<li>keep p same for all layers</li>
+<li>set a lower p for overfitting layer</li>
+<li>could also design p for input, but usually set p very close to 1</li>
+</ol></li>
+</ul></li>
+<li>Data augmentation: create fake training data</li>
+<li>Early stopping</li>
+<li>Batch normalization (not directly used for regularization)
+<ul>
+<li>Normalize hidden layer values (either before or after activation)</li>
+<li>Effect of BN
+<ol type="1">
+<li>each layer can be trained independently</li>
+<li>speed up</li>
+<li>regularization</li>
+</ol></li>
+</ul></li>
+</ol>
+<h3 id="gradient-based-optimization">Gradient-based optimization</h3>
+<p>Momentum<br />
+Exponentially weighted averages: recent gradient has more weight</p>
+<h2 id="lecture-15-cnn">Lecture 15 CNN</h2>
+<h3 id="layers-in-cnn">Layers in CNN</h3>
+<ul>
+<li>Fully-connected layer</li>
+<li>Convolutional layer
+<ul>
+<li>filter
+<ul>
+<li>local connectivity</li>
+</ul></li>
+<li>hyperparameters
+<ul>
+<li>depth: number of filters</li>
+<li>stride: how to slide the filters</li>
+<li>zero-padding: pad input with zeros around the border</li>
+</ul></li>
+</ul></li>
+<li><strong>Pooling layer</strong> progressively reduce the spatial size of the representation to reduce the amount of parameters and computation in the network
+<ul>
+<li>also control overfitting<br />
+</li>
+<li>common types: max-pooling, average pooling, L2-norm pooling</li>
+</ul></li>
+</ul>
+<h3 id="parameter-sharing">Parameter sharing</h3>
+<p>Need to control the number of parameters<br />
+Idea: constrain the units in each depth slice to use the same weights and bias</p>
+<h2 id="lecture-16-rnn">Lecture 16 RNN</h2>
+<ul>
+<li>Parameter sharing in RNN: unit is produced using the same update rule applied to previous ones</li>
+<li>A character-level RNN reads words as a series of characters - outputting a prediction and “hidden state” at each step, feeding its previous hidden state into each next step</li>
+</ul>
+<h3 id="gradient-problems">Gradient problems</h3>
+<ul>
+<li>Vanishing gradient
+<ul>
+<li>LSTM</li>
+<li>GRU</li>
+</ul></li>
+<li>Exploding gradient
+<ul>
+<li>clipping</li>
+</ul></li>
+</ul>
+<h3 id="bidirectional-rnns">Bidirectional RNNs</h3>
+<p>Motivation: need information from earlier timestamps as well as later timestamps</p>
+<h2 id="lecture-17-gan-generative-adversarial-networks">Lecture 17 GAN (Generative Adversarial Networks)</h2>
+<ul>
+<li>Generative Model
+<ul>
+<li>Density estimation</li>
+<li>Sample generation (implicit density)</li>
+</ul></li>
+</ul>
+<h3 id="gan">GAN</h3>
+<ul>
+<li>2 player game
+<ul>
+<li>Generator network
+<ul>
+<li>Input: random noise</li>
+<li>Goal: generate samples from data distribution and</li>
+</ul></li>
+<li>Discriminator network
+<ul>
+<li>Input: real / generated images</li>
+<li>Cost function</li>
+<li>Goal: distinguish between real / generated images</li>
+</ul></li>
+</ul></li>
+<li>Minimax Theorem (originated for 2-player zero-sum game theory: total gain + total loss = 0)
+<ul>
+<li><strong>Minimax</strong> minimize the possible loss for a worst case</li>
+<li><strong>Maximin</strong> maximize the minimum gain</li>
+</ul></li>
+<li>Tricks
+<ul>
+<li>class-conditional</li>
+<li>one-sided label smoothing</li>
+<li>batch normalization</li>
+</ul></li>
+<li>types
+<ul>
+<li>SRGAN</li>
+<li>DCGAN</li>
+<li>Wasserstein GAN</li>
+</ul></li>
+<li>pros</li>
+<li>cons</li>
+</ul>
+<h2 id="lecture-18-auto-encoder">Lecture 18 Auto-encoder</h2>
+<h3 id="linear-autoencoder">Linear autoencoder</h3>
+<ul>
+<li>loss function</li>
+<li>optimal pair of encoder and decoder</li>
+</ul>
+<h3 id="nonlinear-autoencoder">nonlinear autoencoder</h3>
+<ul>
+<li>Undercomplete autoencoders: bad generalization</li>
+<li>Overcomplete autoencoders: too much power; would just copy input to output</li>
+<li>Regularized autoencoders
+<ul>
+<li>Sparse autoencoder
+<ul>
+<li>goal: constrain hidden units to be inactive most of the time</li>
+<li>sparsity penality</li>
+<li>loss function</li>
+</ul></li>
+<li>Contractive autoencoder
+<ul>
+<li>goal: encoder is resistant to small chages of input e.g. rotations</li>
+<li>loss function</li>
+</ul></li>
+<li>Denoising autoencoder</li>
+<li>Variational autoencoders</li>
+</ul></li>
+</ul>
+<h2 id="lecture-19-decision-tree">Lecture 19 Decision Tree</h2>
+<p>Idea: split training sets into subsets until subsets are pure<br />
+How to choose a good attribute to split?</p>
+<h3 id="id3-iterative-dichotomiser-3">ID3 (Iterative Dichotomiser 3)</h3>
+<ul>
+<li>Goal: maximize information gain / minimize uncertainty<br />
+</li>
+<li><strong>Entropy</strong> <span class="math display">\displaystyle  - \sum_{i=1}^{n}p(x_i)log_bp(x_i) </span> (measures uncertainty, usually b = 2)<br />
+</li>
+<li><strong>Information Gain</strong></li>
+<li>properties
+<ul>
+<li>cannot ensure optimal solution</li>
+<li>non robust</li>
+<li>overfitting (could stop early / prune the tree)</li>
+<li>hard to use for continous data (could use threhold split)</li>
+</ul></li>
+<li>Information Gain Problem: too much partition
+<ul>
+<li>use Gain ratio instead</li>
+</ul></li>
+</ul>
+<h2 id="lecture-20-ensemble-method">Lecture 20 Ensemble Method</h2>
+<h3 id="adaboost">AdaBoost</h3>
+<h3 id="exponential-error-function">Exponential Error function</h3>
+<h2 id="colab">Colab</h2>
+<p>similar to jupitor notebook</p>
+<h2 id="numpy">NumPy</h2>
+<p>Main object: homogeneous multidimensional array<br />
+Dimensions == axes (e.g. 2-by-3 array -&gt; 1st axis has length 2, and 2nd one has length 3)</p>
+<h2 id="tensorflow">Tensorflow</h2>
+<h2 id="keras">Keras</h2>
+<p>a high-level neural networks API written in Python</p>
+<h2 id="pytouch">PyTouch</h2>
+<p>a deep learning framework; replacement of NumPy to use the power of GPUs</p>
+<h3 id="basics">Basics</h3>
+<ul>
+<li>Tensors: similar to NumPy's ndarray
+<ul>
+<li>Operations
+<ul>
+<li>torch.view(x, y): reshape tensor</li>
+<li>torch.cat: concatenates the given sequence of seq tensors in the given dimension</li>
+</ul></li>
+</ul></li>
+<li>Autograd: automatic differentiation
+<ul>
+<li>Can track gradients of all operations on tensors</li>
+<li>Gradient</li>
+</ul></li>
+<li>Neural Network (torch.nn package)
+<ul>
+<li>depends on autograd to define models and differentiate them</li>
+<li>methods:
+<ul>
+<li>forward(input): output</li>
+<li>backward (implemented by autograd)</li>
+</ul></li>
+<li>steps:
+<ul>
+<li>define nn with some learnable parameters (weights)</li>
+<li>feed input and calculate loss</li>
+<li>update weights by rule: weight = weight - learning_rate * gradient</li>
+</ul></li>
+<li>layers
+<ul>
+<li>convolution layers</li>
+<li>pooling layers</li>
+<li>padding layers</li>
+<li>recurrent layers</li>
+<li>linear layers</li>
+<li>dropout layers</li>
+<li>sparse layers</li>
+</ul></li>
+</ul></li>
+</ul>
+<div class="status-banner" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; text-align: center;">
+    <div style="display: inline-block; padding: 0.8em 2em 0.5em 2em; background: black; color: white; font-size: 2em;">
+        Rendering <svg xmlns="http://www.w3.org/2000/svg" height="1.4em" viewbox="0 0 1200 500" style="vertical-align: text-bottom"><title>LaTeX logo</title><g transform="matrix(45 0 0 45 40 40)" fill="white"><path d="M5.5 4.4C5.5 4.4 5.2 4.4 5.2 4.4 5.1 5.4 5 6.7 3.2 6.7 3.2 6.7 2.4 6.7 2.4 6.7 1.9 6.7 1.9 6.6 1.9 6.3 1.9 6.3 1.9 1 1.9 1 1.9 0.6 1.9 0.5 2.9 0.5 2.9 0.5 3.2 0.5 3.2 0.5 3.2 0.5 3.2 0.2 3.2 0.2 2.8 0.2 1.9 0.2 1.5 0.2 1.1 0.2 0.3 0.2 0 0.2 0 0.2 0 0.5 0 0.5 0 0.5 0.2 0.5 0.2 0.5 1 0.5 1 0.6 1 0.9 1 0.9 1 6.2 1 6.2 1 6.6 1 6.7 0.2 6.7 0.2 6.7 0 6.7 0 6.7 0 6.7 0 7 0 7 0 7 5.2 7 5.2 7 5.2 7 5.5 4.4 5.5 4.4z"/><path d="M5.3 0.2C5.3 0 5.2 0 5.1 0 5 0 4.9 0 4.9 0.2 4.9 0.2 3.3 4.2 3.3 4.2 3.2 4.4 3.1 4.7 2.5 4.7 2.5 4.7 2.5 5 2.5 5 2.5 5 4 5 4 5 4 5 4 4.7 4 4.7 3.7 4.7 3.5 4.6 3.5 4.4 3.5 4.3 3.5 4.3 3.6 4.2 3.6 4.2 3.9 3.4 3.9 3.4 3.9 3.4 5.9 3.4 5.9 3.4 5.9 3.4 6.3 4.4 6.3 4.4 6.3 4.4 6.3 4.5 6.3 4.5 6.3 4.7 5.9 4.7 5.8 4.7 5.8 4.7 5.8 5 5.8 5 5.8 5 7.7 5 7.7 5 7.7 5 7.7 4.7 7.7 4.7 7.7 4.7 7.6 4.7 7.6 4.7 7.1 4.7 7.1 4.7 7 4.5 7 4.5 5.3 0.2 5.3 0.2zM4.9 0.9C4.9 0.9 5.8 3.1 5.8 3.1 5.8 3.1 4 3.1 4 3.1 4 3.1 4.9 0.9 4.9 0.9z"/><path d="M13.3 0.2C13.3 0.2 7.2 0.2 7.2 0.2 7.2 0.2 7 2.5 7 2.5 7 2.5 7.3 2.5 7.3 2.5 7.4 0.9 7.6 0.5 9.1 0.5 9.3 0.5 9.5 0.5 9.6 0.6 9.8 0.6 9.8 0.7 9.8 0.9 9.8 0.9 9.8 6.2 9.8 6.2 9.8 6.5 9.8 6.7 8.8 6.7 8.8 6.7 8.4 6.7 8.4 6.7 8.4 6.7 8.4 7 8.4 7 8.8 6.9 9.8 6.9 10.3 6.9 10.7 6.9 11.7 6.9 12.2 7 12.2 7 12.2 6.7 12.2 6.7 12.2 6.7 11.8 6.7 11.8 6.7 10.7 6.7 10.7 6.5 10.7 6.2 10.7 6.2 10.7 0.9 10.7 0.9 10.7 0.7 10.7 0.6 10.9 0.6 11 0.5 11.3 0.5 11.5 0.5 13 0.5 13.1 0.9 13.2 2.5 13.2 2.5 13.5 2.5 13.5 2.5 13.5 2.5 13.3 0.2 13.3 0.2z"/><path d="M18.7 6.7C18.7 6.7 18.4 6.7 18.4 6.7 18.2 8.2 17.9 8.9 16.2 8.9 16.2 8.9 14.9 8.9 14.9 8.9 14.4 8.9 14.4 8.8 14.4 8.5 14.4 8.5 14.4 5.9 14.4 5.9 14.4 5.9 15.3 5.9 15.3 5.9 16.3 5.9 16.4 6.2 16.4 7 16.4 7 16.6 7 16.6 7 16.6 7 16.6 4.4 16.6 4.4 16.6 4.4 16.4 4.4 16.4 4.4 16.4 5.2 16.3 5.5 15.3 5.5 15.3 5.5 14.4 5.5 14.4 5.5 14.4 5.5 14.4 3.2 14.4 3.2 14.4 2.8 14.4 2.8 14.9 2.8 14.9 2.8 16.2 2.8 16.2 2.8 17.7 2.8 18 3.3 18.1 4.7 18.1 4.7 18.4 4.7 18.4 4.7 18.4 4.7 18.1 2.5 18.1 2.5 18.1 2.5 12.5 2.5 12.5 2.5 12.5 2.5 12.5 2.8 12.5 2.8 12.5 2.8 12.7 2.8 12.7 2.8 13.5 2.8 13.5 2.9 13.5 3.2 13.5 3.2 13.5 8.4 13.5 8.4 13.5 8.8 13.5 8.9 12.7 8.9 12.7 8.9 12.5 8.9 12.5 8.9 12.5 8.9 12.5 9.2 12.5 9.2 12.5 9.2 18.2 9.2 18.2 9.2 18.2 9.2 18.7 6.7 18.7 6.7z"/><path d="M21.7 3.1C21.7 3.1 23 1.1 23 1.1 23.3 0.8 23.6 0.5 24.5 0.5 24.5 0.5 24.5 0.2 24.5 0.2 24.5 0.2 22.1 0.2 22.1 0.2 22.1 0.2 22.1 0.5 22.1 0.5 22.5 0.5 22.7 0.7 22.7 0.9 22.7 1 22.7 1.1 22.6 1.2 22.6 1.2 21.5 2.8 21.5 2.8 21.5 2.8 20.2 0.9 20.2 0.9 20.2 0.9 20.1 0.8 20.1 0.8 20.1 0.7 20.4 0.5 20.8 0.5 20.8 0.5 20.8 0.2 20.8 0.2 20.4 0.2 19.7 0.2 19.3 0.2 19 0.2 18.4 0.2 18 0.2 18 0.2 18 0.5 18 0.5 18 0.5 18.2 0.5 18.2 0.5 18.8 0.5 19 0.5 19.2 0.8 19.2 0.8 21 3.6 21 3.6 21 3.6 19.4 6 19.4 6 19.2 6.2 18.9 6.7 17.9 6.7 17.9 6.7 17.9 7 17.9 7 17.9 7 20.3 7 20.3 7 20.3 7 20.3 6.7 20.3 6.7 19.8 6.7 19.7 6.4 19.7 6.2 19.7 6.1 19.7 6.1 19.8 6 19.8 6 21.2 3.9 21.2 3.9 21.2 3.9 22.8 6.3 22.8 6.3 22.8 6.3 22.8 6.3 22.8 6.4 22.8 6.5 22.6 6.7 22.2 6.7 22.2 6.7 22.2 7 22.2 7 22.5 6.9 23.2 6.9 23.6 6.9 24 6.9 24.5 7 24.9 7 24.9 7 24.9 6.7 24.9 6.7 24.9 6.7 24.7 6.7 24.7 6.7 24.2 6.7 24 6.6 23.8 6.3 23.8 6.3 21.7 3.1 21.7 3.1z"/></g></svg> math...
+    </div>
+</div>
+<div class="license">
+  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a> This work by <a xmlns:cc="http://creativecommons.org/ns#" href="https://uberi.github.io/" property="cc:attributionName" rel="cc:attributionURL">Jasper Wang</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  Copyright 2013-2018 Jasper Wang.
+</div>
+</body>
+</html>
