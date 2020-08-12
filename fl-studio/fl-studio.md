@@ -39,16 +39,24 @@
 - Channel Panning tune button: left ear or right ear
 - Volume tune button: control volume
 
-### Channel 
+### Instrument Properties
+- In button
+- Out button
+- Envelope pattern: control when would the sound come out
+   - ATT tune button: will postpone the head to make the sound volume lower
+- Filter
+- 
 
 ## Piano Roll
 ### Basics
 - Hold `Command` and drag to select a group of keys 
 - Hold `Shift` and copy a group of keys to the next bar
 
+### Ghost channel
+If you wanna see how the other instrument was implemented in the same pattern, 'ghost channel' button can be toggled to reflect that
+
 ### Control panel
 - Velocity: volume of each key
 - Pan: If the sound would come from left or right
 
 ## Best Practices
-- Put only one instrument into one pattern
