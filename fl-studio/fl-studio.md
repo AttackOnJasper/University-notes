@@ -59,4 +59,20 @@ If you wanna see how the other instrument was implemented in the same pattern, '
 - Velocity: volume of each key
 - Pan: If the sound would come from left or right
 
+## Mixer
+- Upon selecting track on a channel rack entry, we can view the status of the track in mixer
+- On the right side bar of mixer view, mixers can be inserted
+- **Channel Routing** (right-click on a track in mixer): binds multiple channels into one track / following tracks
+- Studio separation tune button: make sounds wider or narrower
+- Copy mixer effect to another track: right click the mixer, hold and drag 'save presets as ...' to the track
+
+## Automation clip
+- In channel rack's channel properties view, we can add automation clip by right clicking the pitch tune button
+- Updating a point on automation clip will impact this point and left side 
+
+### Why automation clip
+- Can edit properties as a whole for multiple consistent patterns
+
+
+
 ## Best Practices
