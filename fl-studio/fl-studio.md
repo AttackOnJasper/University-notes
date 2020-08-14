@@ -1,6 +1,47 @@
 # FL Studio
 
-## Overview
+## Music Theories
+- Beat
+- Bar (typically 4 beats per bar)
+- Tempo (BPM): Beats per minute
+- Note
+   - Full note takes the whole bar
+   - Half note takes 2 beats
+
+### Piano Roll
+- 88 keys
+- 12 keys (7 white keys and 5 black keys) are grouped together. 
+   - White keys range from C,D,E,F,G,A,B. 
+   - Black keys range from C# (D b), D#, ... A#
+- There are a total of 8 groups of keys. Range from 
+   - China: A_2, C_1, C, c, c^1 (center), c^2, c^3, c^4, c^5
+   - Other places: c5 is the center
+   
+#### Major & minor
+- Major pattern
+   - full, full, half, full, full, full, half 
+   - e.g.
+	- **C major**: C, D, E, F, G, A, B (all 7 white keys)
+   	- **D major**: D, E, F#, G, A, B, C#
+   - Majors with black keys marked as #: G, D, A, E, B, F#, C#
+   - Stability order: 1 5 3 6 2 4 7 (e.g. In C major, C is most stable, and B is most unstable)
+   	- Unstable notes have the tendency to move to stable notes in a pattern
+    
+### Music Interval
+- Categories
+   - Horizontal, Linear, Melodic
+- Semitone
+- Intervals vs. # of semitones e.g.
+   - 0 semitone: Perfect unison
+   - 1 semitone: Minor second
+   - 2 semitones: Major second
+- Inversion rules
+   - # of semitones of original + inversion = 9
+   - Inversion of a major interval is a minor interval
+- **Perfect consonant intervals**: octaves, unison, fifths, fourth
+- **Imperfect consonant intervals**: major and minor thirds, and major and minor sixths
+
+## FL Studio Overview
 ### Menu Bar
 #### Export music
 - Mode
