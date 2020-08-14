@@ -36,10 +36,17 @@
    - 1 semitone: Minor second
    - 2 semitones: Major second
 - Inversion rules
-   - # of semitones of original + inversion = 9
+   - the number of semitones of original + inversion = 9
    - Inversion of a major interval is a minor interval
 - **Perfect consonant intervals**: octaves, unison, fifths, fourth
 - **Imperfect consonant intervals**: major and minor thirds, and major and minor sixths
+
+### Chord
+- Combination of 3 or more notes
+- Build of a single note called **root**
+- A **major chord** is built by adding root with the **major third** and **perfect fifth** e.g. C, F, G
+- A **major chord** is built by adding root with the **minor third** and **perfect fifth** e.g. Dm, Em, Am
+- `B chord` does not belong to either major or minor, so B chord is noted as `Bdim` (`dim` stands for diminished)
 
 ## FL Studio Overview
 ### Menu Bar
