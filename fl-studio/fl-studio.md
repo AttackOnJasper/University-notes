@@ -70,8 +70,22 @@
    - 3 semitones & 4 semitones apart
 - First 6 triads of the major scale is: M, m, m, M, M, m. (In roman scale, I, ii, iii, IV, V, vi)
    - `B chord` does not belong to either major or minor, so B chord is noted as `Bdim` (`dim` stands for diminished)
+   
+#### Chord Progression
+- Chord progression rules
+   - I -> any
+   - ii -> V
+   - iii -> vi
+   - IV -> I or V
+   - V -> I
+   - vi -> ii
 - Chord progression examples
-   - I, V, vi, IV
+   - 4-chord song: 
+      - I, V, vi, IV
+      - I -> vi -> ii -> V
+      - IV -> V -> iii -> vi (-> ii -> V -> I)
+   
+#### Melodies
 - Melody are usually built on top of chords with higher octave
    - Typically 4th and 7th notes are unstable for melody
    - Melody notes are usually in chords; ending note should be in chord
@@ -80,6 +94,17 @@
 ### Circle of Fifths
 - Circle: F - C - G - D - A - E - B - G_b - D_b - A_b - E_b - B_b - F
 - Interval between 2 notes are always **perfect fifth**
+- Can be used for notes, chords, and keys
+   - think them as notes 
+      - e.g. count the A_b chord: A_b, C, E_b (from circle), G
+   - think as chords
+      - Fifth chord is the dominant chord (polarized from root chord)
+      - sample use case: find the fifth chord
+   - think as keys
+      - shows what keys are similar to each other, making smoothier to transition into different keys
+      - e.g. C major's key arrangement is same as G major's except the last note
+      
+   
 
 ## FL Studio Overview
 ### Menu Bar
