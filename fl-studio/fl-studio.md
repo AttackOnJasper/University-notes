@@ -1,6 +1,9 @@
 # FL Studio
 
-## Music Theories
+## Music Theory
+- Note: a sound with a specific frequency
+   - Most songs are made of 12 notes (corresponds to the **octave** in piano keys - 7 white keys & 5 black keys)
+   - One octave higher means **double frequency**
 - Beat
 - Bar (typically 4 beats per bar)
 - Tempo (BPM): Beats per minute
@@ -10,16 +13,18 @@
 
 ### Piano Roll
 - 88 keys
-- 12 keys (7 white keys and 5 black keys) are grouped together. 
+- 12 keys (7 white keys and 5 black keys) are grouped together (octave). 
    - White keys range from C,D,E,F,G,A,B. 
    - Black keys range from C# (D b), D#, ... A#
 - There are a total of 8 groups of keys. Range from 
    - China: A_2, C_1, C, c, c^1 (center), c^2, c^3, c^4, c^5
    - Other places: c5 is the center
    
-#### Major & minor
-- Major pattern
-   - full, full, half, full, full, full, half (In semitone distances: 2, 2, 1, 2, 2, 2, 1)
+#### Major Keys & Minor Keys
+- 7 notes in a key
+   - Every notes have distinct letters; after assigning a letter we would determine if a note is shape or flat
+- Major pattern 
+   - whole, whole, half, whole, whole, whole, half (In semitone distances: 2, 2, 1, 2, 2, 2, 1)
    - e.g.
 	- **C major**: C, D, E, F, G, A, B (all 7 white keys)
    	- **D major**: D, E, F#, G, A, B, C#
@@ -33,6 +38,7 @@
 - Semitone
    - smallest distance unit between notes. All distances can be described as x semitones.
    - distance between C and C# is 1 semitone
+   - the interval of 2 semitones is called a whole step / whole tone / tone
 - Intervals vs. # of semitones:
    - 0 semitone: Perfect unison
    - 1 semitone: Minor second
@@ -56,17 +62,24 @@
 
 
 ### Chord
-- Combination of 3 or more notes
-- Build of a single note called **root**
-- A **major chord** is built by adding root with the **major third** and **perfect fifth** e.g. C, F, G
-- A **major chord** is built by adding root with the **minor third** and **perfect fifth** e.g. Dm, Em, Am
-- `B chord` does not belong to either major or minor, so B chord is noted as `Bdim` (`dim` stands for diminished)
+- Combination of 3 or more notes at the same time
+- A chord is built based of a single note called **root**
+- A **major chord** is built by adding root with the **major third** and **perfect fifth** e.g. C, F, G 
+   - 4 semitones & 3 semitones apart
+- A **minor chord** is built by adding root with the **minor third** and **perfect fifth** e.g. Dm, Em, Am
+   - 3 semitones & 4 semitones apart
+- First 6 triads of the major scale is: M, m, m, M, M, m. (In roman scale, I, ii, iii, IV, V, vi)
+   - `B chord` does not belong to either major or minor, so B chord is noted as `Bdim` (`dim` stands for diminished)
+- Chord progression examples
+   - I, V, vi, IV
+- Melody are usually built on top of chords with higher octave
+   - Typically 4th and 7th notes are unstable for melody
+   - Melody notes are usually in chords; ending note should be in chord
+   
 
 ### Circle of Fifths
 - Circle: F - C - G - D - A - E - B - G_b - D_b - A_b - E_b - B_b - F
 - Interval between 2 notes are always **perfect fifth**
-
-
 
 ## FL Studio Overview
 ### Menu Bar
