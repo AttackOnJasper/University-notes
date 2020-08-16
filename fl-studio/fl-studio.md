@@ -19,7 +19,7 @@
    
 #### Major & minor
 - Major pattern
-   - full, full, half, full, full, full, half 
+   - full, full, half, full, full, full, half (In semitone distances: 2, 2, 1, 2, 2, 2, 1)
    - e.g.
 	- **C major**: C, D, E, F, G, A, B (all 7 white keys)
    	- **D major**: D, E, F#, G, A, B, C#
@@ -31,15 +31,29 @@
 - Categories
    - Horizontal, Linear, Melodic
 - Semitone
-- Intervals vs. # of semitones e.g.
+   - smallest distance unit between notes. All distances can be described as x semitones.
+   - distance between C and C# is 1 semitone
+- Intervals vs. # of semitones:
    - 0 semitone: Perfect unison
    - 1 semitone: Minor second
    - 2 semitones: Major second
+   - 3 semitones: Minor third
+- **Perfect consonant intervals**: octaves (8th), unison (same alphabetical note), fifths, fourth
+- **Imperfect consonant intervals**: major and minor thirds, and major and minor sixths
+- **Augmented** vs **Diminished**
+   - Check if the upper note is in the key of the lower note (i.e. lower note major)
+   	- If it is in the key, then it's major or perfect
+   - **Augmented** is used to describe the interval which is one semitone higher than **major / perfect** intervals
+   - **Dimished** is used to describe the interval which is one semitone lower than the **perfect** intervals
+   - **Minor** is used to describe the interval which is one semitone lower than the **minor** intervals
+   - e.g.
+      - C to G_b is **diminished fifth** (C major does not contain G_b). 
+         - Note that diminished fifth is 'identical' to augmented fourth; however, we should count notes (letters) first to get the interval number before counting half steps to resolve the actual interval
+      - C to G# is augmented fifth (C major does not contain G#)
 - Inversion rules
    - the number of semitones of original + inversion = 9
    - Inversion of a major interval is a minor interval
-- **Perfect consonant intervals**: octaves, unison, fifths, fourth
-- **Imperfect consonant intervals**: major and minor thirds, and major and minor sixths
+
 
 ### Chord
 - Combination of 3 or more notes
@@ -47,6 +61,12 @@
 - A **major chord** is built by adding root with the **major third** and **perfect fifth** e.g. C, F, G
 - A **major chord** is built by adding root with the **minor third** and **perfect fifth** e.g. Dm, Em, Am
 - `B chord` does not belong to either major or minor, so B chord is noted as `Bdim` (`dim` stands for diminished)
+
+### Circle of Fifths
+- Circle: F - C - G - D - A - E - B - G_b - D_b - A_b - E_b - B_b - F
+- Interval between 2 notes are always **perfect fifth**
+
+
 
 ## FL Studio Overview
 ### Menu Bar
