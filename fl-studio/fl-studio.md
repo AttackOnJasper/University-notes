@@ -31,6 +31,7 @@
    - Majors with black keys marked as #: G, D, A, E, B, F#, C#
    - Stability order: 1 5 3 6 2 4 7 (e.g. In C major, C is most stable, and B is most unstable)
    	- Unstable notes have the tendency to move to stable notes in a pattern
+- - **Trap beat** typically uses **D minor**
     
 ### Music Interval
 - Categories
@@ -70,6 +71,7 @@
    - 3 semitones & 4 semitones apart
 - First 6 triads of the major scale is: M, m, m, M, M, m. (In roman scale, I, ii, iii, IV, V, vi)
    - `B chord` does not belong to either major or minor, so B chord is noted as `Bdim` (`dim` stands for diminished)
+- **Trap beat** typically uses triads
    
 #### Chord Progression
 - Chord progression rules
