@@ -109,15 +109,28 @@
    
 
 ## FL Studio Overview
+- FL Studio is a full-featured music production environment capable of multi-track audio recording, sequencing and mixing for the creation of professional quality music tracks.   
+- UI sections
+   - Channel Rack
+   - Playlist
+   - Piano Roll
+   - Mixer
+   - Browser
+
+### Terminologies
+- VST (Virtual Studio Technology): an audio plug-in software interface that integrates software synthesizers and effects units into digital audio workstations
+- MIDI (Musical Instrument Digital Interface): a technical standard that describes a communications protocol, digital interface, and electrical connectors that connect a wide variety of electronic musical instruments, computers, and related audio devices for playing, editing and recording music.
+
+
 ### Menu Bar
 #### Export music
 - Mode
-	- Pattern
-	- Full song
+   - Pattern
+   - Full song
 - Format
-	- Wave: minimal impact to original quality
-	- **OGG**: no gap before start & after end
-- Bitrate: higher -> better quality
+   - Wave: minimal impact to original quality
+   - **OGG**: no gap before start & after end
+- Bit rate: higher -> better quality
 
 #### Import Music
 - All music resources can be directly dragged into panels or tracks
@@ -136,6 +149,8 @@
    - Horizontally: drag the size of the moving bar
 - Magnet button: adjust the closest step that a pattern auto attach to after dragging
    - `None` is not recommended
+- Knobs value can be changed by dragging up or down
+   - Most knobs and sliders can be linked to external/internal controllers
 - Slide button: cut a pattern into two
 
 ## Channel Rack
@@ -181,6 +196,14 @@ If you wanna see how the other instrument was implemented in the same pattern, '
 ### Why automation clip
 - Can edit properties as a whole for multiple consistent patterns
 
+## Audio Recording
+- Playlist -> select a track -> right click -> track mode -> audio track
+- In Mixer, select input source and disable the hear back in **Master** track
+- Turn on 'Recording' and click 'Play' to start
+
+## Plugins
+- Press 'F8' opens 'plugin picker'
 
 
 ## Best Practices
+### Audio
