@@ -1,0 +1,1417 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <title>aws | Jasper Wang</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+
+  <!-- The loading of KaTeX is deferred to speed up page rendering -->
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+
+  <!-- To automatically render math in text elements, include the auto-render extension: -->
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+  </head>
+<body>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-68271407-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+  <h1>Notes by <a href="/">Jasper Wang</a>.</h1>
+  <ul class="site_links">
+    <span class="divider"></span>
+  </ul>
+<h1 id="aws">AWS</h1>
+<h2 id="aws-cloud">AWS Cloud</h2>
+<h3 id="architecture-evolution">Architecture Evolution</h3>
+<ul>
+<li>Traditional Client-Server Architecture
+<ul>
+<li>Enable multiple distributed systems connecting together</li>
+</ul></li>
+<li>Evolution: Cloud
+<ul>
+<li>e.g. Instead of storing stuff in PC, we store in e.g. Google Drive, Dropbox, etc.</li>
+</ul></li>
+<li>Cloud Basic Components
+<ul>
+<li>Compute - i.e. CPU + RAM (ability for processing)</li>
+<li>Storage - database</li>
+<li>Network - communication means</li>
+</ul></li>
+</ul>
+<h3 id="overview">Overview</h3>
+<ul>
+<li>Traditional Data center challenges
+<ul>
+<li>Server sprawl(space)</li>
+<li>Cooling</li>
+<li>Power</li>
+</ul></li>
+<li>Cloud service categories
+<ul>
+<li>IaaS - Infrastructure as a Service
+<ul>
+<li>Parts or all of the infrastructure is provided by a 3rd party</li>
+<li>Provide basic building blocks: hardware, computer, storage</li>
+</ul></li>
+<li>PaaS - Platform (AWS) as a Service - service-oriented architecture
+<ul>
+<li>PaaS: IaaS + Operating System</li>
+<li>enable users to run applications without the need to manage underlying infrastructure</li>
+<li>think of it as an API - don’t need to know how it’s implemented</li>
+<li>e.g. S3</li>
+</ul></li>
+<li>SaaS: provide completed product e.g. Gmail, Office 365</li>
+<li>DaaS: Desktop as a Service</li>
+</ul></li>
+<li>Cloud Types
+<ul>
+<li>Public e.g. AWS
+<ul>
+<li>No capital cost, pay as customers go</li>
+</ul></li>
+<li>Private: owned entirely by private org; run in own (or co-located) data center
+<ul>
+<li>pros: customizable</li>
+<li>cons: expensive to build &amp; maintain data centers</li>
+</ul></li>
+<li>Hybrid
+<ul>
+<li>Combination of public and private</li>
+</ul></li>
+</ul></li>
+<li>Features
+<ul>
+<li>Scalability - add resources on-demand for growth</li>
+<li>Elasticity - growing and shrinking on-demand (speed to transition infrastructure based on traffic)</li>
+<li>Fault tolerance - resiliency (no single point of failures); ability to self-healing</li>
+<li>High availability - accessibility</li>
+</ul></li>
+<li>Benefits
+<ul>
+<li>Ease of use
+<ul>
+<li>4 ways to manage AWS: management console, AWS CLI, SDKs, API</li>
+</ul></li>
+<li>flexibility
+<ul>
+<li>Choose services as needed</li>
+</ul></li>
+<li>economies of scale
+<ul>
+<li>Pay only for usage</li>
+<li>No long-term commitment or upfront charges</li>
+</ul></li>
+<li>No need for data center / server maintenance &amp; less cost</li>
+<li>easy to go global</li>
+</ul></li>
+<li>Deployment Types (all in cloud / hybrid)</li>
+<li>Architectural evolution: EC2 → ECS → Lambda (less control; least maintenance effort)</li>
+<li>Cloud computing enables you to stop thinking of the infrastructure as hardware, and instead think of it as software
+<ul>
+<li>Definition: <em>on-demand</em> delivery of IT resources and applications <em>via the internet</em></li>
+<li>e.g. EC2 - virtual machine</li>
+<li>reference: https://aws.amazon.com/what-is-cloud-computing/</li>
+</ul></li>
+</ul>
+<h3 id="infrastructure-overview">Infrastructure Overview</h3>
+<ul>
+<li>AWS is the vendor:
+<ul>
+<li>AWS engineers are responsible to e.g. maintenance, DDos attacks, delays, etc.</li>
+<li><em>Availability</em>, <em>fault tolerance</em>, and <em>scaling</em> are handled by AWS
+<ul>
+<li>e.g. hosting a static website on S3</li>
+</ul></li>
+<li>Developers don’t need to worry about actual physical hosts, instead just enjoy the service</li>
+</ul></li>
+<li>AWS Service Stack
+<ul>
+<li>AWS Foundation Services
+<ul>
+<li>Compute
+<ul>
+<li>EC2 (Elastic Compute Cloud); can combine with Elastic Load Balancing and Auto Scaling
+<ul>
+<li>An instance is a virtual server in the AWS cloud</li>
+</ul></li>
+<li>Lambda: serverless
+<ul>
+<li>AWS manages where the code runs</li>
+</ul></li>
+<li>Autoscaling
+<ul>
+<li>3 types: manual, scheduled, dynamic</li>
+</ul></li>
+</ul></li>
+<li>Networking
+<ul>
+<li>VPC, Route 53, Elastic Load Balacing, CloudFront</li>
+</ul></li>
+<li>Storage
+<ul>
+<li>S3, EBS, EFS, Glacier</li>
+</ul></li>
+</ul></li>
+<li>AWS Platform services
+<ul>
+<li>Compute e.g. Lambda</li>
+<li>Db e.g. DynamoDB, RDS, ElastiCache, Redshift</li>
+<li>Analytics e.g. Kinesis, EMR</li>
+<li>App integration e.g. SQS, SNS, SES</li>
+<li>Development tools e.g. CodeCommit, CodeDeploy, CodePipeline, CodeBuild, X-Ray</li>
+</ul></li>
+<li>Applications
+<ul>
+<li>Virtual Desktops</li>
+<li>Collaboration and Sharing</li>
+</ul></li>
+</ul></li>
+<li>Toolkits: e.g. IDE plugin, Cloud 9</li>
+<li>Management tools: e.g. CloudWatch, CloudTrail</li>
+</ul>
+<h3 id="regionsazs">Regions/AZs</h3>
+<ul>
+<li>AWS Global Infrastructure has several regions around the world
+<ul>
+<li>Region example: us-west-2</li>
+</ul></li>
+<li>Each region has 2 or more AZs e.g. us-west-2a</li>
+<li>Each AZs has 1 or more data centers
+<ul>
+<li>AZs are designed for fault isolation (e.g. power failure)</li>
+<li>Interconnected with other AZs using high-speed private links</li>
+</ul></li>
+<li>AWS recommends replicating across AZs for resiliency</li>
+<li>Route53 (Load Balancer), CDN (Cache) are typically on the coast</li>
+</ul>
+<h3 id="networking---aws-foundation-service">Networking - AWS Foundation Service</h3>
+<ul>
+<li>Networking setup should be the first thing to do after AWS account creation
+<ul>
+<li>Because a network is needed for AWS account to access any of other resources</li>
+</ul></li>
+<li>VPC is the basis of all aws networking services</li>
+<li>Direct Connect: connect corp network/infrastructure (e.g. own data center) to AWS environment via VPC</li>
+<li>Route 53: AWS service for DNS (Domain Name Services): domain name -&gt; ip resolution</li>
+</ul>
+<h3 id="upon-aws-account-creation">Upon AWS Account Creation</h3>
+<ul>
+<li>Upon creation of an AWS account, a VPC is created across multiple AZs</li>
+<li>While deploying e.g. an EC2 instance, the instance would reside in one of the AZs covered by the VPC</li>
+</ul>
+<h3 id="best-practices">Best Practices</h3>
+<ul>
+<li>Change components without impacting services
+<ul>
+<li>e.g. modifying capabilities should not affect consumers</li>
+</ul></li>
+<li>Use a simple API
+<ul>
+<li>More complexity → more resistance to change</li>
+<li>Information hiding</li>
+</ul></li>
+<li>Treat servers as <em>stateless</em>
+<ul>
+<li>only need to determine if capacity is enough for workload</li>
+<li>we may eventually replace all EC2 with Lambda (worry less and less about hardwares)
+<ul>
+<li>EC2 (VM) → ECS (Task) → Lambda (Function)</li>
+</ul></li>
+</ul></li>
+<li>Data centers</li>
+<li>Regions / Availability Zones</li>
+</ul>
+<h2 id="aws-management-console">AWS Management Console</h2>
+<ul>
+<li>Resource groups - allows user to add tags to services to combine into one group</li>
+<li>Stick-pin: Drag service on toolbar for frequent access</li>
+</ul>
+<h2 id="iam-identity-and-access-management">IAM (Identity and Access Management)</h2>
+<ul>
+<li>Features
+<ul>
+<li>Authentication and authorization for AWS resources</li>
+<li>Free to use; no fee for any usages</li>
+</ul></li>
+</ul>
+<h3 id="permission-types">Permission types</h3>
+<ul>
+<li>Root account
+<ul>
+<li>created automatically once the AWS account is created</li>
+<li>have full access to the AWS account (can delete the AWS account as well)</li>
+<li>can transfer information through route53 to other AWS accounts</li>
+</ul></li>
+<li>Policies
+<ul>
+<li>Components: Effect, Action, Resource</li>
+<li>Policy Simulator can be used to see potential effect</li>
+</ul></li>
+<li>IAM Users
+<ul>
+<li>Has user name &amp; password associated</li>
+<li>Default permission for a new user is the ability to log in AWS account, no permissions for resources (Principle of Least Privilege)</li>
+<li><strong>Users</strong> can be added to a <strong>Group</strong></li>
+<li>AWS account access type
+<ul>
+<li>Programmatic access (can use CLI / SDK)
+<ul>
+<li>Needs access keys &amp; credentials</li>
+</ul></li>
+<li>AWS Console access</li>
+</ul></li>
+<li>Policies can be granted to a specific user
+<ul>
+<li>e.g. S3 full access policy</li>
+</ul></li>
+<li>Problem: key might be compromised</li>
+</ul></li>
+<li>Groups
+<ul>
+<li>Collection of AWS users</li>
+<li>In permission tabs, we can see the <strong>policies</strong> attaching to the group
+<ul>
+<li>This would allow attaching policies to multiple users at once</li>
+</ul></li>
+</ul></li>
+<li>Roles
+<ul>
+<li>Like a user, but no password or keys</li>
+<li>Attaching policy to a role allows one AWS service to access another AWS service within the same account</li>
+<li>STS - Security Token Services
+<ul>
+<li>issuing tokens valid for 1 to 36 hours</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="mfa">MFA</h3>
+<ul>
+<li>Can be applied to root / other IAM users</li>
+</ul>
+<h3 id="policies">Policies</h3>
+<ul>
+<li>Defines what actions are allowed or denied for specific AWS resources</li>
+<li>Types
+<ul>
+<li>managed policies</li>
+<li>inline policies</li>
+</ul></li>
+<li>Structure
+<ul>
+<li>Effect: Allow / Deny</li>
+<li>Action: specific APIs to the AWS service</li>
+<li>Resource: AWS service</li>
+</ul></li>
+</ul>
+<h3 id="permission-types-1">Permission types</h3>
+<ul>
+<li>Identity-based policy (attach to user / role)</li>
+<li>Resource-based policy (has principal field)</li>
+</ul>
+<h3 id="credentials">Credentials</h3>
+<ul>
+<li>Security: availability, integrity, confidentiality</li>
+<li>Console - username / password</li>
+<li>CLI / SDKs / Query API - access key / secret key
+<ul>
+<li>.aws/credentials:
+<ul>
+<li>Storing profiles</li>
+<li>[default], [test], [prod]</li>
+</ul></li>
+</ul></li>
+<li>Good practice: MFA</li>
+<li>SDKs automatically sign all requests with the credentials set up</li>
+<li>Sequence for checking credentials:
+<ul>
+<li>code</li>
+<li>environment variables</li>
+<li>default credential profiles in credential files</li>
+<li>EC2 instance role</li>
+</ul></li>
+</ul>
+<h3 id="best-practices-1">Best Practices</h3>
+<ul>
+<li>Do
+<ul>
+<li>Upon creating a new AWS account
+<ul>
+<li>Delete root access keys</li>
+<li>Activate MFA</li>
+<li>Create individual IAM users</li>
+<li>Apply an IAM password policy (password strength &amp; rotation period)</li>
+</ul></li>
+<li>Assign policies to roles / users</li>
+<li>Use credential files</li>
+<li>Temporary credentials from AWS STS</li>
+<li>Use IAM roles</li>
+</ul></li>
+<li>Do <em>NOT</em>
+<ul>
+<li>use Root Account</li>
+<li>attach policies to groups (all users would have the policy)</li>
+<li>store credentials in git / code</li>
+</ul></li>
+</ul>
+<h2 id="vpc-virtual-private-cloud">VPC (Virtual Private Cloud)</h2>
+<ul>
+<li>VPC cannot span multiple regions</li>
+<li>VPC allows launching AWS resources into a <strong>logical-isolated virtual network</strong>, which closely resembles a traditional network in data center
+<ul>
+<li>User has full control on who can access the resources</li>
+<li>Can make an analogy between facebook and VPC</li>
+</ul></li>
+<li>The VPC is a virtual network dedicated to your AWS account</li>
+<li>It is also the networking layer for Amazon EC2
+<ul>
+<li>Upon provisioning/launching an EC2 instance, we would need to specify VPC and subnet for network layer</li>
+<li>An EC2 instance can only attach to 1 VPC</li>
+</ul></li>
+<li>A VPC endpoint enables you to privately connect your VPC to supported AWS services and VPC endpoint services powered by PrivateLink without requiring an internet gateway, NAT device, VPN connection, or AWS Direct Connect connection. Instances in your VPC do not require public IP addresses to communicate with resources in the service. Traffic between your VPC and the other service does not leave the Amazon network.</li>
+</ul>
+<h3 id="subnet">Subnet</h3>
+<ul>
+<li>A subnet is a subsection of a network
+<ul>
+<li>Includes all computers/hosts in a specific location</li>
+<li>Analogy: home network is a 'subnet' of the ISP's network</li>
+</ul></li>
+<li>The machines within the same subnet would have the same IP prefix</li>
+<li>In AWS, a subnet is a range of IP addresses in your VPC.
+<ul>
+<li>Subnets <strong>cannot</strong> span multiple AZs; each subnet must reside entirely in one AZ</li>
+<li>A VPC may have one or more subnets</li>
+<li>Multiple subnets can be created in one AZ</li>
+<li>AWS resources can be launched into a specified subnet.</li>
+</ul></li>
+<li>When the default VPC is created, a subnet is created in each of the AZs of the default region</li>
+<li>Subnet types
+<ul>
+<li>Public
+<ul>
+<li>Able to access the internet via a route table with a IGW rule</li>
+</ul></li>
+<li>Private</li>
+</ul></li>
+</ul>
+<h3 id="vpc-cidr">VPC CIDR</h3>
+<ul>
+<li>When you create a VPC, you must specify a range of IPv4 addresses for the VPC in the form of a Classless Inter-Domain Routing (CIDR) block
+<ul>
+<li>Internet Protocol version 4 (<em>IPv4</em>) is the fourth version of the Internet Protocol (IP)</li>
+<li><em>IPv4 address</em> is a 32-bit number that uniquely identifies a network interface on a machine</li>
+</ul></li>
+<li>After specification, all IPs in that VPC would have the prefix of the CIDR</li>
+<li>CIDR
+<ul>
+<li>https://tools.ietf.org/html/rfc4632</li>
+<li>a prefix is shown as a 4-octet quantity, just like a traditional IPv4 address or network number, followed by the &quot;/&quot; (slash) character, followed by a decimal value between 0 and 32 that describes the number of significant bits.</li>
+<li>e.g. 172.16.0.0/16 the &quot;/16&quot; indicating that the mask to extract the network portion of the prefix is a 32-bit value where the most significant 16 bits are ones and the least significant 16 bits are zeros</li>
+</ul></li>
+</ul>
+<h3 id="internet-gateway">Internet Gateway</h3>
+<ul>
+<li><strong>Simplified definition</strong> A combination of hardware and software that provides your private network with a route to the world outside of the VPC</li>
+<li><strong>AWS definition</strong> An internet gateway is a horizontally scaled, redundant, and highly available VPC component that allows communication between instances in your VPC and the internet. It therefore imposes no availability risks or bandwidth constraints on your network traffic.</li>
+<li>The default VPC has an IGW attached</li>
+<li>Internet &lt;-&gt; IGW &lt;-&gt; Route table &lt;-&gt; subnet &lt;-&gt; EC2 instance</li>
+<li>Upon detaching an IGW, the route table still attaches to the detached IGW; however, the IGW would no longer have access to the Internet</li>
+<li>Only one internet gateway can be attached to a VPC at a time.</li>
+</ul>
+<h3 id="route-table">Route Table</h3>
+<ul>
+<li>A route table contains a set of rules, called routes, that are used to determine where network traffic is directed.
+<ul>
+<li>Can be seen as a GPS of the VPC</li>
+</ul></li>
+<li>Default VPC has a <strong>main</strong> route table</li>
+</ul>
+<h3 id="networking-security">Networking Security</h3>
+<ul>
+<li>Firewall: A type of software that either allows or blocks certain kind of internet traffic to pass through it</li>
+<li>Network Access Control List (NACL)
+<ul>
+<li>A firewall on subnet level for both inbound &amp; outbound calls</li>
+<li>Used to control access among subnets and between subnet &amp; internet</li>
+<li>Auth is based on rules
+<ul>
+<li>Rules are evaluated based on rule number from lowest to highest</li>
+<li>The first rule that would apply to the traffic would be applied immediately (like a group of OR statements)</li>
+</ul></li>
+<li>Stateless - so NACL would check inbound &amp; outbound separately</li>
+<li>In 'default' NACL (assigned to the default VPC), all outbound/inbound traffic are allowed</li>
+<li>For new NACL, all traffic would be denied by default</li>
+</ul></li>
+<li>Security Group
+<ul>
+<li>A firewall on the instance/server level</li>
+</ul></li>
+<li>E.g. NACL -&gt; building access; security group -&gt; room access</li>
+</ul>
+<h3 id="vpc-peering">VPC Peering</h3>
+<h2 id="direct-connect">Direct Connect</h2>
+<ul>
+<li>Setup private connection from own data center to AWS</li>
+</ul>
+<h2 id="ec2-elastic-compute-cloud">EC2 (Elastic Compute Cloud)</h2>
+<h3 id="computer-components">Computer Components</h3>
+<ul>
+<li>OS: base platform for software to operate
+<ul>
+<li>e.g. windows, mac, linux</li>
+<li>In EC2, this is called an AMI (Amazon Machine Image), a package of a pre-configured OS</li>
+</ul></li>
+<li>CPU: brain - processing of tasks
+<ul>
+<li>In EC2, it's called an instance (e.g. m5.large, m4.xlarge)</li>
+</ul></li>
+<li>Hard drive (could be local or remote): data storage
+<ul>
+<li>In EC2, this is EBS
+<ul>
+<li>a storage volume that can be attached to any instance in the same AZ</li>
+<li>a highly available and reliable storage volume</li>
+</ul></li>
+</ul></li>
+<li>RAM (random access memory): short-term memory
+<ul>
+<li>In EC2, it's still RAM in that instance</li>
+</ul></li>
+<li>Network card: Internet Access
+<ul>
+<li>In EC2, this is an IP address</li>
+</ul></li>
+<li>Firewall: security
+<ul>
+<li>In EC2, this is a security group</li>
+<li>The key pair .pem file should be 400 before connecting to an EC2 instance. This is the AWS recommended octal permissions for a .pem file.</li>
+</ul></li>
+</ul>
+<h3 id="use-cases">Use Cases</h3>
+<ul>
+<li>Web application</li>
+<li>Web servers</li>
+<li>Video processing</li>
+<li>GPU workloads</li>
+</ul>
+<h3 id="purchasing-options">Purchasing options</h3>
+<ul>
+<li>On-demand
+<ul>
+<li>Most expensive</li>
+<li>Most flexible</li>
+</ul></li>
+<li>Reserved
+<ul>
+<li>need to pay for 1 - 3 years</li>
+<li>Significant price discount</li>
+<li>types
+<ul>
+<li>Standard Reserved Instances</li>
+<li>Scheduled Reserved Instances</li>
+</ul></li>
+</ul></li>
+<li>Spot 'bid/auction'
+<ul>
+<li>only pay and use an instance when the spot price &lt;= the 'bid' price</li>
+<li>allows AWS to sell the use of <strong>unused instances</strong></li>
+<li>spot price fluctuates based on market supply and demand</li>
+</ul></li>
+</ul>
+<h3 id="cost">Cost</h3>
+<ul>
+<li>Depends on
+<ul>
+<li>purchase options</li>
+<li>instance types
+<ul>
+<li>Database Optimized is not an instance type.</li>
+<li>Instance types: general purpose, memory optimized, compute optimized, storage optimized, accelerated computing</li>
+</ul></li>
+<li>AMI types</li>
+<li>Region</li>
+</ul></li>
+</ul>
+<h3 id="ami-amazon-machine-image">AMI (Amazon Machine Image)</h3>
+<ul>
+<li>Template to launch instance, which contains OS + software packages</li>
+<li>Components
+<ul>
+<li>OS</li>
+<li>Application Software</li>
+<li>Launch permissions</li>
+<li>EBS volume for hardware mappings</li>
+</ul></li>
+<li>Types
+<ul>
+<li>Community AMIs
+<ul>
+<li>Free to use</li>
+<li>Usually only contains OS</li>
+</ul></li>
+<li>AWS Marketplace AMIs
+<ul>
+<li>Comes with licensed softwares</li>
+</ul></li>
+<li>own AMIs</li>
+</ul></li>
+</ul>
+<h3 id="ebs">EBS</h3>
+<ul>
+<li>Hard drive for the instance</li>
+<li>Highly reliable and available</li>
+<li>Persist indefinitely from the life of the instance (i.e. could be persisted even if the instance is terminated)</li>
+</ul>
+<h3 id="security-group">Security Group</h3>
+<ul>
+<li>Acts as virtual firewall to one or more instances</li>
+<li>Can use multiple security groups for one instance</li>
+<li>Rules are different from NACLs
+<ul>
+<li>No deny rules available, so if want to deny certain traffic, just don't create related rules</li>
+</ul></li>
+</ul>
+<h2 id="storage-overview">Storage Overview</h2>
+<ul>
+<li>Storage array
+<ul>
+<li>Used in many data centers</li>
+<li>Many hard drives / volume</li>
+</ul></li>
+<li>Evolutions
+<ul>
+<li>Bulk storage
+<ul>
+<li>'Giant hard drive'</li>
+<li>No access to underlying storage OS</li>
+<li>e.g. Dropbox, Google Drive, S3</li>
+</ul></li>
+<li>Block-based storage
+<ul>
+<li>Just like storage used with the computer, where the computer would see the volume where OS &amp; applications can be installed</li>
+<li>e.g. Amazon EBS - attaches to an EC2 instance</li>
+</ul></li>
+</ul></li>
+<li>AWS Options
+<ul>
+<li>S3</li>
+<li>EBS (Elastic Block Storage)
+<ul>
+<li>an example of block storage because it is attachable and detachable.</li>
+</ul></li>
+<li>EFS</li>
+<li>NoSQL
+<ul>
+<li>DynamoDB</li>
+</ul></li>
+<li>Redshift</li>
+</ul></li>
+</ul>
+<h2 id="s3-simple-storage-service">S3 (Simple Storage Service)</h2>
+<ul>
+<li>A cloud <strong>bulk storage</strong> service, where you can remotely store a large sum of data. (Similar to Google drive &amp; dropbox)</li>
+<li>S3 does not reside in any VPCs</li>
+<li>Features
+<ul>
+<li>Fast</li>
+<li>Highly scalable</li>
+</ul></li>
+<li>Operations
+<ul>
+<li>list</li>
+<li>select
+<ul>
+<li>property selectivity</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="components">Components</h3>
+<ul>
+<li>Bucket (folder) name needs to be <strong>globally unique</strong></li>
+<li>object (file) - unique name in the bucket
+<ul>
+<li>object key, metadata, version</li>
+<li>logging can be enabled to track object level activities</li>
+</ul></li>
+</ul>
+<h3 id="versioning">Versioning</h3>
+<ul>
+<li>After enable versioning, each object has metadata and version Id
+<ul>
+<li>Can see different versions when clicking into the object</li>
+<li>versions need different permissions to retrieve</li>
+</ul></li>
+<li>versioned bucket supports object locking (would not be deleted)</li>
+</ul>
+<h3 id="use-cases-1">Use cases</h3>
+<ul>
+<li>Content storage</li>
+<li>Backup</li>
+<li>Big data analytics</li>
+<li>Static website hosting
+<ul>
+<li>Can be used together with CloudFront - content delivery network</li>
+</ul></li>
+</ul>
+<h3 id="permissions">Permissions</h3>
+<ul>
+<li>default: only available to owner</li>
+<li>good practice: create policies for access</li>
+<li>public bucket use case: static websites hosting</li>
+<li>client / server authentication</li>
+<li>CORS (cross origin resource sharing)</li>
+</ul>
+<h3 id="storage-classes">Storage Classes</h3>
+<ul>
+<li>A storage class represents the 'classification' assigned to each object in S3
+<ul>
+<li>The objects would be classified based on different use cases. e.g. frequency of retrieval, data classification, retention, etc.</li>
+</ul></li>
+<li>Storage class types
+<ul>
+<li>Standard: frequently accessed data
+<ul>
+<li>99.99% availability, 99.999999999% (i.e. 11 9s) durability</li>
+<li>low latency</li>
+<li>the most expensive storage class</li>
+</ul></li>
+<li>Standard-IA: long-lived, not frequently accessed
+<ul>
+<li>99.39% availability, 99.999999999% (i.e. 11 9s) durability</li>
+</ul></li>
+<li>One Zone-IA: long-lived, not frequently accessed, non-critical data</li>
+<li>Intelligent-Tiering
+<ul>
+<li>will have limited management fee</li>
+<li>meant to change storage class based on usage and cost-efficiency</li>
+<li>Minimum storage duration: 30 days</li>
+</ul></li>
+<li><strong>Glacier</strong> long term storage
+<ul>
+<li>Minimum storage duration: 90 days</li>
+</ul></li>
+<li><strong>Glacier deep archive</strong> is used to archive data with the intent that it will not be retrieved for long periods
+<ul>
+<li>Retrieval time: within 12 hours</li>
+<li>Minimum storage duration: 180 days</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="best-practices-2">Best Practices</h3>
+<ul>
+<li>Do
+<ul>
+<li>provide pre-signed urls which grant GET/PUT permissions</li>
+<li>check message integrity: HTTPS / MD5</li>
+<li>enable server logging / SDK logging</li>
+<li>call put first (no charge) instead of get</li>
+</ul></li>
+<li>Do NOT
+<ul>
+<li>retrieve metadata or list very frequently</li>
+</ul></li>
+</ul>
+<h2 id="storage-gateway">Storage Gateway</h2>
+<ul>
+<li>Hybrid storage service for organizations who have stored data split between a local data center and the AWS cloud.</li>
+<li>Migration service to help clients onboard their current storage to AWS storage</li>
+<li>Deployment types
+<ul>
+<li>File gateway
+<ul>
+<li>e.g. S3 uploading</li>
+<li>NFS</li>
+</ul></li>
+<li>Volume gateway
+<ul>
+<li>2 ways
+<ul>
+<li>stored volumes - for Backup
+<ul>
+<li>Keep the data locally in clients, and back up the data in AWS clouds</li>
+</ul></li>
+<li>cached volumes - fast access &amp; store in cloud
+<ul>
+<li>Create cache locally in clients, and store data in AWS clouds</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>Tape gateway
+<ul>
+<li>Long-term, off-site archiving</li>
+<li>VTL (Virtual tape library) is more reliable than tape</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="rds-relational-database-service">RDS (Relational Database Service)</h2>
+<ul>
+<li>Relational database (SQL) service that provide a number of SQL database options
+<ul>
+<li>reside in VPC</li>
+</ul></li>
+<li>Options
+<ul>
+<li>Amazon Aurora (Based on MySQL)
+<ul>
+<li>Serverless platform</li>
+</ul></li>
+<li>MySQL</li>
+<li>MariaDB</li>
+<li>PostgreSQL</li>
+<li>Oracle (several options)</li>
+<li>Microsoft SQL Server (several options)</li>
+</ul></li>
+<li>Benefits
+<ul>
+<li>low cost</li>
+<li>scalability</li>
+<li>high availability</li>
+</ul></li>
+<li>Capacity types
+<ul>
+<li>Serverless</li>
+<li>Provisioned</li>
+</ul></li>
+</ul>
+<h2 id="dynamodb">Dynamodb</h2>
+<ul>
+<li>Non-relational Database (NoSQL)</li>
+<li>Replacement of Oracle NoSQL, Cassandra DB, and MongoDB; Amazon DynamoDB does not allow for alternative NoSQL database software options.</li>
+<li>Features
+<ul>
+<li>Fully managed</li>
+<li>Consistent read / write</li>
+<li>Stores data as a JSON-like document instead of an entry</li>
+</ul></li>
+<li>Keys
+<ul>
+<li>Partition key (primary key - identifier of an item)
+<ul>
+<li>spread table into partitions (each partition should be well distributed)</li>
+</ul></li>
+<li>sort key (optional, if specified then this is part of primary key)
+<ul>
+<li>should set to one of the most frequently searched attribute</li>
+</ul></li>
+</ul></li>
+<li>Pricing
+<ul>
+<li>If pay upfront - cheaper read/write later e.g. costco</li>
+</ul></li>
+<li>Throughput
+<ul>
+<li>divided evenly among partitions</li>
+</ul></li>
+<li>GSI (Global Secondary Index)</li>
+<li>Change Data Capture</li>
+<li>Global Tables
+<ul>
+<li>Create local tables, enable stream, and setup global table (abstraction - no actual table, only metadata) on top</li>
+<li>data will eventually be consistent</li>
+<li>Conflict: last write wins</li>
+</ul></li>
+</ul>
+<h2 id="elasticcache">ElasticCache</h2>
+<ul>
+<li>A data caching service used to help improve speed/performance of web applications running on AWS</li>
+<li>Cache in memory</li>
+<li>Supported open-source in-memory engines
+<ul>
+<li><strong>Redis</strong> A fast, open source, in-memory data store and cache</li>
+<li><strong>Memcached</strong> A common memory object caching system</li>
+</ul></li>
+</ul>
+<h2 id="amazon-redshift">Amazon Redshift</h2>
+<ul>
+<li>Fast, fully managed Cloud Data Warehouse</li>
+<li>Architecture
+<ul>
+<li>A relational <em>database</em> management system (RDBMS) based on an older version of PostgreSQL 8.0.2
+<ul>
+<li>RDBMS</li>
+<li>PostgreSQL</li>
+</ul></li>
+<li>S3 vs. RedShift
+<ul>
+<li>Amazon S3 a simple web services interface to store and retrieve any amount of data from anywhere on the web</li>
+<li>data can be pumped into your warehouse from s3</li>
+</ul></li>
+</ul></li>
+<li>Features
+<ul>
+<li>can query against up to 1 PB (1024 TB) stored in RedShift, and 1 EB (1024 PB) in S3</li>
+<li>gives you fast querying capabilities over structured data using familiar SQL-based clients and business intelligence (BI) tools using standard ODBC and JDBC connections. Queries are distributed and parallelized across multiple physical resources.</li>
+</ul></li>
+<li>Use cases
+<ul>
+<li>best suited for analyzing data using standard SQL and Business Intelligence(BI) tools</li>
+</ul></li>
+<li>Definitions
+<ul>
+<li>Data warehouse is a collection of computing resources (<em>nodes</em>)</li>
+<li><em>Nodes</em> are organized into a group called a <em>cluster</em></li>
+<li>Each <em>cluster</em> runs an Amazon Redshift engine and contains one or more databases</li>
+<li>Named as <em>RedShift</em> as it’s the same as the context of Universe Expansion as observed in Hubble's telescope</li>
+</ul></li>
+<li>Technologies
+<ul>
+<li>columnar data store (also called a column-oriented database)</li>
+<li>massively parallel processing (MPP)</li>
+</ul></li>
+<li>Usage
+<ul>
+<li>Can setup SQL Workbench with JDBC</li>
+<li>There is limited dynamic statement available for RedShift, using python might be better</li>
+</ul></li>
+</ul>
+<h2 id="elb">ELB</h2>
+<ul>
+<li>Evenly distributes traffic among EC2 instances</li>
+<li>Can be created under EC2 in AWS console
+<ul>
+<li>We can test the ELB by accessing the ELB's 'DNS name' from a browser</li>
+</ul></li>
+<li>Types
+<ul>
+<li>Application load balancer (HTTP(s))</li>
+<li>Network load balancer (TCP/TLS)
+<ul>
+<li>For configuring traffic for Internet Gateway, we can create an ELB as an internet-facing load balancer on Internet Gateway attaching to the VPC</li>
+</ul></li>
+</ul></li>
+<li>ELB is a foundational component of <strong>high availability</strong> and <strong>fault tolerance</strong></li>
+</ul>
+<h2 id="autoscaling">Autoscaling</h2>
+<ul>
+<li>Definition: automation of process for adding or removing EC2 instances based on traffic demand</li>
+<li><strong>Autoscaling Group</strong> Logical grouping of EC2 instances for the purpose of scaling</li>
+<li>Autoscaling are triggered by rules (scaling policies)
+<ul>
+<li>e.g. scale up with CPU utilization is over 80%</li>
+</ul></li>
+<li>Lower and upper bound for number of instances can be specified</li>
+<li>Benefits
+<ul>
+<li>includes all benefits from ELB</li>
+<li>adds scalability and elasticity</li>
+</ul></li>
+</ul>
+<h2 id="route-53">Route 53</h2>
+<ul>
+<li>Place to configure and manage web domains for websites and applications you host on AWS</li>
+<li>Functions
+<ul>
+<li>Domain registration
+<ul>
+<li>e.g. buy 'www.example.com' for a year</li>
+</ul></li>
+<li>DNS service
+<ul>
+<li>can associate IP address with domain name
+<ul>
+<li>Steps
+<ol type="1">
+<li>Go to 'Route 53'</li>
+<li>Navigate to 'Hosted Zone' tab</li>
+<li>'Create Hosted Zone'
+<ul>
+<li>Types:
+<ul>
+<li>Public (accessible from the internet)</li>
+<li>Private zone for VPC</li>
+</ul></li>
+</ul></li>
+<li>'Create record set' to map domain name to IP address</li>
+</ol></li>
+</ul></li>
+</ul></li>
+<li>Traffic routing
+<ul>
+<li>Sends users to the best endpoint</li>
+</ul></li>
+<li>Health check
+<ul>
+<li>Sends automatic requests to verify if the service is reachable, available, and functional</li>
+</ul></li>
+<li>DNS failover - automatically change domain endpoint if system fails</li>
+</ul></li>
+</ul>
+<h2 id="cloudfront">CloudFront</h2>
+<ul>
+<li>Content Delivery Network (CDN) that allows users to cache content at &quot;edge locations&quot; (Points of Presence) located all around the world.
+<ul>
+<li>By replication of the data to edge locations at the first time when the user near that edge location accesses the data</li>
+<li>Creates an alias in Route 53 which points to the edge locations instead of the origin server</li>
+</ul></li>
+<li>Benefits
+<ul>
+<li>Allows customers to access the contents more quickly</li>
+<li>Provides additional security (AWS Shield - there is a free version)
+<ul>
+<li>Protects against DDoS attacks by redirecting the attacks from source server to edge locations</li>
+</ul></li>
+<li>Low latency and high transfer speeds</li>
+</ul></li>
+</ul>
+<h2 id="lambda">Lambda</h2>
+<ul>
+<li>Benefits of Serverless Computing
+<ul>
+<li>never pay for idle; only pay for compute time</li>
+</ul></li>
+<li>Lambda
+<ul>
+<li>will replace EC2 for the most part</li>
+<li>supported languages: Java, Python, C#, Node.js, Ruby</li>
+</ul></li>
+<li>Features
+<ul>
+<li>Bring own code - custom runtimes</li>
+<li>Flexible use</li>
+<li>Simple resource model
+<ul>
+<li>power rating from 128 MB to 3 GB (prices are proportional)</li>
+</ul></li>
+<li>Flexible Authorization</li>
+<li>Monitoring &amp; Logging - CloudWatch</li>
+<li>Stateless - persist data in external storage</li>
+<li>Continous scaling</li>
+</ul></li>
+<li>Other
+<ul>
+<li>In Lambda’s outbound connections port 25 is blocked - no access to send email</li>
+</ul></li>
+<li>Practice
+<ul>
+<li>do not put lambda in VPC</li>
+</ul></li>
+<li>Current issues
+<ul>
+<li>Java lambda cold start issues - hard to lower that into 400ms
+<ul>
+<li>Impact: P99 could be over 20s - API Gateway time out</li>
+<li>How did cold start happen?
+<ul>
+<li>JVM allocation + handler class initialization (Boosted CPU Access could take up to 10s)
+<ul>
+<li>loaded too many classes</li>
+</ul></li>
+<li>Dependency injection not front-loading all necessary classes</li>
+<li>Known values not provided leading to auto discovery</li>
+<li>Reflection &amp; classpath scanning</li>
+</ul></li>
+<li>Quick fix: allocates more memory to lambda</li>
+</ul></li>
+<li>No GraalVM Native Image
+<ul>
+<li>GraalVM: virtual machine</li>
+</ul></li>
+</ul></li>
+<li>Best practice
+<ul>
+<li>To lower cold start in Java
+<ul>
+<li>Remove reflection: use dagger (static DI) instead of spring/guice for dependency injection</li>
+<li>Put dynamoDb initialization into static init methods</li>
+<li>Use aws java sdk v2</li>
+<li>Use AWSXRay to figure out the code segment contributing to the code start</li>
+<li>Use lambda warmer - wake service up after a period of time</li>
+<li>Check other reinvent guide: e.g. https://www.youtube.com/watch?v=ddg1u5HLwg8&amp;ab_channel=AWSEvents</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="aws-step-functions">AWS Step Functions</h2>
+<h3 id="why-need-step-functions">Why Need step functions</h3>
+<p>In serverless application, creating one function might not be enough, then we need to implement more and more functions. There are different ways to combine those functions, e.g. chaining; however, what if one function fails? Thus we need mechanism to combine different Lambda functions.</p>
+<ul>
+<li>Step functions</li>
+<li>Control logic
+<ul>
+<li>Pass</li>
+<li>Choice (just like a switch statement)</li>
+<li>Parallel</li>
+<li>Wait
+<ul>
+<li>waiting for a signal</li>
+</ul></li>
+</ul></li>
+<li>Starting state machines
+<ul>
+<li>Call startExecution API</li>
+</ul></li>
+<li>Use case
+<ul>
+<li>Collaboration among two or more AWS services via different Lambda functions</li>
+<li>Parallelize upon waiting for results from one AWS service</li>
+</ul></li>
+</ul>
+<h3 id="terminologies">Terminologies</h3>
+<ul>
+<li>State machine - workflow template</li>
+<li>Execution - specific workflow based on template</li>
+</ul>
+<h2 id="amazon-cognito">Amazon Cognito</h2>
+<ul>
+<li>User Pool Authentication</li>
+<li>Standard attributes MUST be specified during creation of the user pool
+<ul>
+<li>e.g. address, birthdate, email, family name, etc.</li>
+</ul></li>
+</ul>
+<h2 id="api-gateway">API Gateway</h2>
+<ul>
+<li>Authentication
+<ul>
+<li>can perform some authentication, but still need Cognito</li>
+</ul></li>
+<li>Creating API
+<ul>
+<li>pass RESTful resources</li>
+</ul></li>
+<li>Deploying API</li>
+<li>Caching</li>
+<li>Throttling</li>
+<li>Swagger - open API specification</li>
+<li>Invoking API - generate SDK</li>
+</ul>
+<h2 id="ami-amaz-machine-images">AMI (amaz machine images)</h2>
+<p>Provides the information required to launch an instance (EC2)</p>
+<h2 id="aws-sam">AWS SAM</h2>
+<ul>
+<li>Template driven Extension on CloudFormation</li>
+<li>Helps debugging Lambda functions</li>
+</ul>
+<h2 id="queueing-services">Queueing Services</h2>
+<ul>
+<li>Consumer-Producer
+<ul>
+<li>Synchronous process wastes resources &amp; does not tolerate failure very well</li>
+<li>Asynchronous process - can read / write any time</li>
+</ul></li>
+</ul>
+<h3 id="sqs">SQS</h3>
+<ul>
+<li>Pay only for transactions, but no fee for storage
+<ul>
+<li>Message max retention: 14 days</li>
+<li>Max message size: 256 kb</li>
+</ul></li>
+<li>Standard queue
+<ul>
+<li>could have duplicate - messages might be partially processed by one then go back to the queue (depends on Visibility Timeout)</li>
+</ul></li>
+<li>FIFO queue
+<ul>
+<li>serialized; slower</li>
+<li>guaranteed one delivery to one consumer</li>
+</ul></li>
+<li>Polling messages
+<ul>
+<li>Short polling
+<ul>
+<li>Good for single threaded application</li>
+</ul></li>
+<li>Long polling
+<ul>
+<li>Get full set of messages across all servers</li>
+</ul></li>
+</ul></li>
+<li>Since last year, SQS can start to trigger lambda functions</li>
+</ul>
+<h3 id="sns">SNS</h3>
+<ul>
+<li>SNS is used to automate emails and SMS messages triggered by events taking place in an AWS account.</li>
+<li>Features
+<ul>
+<li>PubSub pattern</li>
+<li>Each message contains a single published message</li>
+<li>Order not guaranteed</li>
+<li>Could retry after message delivery failure</li>
+</ul></li>
+<li>Delivery methods
+<ul>
+<li>SMS</li>
+<li>Email</li>
+<li>HTTP</li>
+</ul></li>
+<li>Endpoint
+<ul>
+<li>A webserver, email address, Amazon SQS queue, SMS, and AWS Lambda function can all be endpoints to an SNS topic</li>
+</ul></li>
+<li>Message size limit: 256 KB</li>
+<li>Access control
+<ul>
+<li>Permissions in different endpoints for different kinds of subscriptions (SQS, Email, Mobile, SMS)</li>
+<li>Permissions for publisher and subscriber</li>
+</ul></li>
+</ul>
+<h3 id="amazon-mq">Amazon MQ</h3>
+<h3 id="ses">SES</h3>
+<h2 id="management-services">Management Services</h2>
+<h3 id="cloudwatch">CloudWatch</h3>
+<ul>
+<li>Manages logs and metrics</li>
+<li>By default, CloudWatch analyzes AWS resources for metrics every 5 minutes for free.</li>
+</ul>
+<h3 id="cloudtrail">CloudTrail</h3>
+<ul>
+<li>CloudTrail is a service that allows for auditing of IAM users within in AWS account.</li>
+<li>Mainly for security analysis, troubleshooting, and resource change tracking</li>
+<li>Can monitor specific activities in S3 or Lambda</li>
+</ul>
+<h2 id="developer-tools">Developer Tools</h2>
+<h3 id="code-build">Code Build</h3>
+<ul>
+<li>a fully managed continuous integration service that compiles source code, runs tests, and produces software packages that are ready to deploy</li>
+<li>eliminates the need to set up, patch, update, and manage your own build servers and software. There is no software to install or manage.</li>
+</ul>
+<h3 id="codedeploy">CodeDeploy</h3>
+<h3 id="codecommit">CodeCommit</h3>
+<h3 id="cloudformation">CloudFormation</h3>
+<h2 id="cdk">CDK</h2>
+<ul>
+<li>What’s CDK
+<ul>
+<li>A software development framework for defining cloud infrastructure in code and provisioning it through AWS CloudFormation.</li>
+<li>Languages
+<ul>
+<li>TypeScript (most supported), JS, Py, Java, C#</li>
+</ul></li>
+</ul></li>
+<li>Features
+<ul>
+<li>Create and provision AWS infrastructure deployments predictably and repeatedly.</li>
+<li>Leverage AWS products such as Amazon EC2, Amazon Elastic Block Store, Amazon SNS, Elastic Load Balancing, and Auto Scaling.</li>
+<li>No need to worry about creating and configuring the underlying AWS infrastructure.</li>
+<li>Use a template file to create and delete a collection of resources together as a single unit (a <em>stack</em>).</li>
+</ul></li>
+<li>Concepts
+<ul>
+<li>Bucket
+<ul>
+<li>Like all constructs, the Bucket class takes three parameters.</li>
+<li><em>scope:</em> Tells the bucket that the stack is its parent: it is defined within the scope of the stack. You can define constructs inside of constructs, creating a hierarchy (tree).</li>
+<li><em>Id:</em> The logical ID of the Bucket within your AWS CDK app. This (plus a hash based on the bucket's location within the stack) uniquely identifies the bucket across deployments so the AWS CDK can update it if you change how it's defined in your app. Buckets can also have a name, which is separate from this ID (it's the bucketName property).</li>
+<li><em>props:</em> A bundle of values that define properties of the bucket. Here we've defined only one property: versioned, which enables versioning for the files in the bucket.</li>
+</ul></li>
+</ul></li>
+<li>Why CDK instead of cloudformation
+<ul>
+<li>Higher level abstraction
+<ul>
+<li>e.g. use 5 lines of CDK to do 100 lines of cloudFormation</li>
+</ul></li>
+<li>CDK does not have steep learning curve than cloudformation</li>
+<li>IDE integration
+<ul>
+<li>e.g. syntax check</li>
+</ul></li>
+</ul></li>
+<li>Commands
+<ul>
+<li>cdk synth
+<ul>
+<li>executes your app, which causes the resources defined in it to be translated to an AWS CloudFormation template. The output of cdk synth is a YAML-format AWS CloudFormation template</li>
+</ul></li>
+<li>cdk deploy
+<ul>
+<li></li>
+</ul></li>
+</ul></li>
+<li>Demo
+<ul>
+<li>Create CDK project: cdk init --language typescript</li>
+</ul></li>
+</ul>
+<h2 id="aws-security-complience">AWS Security &amp; Complience</h2>
+<h3 id="aws-shared-responsibility-model">AWS Shared Responsibility Model</h3>
+<ul>
+<li>AWS is responsible for hardware layer, infrastructure, and basic softwares</li>
+<li>Clients are responsible for
+<ul>
+<li>Network-level security (NACLs &amp; Security Group)</li>
+<li>IAM</li>
+<li>OS patches &amp; updates</li>
+<li>Client &amp; server side encryption</li>
+</ul></li>
+</ul>
+<h3 id="client-penetration-testing">Client Penetration Testing</h3>
+<ul>
+<li>Penetration testing can be done to some of the AWS services without prior approvals, e.g.
+<ul>
+<li>Penetration testing of EC2 instances</li>
+<li>Penetration testing AWS CloudFront</li>
+<li>Lightsail</li>
+<li>RDS</li>
+</ul></li>
+<li>Penetration testing which needs approval
+<ul>
+<li>S3</li>
+<li>Route 53</li>
+</ul></li>
+<li>Prohibited activities
+<ul>
+<li>DNS Zone walking via Amazon Route 53 hosted zones</li>
+<li>Port flooding</li>
+<li>DDoS attacks</li>
+</ul></li>
+</ul>
+<h3 id="aws-security-services">AWS Security Services</h3>
+<ul>
+<li>AWS Shield - mentioned in route 53</li>
+<li>Amazon GuardDuty
+<ul>
+<li>threat detection service</li>
+<li>continously monitor and protect AWS accounts</li>
+</ul></li>
+</ul>
+<h3 id="aws-kms-key-management-service">AWS KMS (Key Management Service)</h3>
+<ul>
+<li>Service for creating and managing keys</li>
+<li>Key may be generated in KMS
+<ul>
+<li>can also be generated in CloudHSM</li>
+</ul></li>
+<li>Can integrate with a number of AWS services and provide keys
+<ul>
+<li>S3 would be the service in which KMS could encrypt an object.</li>
+<li>Integrates with CloudTrail to log KMS key events.</li>
+</ul></li>
+</ul>
+<h2 id="aws-quick-start">AWS Quick Start</h2>
+<ul>
+<li>Templates to start AWS developments</li>
+</ul>
+<h2 id="aws-analytics">AWS Analytics</h2>
+<h3 id="athena">Athena</h3>
+<ul>
+<li>Serverless interactive query service</li>
+</ul>
+<h3 id="emr-elastic-map-reduce">EMR (Elastic Map Reduce)</h3>
+<ul>
+<li>Managed Hadoop framework</li>
+</ul>
+<h2 id="amazon-lightsail">Amazon Lightsail</h2>
+<ul>
+<li>Private virtual server</li>
+</ul>
+<h2 id="amazon-rekognition">Amazon Rekognition</h2>
+<ul>
+<li>Video/image analysis</li>
+<li>can identify objects / people</li>
+</ul>
+<h2 id="amazon-mechanical-turk">Amazon Mechanical Turk</h2>
+<ul>
+<li>Crowdsourcing marketplace for outsourcing</li>
+</ul>
+<h2 id="cost-support">Cost &amp; Support</h2>
+<h3 id="aws-organizations">AWS Organizations</h3>
+<ul>
+<li>Allows managing billing for multiple AWS accounts
+<ul>
+<li>Can be used to centrally manage policies from a master account for security and compliance purposes.</li>
+</ul></li>
+<li>Free to all AWS customers</li>
+<li>Can enjoy pricing benefits from aggregated usage</li>
+</ul>
+<h3 id="aws-pricing-models">AWS Pricing Models</h3>
+<ul>
+<li>Pay-as-you-go</li>
+<li>Save when reserve instances
+<ul>
+<li>RDS &amp; EC2 can be purchased at a bulk discounted rate for a term for reserved instances.</li>
+</ul></li>
+<li>No termination fees</li>
+<li>May have volume discounts</li>
+</ul>
+<h3 id="free-tier">Free Tier</h3>
+<ul>
+<li>Periods: trial, 12 months free, always free</li>
+</ul>
+<h3 id="tco-total-cost-of-ownership-calculator">TCO (Total Cost of Ownership) Calculator</h3>
+<ul>
+<li>Free tool to estimate cost savings to use AWS vs. a data center</li>
+</ul>
+<h3 id="pricing-calculator">Pricing Calculator</h3>
+<ul>
+<li>Replacement of AWS Simple Calculator</li>
+<li>Estimates cost of each AWS services in a particular month</li>
+</ul>
+<h3 id="cost-explorer">Cost Explorer</h3>
+<ul>
+<li>Free tool to check actual charges on the AWS services</li>
+<li>Shows 13 months (current + past 12 months) of billing history information</li>
+</ul>
+<h3 id="aws-support-plans">AWS Support Plans</h3>
+<ul>
+<li>Basic
+<ul>
+<li>have access to AWS Trusted Advisor</li>
+</ul></li>
+<li>Developer
+<ul>
+<li>$7 per month</li>
+<li>have email access to Cloud Support Associates during business hours</li>
+</ul></li>
+<li>Business
+<ul>
+<li>starts $100 per month</li>
+<li>starts having 24/7 access to Cloud Support Engineers</li>
+</ul></li>
+<li>Enterprise
+<ul>
+<li>starts with $10,000 per month</li>
+<li>receives support in less than 15 minutes when the support care is related to business-critical systems down</li>
+</ul></li>
+</ul>
+<h3 id="if-an-aws-account-is-compromised-owner-needs-to">If an AWS account is compromised, owner needs to</h3>
+<ul>
+<li>respond to notifications from AWS in the AWS Support Center</li>
+<li>change the password for all IAM users</li>
+<li>delete any suspicious resources</li>
+<li>change the root password</li>
+<li>rotate and delete all API access keys</li>
+</ul>
+<h3 id="billing-service">Billing Service</h3>
+<ul>
+<li>Shows not only the bills, but also the free tier usages</li>
+<li>Under preferences, we can set up alerts about free tier usages</li>
+</ul>
+<h2 id="mock-exams-review">Mock Exams Review</h2>
+<ul>
+<li>5 pillars of the AWS Well Architected Framework</li>
+<li>AWS Service Health Dashboard
+<ul>
+<li>determine if there are any issues with AWS that may be affecting your account</li>
+</ul></li>
+<li>AWS Marketplace</li>
+<li>Elastic Beanstalk</li>
+<li>AWS Optimizations</li>
+<li>AWS Trusted Advisor</li>
+<li>AWS Inspector</li>
+<li>Amazon Macie</li>
+<li>AWS Cloud Best Practice</li>
+<li>Resource Groups</li>
+<li>Cost Allocation Tags</li>
+<li>Is IAM a global AWS service?</li>
+</ul>
+<div class="status-banner" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; text-align: center;">
+    <div style="display: inline-block; padding: 0.8em 2em 0.5em 2em; background: black; color: white; font-size: 2em;">
+        Rendering <svg xmlns="http://www.w3.org/2000/svg" height="1.4em" viewbox="0 0 1200 500" style="vertical-align: text-bottom"><title>LaTeX logo</title><g transform="matrix(45 0 0 45 40 40)" fill="white"><path d="M5.5 4.4C5.5 4.4 5.2 4.4 5.2 4.4 5.1 5.4 5 6.7 3.2 6.7 3.2 6.7 2.4 6.7 2.4 6.7 1.9 6.7 1.9 6.6 1.9 6.3 1.9 6.3 1.9 1 1.9 1 1.9 0.6 1.9 0.5 2.9 0.5 2.9 0.5 3.2 0.5 3.2 0.5 3.2 0.5 3.2 0.2 3.2 0.2 2.8 0.2 1.9 0.2 1.5 0.2 1.1 0.2 0.3 0.2 0 0.2 0 0.2 0 0.5 0 0.5 0 0.5 0.2 0.5 0.2 0.5 1 0.5 1 0.6 1 0.9 1 0.9 1 6.2 1 6.2 1 6.6 1 6.7 0.2 6.7 0.2 6.7 0 6.7 0 6.7 0 6.7 0 7 0 7 0 7 5.2 7 5.2 7 5.2 7 5.5 4.4 5.5 4.4z"/><path d="M5.3 0.2C5.3 0 5.2 0 5.1 0 5 0 4.9 0 4.9 0.2 4.9 0.2 3.3 4.2 3.3 4.2 3.2 4.4 3.1 4.7 2.5 4.7 2.5 4.7 2.5 5 2.5 5 2.5 5 4 5 4 5 4 5 4 4.7 4 4.7 3.7 4.7 3.5 4.6 3.5 4.4 3.5 4.3 3.5 4.3 3.6 4.2 3.6 4.2 3.9 3.4 3.9 3.4 3.9 3.4 5.9 3.4 5.9 3.4 5.9 3.4 6.3 4.4 6.3 4.4 6.3 4.4 6.3 4.5 6.3 4.5 6.3 4.7 5.9 4.7 5.8 4.7 5.8 4.7 5.8 5 5.8 5 5.8 5 7.7 5 7.7 5 7.7 5 7.7 4.7 7.7 4.7 7.7 4.7 7.6 4.7 7.6 4.7 7.1 4.7 7.1 4.7 7 4.5 7 4.5 5.3 0.2 5.3 0.2zM4.9 0.9C4.9 0.9 5.8 3.1 5.8 3.1 5.8 3.1 4 3.1 4 3.1 4 3.1 4.9 0.9 4.9 0.9z"/><path d="M13.3 0.2C13.3 0.2 7.2 0.2 7.2 0.2 7.2 0.2 7 2.5 7 2.5 7 2.5 7.3 2.5 7.3 2.5 7.4 0.9 7.6 0.5 9.1 0.5 9.3 0.5 9.5 0.5 9.6 0.6 9.8 0.6 9.8 0.7 9.8 0.9 9.8 0.9 9.8 6.2 9.8 6.2 9.8 6.5 9.8 6.7 8.8 6.7 8.8 6.7 8.4 6.7 8.4 6.7 8.4 6.7 8.4 7 8.4 7 8.8 6.9 9.8 6.9 10.3 6.9 10.7 6.9 11.7 6.9 12.2 7 12.2 7 12.2 6.7 12.2 6.7 12.2 6.7 11.8 6.7 11.8 6.7 10.7 6.7 10.7 6.5 10.7 6.2 10.7 6.2 10.7 0.9 10.7 0.9 10.7 0.7 10.7 0.6 10.9 0.6 11 0.5 11.3 0.5 11.5 0.5 13 0.5 13.1 0.9 13.2 2.5 13.2 2.5 13.5 2.5 13.5 2.5 13.5 2.5 13.3 0.2 13.3 0.2z"/><path d="M18.7 6.7C18.7 6.7 18.4 6.7 18.4 6.7 18.2 8.2 17.9 8.9 16.2 8.9 16.2 8.9 14.9 8.9 14.9 8.9 14.4 8.9 14.4 8.8 14.4 8.5 14.4 8.5 14.4 5.9 14.4 5.9 14.4 5.9 15.3 5.9 15.3 5.9 16.3 5.9 16.4 6.2 16.4 7 16.4 7 16.6 7 16.6 7 16.6 7 16.6 4.4 16.6 4.4 16.6 4.4 16.4 4.4 16.4 4.4 16.4 5.2 16.3 5.5 15.3 5.5 15.3 5.5 14.4 5.5 14.4 5.5 14.4 5.5 14.4 3.2 14.4 3.2 14.4 2.8 14.4 2.8 14.9 2.8 14.9 2.8 16.2 2.8 16.2 2.8 17.7 2.8 18 3.3 18.1 4.7 18.1 4.7 18.4 4.7 18.4 4.7 18.4 4.7 18.1 2.5 18.1 2.5 18.1 2.5 12.5 2.5 12.5 2.5 12.5 2.5 12.5 2.8 12.5 2.8 12.5 2.8 12.7 2.8 12.7 2.8 13.5 2.8 13.5 2.9 13.5 3.2 13.5 3.2 13.5 8.4 13.5 8.4 13.5 8.8 13.5 8.9 12.7 8.9 12.7 8.9 12.5 8.9 12.5 8.9 12.5 8.9 12.5 9.2 12.5 9.2 12.5 9.2 18.2 9.2 18.2 9.2 18.2 9.2 18.7 6.7 18.7 6.7z"/><path d="M21.7 3.1C21.7 3.1 23 1.1 23 1.1 23.3 0.8 23.6 0.5 24.5 0.5 24.5 0.5 24.5 0.2 24.5 0.2 24.5 0.2 22.1 0.2 22.1 0.2 22.1 0.2 22.1 0.5 22.1 0.5 22.5 0.5 22.7 0.7 22.7 0.9 22.7 1 22.7 1.1 22.6 1.2 22.6 1.2 21.5 2.8 21.5 2.8 21.5 2.8 20.2 0.9 20.2 0.9 20.2 0.9 20.1 0.8 20.1 0.8 20.1 0.7 20.4 0.5 20.8 0.5 20.8 0.5 20.8 0.2 20.8 0.2 20.4 0.2 19.7 0.2 19.3 0.2 19 0.2 18.4 0.2 18 0.2 18 0.2 18 0.5 18 0.5 18 0.5 18.2 0.5 18.2 0.5 18.8 0.5 19 0.5 19.2 0.8 19.2 0.8 21 3.6 21 3.6 21 3.6 19.4 6 19.4 6 19.2 6.2 18.9 6.7 17.9 6.7 17.9 6.7 17.9 7 17.9 7 17.9 7 20.3 7 20.3 7 20.3 7 20.3 6.7 20.3 6.7 19.8 6.7 19.7 6.4 19.7 6.2 19.7 6.1 19.7 6.1 19.8 6 19.8 6 21.2 3.9 21.2 3.9 21.2 3.9 22.8 6.3 22.8 6.3 22.8 6.3 22.8 6.3 22.8 6.4 22.8 6.5 22.6 6.7 22.2 6.7 22.2 6.7 22.2 7 22.2 7 22.5 6.9 23.2 6.9 23.6 6.9 24 6.9 24.5 7 24.9 7 24.9 7 24.9 6.7 24.9 6.7 24.9 6.7 24.7 6.7 24.7 6.7 24.2 6.7 24 6.6 23.8 6.3 23.8 6.3 21.7 3.1 21.7 3.1z"/></g></svg> math...
+    </div>
+</div>
+<div class="license">
+  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a> This work by <a xmlns:cc="http://creativecommons.org/ns#" href="https://uberi.github.io/" property="cc:attributionName" rel="cc:attributionURL">Jasper Wang</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  Copyright 2013-2018 Jasper Wang.
+</div>
+</body>
+</html>

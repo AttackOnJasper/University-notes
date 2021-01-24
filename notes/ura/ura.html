@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta http-equiv="Content-Style-Type" content="text/css" />
-  <title>aws | Jasper Wang</title>
+  <title>ura | Jasper Wang</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
 
   <!-- The loading of KaTeX is deferred to speed up page rendering -->
@@ -12,7 +12,60 @@
   <!-- To automatically render math in text elements, include the auto-render extension: -->
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
         onload="renderMathInElement(document.body);"></script>
-  </head>
+    <script type="text/javascript">
+  window.onload = function() {
+    document.getElementsByClassName("status-banner")[0].style.display = "block";
+    setTimeout(function() {
+      renderMathElements(document.getElementsByClassName("math"));
+      document.getElementsByClassName("status-banner")[0].style.display = "none";
+    }, 50); // delay to allow status banner to show
+  }
+
+  function renderMathElements(mathElements) {
+    var mathOptions = {
+      macros: {
+        "\\set": "\\left\\{ #1 \\right\\}",
+        "\\tup": "\\left\\langle #1 \\right\\rangle",
+        "\\abs": "\\left\\lvert #1 \\right\\rvert",
+        "\\floor": "\\left\\lfloor #1 \\right\\rfloor",
+        "\\ceil": "\\left\\lceil#1 \\right\\rceil",
+        "\\mb": "\\mathbb{#1}",
+        "\\rem": "\\operatorname{rem}",
+        "\\ord": "\\operatorname{ord}",
+        "\\sign": "\\operatorname{sign}",
+        "\\imag": "\\bm{i}",
+        "\\dee": "\\mathop{}\\!\\mathrm{d}",
+        "\\lH": "\\overset{\\text{l'H}}{=}",
+        "\\evalat": "\\left.\\left(#1\\right)\\right|",
+        "\\sech": "\\operatorname{sech}",
+        "\\spn": "\\operatorname{Span}",
+        "\\proj": "\\operatorname{proj}",
+        "\\prp": "\\operatorname{perp}",
+        "\\refl": "\\operatorname{refl}",
+        "\\magn": "\\left\\lVert #1 \\right\\rVert",
+        "\\rank": "\\operatorname{rank}",
+        "\\sys": "\\left[ #1 \\mid #2\\space \\right]",
+        "\\range": "\\operatorname{Range}",
+        "\\adj": "\\operatorname{adj}",
+        "\\cof": "\\operatorname{cof}",
+        "\\coord": "{\\left\\lbrack #1 \\right\\rbrack}_{#2}",
+        "\\diag": "\\operatorname{diag}",
+        "\\formlp": "\\operatorname{Form}(\\mathcal{L}^P)",
+
+        // not yet available in KaTeX
+        "\\operatorname": "\\mathop{\\text{#1}}\\nolimits", //wip: spacing is slightly off
+        "\\not": "\\rlap{\\kern{7.5mu}/}", //wip: slash angle is slightly off
+        "\\bm": "\\mathbf", //wip: should be italic, but isn't
+      },
+      throwOnError: false,
+    };
+    for (var i=0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      katex.render(texText.data, mathElements[i], mathOptions);
+    }
+  }
+  </script>
+</head>
 <body>
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -28,27 +81,48 @@
   <ul class="site_links">
     <span class="divider"></span>
   </ul>
-<h1 id="aws-tools-and-services">AWS Tools and Services</h1>
-<h2 id="iam">IAM</h2>
-<h3 id="user">User</h3>
+<h1 id="undergrad-research-assistant-project">Undergrad Research Assistant Project</h1>
+<h2 id="terms">Terms</h2>
+<h3 id="mdp-markov-decision-process">MDP: Markov decision process</h3>
 <ul>
-<li><strong>Users</strong> can be added to a <strong>Group</strong></li>
+<li>Describes an environment for reinforcement learning
+<ul>
+<li>Environment is fully observable</li>
+<li>State completely characterises the process</li>
+<li>Almost all RL problems can be formalised as MDPs</li>
+</ul></li>
+<li>&quot;The future is independent of past given the present&quot;
+<ul>
+<li><span class="math display">\displaystyle  P[S_{t+1}|S_t] = P[S_{t+1} | S_1, ..., S_t] </span></li>
+</ul></li>
+<li>Markov chain
+<ul>
+<li>A stochastic model describing a sequence of possible events in which the probability of each event depends <strong>only</strong> on the state attained in the previous event</li>
+<li>Can be represented by finite state machine in which transitions are probability driven</li>
+<li>Background
+<ul>
+<li>Independent events have been proven to follow certain patterns after repeated trials
+<ul>
+<li>Estimating unknown probabilities of events based on number of times that the event occurs in independent trials</li>
+<li>E.g. draw 1 ball with replacement from a bag of black and white balls repeatedly to see what's the ratio between black and white</li>
+<li>This not only applies for convergence (e.g. determine the exact ratio), but also applies for distribution (e.g. normal distribution)
+<ul>
+<li>Central Limit Theorem</li>
+</ul></li>
+</ul></li>
+<li>Andrey Markov claimed that the pattern applied for <strong>dependent variables</strong> as well.
+<ul>
+<li>e.g. If coin flip result depends on the previous flip, then equilibrum can still be achieved if run in sequence</li>
+<li>States can be modeled in transition matrices</li>
+</ul></li>
+<li>Concept of modeling sequences of random events using states and transition between states is known as a Markov chain</li>
+</ul></li>
+</ul></li>
+<li>POMDP: Partially observable Markov decision process</li>
 </ul>
-<h3 id="group">Group</h3>
+<h3 id="snap-syndetic-assistance-processes">SNAP: Syndetic Assistance Processes</h3>
 <ul>
-<li>In permission tabs, we can see the <strong>policies</strong> attaching to the group ### Roles ### Policies</li>
-<li>Defines what actions are allowed or denied for specific AWS resources</li>
-<li>Types
-<ul>
-<li>managed policies</li>
-<li>inline policies</li>
-</ul></li>
-<li>Structure
-<ul>
-<li>Effect: Allow / Deny</li>
-<li>Action: specific APIs to the AWS service</li>
-<li>Resource: AWS service</li>
-</ul></li>
+<li></li>
 </ul>
 <div class="status-banner" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; text-align: center;">
     <div style="display: inline-block; padding: 0.8em 2em 0.5em 2em; background: black; color: white; font-size: 2em;">

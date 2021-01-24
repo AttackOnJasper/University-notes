@@ -1,9 +1,9 @@
-INPUT_FILES=$(wildcard */*.md)
+INPUT_FILES=$(wildcard notes/*/*.md)
 OUTPUT_FILES=$(INPUT_FILES:.md=.html)
 
 all: $(OUTPUT_FILES)
 
-%.html: %.md templates/template.html
+%.html: %.md template.html
 	pandoc "--output=$@" --from markdown --to html5 \
 		--data-dir=. --template=template.html --katex \
 		--variable=pagetitle:$(*F)\ \|\ Jasper\ Wang "$<"
