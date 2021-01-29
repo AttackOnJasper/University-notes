@@ -9,6 +9,17 @@
 	* Storage - database
 	* Network - communication means
 
+## AWS History
+* 'Invention requires 2 things: 1. The ability to try a lot of experiments, and 2. not having to live with the collateral damage of failed experiments.' - Andy Jassy
+	* AWS gives start-ups the above 2 things
+* 2003: Chris Pinkham & Benjamin Black present a paper on what Amazon's own internal infrastructure should look like
+* 2004: Amazon launches SQS
+* 2006: AWS officially launched
+* 2007: over 180,000 developers on the platform
+* 2010: all of amazon.com moves to AWS
+* 2012: First Re:Invent conference
+* 2013: Certifications Launched
+
 ## Overview
 * Traditional Data center challenges
 	* Server sprawl(space)
@@ -92,14 +103,20 @@
 ## Regions/AZs
 * AWS Global Infrastructure has several regions around the world
 	* Region example: us-west-2
-* Each region has 2 or more AZs e.g. us-west-2a
+* Each region is a geographical area divided into 2 or more AZs e.g. us-west-2a
 * Each AZs has 1 or more data centers
     * AZs are designed for fault isolation (e.g. power failure)
     * Interconnected with other AZs using high-speed private links
 * AWS recommends replicating across AZs for resiliency
+
+### Edge Location
 * An edge location is where end users access services located at AWS. They are located in most of the major cities around the world and are specifically used by CloudFront (CDN) to distribute content to end user to reduce latency.
-	* datacenter owned by a trusted partner of AWS
-	* Route53 (Load Balancer), CDN (Cache) are typically on the coast
+	* Edge locations are NOT part of AWS regions
+	* There are over 150 edge locations
+* Typically used for caching
+* datacenter owned by a trusted partner of AWS
+* Route53 (Load Balancer), CDN (Cache) are typically on the coast
+* e.g. Boston, Dallas, Los Angeles, Toronto
 
 ## Networking - AWS Foundation Service
 * Networking setup should be the first thing to do after AWS account creation
@@ -126,7 +143,6 @@
 * Regions / Availability Zones
 
 
-
 # AWS Management Console
 * Resource groups - allows user to add tags to services to combine into one group
 * Stick-pin: Drag service on toolbar for frequent access
@@ -136,23 +152,36 @@
 
 # IAM (Identity and Access Management)
 * Authentication and authorization for AWS resources
+	* Manage users and levels of access
 * Free to use; no fee for any usages
+
+## Features
+* Granular Permissions
+* Identity Federation (e.g. login via Facebook, Linkedin)
+	* Compare to Cognito
 
 ## Terms
 * **Principal** a person or application that uses the AWS account root user, an IAM user, or an IAM role to sign in and make requests to AWS.
 * **Identities** the IAM resource objects that are used to identify and group. 
 	* You can attach a policy to an IAM identity. These include users, groups, and roles.
 * **Entities** the IAM resource objects that AWS uses for authentication
-
-## Permission types
 * Root account 
 	* created automatically once the AWS account is created
     * have full access to the AWS account (can delete the AWS account as well)
     * can transfer information through route53 to other AWS accounts
-* Policies
+* Policies (documents)
     * Components: Effect, Action, Resource
+    * Format: JSON
     * Policy Simulator can be used to see potential effect
-* IAM Users
+    - Defines what actions are allowed or denied for specific AWS resources
+	- Types
+		- managed policies
+		- inline policies
+	- Structure
+		- Effect: Allow / Deny
+		- Action: specific APIs to the AWS service
+		- Resource: AWS service
+* Users
 	* Has user name & password associated
 	* Default permission for a new user is the ability to log in AWS account, no permissions for resources (Principle of Least Privilege)
 	* **Users** can be added to a **Group**
@@ -168,23 +197,12 @@
 	* In permission tabs, we can see the **policies** attaching to the group
 		* This would allow attaching policies to multiple users at once
 * Roles
-    * Like a user, but no password or keys
     * Attaching policy to a role allows one AWS service to access another AWS service within the same account
     * STS - Security Token Services
         * issuing tokens valid for 1 to 36 hours
 
 ## MFA
 * Can be applied to root / other IAM users
-
-## Policies
-- Defines what actions are allowed or denied for specific AWS resources
-- Types
-	- managed policies
-	- inline policies
-- Structure
-	- Effect: Allow / Deny
-	- Action: specific APIs to the AWS service
-	- Resource: AWS service
 
 ## Permission types
 * Identity-based policy (attach to user / role)
@@ -220,6 +238,14 @@
     * use Root Account
     * attach policies to groups (all users would have the policy)
     * store credentials in git / code
+
+# Amazon Cognito
+* Acts as a broker that allows authenticated users to access AWS resources
+* User Pool Authentication
+* Standard attributes MUST be specified during creation of the user pool
+    * e.g. address, birthdate, email, family name, etc.
+* Can allow sign-in via other platforms such as Facebook, LinkedIn, or Google.
+
 
 
 
@@ -345,17 +371,44 @@
 	* After TTL expires, DNS resolvers would make queries for changes
 	* If there are changes, it takes 60s for name servers to save the changes. The changes would propagate simultaneously globally
 
-# CloudFront
+# CloudFront (It's like a Supermarket)
 * Content Delivery Network (CDN) that allows users to cache content at "edge locations" (Points of Presence) located all around the world. 
-	* By replication of the data to edge locations at the first time when the user near that edge location accesses the data 
+	* By replication of the data to edge locations at the first time when the user near that edge location accesses the data
+	* There is a TTL assigned to the cache (customizable) 
 	* Creates an alias in Route 53 which points to the edge locations instead of the origin server
-* Benefits
-	* Allows customers to access the contents more quickly
-	* Provides additional security (AWS Shield - there is a free version)
-		* Protects against DDoS attacks by redirecting the attacks from source server to edge locations
-	* Low latency and high transfer speeds
+
+## Origin
+* Origin of all files that CDN would distribute
+* e.g. S3, EC2, ELB, Route53
+
+## Distribution
+* The name given to the CDN which consists of a collection of edge locations
+* 2 main types
+	* Web - typically for websites
+	* RTMP - Used for media streaming
+
+## Benefits
+* Allows customers to access the contents more quickly
+* Provides additional security (AWS Shield - there is a free version)
+	* Protects against DDoS attacks by redirecting the attacks from source server to edge locations
+* Low latency and high transfer speeds
 
 
+# AWS Global Accelerator
+* A networking service that sends your user’s traffic through Amazon Web Service’s global network infrastructure
+* Improving your internet user performance by up to 60%
+
+
+# API Gateway
+* Authentication
+    * can perform some authentication, but still need Cognito
+* Creating API
+    * pass RESTful resources
+* Deploying API
+* Caching
+* Throttling
+* Swagger - open API specification
+* Invoking API - generate SDK
 
 
 
@@ -458,7 +511,6 @@
 		* For configuring traffic for Internet Gateway, we can create an ELB as an internet-facing load balancer on Internet Gateway attaching to the VPC
 * ELB is a foundational component of **high availability** and **fault tolerance**
 
-
 # Autoscaling
 * Definition: automation of process for adding or removing EC2 instances based on traffic demand
 * **Autoscaling Group** Logical grouping of EC2 instances for the purpose of scaling
@@ -468,6 +520,64 @@
 * Benefits
 	* includes all benefits from ELB
 	* adds scalability and elasticity
+
+# Lambda
+* Benefits of Serverless Computing
+    * never pay for idle; only pay for compute time
+* Lambda
+	* will replace EC2 for the most part
+	* supported languages: Java, Python, C#, Node.js, Ruby
+* Features
+    * Bring own code - custom runtimes
+    * Flexible use
+    * Simple resource model
+        * power rating from 128 MB to 3 GB (prices are proportional)
+    * Flexible Authorization
+    * Monitoring & Logging - CloudWatch
+    * Stateless - persist data in external storage
+    * Continous scaling
+* Other
+    * In Lambda’s outbound connections port 25 is blocked - no access to send email 
+* Practice
+    * do not put lambda in VPC
+* Current issues
+    * Java lambda cold start issues - hard to lower that into 400ms
+        * Impact: P99 could be over 20s - API Gateway time out
+        * How did cold start happen?
+            * JVM allocation + handler class initialization (Boosted CPU Access could take up to 10s)
+                * loaded too many classes
+            * Dependency injection not front-loading all necessary classes 
+            * Known values not provided leading to auto discovery
+            * Reflection & classpath scanning
+        * Quick fix: allocates more memory to lambda
+    * No GraalVM Native Image
+        * GraalVM: virtual machine
+* Best practice
+    * To lower cold start in Java
+        * Remove reflection: use dagger (static DI) instead of spring/guice for dependency injection
+        * Put dynamoDb initialization into static init methods
+        * Use aws java sdk v2
+        * Use AWSXRay to figure out the code segment contributing to the code start
+        * Use lambda warmer - wake service up after a period of time
+        * Check other reinvent guide: e.g. https://www.youtube.com/watch?v=ddg1u5HLwg8&ab_channel=AWSEvents
+
+
+# Other Compute Services
+## AWS Batch
+enables developers, scientists, and engineers to easily and efficiently run hundreds of thousands of batch computing jobs on AWS
+
+## AWS Elastic Beanstalk
+* An easy-to-use service for deploying and scaling web applications and services on familiar servers
+* Supported languages: Java, .NET, PHP, Node.js, Python, Ruby, Go, and Docker
+* Supported servers: Apache, Nginx, Passenger, and IIS.
+
+## AWS EKS (Elastic Kubernetes Service)
+Gives you the flexibility to start, run, and scale Kubernetes applications in the AWS cloud or on-premises
+
+## Amazon Lightsail
+* An inexpensive, easy-to-use, novice-friendly and interactive platform to configure and launch web apps or websites quickly
+* Private virtual server
+
 
 
 
@@ -496,27 +606,41 @@
 
 # S3 (Simple Storage Service)
 * A cloud **bulk storage** service, where you can remotely store a large sum of data. (Similar to Google drive & dropbox)
-* S3 does not reside in any VPCs
+* S3 does not reside in any VPCs; it's a global service
 * Features
 	* Fast
 	* Highly scalable
+	* 99.99% availability & 11 9s durability
 * Operations
     * list
     * select
         * property selectivity
+    * delete
+    	* can enable MFA
 
 ## Components
-* Bucket (folder) name needs to be **globally unique**
-	* Bucket Policy: specify what actions are allowed or denied for which principals on the bucket that the bucket policy is attached to
+* Bucket (folder) name needs to be **globally unique** (because it would create a web address)
 * object (file) - unique name in the bucket
-    * object key, metadata, version
+	* each object can be from 0kb to 5 TB
+    * object key (name), value, metadata, version id
     * logging can be enabled to track object level activities
 
+## Data Consistency
+* Read after Write for PUTS of new objects: be able to view directly after upload a new object
+* Eventual Consistency for override PUTS and DELETES: updating existing file could take time to propagate the change
+
 ## Versioning
+* Good backup tool
 * After enable versioning, each object has metadata and version Id
 	* Can see different versions when clicking into the object
     * versions need different permissions to retrieve
-* versioned bucket supports object locking (would not be deleted)
+    * Cannot disable; can only suspend
+* Make one version public does not make the previous versions public 
+* Versioned bucket would not be deleted immediately
+	* Deleted object can be retrieved via previous versions 
+	* Have the option to perminantly delete all versions at once
+* versioned bucket supports object locking
+
 
 ## Use cases
 * Content storage
@@ -528,44 +652,116 @@
 ## Permissions
 * default: only available to owner
 * good practice: create policies for access
-* public bucket use case: static websites hosting
+   * Object Policies
+   * Bucket Policies:  specify what actions are allowed or denied for which principals on the bucket that the bucket policy is attached to
 * client / server authentication
+* Access Control List
+* Encryption in Transit (SSL/TLS)
+* Encryption at Rest (At hard-drive)
+	* Can encrypt in object level & bucket level
+	* Server-side (Amazon helps encryption)
+		* Server-side Encryption S3 Managed Keys (SSE-S3) stores keys
+		* SSE-KMS
+		* SSE-C - customers' keys
+	* Client-side (Encrypt and then upload) 
 
-## Storage Classes
+## Storage Tiers
 * A storage class represents the 'classification' assigned to each object in S3
 	* The objects would be classified based on different use cases. e.g. frequency of retrieval, data classification, retention, etc.
 * Storage class types 
 	* Standard: frequently accessed data
 		* 99.99% availability, 99.999999999% (i.e. 11 9s) durability
-		* low latency
+		* low 
+		* stored in multiple devices in multiple facilities; can sustain the loss of 2 facilities concurrently
 		* the most expensive storage class
 	* Standard-IA: long-lived, not frequently accessed
-		* 99.39% availability, 99.999999999% (i.e. 11 9s) durability
+		* 99.9% availability, 99.999999999% (i.e. 11 9s) durability
+		* Can have rapid access when needed 
+		* Low storage fee; has retrieval fee
 	* One Zone-IA: long-lived, not frequently accessed, non-critical data
 	* Intelligent-Tiering 
 		* will have limited management fee
 		* meant to change storage class based on usage and cost-efficiency
 		* Minimum storage duration: 30 days
-	* **Glacier** long term storage
+	* **Glacier** long term storage; archiving
 		* Minimum storage duration: 90 days
-		* Retrieval timeL within 6 hours
+		* Retrieval timeL within 6 hours; can configure from within minutes to hours
 	* **Glacier deep archive** is used to archive data with the intent that it will not be retrieved for long periods
 		* Retrieval time: within 12 hours
 		* Minimum storage duration: 180 days
-* **S3 Lifecycle Policy** helps transition objects to another Amazon S3 storage class
+* **S3 Lifecycle Policy** helps transition objects to another Amazon S3 storage tier
+	* e.g. when xxx days old, move to another tier
+
+## Object Lock
+* **WORM model** write once, read many
+	* Prevent objects from being deleted or modified for a period of time
+* Can be applied to an object or to the whole bucket
+* Modes
+	* Governance - needs permission to delete/overwrite rules
+	* Compilance - even root account cannot delete the object for a fixed retention period
+* Legal Holds - can be deleted by any users who have **s3:PutObjectLegalHold** permission
+* Glacier Vault Lock
+	* Cannot be changed once updated
 
 ## CORS (Cross Origin Resource Sharing)
 * defines a way for client web applications that are loaded in one domain to interact with resources in a different domain
 * Can build rich client-side web applications with Amazon S3 and selectively allow cross-origin access to your Amazon S3 resources
 
+## Cross Account Sharing
+* 3 ways
+	1. Bucket policy && IAM (Programmatic Access)
+	1. Bucket ACL (Programmatic Access)
+	1. IAM Role (Programmatic & Console Access)
+
+## Cross Region Replication
+* Versionings need to be enabled on both source & destination buckets
+* Existing files would not be replicated automatically
+* Subsequent updated files would be replicated
+* Deleting verions would not be replicated 
+
+## Performance
+* **AWS Prefix** path excluding bucket and object
+* S3 limit
+	* 100 - 200 ms for GET
+	* TPS limit: 3500 for PUT/COPY/POST/DELETE, 5500 GET/HEAD per prefix
+		* Bounded by KMS limits (encrypt & decrypt) if use SSE-KMS, where uploading & downloading would both contribute to KMS quota
+			* KMS TPS limit: 5500 / 10000 / 30000 depending on region
+* S3 Select
+	* Retrieve only a subset of data from an object with simple SQL expressions
+	* Up to 400% performance improvement, up to 80% cheaper
+* Glacier Select
+	* Run SQL queries against Glacier directly
+
+## Billing aspects
+* Storage
+* Retrieval
+* Storage Management Pricing
+* Data Transfer Pricing
+* S3 Transfer Acceleration 
+	* Fast transfer for long distance (via CloudFront) 
+	* Upload to edge location then upload to S3 bucket via backbone network
+	* Helps end users reduce upload time (up to 150% speed increase)
+* Cross Region Replication
+	* Replicate to another region automatically 
+
 ## Best Practices
 * Do
+	* More prefixes (for more TPS limit)
+	* Multipart uploads (recommended for object > 100 MB)
     * provide pre-signed urls which grant GET/PUT permissions
     * check message integrity: HTTPS / MD5
     * enable server logging / SDK logging
     * call put first (no charge) instead of get
 * Do NOT 
     * retrieve metadata or list very frequently
+
+# AWS DataSync
+* Move large amounts of data from data center to AWS
+	* Connects to S3, EFS, and Amazon FSx for Windows File Server
+	* Can also replicate EFS to another EFS
+* Replication can be done hourly, daily, and weekly
+* Used with NFS/SMB compatible file systems
+* Provides encryption in transit & at rest, data integration check
 
 # Database Migration Service
 * helps migrate databases to AWS quickly and securely
@@ -691,71 +887,6 @@ A fully managed file system that is optimized for compute-intensive workloads, s
 # Amazon FSx for Windows File Server
 A fully managed native Microsoft Windows file system so you can easily move your Windows-based applications that require file storage to AWS
 
-# Lambda
-* Benefits of Serverless Computing
-    * never pay for idle; only pay for compute time
-* Lambda
-	* will replace EC2 for the most part
-	* supported languages: Java, Python, C#, Node.js, Ruby
-* Features
-    * Bring own code - custom runtimes
-    * Flexible use
-    * Simple resource model
-        * power rating from 128 MB to 3 GB (prices are proportional)
-    * Flexible Authorization
-    * Monitoring & Logging - CloudWatch
-    * Stateless - persist data in external storage
-    * Continous scaling
-* Other
-    * In Lambda’s outbound connections port 25 is blocked - no access to send email 
-* Practice
-    * do not put lambda in VPC
-* Current issues
-    * Java lambda cold start issues - hard to lower that into 400ms
-        * Impact: P99 could be over 20s - API Gateway time out
-        * How did cold start happen?
-            * JVM allocation + handler class initialization (Boosted CPU Access could take up to 10s)
-                * loaded too many classes
-            * Dependency injection not front-loading all necessary classes 
-            * Known values not provided leading to auto discovery
-            * Reflection & classpath scanning
-        * Quick fix: allocates more memory to lambda
-    * No GraalVM Native Image
-        * GraalVM: virtual machine
-* Best practice
-    * To lower cold start in Java
-        * Remove reflection: use dagger (static DI) instead of spring/guice for dependency injection
-        * Put dynamoDb initialization into static init methods
-        * Use aws java sdk v2
-        * Use AWSXRay to figure out the code segment contributing to the code start
-        * Use lambda warmer - wake service up after a period of time
-        * Check other reinvent guide: e.g. https://www.youtube.com/watch?v=ddg1u5HLwg8&ab_channel=AWSEvents
-
-
-# Amazon Cognito
-* Acts as a broker that allows authenticated users to access AWS resources
-* User Pool Authentication
-* Standard attributes MUST be specified during creation of the user pool
-    * e.g. address, birthdate, email, family name, etc.
-* Can allow sign-in via other platforms such as Facebook, LinkedIn, or Google.
-
-
-
-# API Gateway
-* Authentication
-    * can perform some authentication, but still need Cognito
-* Creating API
-    * pass RESTful resources
-* Deploying API
-* Caching
-* Throttling
-* Swagger - open API specification
-* Invoking API - generate SDK
-
-
-# AWS SAM
-* Template driven Extension on CloudFormation
-* Helps debugging Lambda functions
 
 
 
@@ -809,6 +940,7 @@ In serverless application, creating one function might not be enough, then we ne
 * SNS is used to automate emails and SMS messages triggered by events taking place in an AWS account.
 * Features
 	* PubSub pattern
+	* Push model
     * Each message contains a single published message
     * Order not guaranteed
     * Could retry after message delivery failure
@@ -822,6 +954,8 @@ In serverless application, creating one function might not be enough, then we ne
 * Access control
     * Permissions in different endpoints for different kinds of subscriptions (SQS, Email, Mobile, SMS)
     * Permissions for publisher and subscriber
+* Use cases
+	* relay time-critical events to mobile applications and devices
 
 ## Amazon MQ
 A managed message broker service for Apache ActiveMQ and RabbitMQ that makes it easy to set up and operate message brokers on AWS
@@ -841,6 +975,7 @@ A cost-effective, flexible, and scalable email service that enables developers t
 
 ## CloudWatch
 * Manages logs, metrics & alarms
+	* Can also create billing alarms under 'Alarms' -> 'Billing' and add SNS to send emails on alarms
 * By default, CloudWatch analyzes AWS resources for metrics every 5 minutes for free.
 * Provides you with data and actionable insights to monitor your applications
 
@@ -904,6 +1039,9 @@ Provides a common language for you to model and provision AWS and third-party ap
 ## CloudPipeline
 Can help orchestrate and automate the various phases involved in the release of application updates in-line with a predefined release model.
 
+## AWS SAM
+* Template driven Extension on CloudFormation
+* Helps debugging Lambda functions
 
 
 
@@ -998,6 +1136,10 @@ Can help orchestrate and automate the various phases involved in the release of 
 * Protect you against Layer 3, 4, and 7 attacks
 * Free to use, but there are additional services at extra cost
 
+### Amazon Macie
+A fully managed data security and data privacy service that uses machine learning and pattern matching to discover and protect your sensitive data in AWS.
+
+
 ## AWS KMS (Key Management Service)
 * Service for creating and managing keys
 * Key may be generated in KMS
@@ -1008,6 +1150,8 @@ Can help orchestrate and automate the various phases involved in the release of 
 
 ## CloudHSM
 A cloud-based hardware security module (HSM) that enables you to easily generate and use your own encryption keys on the AWS Cloud
+
+
 
 
 # AWS Analytics
@@ -1036,14 +1180,19 @@ analyze streaming data, gain actionable insights, and respond to your business a
 ## Kinesis Data Streams
 A massively scalable and durable real-time data streaming service
 
+## AWS QuickSight
+A scalable, serverless, embeddable, machine learning-powered business intelligence (BI) service built for the cloud
+
+## AWS Glue
+* A serverless data integration service that makes it easy to discover, prepare, and combine data for analytics, machine learning, and application development
+* can visually create, run, and monitor ETL workflows with a few clicks in AWS Glue Studio
+
+
+
 
 # Other AWS Services
 ## AWS Quick Start
 * Templates to start AWS developments
-
-## Amazon Lightsail
-* An inexpensive, easy-to-use, novice-friendly and interactive platform to configure and launch web apps or websites quickly
-* Private virtual server
 
 
 ## Amazon Rekognition
@@ -1072,17 +1221,11 @@ A massively scalable and durable real-time data streaming service
 	* Web ACL
 	* AWS WAF rules
 
-## AWS Elastic Beanstalk
-* An easy-to-use service for deploying and scaling web applications and services on familiar servers
-* Supported languages: Java, .NET, PHP, Node.js, Python, Ruby, Go, and Docker
-* Supported servers: Apache, Nginx, Passenger, and IIS.
-
-## AWS EKS (Elastic Kubernetes Service)
-Gives you the flexibility to start, run, and scale Kubernetes applications in the AWS cloud or on-premises
-
 ## AWS Config
 * used to audit and monitor configuration changes
 * continuously monitors and records your AWS resource configurations and allows you to automate the evaluation of recorded configurations against desired configurations
+
+
 
 
 # Billing
@@ -1090,10 +1233,18 @@ Gives you the flexibility to start, run, and scale Kubernetes applications in th
 * Can manage policies from a master AWS account to other accounts for security and compliance purposes.
 * Allows managing billing for multiple AWS accounts
 	* Consolidated billing - one bill for all accounts
-* Organization Units
+* Organization Units (OU) i.e. department specified in AWS cloud
 * Free to all AWS customers
 * Can enjoy pricing benefits from aggregated usage (volume discounts)
 
+### Service Control Policies
+* A type of organization policy that you can use to manage permissions in your organization
+* SCPs offer central control over the maximum available permissions for all accounts in your organization
+
+### Best Practice
+* Create root account for billing only and sub AWS accounts under OUs for other cloud services
+	* with strong password & MFA
+* Enable / disable services using SCP either on OU or on AWS accounts
 
 ## AWS Pricing Models
 * Pay-as-you-go
@@ -1135,6 +1286,17 @@ Gives you the flexibility to start, run, and scale Kubernetes applications in th
 ## AWS Budgets
 * plan your service usage, service costs and instance reservations
 * First 2 budgets are free
+
+## Cost Allocation Tags
+* A tag is a label that you or AWS assigns to an AWS resource
+* Tags are managed in **Resource Groups**
+* Cost allocation tags can track your AWS costs on a detailed level
+	* AWS uses the cost allocation tags to organize your resource costs on your cost allocation report to make it easier for you to categorize and track your AWS costs
+* Types
+	* AWS generated
+		* AWS defines, creates, and applies the AWS generated tags for you
+	* custom
+
 
 # AWS Support
 ## AWS Support Plans
@@ -1262,8 +1424,6 @@ A repository of tutorials, whitepapers, digital training, and project use cases
 * Leverage different storage options
 
 ## Security & Compliance
-* Amazon Macie
-	* A fully managed data security and data privacy service that uses machine learning and pattern matching to discover and protect your sensitive data in AWS.
 * Resource Groups
 	* Organize your AWS resources
 		* e.g. Can manage a large number of S3 buckets and automate tasks on these buckets at one time
@@ -1282,12 +1442,31 @@ A repository of tutorials, whitepapers, digital training, and project use cases
 * Dedicated Host
 	* Provide the option to bring along existing software licenses
 
-### Cost Allocation Tags
-* A tag is a label that you or AWS assigns to an AWS resource
-* Tags are managed in **Resource Groups**
-* Cost allocation tags can track your AWS costs on a detailed level
-	* AWS uses the cost allocation tags to organize your resource costs on your cost allocation report to make it easier for you to categorize and track your AWS costs
-* Types
-	* AWS generated
-		* AWS defines, creates, and applies the AWS generated tags for you
-	* custom
+
+# Certification Exam
+## Purpose
+Strongly correlate certification with real-world performance
+
+## Format
+Multiple questions
+
+## Exam Stucture
+* Exam questions have lifecycle
+* New questions may arise due to AWS service update
+	* They would be from a different pool of questions
+	* Each exam may have 5 new questions
+	* They are not scored (don't assume any question is unscored)
+	* Questions are added/updated slowly (could take months / years)
+* Check forums may be a good idea to stay up-to-date on topics
+
+## Exam Readiness
+* Measures
+	* Self-confidence
+	* Practice exam
+	* Forum topics familiarity
+	* Check exam blueprint
+
+## Re-certification
+* Certificates expire in 3 years.
+* Recertification testing would be half price and shorter
+* Passing Pro level would renew Associate level certificates
