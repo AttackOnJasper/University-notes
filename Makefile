@@ -4,7 +4,7 @@ OUTPUT_FILES=$(INPUT_FILES:.md=.html)
 all: $(OUTPUT_FILES)
 
 %.html: %.md template.html
-	pandoc "--toc --output=$@" --from markdown --to html5 \
+	pandoc --toc "--output=$@" --from markdown --to html5 \
 		--data-dir=. --template=template.html --katex \
 		--variable=pagetitle:$(*F)\ \|\ Jasper\ Wang "$<"
 
