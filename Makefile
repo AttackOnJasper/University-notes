@@ -1,4 +1,4 @@
-INPUT_FILES=$(wildcard notes/*/*.md)
+INPUT_FILES=$(wildcard notes/*/*.md notes/*/*/*.md)
 OUTPUT_FILES=$(INPUT_FILES:.md=.html)
 
 all: $(OUTPUT_FILES)

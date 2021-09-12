@@ -282,32 +282,30 @@
 </ul></li>
 <li><a href="#s3-simple-storage-service">S3 (Simple Storage Service)</a>
 <ul>
-<li><a href="#components">Components</a></li>
-<li><a href="#data-consistency">Data Consistency</a></li>
-<li><a href="#versioning">Versioning</a></li>
-<li><a href="#object-locking">Object Locking</a></li>
-<li><a href="#use-cases-1">Use cases</a></li>
-<li><a href="#permissions">Permissions</a></li>
-<li><a href="#security-3">Security</a></li>
 <li><a href="#storage-tiers">Storage Tiers</a></li>
 <li><a href="#cors-cross-origin-resource-sharing-1">CORS (Cross Origin Resource Sharing)</a>
 <ul>
 <li><a href="#why-need-cors">Why Need CORS</a></li>
 <li><a href="#what-does-cors-do">What does CORS do</a></li>
-<li><a href="#use-cases-2">Use Cases</a></li>
+<li><a href="#use-cases-1">Use Cases</a></li>
 </ul></li>
-<li><a href="#cross-account-sharing">Cross Account Sharing</a></li>
-<li><a href="#crr-cross-region-replication">CRR (Cross Region Replication)</a></li>
-<li><a href="#s3-transfer-acceleration">S3 Transfer Acceleration</a></li>
-<li><a href="#performance">Performance</a></li>
 <li><a href="#cloudfront-distribution">CloudFront Distribution</a>
 <ul>
 <li><a href="#https">HTTPS</a></li>
 <li><a href="#cloudfront-signed-urls-cookies-to-secure-authorized-contents">CloudFront Signed URLs &amp; Cookies (to secure authorized contents)</a></li>
 <li><a href="#to-only-access-s3-through-cloudfront-url">To only access S3 through CloudFront URL</a></li>
 </ul></li>
-<li><a href="#multipart-upload">Multipart Upload</a></li>
+<li><a href="#cross-account-sharing">Cross Account Sharing</a></li>
+<li><a href="#crr-cross-region-replication">CRR (Cross Region Replication)</a></li>
+<li><a href="#management-6">Management</a></li>
 <li><a href="#multipart-download">Multipart Download</a></li>
+<li><a href="#multipart-upload">Multipart Upload</a></li>
+<li><a href="#object-locking">Object Locking</a></li>
+<li><a href="#performance">Performance</a></li>
+<li><a href="#permissions-access">Permissions / Access</a></li>
+<li><a href="#s3-transfer-acceleration">S3 Transfer Acceleration</a></li>
+<li><a href="#security-3">Security</a></li>
+<li><a href="#versioning">Versioning</a></li>
 <li><a href="#billing-aspects">Billing aspects</a></li>
 <li><a href="#best-practices-2">Best Practices</a></li>
 </ul></li>
@@ -326,28 +324,36 @@
 <ul>
 <li><a href="#options">Options</a>
 <ul>
-<li><a href="#amazon-aurora-based-on-mysql">Amazon Aurora (Based on MySQL)</a></li>
+<li><a href="#aurora-based-on-mysql">Aurora (Based on MySQL)</a></li>
 </ul></li>
 <li><a href="#backups">Backups</a>
 <ul>
 <li><a href="#automated">Automated</a></li>
 <li><a href="#snapshots">Snapshots</a></li>
 </ul></li>
+<li><a href="#relational-engine-types">Relational Engine Types</a></li>
 <li><a href="#security-5">Security</a></li>
 <li><a href="#multi-az-disaster-recovery">Multi-AZ (Disaster Recovery)</a></li>
 <li><a href="#read-replicas-performance">Read Replicas (Performance)</a></li>
 <li><a href="#performance-1">Performance</a></li>
-<li><a href="#management-6">Management</a></li>
+<li><a href="#management-7">Management</a></li>
 </ul></li>
 <li><a href="#dynamodb">Dynamodb</a>
 <ul>
 <li><a href="#api-ref">API Ref</a></li>
 <li><a href="#backup">Backup</a></li>
 <li><a href="#consistency-options">Consistency Options</a></li>
+<li><a href="#data-types">Data types</a></li>
 <li><a href="#dynamodb-accelerator-dax">DynamoDb Accelerator (DAX)</a></li>
-<li><a href="#on-demand-throughput">On-demand Throughput</a></li>
-<li><a href="#provisioned-throughput">Provisioned Throughput</a></li>
-<li><a href="#indexes">Indexes</a></li>
+<li><a href="#expressions">Expressions</a></li>
+<li><a href="#indexes">Indexes</a>
+<ul>
+<li><a href="#lsi-local-secondary-index">LSI (Local Secondary Index)</a></li>
+<li><a href="#gsi-global-secondary-index">GSI (Global Secondary Index)</a></li>
+</ul></li>
+<li><a href="#integration-with-other-aws-services">Integration with other AWS services</a></li>
+<li><a href="#partitions">Partitions</a></li>
+<li><a href="#pitr-point-in-time-recovery">PITR (Point-in-Time-Recovery)</a></li>
 <li><a href="#primary-keys">Primary Keys</a></li>
 <li><a href="#search">Search</a>
 <ul>
@@ -355,39 +361,51 @@
 <li><a href="#scan">Scan</a></li>
 <li><a href="#scan-vs-query">Scan vs Query</a></li>
 </ul></li>
-<li><a href="#streams">Streams</a></li>
-<li><a href="#transactions">Transactions</a></li>
-<li><a href="#ttl">TTL</a></li>
-<li><a href="#pitr-point-in-time-recovery">PITR (Point-in-Time-Recovery)</a></li>
+<li><a href="#streams">Streams</a>
+<ul>
 <li><a href="#global-tables">Global Tables</a></li>
+</ul></li>
+<li><a href="#transactions">Transactions</a></li>
+<li><a href="#throughputs">Throughputs</a></li>
+<li><a href="#on-demand-throughput">On-demand Throughput</a></li>
+<li><a href="#provisioned-throughput">Provisioned Throughput</a></li>
+<li><a href="#ttl">TTL</a></li>
 <li><a href="#security-6">Security</a></li>
 <li><a href="#best-practices-3">Best Practices</a></li>
 <li><a href="#pricing-1">Pricing</a></li>
 </ul></li>
-<li><a href="#elasticcache">ElasticCache</a>
+<li><a href="#elasticache">ElastiCache</a>
 <ul>
+<li><a href="#supports-2-open-source-in-memory-key-value-database-engines">Supports 2 open-source in-memory key-value database engines</a></li>
 <li><a href="#caching-strategies">Caching Strategies</a></li>
 </ul></li>
 <li><a href="#amazon-neptune">Amazon Neptune</a></li>
-<li><a href="#amazon-redshift">Amazon Redshift</a>
+<li><a href="#documentdb">DocumentDB</a></li>
+<li><a href="#redshift">Redshift</a>
 <ul>
-<li><a href="#enhanced-vpc-routing">Enhanced VPC Routing</a></li>
 <li><a href="#columnar-data-store">Columnar Data Store</a></li>
-<li><a href="#massively-parallel-processing-mpp">massively parallel processing (MPP)</a></li>
+<li><a href="#enhanced-vpc-routing">Enhanced VPC Routing</a></li>
+<li><a href="#integration-with-other-aws-services-1">Integration with other AWS services</a></li>
+<li><a href="#massively-parallel-processing-mpp">Massively Parallel Processing (MPP)</a></li>
 <li><a href="#security-7">Security</a></li>
 <li><a href="#backups-1">Backups</a></li>
 <li><a href="#pricing-2">Pricing</a></li>
 </ul></li>
+<li><a href="#lake-formation">Lake Formation</a></li>
 <li><a href="#efs-elastic-file-system">EFS (Elastic File System)</a></li>
 <li><a href="#amazon-fsx-for-lustre">Amazon FSx for Lustre</a></li>
 <li><a href="#amazon-fsx-for-windows-file-server">Amazon FSx for Windows File Server</a></li>
+<li><a href="#sagemaker">SageMaker</a>
+<ul>
+<li><a href="#s3-integration">S3 Integration</a></li>
+</ul></li>
 <li><a href="#application-integration-services">Application Integration Services</a>
 <ul>
 <li><a href="#step-functions">Step Functions</a>
 <ul>
 <li><a href="#why-need-step-functions">Why Need step functions</a></li>
 <li><a href="#terminologies">Terminologies</a></li>
-<li><a href="#management-7">Management</a></li>
+<li><a href="#management-8">Management</a></li>
 <li><a href="#best-practices-4">Best Practices</a></li>
 </ul></li>
 <li><a href="#sqs">SQS</a>
@@ -409,7 +427,10 @@
 <li><a href="#cloudwatch">CloudWatch</a>
 <ul>
 <li><a href="#cloudwatch-agent-on-ec2">CloudWatch Agent on EC2</a></li>
+<li><a href="#cloudwatch-insights">CloudWatch Insights</a></li>
 <li><a href="#logs">Logs</a></li>
+<li><a href="#cost-1">Cost</a></li>
+<li><a href="#bp">BP</a></li>
 </ul></li>
 <li><a href="#cloudtrail">CloudTrail</a></li>
 <li><a href="#x-ray">X-Ray</a>
@@ -436,7 +457,7 @@
 <li><a href="#codebuild">CodeBuild</a>
 <ul>
 <li><a href="#to-override-the-build-command">To override the build command</a></li>
-<li><a href="#management-8">Management</a></li>
+<li><a href="#management-9">Management</a></li>
 </ul></li>
 <li><a href="#codecommit">CodeCommit</a></li>
 <li><a href="#codedeploy">CodeDeploy</a>
@@ -452,7 +473,7 @@
 <li><a href="#codepipeline">CodePipeline</a></li>
 <li><a href="#sam-serverless-application-model">SAM (Serverless Application Model)</a>
 <ul>
-<li><a href="#management-9">Management</a></li>
+<li><a href="#management-10">Management</a></li>
 <li><a href="#template-format-order">Template format / order</a></li>
 </ul></li>
 </ul></li>
@@ -475,7 +496,7 @@
 <li><a href="#cmks">CMKs</a></li>
 <li><a href="#symmetric-vs-asymmetric-cmks">Symmetric vs Asymmetric CMKs</a></li>
 <li><a href="#key-policies">Key Policies</a></li>
-<li><a href="#management-10">Management</a></li>
+<li><a href="#management-11">Management</a></li>
 </ul></li>
 <li><a href="#cloudhsm">CloudHSM</a></li>
 <li><a href="#alb">ALB</a></li>
@@ -489,7 +510,12 @@
 <li><a href="#aws-analytics">AWS Analytics</a>
 <ul>
 <li><a href="#athena">Athena</a></li>
-<li><a href="#emr-elastic-map-reduce">EMR (Elastic Map Reduce)</a></li>
+<li><a href="#emr-elastic-map-reduce">EMR (Elastic Map Reduce)</a>
+<ul>
+<li><a href="#mapreduce-overview">MapReduce Overview</a></li>
+<li><a href="#apache-hadoop">Apache Hadoop</a></li>
+<li><a href="#emr-architecture">EMR Architecture</a></li>
+</ul></li>
 <li><a href="#cloudsearch">CloudSearch</a></li>
 <li><a href="#elasticsearch">Elasticsearch</a></li>
 <li><a href="#kinesis">Kinesis</a>
@@ -500,14 +526,14 @@
 <li><a href="#kinesis-client-library">Kinesis Client Library</a></li>
 <li><a href="#best-practices-5">Best Practices</a></li>
 </ul></li>
-<li><a href="#aws-quicksight">AWS QuickSight</a></li>
-<li><a href="#aws-glue">AWS Glue</a></li>
+<li><a href="#quicksight">QuickSight</a></li>
+<li><a href="#glue">Glue</a></li>
 </ul></li>
 <li><a href="#other-aws-services">Other AWS Services</a>
 <ul>
 <li><a href="#aws-config">AWS Config</a></li>
-<li><a href="#aws-data-pipeline">AWS Data Pipeline</a></li>
 <li><a href="#aws-elastic-transcoder">AWS Elastic Transcoder</a></li>
+<li><a href="#aws-iot">AWS IOT</a></li>
 <li><a href="#aws-marketplace">AWS Marketplace</a></li>
 <li><a href="#amazon-mechanical-turk">Amazon Mechanical Turk</a></li>
 <li><a href="#aws-migration-hub">AWS Migration Hub</a></li>
@@ -517,6 +543,10 @@
 <li><a href="#aws-app-discovery-service">AWS App Discovery Service</a></li>
 <li><a href="#vm-importexport">VM Import/Export</a></li>
 <li><a href="#download-amazon-linux-2-as-an-iso">Download Amazon Linux 2 as an ISO</a></li>
+</ul></li>
+<li><a href="#data-pipeline">Data Pipeline</a>
+<ul>
+<li><a href="#on-prem-flow">On-prem flow</a></li>
 </ul></li>
 <li><a href="#opswork">OpsWork</a>
 <ul>
@@ -589,6 +619,7 @@
 <li><a href="#additional-resources">Additional Resources</a></li>
 <li><a href="#exam-readiness">Exam Readiness</a></li>
 <li><a href="#re-certification">Re-certification</a></li>
+<li><a href="#strategies">Strategies</a></li>
 </ul></li>
 </ul>
 </div>
@@ -2559,6 +2590,7 @@
 <ul>
 <li>TCP and SSL listeners, millions TPS</li>
 </ul></li>
+<li>Supports static IPs (i.e. can assign a static elastic IP to a NLB)</li>
 </ul></li>
 <li>Classic LB (old)
 <ul>
@@ -2566,6 +2598,7 @@
 <ul>
 <li>X-Forwarded-For header: Contains public IP address of the end user</li>
 </ul></li>
+<li>Does not support static IPs</li>
 </ul></li>
 </ol></li>
 <li>Responds 504 if application stops responding within the idle timeout period and gateway times out</li>
@@ -3035,6 +3068,7 @@
 <ul>
 <li>Can invoke lambda whenever a file is uploaded</li>
 </ul></li>
+<li>Cloudwatch Events</li>
 </ol>
 <h2 id="accessing-vpc">Accessing VPC</h2>
 <ol type="1">
@@ -3387,9 +3421,19 @@
 <li>path-style URLs: https://s3.Region.amazonaws.com/bucket-name/key-name</li>
 <li>virtual hosted-style URLs: https://bucket-name.s3.Region.amazonaws.com/key-name</li>
 </ul></li>
-<li>Resource S3 ARN must include /* at the end of the S3 bucket name to be a valid ARN.</li>
-</ul>
-<h2 id="components">Components</h2>
+<li>Resource S3 ARN must include /* at the end of the S3 bucket name to be a valid ARN.<br />
+</li>
+<li>Use cases
+<ul>
+<li>Content storage</li>
+<li>Backup</li>
+<li>Big data analytics</li>
+<li>Static website hosting
+<ul>
+<li>Can be used together with CloudFront - a CDN (content delivery network)</li>
+</ul></li>
+</ul></li>
+<li>Components
 <ul>
 <li>Bucket (folder) name needs to be <strong>globally unique</strong> (because it would create a web address)</li>
 <li>object (file) - unique name in the bucket
@@ -3401,119 +3445,11 @@
 </ul></li>
 <li>logging can be enabled to track object level activities</li>
 </ul></li>
-</ul>
-<h2 id="data-consistency">Data Consistency</h2>
+</ul></li>
+<li>Data Consistency
 <ul>
 <li>Read after Write for PUTS of new objects: be able to view directly after upload a new object</li>
 <li>Eventual Consistency for override PUTS and DELETES: updating existing file could take time to propagate the change</li>
-</ul>
-<h2 id="versioning">Versioning</h2>
-<ul>
-<li>Good backup tool</li>
-<li>After enable versioning, each object has metadata and version Id</li>
-<li>Features
-<ul>
-<li>Can see different versions when clicking into the object</li>
-<li>Versions may need different permissions to retrieve</li>
-<li>Cannot disable; can only suspend</li>
-<li>Make one version public does not make the previous versions public</li>
-<li>Supports object locking</li>
-</ul></li>
-<li>Versioned bucket would not be deleted immediately
-<ul>
-<li>Deleted object can be retrieved via previous versions</li>
-<li>Have the option to perminantly delete all versions at once</li>
-</ul></li>
-</ul>
-<h2 id="object-locking">Object Locking</h2>
-<ul>
-<li>Prevent objects from being deleted or modified for a period of time
-<ul>
-<li>Follows <strong>WORM model</strong> (write once, read many)</li>
-</ul></li>
-<li>Can be applied to an object or to the whole bucket</li>
-<li>Modes
-<ul>
-<li>Governance - needs permission to delete/overwrite rules</li>
-<li>Compilance - even root account cannot delete the object for a fixed retention period</li>
-<li>Legal Holds - can be deleted by any users who have <strong>s3:PutObjectLegalHold</strong> permission</li>
-</ul></li>
-<li>Glacier Vault Lock
-<ul>
-<li>Cannot be changed once updated</li>
-</ul></li>
-<li>Modificating locked objects
-<ul>
-<li>With version enabled S3 buckets, each version can have a different retention period</li>
-<li>To modify a locked object, can create another version and edit on that version</li>
-</ul></li>
-</ul>
-<h2 id="use-cases-1">Use cases</h2>
-<ul>
-<li>Content storage</li>
-<li>Backup</li>
-<li>Big data analytics</li>
-<li>Static website hosting
-<ul>
-<li>Can be used together with CloudFront - a CDN (content delivery network)</li>
-</ul></li>
-</ul>
-<h2 id="permissions">Permissions</h2>
-<ul>
-<li>default: all buckets would only be available to the owner when created</li>
-<li>Policies for access
-<ul>
-<li>ACL (Access Control List)
-<ul>
-<li>Permission up to individual file level</li>
-</ul></li>
-<li>Bucket Policies
-<ul>
-<li>JSON format</li>
-<li>Specify what actions are allowed or denied for which principals on the bucket that the bucket policy is attached to</li>
-<li>Deny would override allow in ACL</li>
-<li>Management
-<ul>
-<li>‘Bucket’ -&gt; ‘Permissions’ -&gt; Scroll down to ‘Bucket policies’</li>
-<li>Create
-<ul>
-<li>can use ‘Policy generator’</li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li>client / server authentication</li>
-<li>Access logs can be configured on bucket level to log all requests made to the S3 bucket
-<ul>
-<li>Can be written to another S3 bucket</li>
-</ul></li>
-</ul>
-<h2 id="security-3">Security</h2>
-<ul>
-<li>All new buckets are private by default</li>
-<li>Encryption in Transit (SSL/TLS)</li>
-<li>Encryption at Rest (At hard-drive)
-<ul>
-<li>Can encrypt in object level &amp; bucket level</li>
-<li>Server-side (Amazon does encryption upon receiving new objects)
-<ul>
-<li>Options
-<ol type="1">
-<li>Server-side Encryption S3 Managed Keys (SSE-S3) stores keys</li>
-<li>SSE-KMS</li>
-<li>SSE-C - customers’ keys</li>
-</ol></li>
-<li>Ways to enforce encryption on S3 buckets during uploading objects:
-<ol type="1">
-<li>Check the box on SSE</li>
-<li>Configure a bucket policy to only allow <code>PUT</code> requests with a request header <code>x-amz-server-side-encryption</code> with value <code>AES256</code> / <code>ams:kms</code></li>
-</ol></li>
-</ul></li>
-<li>Client-side (Encrypt and then upload)</li>
-</ul></li>
-<li>Bucket encryption
-<ul>
-<li>AES 256</li>
 </ul></li>
 </ul>
 <h2 id="storage-tiers">Storage Tiers</h2>
@@ -3526,7 +3462,10 @@
 <ul>
 <li>Standard: frequently accessed data
 <ul>
-<li>99.99% availability, 99.999999999% (i.e. 11 9s) durability</li>
+<li>Design: 99.99% availability, 99.999999999% (i.e. 11 9s) durability
+<ul>
+<li>SLA: 99.9% availability</li>
+</ul></li>
 <li>low</li>
 <li>stored in multiple devices in multiple facilities; can sustain the loss of 2 facilities concurrently</li>
 <li>the most expensive storage class</li>
@@ -3534,8 +3473,12 @@
 <li>Standard-IA: long-lived, not frequently accessed
 <ul>
 <li>99.9% availability, 99.999999999% (i.e. 11 9s) durability</li>
+<li>retrieved weekly / monthly</li>
 <li>Can have rapid access when needed</li>
-<li>Low storage fee; has retrieval fee</li>
+<li>Low storage fee; has retrieval fee
+<ul>
+<li>objects smaller than 128KB are billed as 128KB objects</li>
+</ul></li>
 </ul></li>
 <li>One Zone-IA: long-lived, not frequently accessed, non-critical data</li>
 <li>Intelligent-Tiering
@@ -3547,10 +3490,11 @@
 <li><strong>Glacier</strong> long term storage; archiving
 <ul>
 <li>Minimum storage duration: 90 days</li>
+<li>$0.004/GB for storage cost</li>
 <li>Retrieval
 <ul>
 <li>Standard: within 6 hours; can configure from within minutes to hours</li>
-<li><strong>Expedited retrieval</strong> allows accessing data in 1 - 5 minutes for $0.03 per GB retrieved</li>
+<li><strong>Expedited retrieval</strong> allows accessing data in 1 - 5 minutes for $0.03 per GB retrieved (or $10 for 1000 requests)</li>
 <li>Bulk retrievals: cheapest option with 5 - 12 hours retrieval time</li>
 </ul></li>
 <li>Glacier Console
@@ -3562,6 +3506,7 @@
 <ul>
 <li>Retrieval time: within 12 hours</li>
 <li>Minimum storage duration: 180 days</li>
+<li>Good for storing security &amp; compliance data</li>
 </ul></li>
 <li>S3 Outposts
 <ul>
@@ -3579,6 +3524,11 @@
 <li>Would not be deleted automatically by S3</li>
 <li>Can create S3 lifecycle config to abort incomplete multipart uploads</li>
 </ul></li>
+<li>Actions
+<ol type="1">
+<li>Filter</li>
+<li>Transition</li>
+</ol></li>
 </ul></li>
 <li>S3 Console can restore objects from Glacier and copy to another storage class
 <ul>
@@ -3603,7 +3553,7 @@
 <li>e.g. Allowing code in one S3 bucket to access / reference code in another bucket</li>
 </ul></li>
 </ul>
-<h3 id="use-cases-2">Use Cases</h3>
+<h3 id="use-cases-1">Use Cases</h3>
 <ol type="1">
 <li>API GW
 <ul>
@@ -3620,66 +3570,6 @@
 <li>JS making authenticated GET / PUT against same/different bucket via S3 API endpoint or FNDQ</li>
 <li>loading web fonts</li>
 </ol>
-<h2 id="cross-account-sharing">Cross Account Sharing</h2>
-<ul>
-<li>3 ways
-<ol type="1">
-<li>Bucket policy &amp;&amp; IAM (Programmatic Access)</li>
-<li>Bucket ACL (Programmatic Access)</li>
-<li>IAM Role (Programmatic &amp; Console Access)</li>
-</ol></li>
-</ul>
-<h2 id="crr-cross-region-replication">CRR (Cross Region Replication)</h2>
-<ul>
-<li>A way to auto replicate objects across or within region(s)</li>
-<li>Prereq
-<ul>
-<li>Versionings need to be enabled on both source &amp; destination buckets</li>
-</ul></li>
-<li>Features
-<ul>
-<li>Existing files would not be replicated automatically; subsequent updated files would be replicated</li>
-<li>Deleting versions would not be replicated</li>
-</ul></li>
-<li>Use cases
-<ul>
-<li>Disaster Recovery</li>
-</ul></li>
-</ul>
-<h2 id="s3-transfer-acceleration">S3 Transfer Acceleration</h2>
-<ul>
-<li>You have customers that upload to a centralized bucket from all over the world via CloudFront. You transfer gigabytes to terabytes of data on a regular basis across continents.
-<ul>
-<li>Upload to edge location then upload to S3 bucket via backbone network</li>
-</ul></li>
-<li>Helps end users reduce upload / download time</li>
-<li>Speeds up transfer to and from S3 by 50 - 500%</li>
-</ul>
-<h2 id="performance">Performance</h2>
-<ul>
-<li><strong>AWS Prefix</strong> is the path to object excluding bucket and object</li>
-<li>S3 limit
-<ul>
-<li>100 - 200 ms for GET</li>
-<li>TPS limit
-<ul>
-<li>3500 for PUT/COPY/POST/DELETE, 5500 GET/HEAD per prefix</li>
-<li>Bounded by KMS limits (encrypt &amp; decrypt) if use SSE-KMS, where uploading &amp; downloading would both contribute to KMS quota
-<ul>
-<li>KMS TPS limit: 5500 / 10000 / 30000 depending on region</li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li>S3 Select
-<ul>
-<li>Retrieve only a subset of data from an object with simple SQL expressions</li>
-<li>Up to 400% performance improvement, up to 80% cheaper</li>
-</ul></li>
-<li>Glacier Select
-<ul>
-<li>Run SQL queries against Glacier directly</li>
-</ul></li>
-</ul>
 <h2 id="cloudfront-distribution">CloudFront Distribution</h2>
 <ul>
 <li>Consists of a collection of Edge locations</li>
@@ -3739,8 +3629,95 @@
 </ul></li>
 </ol></li>
 </ul>
+<h2 id="cross-account-sharing">Cross Account Sharing</h2>
+<ul>
+<li>3 ways
+<ol type="1">
+<li>Bucket policy &amp;&amp; IAM (Programmatic Access)</li>
+<li>Bucket ACL (Programmatic Access)</li>
+<li>IAM Role (Programmatic &amp; Console Access)</li>
+</ol></li>
+</ul>
+<h2 id="crr-cross-region-replication">CRR (Cross Region Replication)</h2>
+<ul>
+<li>A way to auto replicate objects across or within region(s)</li>
+<li>Prereq
+<ul>
+<li><strong>Versioning</strong> need to be enabled on both source &amp; destination buckets</li>
+</ul></li>
+<li>Features
+<ul>
+<li>Existing files would not be replicated automatically; subsequent updated files would be replicated</li>
+<li>Deleting versions would not be replicated</li>
+</ul></li>
+<li>Use cases
+<ul>
+<li>Disaster Recovery</li>
+</ul></li>
+</ul>
+<h2 id="management-6">Management</h2>
+<ol type="1">
+<li>COPY
+<ul>
+<li><code>aws s3 cp file s3://{bucket-name}</code></li>
+</ul></li>
+<li>List
+<ul>
+<li>show buckets: <code>aws s3 ls</code></li>
+<li>show bucket’s objects: <code>aws s3 ls {bucket-name}</code></li>
+</ul></li>
+<li>Move
+<ul>
+<li><code>aws s3 mv file s3://{bucket-name}</code></li>
+</ul></li>
+<li>Sync
+<ul>
+<li>upload updated files to S3: <code>aws s3 sync . s3://{bucket-name}</code></li>
+<li>download updated files from S3 to local: <code>aws s3 sync s3://{bucket-name} .</code></li>
+</ul></li>
+</ol>
+<h2 id="multipart-download">Multipart Download</h2>
+<ul>
+<li>Can use ‘Range’ HTTP header in a GET request to download the specified range bytes of an object</li>
+<li>Able to establish concurrent connections to fetch different parts from the same object</li>
+</ul>
 <h2 id="multipart-upload">Multipart Upload</h2>
 <ul>
+<li>Features
+<ol type="1">
+<li>Upload files &gt; 5 GB
+<ul>
+<li>The largest object that can be uploaded in a single PUT is 5 GB</li>
+<li>S3 object can be up to 5 TB</li>
+</ul></li>
+<li>Parallel upload of a single large object</li>
+<li>File can be divided into up to 10,000 parts</li>
+<li>All parts must be at least 5 MB (except the final part)
+<ul>
+<li>part in general should be from 5 - 100 MB</li>
+</ul></li>
+<li>Parts can be overridden by specifying a new upload with the same part number</li>
+<li>Auto-Abort
+<ul>
+<li>Can specify bucket lifecycle policy to auto abort uploads after a period of time<br />
+</li>
+</ul></li>
+</ol></li>
+<li>Steps
+<ol type="1">
+<li>Prepare - break data into pieces
+<ul>
+<li><code>CreateMultipartUpload</code> API</li>
+</ul></li>
+<li>Move pieces
+<ul>
+<li><code>UploadPart</code></li>
+</ul></li>
+<li>Combine pieces into the object
+<ul>
+<li><code>CompleteMultipartUpload</code></li>
+</ul></li>
+</ol></li>
 <li>Benefits
 <ol type="1">
 <li>Can begin upload before knowing the final object size</li>
@@ -3750,12 +3727,208 @@
 </ol></li>
 <li>Does not improve security in transit</li>
 <li>Users should consider multipart upload for objects &gt; 100 MB</li>
-<li>The largest object that can be uploaded in a single PUT is 5 GB</li>
 </ul>
-<h2 id="multipart-download">Multipart Download</h2>
+<h2 id="object-locking">Object Locking</h2>
 <ul>
-<li>Can use ‘Range’ HTTP header in a GET request to download the specified range bytes of an object</li>
-<li>Able to establish concurrent connections to fetch different parts from the same object</li>
+<li>Prevent objects from being deleted or modified for a period of time
+<ul>
+<li>Follows <strong>WORM model</strong> (write once, read many)</li>
+<li>Used for compilance reasons</li>
+</ul></li>
+<li>Can be applied to an object or to the whole bucket</li>
+<li>Modes
+<ul>
+<li>Governance - needs permission to delete/overwrite rules</li>
+<li>Compilance - even root account cannot delete the object for a fixed retention period</li>
+<li>Legal Holds - can be deleted by any users who have <strong>s3:PutObjectLegalHold</strong> permission</li>
+</ul></li>
+<li>Glacier Vault Lock
+<ul>
+<li>Cannot be changed once updated</li>
+<li>Implemented via IAM policies</li>
+<li>Lock controls
+<ol type="1">
+<li>Time-based retention</li>
+<li><code>Undeleteable</code></li>
+</ol></li>
+<li>Operations
+<ol type="1">
+<li>Initiate lock
+<ul>
+<li>Attaching a vault lock policy to the vault</li>
+<li>Lock is set to an <code>InProgress</code> state and a lock ID is returned</li>
+<li>Can validate the lock within 24 hours</li>
+</ul></li>
+<li>Complete lock
+<ul>
+<li>Change <code>InProgress</code> to <code>Locked</code> (immutable)</li>
+</ul></li>
+</ol></li>
+</ul></li>
+<li>Modificating locked objects
+<ul>
+<li>With version enabled S3 buckets, each version can have a different retention period</li>
+<li>To modify a locked object, can create another version and edit on that version</li>
+</ul></li>
+</ul>
+<h2 id="performance">Performance</h2>
+<ul>
+<li><strong>AWS Prefix</strong> is the path to object excluding bucket and object</li>
+<li>S3 limit
+<ul>
+<li>100 - 200 ms for GET</li>
+<li>TPS limit
+<ul>
+<li>3500 for PUT/COPY/POST/DELETE, 5500 GET/HEAD per prefix</li>
+<li>Bounded by KMS limits (encrypt &amp; decrypt) if use SSE-KMS, where uploading &amp; downloading would both contribute to KMS quota
+<ul>
+<li>KMS TPS limit: 5500 / 10000 / 30000 depending on region</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>S3 Select
+<ul>
+<li>Retrieve only a subset of data from an object with simple SQL expressions
+<ul>
+<li>Supports CSV, JSON, Parquet, ORC, Avro</li>
+</ul></li>
+<li>Up to 400% performance improvement, up to 80% cheaper</li>
+</ul></li>
+<li>Glacier Select
+<ul>
+<li>Run SQL queries against Glacier directly</li>
+</ul></li>
+</ul>
+<h2 id="permissions-access">Permissions / Access</h2>
+<ul>
+<li>default: all buckets would only be available to the owner when created</li>
+<li>Policies for access
+<ul>
+<li>Object / Bucket ACL (Access Control List)
+<ul>
+<li>Permission up to individual file level</li>
+</ul></li>
+<li>Bucket Policies
+<ul>
+<li>JSON format</li>
+<li>Specify what actions are allowed or denied for which principals on the bucket that the bucket policy is attached to</li>
+<li>Deny would override allow in ACL</li>
+<li>Management
+<ul>
+<li>‘Bucket’ -&gt; ‘Permissions’ -&gt; Scroll down to ‘Bucket policies’</li>
+<li>Create
+<ul>
+<li>can use ‘Policy generator’</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>Object policy</li>
+<li>IAM policies</li>
+<li>Service Control Policy (from AWS Orgnization)</li>
+</ul></li>
+<li>client / server authentication</li>
+<li>Logging
+<ul>
+<li>Access logs can be configured on bucket level to log all requests made to the S3 bucket
+<ul>
+<li>Can be written to another S3 bucket</li>
+</ul></li>
+<li>CloudTrail</li>
+</ul></li>
+<li>Auditing
+<ul>
+<li>Access Analyzer for S3
+<ul>
+<li>analyze access policies and generate report</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="s3-transfer-acceleration">S3 Transfer Acceleration</h2>
+<ul>
+<li>You have customers that upload to a centralized bucket from all over the world via CloudFront. You transfer gigabytes to terabytes of data on a regular basis across continents.</li>
+<li>Features
+<ol type="1">
+<li>Upload to edge location then upload to S3 bucket via backbone network</li>
+<li>Enabled per bucket</li>
+<li>Different endpoint from original S3 bucket
+<ul>
+<li>format: <code>{bucketname}.s3-accelerate.amazonaws.com</code>
+<ul>
+<li>for IPv6: <code>{bucketname}.s3-accelerate.dualstack.amazonaws.com</code></li>
+</ul></li>
+</ul></li>
+</ol></li>
+<li>Benefits
+<ol type="1">
+<li>Helps end users reduce upload / download time
+<ul>
+<li>Speeds up transfer to and from S3 by 50 - 500%</li>
+</ul></li>
+</ol></li>
+</ul>
+<h2 id="security-3">Security</h2>
+<ul>
+<li>All new buckets are private by default</li>
+<li>Encryption in Transit (SSL/TLS)
+<ul>
+<li>Clients must support Perfect Forward Secrecy (PFS) cipher suites
+<ul>
+<li>e.g. Ephemeral Diffie-Hellman (DHE), Elliptic Curve Diffie-Hellman Ephemeral (ECDHE)</li>
+</ul></li>
+</ul></li>
+<li>Encryption at Rest (At hard-drive)
+<ul>
+<li>Can encrypt in object level &amp; bucket level</li>
+<li>Server-side (Amazon does encryption upon receiving new objects)
+<ul>
+<li>Options
+<ol type="1">
+<li>Server-side Encryption S3 Managed Keys (SSE-S3) stores keys</li>
+<li>SSE-KMS
+<ul>
+<li>Can use AWS-managed / customer-managed CMK</li>
+<li>CMK must be symmetric</li>
+</ul></li>
+<li>SSE-C - customers’ keys</li>
+</ol></li>
+<li>Ways to enforce encryption on S3 buckets during uploading objects:
+<ol type="1">
+<li>Check the box on SSE</li>
+<li>Configure a bucket policy to only allow <code>PUT</code> requests with a request header <code>x-amz-server-side-encryption</code> with value <code>AES256</code> / <code>ams:kms</code></li>
+</ol></li>
+</ul></li>
+<li>Client-side (Encrypt and then upload; download then decrypt)
+<ul>
+<li>Options
+<ol type="1">
+<li>CMK in KMS</li>
+<li>Application Stored key</li>
+</ol></li>
+<li>Can use AWS SDK</li>
+</ul></li>
+</ul></li>
+<li>Bucket encryption
+<ul>
+<li>AES 256</li>
+</ul></li>
+</ul>
+<h2 id="versioning">Versioning</h2>
+<ul>
+<li>Good backup tool</li>
+<li>After enable versioning, each object has metadata and version Id</li>
+<li>Features
+<ul>
+<li>Can see different versions when clicking into the object</li>
+<li>Versions may need different permissions to retrieve</li>
+<li>Cannot disable; can only suspend</li>
+<li>Make one version public does not make the previous versions public</li>
+<li>Supports object locking</li>
+</ul></li>
+<li>Versioned bucket would not be deleted immediately
+<ul>
+<li>Deleted object can be retrieved via previous versions</li>
+<li>Have the option to perminantly delete all versions at once</li>
+</ul></li>
 </ul>
 <h2 id="billing-aspects">Billing aspects</h2>
 <ul>
@@ -3907,9 +4080,13 @@
 </ul></li>
 <li>Features
 <ul>
+<li>Runs and manages multiple database engines</li>
 <li>Multi-AZ - Disaster Recovery; RDS would auto update DB endpoint to another AZ if the preferred one is not available for CRUD</li>
 <li>Read Replicas</li>
-<li>Runs in VMs; users cannot ssh into the VMs</li>
+<li>Runs in VMs; users cannot ssh into the VMs
+<ul>
+<li>No OS access</li>
+</ul></li>
 <li>Not serverless except Aurora Serverless</li>
 <li>Supports Transparent Data Encryption for SQL Server</li>
 <li>Logs
@@ -3918,6 +4095,10 @@
 <li>General query log</li>
 <li>Slow query logs</li>
 </ul></li>
+<li>Second level service
+<ul>
+<li>use <code>dig</code> command</li>
+</ul></li>
 </ul></li>
 <li>Benefits
 <ul>
@@ -3925,7 +4106,7 @@
 <li>no hardware provisioning</li>
 <li>scalability</li>
 <li>high availability</li>
-<li>Can use ElasticCache in front of EC2 RDS instances</li>
+<li>Can use ElastiCache in front of EC2 RDS instances</li>
 </ul></li>
 <li>To connect to MySQL instance, can get instance endpoint from
 <ol type="1">
@@ -3948,7 +4129,7 @@
 <li>up to 16TB of storage</li>
 </ul></li>
 </ul>
-<h3 id="amazon-aurora-based-on-mysql">Amazon Aurora (Based on MySQL)</h3>
+<h3 id="aurora-based-on-mysql">Aurora (Based on MySQL)</h3>
 <ul>
 <li>A MySQL and PostgreSQL-compatible relational database built for the cloud</li>
 <li>Features
@@ -3984,6 +4165,12 @@
 <ul>
 <li>Serverless platform</li>
 <li>Good for infrequent, intermittent, or unpredictable traffic pattern</li>
+<li>ACU
+<ul>
+<li>Aurora Capacity Units</li>
+<li>MySQL: 1 - 256 ACU</li>
+<li>PostgreSQL: 2 - 384 ACU</li>
+</ul></li>
 </ul></li>
 </ul>
 <h2 id="backups">Backups</h2>
@@ -4009,6 +4196,22 @@
 <li>Manually</li>
 <li>May persist even after the RDS instance is deleted</li>
 </ul>
+<h2 id="relational-engine-types">Relational Engine Types</h2>
+<ol type="1">
+<li>Row based storage
+<ul>
+<li>All RDS options support except PostgreSQL</li>
+<li>Good for OLTP
+<ul>
+<li>rapid transactions</li>
+<li>good for low latency use case</li>
+</ul></li>
+</ul></li>
+<li>Columnar storage
+<ul>
+<li>Supported by Aurora, PostgreSQL, Oracle, Redshift</li>
+</ul></li>
+</ol>
 <h2 id="security-5">Security</h2>
 <ul>
 <li>Encryption At Rest
@@ -4028,6 +4231,15 @@
 <ul>
 <li>For disaster recovery only; not for improving performance</li>
 </ul></li>
+<li>Flow
+<ol type="1">
+<li>Block level replication
+<ul>
+<li>EBS is replicated</li>
+</ul></li>
+<li>RDS monitors DB engines, EC2 instances, EBS and EBS replication in both AZs</li>
+<li>Upon engine / EC2 / EBS fails, the RDS would wake up the engine / EC2 instance in another AZ</li>
+</ol></li>
 <li>Can auto switch upon planned maintenance, DB instance failure, AZ failure
 <ul>
 <li>takes 1 - 2 min</li>
@@ -4059,23 +4271,31 @@
 <li>RAID 0 provides performance improvements compared with a single volume as data can be read and written to multiple disks simultaneously</li>
 </ul></li>
 </ul>
-<h2 id="management-6">Management</h2>
+<h2 id="management-7">Management</h2>
 <ul>
 <li>Debugging
 <ul>
 <li>To find out if an error occurred, look for an Error node in the response from the Amazon RDS API</li>
+</ul></li>
+<li>Parameter Group
+<ul>
+<li>Manage engine parameters</li>
+</ul></li>
+<li>Option Group
+<ul>
+<li>Manage plugins in database engines</li>
 </ul></li>
 </ul>
 <h1 id="dynamodb">Dynamodb</h1>
 <ul>
 <li>Non-relational Database (NoSQL)
 <ul>
-<li>Collection == Table, Document == Row, KV pairs == fields</li>
+<li>Collection == Table, Document/Item == Row, Attributes / KV pairs == fields</li>
 <li>Replacement of Oracle NoSQL, Cassandra DB, and MongoDB; Amazon DynamoDB does not allow for alternative NoSQL database software options.</li>
 </ul></li>
 <li>Features
 <ul>
-<li>Fully managed</li>
+<li>Fully managed; no visible servers</li>
 <li>Stored on SSD; spread across 3 geographically distinct data centers (i.e. multi-AZ by default)</li>
 <li>Serverless</li>
 <li>Stores data as a JSON-like document instead of an entry</li>
@@ -4112,81 +4332,16 @@
 <li>Cardinality
 <ul>
 <li>The # of values in a set</li>
-</ul></li>
 <li>High Cardinality
 <ul>
 <li>In DB, refers to the number of unique values contained in a particular column is high</li>
+</ul></li>
 </ul></li>
 <li>Hot Partitions
 <ul>
 <li>A few partitions where more requests are received than the average of partitions</li>
 <li>Typically happen due to low cardinality of partition key</li>
 <li>Can be resolved by using high cardinality data / composite data as partition key</li>
-</ul></li>
-<li>Both partition and sort keys attributes must be defined as type string, number, or binary (i.e. bytes).</li>
-<li>ACID operations
-<ul>
-<li><code>TransactWriteItems</code> operation</li>
-</ul></li>
-<li>Condition-expression
-<ul>
-<li>Using a condition-expression we can perform a conditional update to an item. The condition must evaluate to true; otherwise, the update operation fails</li>
-<li>can use this feature to make sure the content of an article has not changed since it was last read, before we update it</li>
-</ul></li>
-<li>Projection expression
-<ul>
-<li>a string that identifies the attributes that you want. To retrieve a single attribute, specify its name. For multiple attributes, the names must be comma-separated.</li>
-</ul></li>
-<li>Expression attribute name
-<ul>
-<li>a placeholder that you use in an Amazon DynamoDB expression as an alternative to an actual attribute name</li>
-</ul>
-<pre><code>aws dynamodb get-item \
- --table-name ProductCatalog \
- --key &#39;{&quot;Id&quot;:{&quot;N&quot;:&quot;123&quot;}}&#39; \
- --projection-expression &quot;#c&quot; \
- --expression-attribute-names &#39;{&quot;#c&quot;:&quot;Comment&quot;}&#39; // #c is an alternative name for Comment attribute</code></pre></li>
-<li>Query
-<ul>
-<li>needs
-<ol type="1">
-<li>a key condition expression
-<ul>
-<li>a string that determines the items to be read from the table or index.</li>
-</ul></li>
-<li>specify the partition key name and value as an equality condition</li>
-</ol></li>
-</ul></li>
-<li>Update expression
-<ul>
-<li>specifies how <code>UpdateItem</code> will modify the attributes of an item</li>
-<li>e.g. setting a scalar value or removing elements from a list or a map.</li>
-</ul></li>
-<li>DAX
-<ul>
-<li>would not cache strong consistent read requests</li>
-<li>store in Query cache for eventual query &amp; scan</li>
-<li>store in Item cache for eventual <code>GetItem</code> / <code>BatchGetItems</code></li>
-</ul></li>
-<li>Index
-<ul>
-<li>LSI
-<ul>
-<li>maintains an alternate sort key for a given partition key value</li>
-<li>The data in a local secondary index is organized by the same partition key as the base table, but with a different sort key</li>
-<li>can create up to five local secondary indexes per table</li>
-</ul></li>
-<li>GSI
-<ul>
-<li>can use Random Prefix as the partition key to avoid hot partitions and the thing wanna search as sort key</li>
-</ul></li>
-</ul></li>
-<li>Get the consumption of read capacity
-<ul>
-<li>Can be done via setting <code>ReturnConsumedCapacity</code> in query request to <code>TOTAL</code>
-<ul>
-<li><code>NONE</code> is the default value; <code>INDEX</code> shows the aggregated # of RCUs consumed + capacity for each table and index</li>
-</ul></li>
 </ul></li>
 </ul>
 <h2 id="api-ref">API Ref</h2>
@@ -4210,6 +4365,11 @@
 <li>slightly more latency</li>
 </ul></li>
 </ul>
+<h2 id="data-types">Data types</h2>
+<ul>
+<li>Both partition and sort keys attributes must be defined as type string, number, or binary (i.e. bytes).</li>
+<li>Other attributes can be Boolean, Null, Document, Set</li>
+</ul>
 <h2 id="dynamodb-accelerator-dax">DynamoDb Accelerator (DAX)</h2>
 <ul>
 <li>Fully managed, highly available (Multi-AZ) in-mem cache
@@ -4220,6 +4380,8 @@
 <ul>
 <li>DAX sits between application &amp; DynamoDb</li>
 <li>Points API calls to DAX cluster instead of DB</li>
+<li>Eventual query &amp; scan stores in Query cache</li>
+<li>Eventual <code>GetItem</code> / <code>BatchGetItems</code> stores in Item cache</li>
 </ul></li>
 <li>Benefits
 <ul>
@@ -4229,7 +4391,10 @@
 <li>Ideal for read-heavy and bursty workloads</li>
 <li>NOT for
 <ol type="1">
-<li>Strong consistency required</li>
+<li>Strong consistency required
+<ul>
+<li>would not cache strong consistent read requests</li>
+</ul></li>
 <li>Heavy writes</li>
 <li>Do not require microseconds response times</li>
 </ol></li>
@@ -4238,31 +4403,30 @@
 <li>DAX performs eventual consistent GET against DB</li>
 </ul></li>
 </ul>
-<h2 id="on-demand-throughput">On-demand Throughput</h2>
+<h2 id="expressions">Expressions</h2>
 <ul>
-<li>Charges applied for reading, writing, and storing
+<li>Condition-expression
 <ul>
-<li>Pay per request</li>
+<li>Using a condition-expression we can perform a conditional update to an item. The condition must evaluate to true; otherwise, the update operation fails</li>
+<li>can use this feature to make sure the content of an article has not changed since it was last read, before we update it</li>
 </ul></li>
-<li>Great for unpredictable workloads</li>
+<li>Projection expression
+<ul>
+<li>a string that identifies the attributes that you want. To retrieve a single attribute, specify its name. For multiple attributes, the names must be comma-separated.</li>
+</ul></li>
+<li>Expression attribute name
+<ul>
+<li>a placeholder that you use in an Amazon DynamoDB expression as an alternative to an actual attribute name</li>
 </ul>
-<h2 id="provisioned-throughput">Provisioned Throughput</h2>
+<pre><code>aws dynamodb get-item \
+ --table-name ProductCatalog \
+ --key &#39;{&quot;Id&quot;:{&quot;N&quot;:&quot;123&quot;}}&#39; \
+ --projection-expression &quot;#c&quot; \
+ --expression-attribute-names &#39;{&quot;#c&quot;:&quot;Comment&quot;}&#39; // #c is an alternative name for Comment attribute</code></pre></li>
+<li>Update expression
 <ul>
-<li>Measured in Capacity Units</li>
-<li>Can specify RCU &amp; WCU
-<ul>
-<li>RCU = 1 strong consistent read of 4 KB per sec / 2 eventual consistent reads per sec</li>
-<li>WCU = 1 write of 1KB per sec</li>
-</ul></li>
-<li>Calculations
-<ul>
-<li>RCU = celling(data size per item / 4KB) * number of read items per sec / (is strong consistency) ? 1 : 2</li>
-<li>WCU = celling(data size per item / 1KB) * number of write items per sec</li>
-</ul></li>
-<li>If exceeding the throughput
-<ul>
-<li>there would be <code>ProvisionedThroughputExceededException</code></li>
-<li>SDK would auto retry until successful</li>
+<li>specifies how <code>UpdateItem</code> will modify the attributes of an item</li>
+<li>e.g. setting a scalar value or removing elements from a list or a map.</li>
 </ul></li>
 </ul>
 <h2 id="indexes">Indexes</h2>
@@ -4270,32 +4434,137 @@
 <li>In DB, an index is a data structure allowing fast queries on specific columns
 <ul>
 <li>Select the columns to the index and run query on the index rather than the entire dataset</li>
+<li>Avoid unnecessary scan operations</li>
 </ul></li>
-<li>DynamoDb indexes
-<ol type="1">
-<li>Local Secondary Index
+</ul>
+<h3 id="lsi-local-secondary-index">LSI (Local Secondary Index)</h3>
 <ul>
 <li>Can only be created during table creation
 <ul>
 <li>cannot add, remove, or modify later</li>
+<li>can create up to 5 local secondary indexes per table</li>
 </ul></li>
-<li>Same partition key; different sort key</li>
-<li>Any queries based on the Sort key would be much faster using the index than main table<br />
-</li>
+<li>Same partition key; different sort key
+<ul>
+<li>The data in a local secondary index is organized by the same partition key as the base table, but with a different sort key</li>
+<li>Any queries based on the Sort key would be much faster using the index than main table</li>
 </ul></li>
-<li>GSI (Global Secondary Index)
+<li>Components
+<ul>
+<li>Partition key, new sort key, old sort key, projected values (optional; for further lookup)</li>
+</ul></li>
+<li>Any data written to the table is copied Async to LSIs</li>
+<li>LSI is a sparse index
+<ul>
+<li>An index will only have an ITEM if the new sort key attribute is contained in the table item
+<ul>
+<li>which means the new sort key would not be Null in the index</li>
+</ul></li>
+</ul></li>
+<li>Retrival cost
+<ul>
+<li>If query attributes are
+<ul>
+<li>projected: only charged for index entries</li>
+<li>Not projected: items would be fetched from original table; charged for original query + <strong>each</strong> full ITEM in original table</li>
+<li>e.g. Each full item is 1 KB, and each LSI item is 200 bytes, a query returns 5 items
+<ul>
+<li>For query with projected attributes, query size = 5 * size of LSI item = 1 kb rounded to 4kb
+<ul>
+<li>rounded to 1 RCU</li>
+</ul></li>
+<li>For query with unprojected attributes, query size = 1 LSI query size + 5 full item queries = 4kb + 5 * (1KB rounded to 4 kb) = 24 kb
+<ul>
+<li>rounted to 3 RCUs for eventual consistent reads</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="gsi-global-secondary-index">GSI (Global Secondary Index)</h3>
 <ul>
 <li>Can create at any table</li>
 <li>Can issue Query requests with a variety of different attributes as query criteria against these indexes</li>
 <li>Can set a different partition key and sort key</li>
 <li>Default quota is 20 GSIs per table; can request increase</li>
+<li>can use Random Prefix as the partition key to avoid hot partitions and the thing wanna search as sort key</li>
+<li>Have separate RCU and WCU than the original table
+<ul>
+<li>WCU should at least be the same as main table in most cases; however, it depends on the partition key of the GSI</li>
 </ul></li>
+</ul>
+<h2 id="integration-with-other-aws-services">Integration with other AWS services</h2>
+<ul>
+<li>Redshift
+<ul>
+<li>Can use <code>COPY</code> command in Redshift to load data from DDB</li>
+</ul></li>
+<li>EMR
+<ul>
+<li>Can use Apache Hive to integrate</li>
+</ul></li>
+<li>S3
+<ul>
+<li>2 way loading via Data Pipeline</li>
+</ul></li>
+<li>EC2
+<ul>
+<li>SDK</li>
+</ul></li>
+<li>Lambda
+<ul>
+<li>DDB streams</li>
+</ul></li>
+</ul>
+<h2 id="partitions">Partitions</h2>
+<ul>
+<li>Underlying storage and processing nodes of DDB</li>
+<li>Features
+<ul>
+<li>Initially all data in a table is stored in 1 partition</li>
+<li>Users cannot directly control # of partitions for a table
+<ul>
+<li>Partitions would auto increase, but would not auto decrease if traffic reduces</li>
+</ul></li>
+<li>1 partition
+<ul>
+<li>can store 10 GB</li>
+<li>can handle 3000 RCU and 1000 WCU</li>
+</ul></li>
+</ul></li>
+<li>Users need to design tables to avoid I/O ‘hot spots’ / ‘hot keys’
+<ul>
+<li>Otherwise even if users request e.g. 5000 WCU. A single hot partition would throttle requests for 1000 WCU</li>
+</ul></li>
+<li>Data would be distributed based on partition key if more than 1 partition</li>
+<li>RCU &amp; WCU would be splitted evenly across partitions</li>
+<li>To determine the # of partitions
+<ol type="1">
+<li>Based on performance
+<ul>
+<li><h1 id="of-partitions-desired-rcu-3000-desired-wcu-1000">of partitions = Desired RCU / 3000 + Desired WCU / 1000</h1></li>
+</ul></li>
+<li>Based on capacity
+<ul>
+<li><h1 id="of-size-data-size-10-gb">of size = Data size / 10 GB</h1></li>
+</ul></li>
+<li>The actual # of partitions is the Max of the performance and size partitions</li>
 </ol></li>
+</ul>
+<h2 id="pitr-point-in-time-recovery">PITR (Point-in-Time-Recovery)</h2>
+<ul>
+<li>What does it do
+<ul>
+<li>Protects against accidential writes</li>
+<li>Restore to any point from past 5 min to last 35 days</li>
+</ul></li>
+<li>Not enabled by default</li>
+<li>Incremental backups</li>
 </ul>
 <h2 id="primary-keys">Primary Keys</h2>
 <ul>
 <li>primary key - identifier of an item</li>
-<li>Partition key
+<li>Partition key (hash key)
 <ul>
 <li>Value of the Partition key is input to an internal hash function which determines the partition or physical location on which the data is stored</li>
 <li>Spread table into partitions (each partition should be well distributed)</li>
@@ -4303,7 +4572,7 @@
 </ul></li>
 <li>Composite Key
 <ul>
-<li>Partition Key + Sort Key</li>
+<li>Partition Key + Sort (Range) Key</li>
 <li>sort key (optional, if specified then this is part of primary key)
 <ul>
 <li>should set to one of the most frequently searched attribute</li>
@@ -4318,6 +4587,14 @@
 <h3 id="query">Query</h3>
 <ul>
 <li>A query operation finds items in a table based on the Primary Key attribute and a distinct value to search for</li>
+<li>needs
+<ol type="1">
+<li>a key condition expression
+<ul>
+<li>a string that determines the items to be read from the table or index.</li>
+</ul></li>
+<li>specify the partition key name and value as an equality condition</li>
+</ol></li>
 <li>Results refine
 <ul>
 <li>Sort Key name and value</li>
@@ -4354,59 +4631,37 @@
 <ul>
 <li>Stream Record: contains the info about a single modification to the DB table
 <ul>
-<li>Primary key would be recorded by default</li>
+<li>Only Primary key would be recorded by default</li>
 <li>Sequence number would be assigned to stream record reflecting the sequence of the operation</li>
 </ul></li>
 <li>Shards: group (container) of multiple stream records</li>
 </ul></li>
+<li>Features
+<ul>
 <li>Operations would be persisted in order in Stream Records; stored for 24 hours</li>
+<li>Streams endpoint would be different from table endpoint</li>
+<li>Modes
+<ol type="1">
+<li>KEYS_ONLY: only keys are in streams</li>
+<li>NEW_IMAGE: updated full item</li>
+<li>OLD_IMAGE: origin full item</li>
+<li>NEW_AND_OLD_IMAGES</li>
+</ol></li>
+</ul></li>
+<li>Flow
+<ol type="1">
+<li>Replication would be done via Elastic Beanstalk</li>
+<li>use KCL (Kinesis Client Lib) on EC2</li>
+</ol></li>
 <li>Use cases
 <ul>
-<li>Cross-region replication (global tables)</li>
+<li>Cross-region replication (global tables / disaster recovery)</li>
 <li>Establish relationships across tables via streams</li>
+<li>Triggers e.g. Lambda</li>
 </ul></li>
 <li>Lambda can poll DynamoDB streams</li>
 </ul>
-<h2 id="transactions">Transactions</h2>
-<ul>
-<li>Dealing with ‘all-or-nothing’ operations (i.e. ACID transactions)
-<ul>
-<li>Check for a pre-req condition before writing</li>
-<li>Can write multiple items across multiple tables
-<ul>
-<li>Up to 25 items or 4 MB of data at the same time</li>
-</ul></li>
-</ul></li>
-<li>2 underlying reads/writes - prepare/commit</li>
-</ul>
-<h2 id="ttl">TTL</h2>
-<ul>
-<li>Can set TTL to give an expiry date to the data<br />
-</li>
-<li>Expired data would be marked as deleted</li>
-<li>For
-<ol type="1">
-<li>Session data</li>
-<li>Logs</li>
-<li>Temporary data</li>
-</ol></li>
-<li>TTL format
-<ul>
-<li>Epoch time (# of seconds elapsed from 1970 Jan 1st)</li>
-</ul></li>
-<li>Reduces cost automatically</li>
-</ul>
-<h2 id="pitr-point-in-time-recovery">PITR (Point-in-Time-Recovery)</h2>
-<ul>
-<li>What does it do
-<ul>
-<li>Protects against accidential writes</li>
-<li>Restore to any point from past 5 min to last 35 days</li>
-</ul></li>
-<li>Not enabled by default</li>
-<li>Incremental backups</li>
-</ul>
-<h2 id="global-tables">Global Tables</h2>
+<h3 id="global-tables">Global Tables</h3>
 <ul>
 <li>How to create?
 <ol type="1">
@@ -4427,6 +4682,77 @@
 <li>Not all regions are supported</li>
 </ul></li>
 </ul>
+<h2 id="transactions">Transactions</h2>
+<ul>
+<li>Dealing with ‘all-or-nothing’ operations (i.e. ACID transactions)
+<ul>
+<li>Check for a pre-req condition before writing</li>
+<li>Can write multiple items across multiple tables
+<ul>
+<li>Up to 25 items or 4 MB of data at the same time</li>
+</ul></li>
+</ul></li>
+<li>2 underlying reads/writes - prepare/commit</li>
+<li><code>TransactWriteItems</code> operation</li>
+</ul>
+<h2 id="throughputs">Throughputs</h2>
+<h2 id="on-demand-throughput">On-demand Throughput</h2>
+<ul>
+<li>Charges applied for reading, writing, and storing
+<ul>
+<li>Pay per request</li>
+</ul></li>
+<li>Great for unpredictable workloads</li>
+</ul>
+<h2 id="provisioned-throughput">Provisioned Throughput</h2>
+<ul>
+<li>Measured in Capacity Units</li>
+<li>Can specify RCU &amp; WCU
+<ul>
+<li>RCU = 1 strong consistent read of 4 KB per sec / 2 eventual consistent reads per sec</li>
+<li>WCU = 1 write of 1KB per sec</li>
+</ul></li>
+<li>Calculations
+<ul>
+<li>RCU = celling(data size per item / 4KB) * number of read items per sec / (is strong consistency) ? 1 : 2</li>
+<li>WCU = celling(data size per item / 1KB) * number of write items per sec</li>
+</ul></li>
+<li>If exceeding the throughput
+<ul>
+<li>there would be <code>ProvisionedThroughputExceededException</code></li>
+<li>SDK would auto retry until successful</li>
+</ul></li>
+<li>Get the consumption of read capacity
+<ul>
+<li>Can be done via setting <code>ReturnConsumedCapacity</code> in query request to <code>TOTAL</code>
+<ul>
+<li><code>NONE</code> is the default value; <code>INDEX</code> shows the aggregated # of RCUs consumed + capacity for each table and index</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="ttl">TTL</h2>
+<ul>
+<li>Can set TTL to give an expiry date to the data<br />
+</li>
+<li>Features
+<ol type="1">
+<li>After you enable TTL on a table, a per-partition scanner background process automatically and continuously evaluates the expiry status of items in the table</li>
+<li>DeleteItem operation would be performed</li>
+<li>Tagged as <code>system delete</code> in DynamoDB stream</li>
+</ol></li>
+<li>Expired data would be marked as deleted</li>
+<li>For
+<ol type="1">
+<li>Session data</li>
+<li>Logs</li>
+<li>Temporary data</li>
+</ol></li>
+<li>TTL format
+<ul>
+<li>Epoch time (# of seconds elapsed from 1970 Jan 1st)</li>
+</ul></li>
+<li>Reduces cost automatically</li>
+</ul>
 <h2 id="security-6">Security</h2>
 <ul>
 <li>Encryption at rest via KMS</li>
@@ -4434,6 +4760,15 @@
 </ul>
 <h2 id="best-practices-3">Best Practices</h2>
 <ol type="1">
+<li>Creating tables
+<ol type="1">
+<li>Choose appropriate partition keys to avoid hot partitions</li>
+</ol></li>
+<li>Creating LSIs
+<ol type="1">
+<li>Choose new sort keys based on frequently queried attributes</li>
+<li>Think about attributes being projected to save costs during queries</li>
+</ol></li>
 <li>Query / Scan
 <ol type="1">
 <li>Reduce query / scan capacity by setting a smaller page size</li>
@@ -4448,6 +4783,18 @@
 <li>Avoid if table has already had heavy read / write capacity</li>
 </ul></li>
 </ol></li>
+<li>Handling bursts
+<ol type="1">
+<li>Write
+<ol type="1">
+<li>Can change the application to force spreading periodic batch writes over time</li>
+<li>Can use SQS as a managed write buffer</li>
+</ol></li>
+<li>Read
+<ol type="1">
+<li>Caching - CloudFront / DAX</li>
+</ol></li>
+</ol></li>
 </ol>
 <h2 id="pricing-1">Pricing</h2>
 <ul>
@@ -4460,26 +4807,22 @@
 </ul></li>
 <li>Charges base on storage &amp; read / write capacity</li>
 </ul>
-<h1 id="elasticcache">ElasticCache</h1>
+<h1 id="elasticache">ElastiCache</h1>
 <ul>
 <li>A data caching service used to help improve speed/performance of web applications running on AWS</li>
-<li>Cache in memory</li>
+<li>Features
+<ul>
+<li>Cache in memory
+<ul>
+<li>Memory access is much faster than disk access</li>
+<li>However, all data can be lost if there is a hardware failure</li>
+</ul></li>
+<li>NoSQL key-value store</li>
+</ul></li>
 <li>Benefits
 <ul>
 <li>Speed/performance increases</li>
 <li>Removes huge load from DB</li>
-</ul></li>
-<li>Supports 2 open-source in-memory engines
-<ul>
-<li><strong>Redis</strong> A fast, open source, in-memory data store and cache
-<ul>
-<li>Use cases: Advanced data types, sorting data sets, Multi-AZ, Backups, Master / slave replication, Pub/sub support</li>
-</ul></li>
-<li><strong>Memcached</strong> A common memory object caching system
-<ul>
-<li>Simple caching model</li>
-<li>Use cases: offload DB, multi-threaded performance</li>
-</ul></li>
 </ul></li>
 <li>Can be used as a data store for session data</li>
 <li>Parameter Group
@@ -4490,6 +4833,30 @@
 <li>Security Group</li>
 <li>Subnet Group</li>
 </ul>
+<h2 id="supports-2-open-source-in-memory-key-value-database-engines">Supports 2 open-source in-memory key-value database engines</h2>
+<ol type="1">
+<li><strong>Redis</strong> A fast, open source, in-memory data store and cache
+<ul>
+<li>Features
+<ol type="1">
+<li>Complex data types e.g. strings, hashes, list</li>
+<li>Can have disk persistence in addition to in mem cache at the cost of speed</li>
+<li>Can configure fall-over</li>
+</ol></li>
+<li>Use cases: Advanced data types, sorting data sets, Multi-AZ, Backups, Master / slave replication, Pub/sub support</li>
+<li>Cluster mode enabled vs disabled</li>
+</ul></li>
+<li><strong>Memcached</strong> A common memory object caching system
+<ul>
+<li>Features
+<ol type="1">
+<li>Multi-threading support</li>
+<li>Only supports string to string mapping</li>
+<li>Simple caching model</li>
+</ol></li>
+<li>Use cases: offload DB, multi-threaded performance</li>
+</ul></li>
+</ol>
 <h2 id="caching-strategies">Caching Strategies</h2>
 <ol type="1">
 <li>Lazy Loading
@@ -4528,47 +4895,124 @@
 </ul></li>
 </ol>
 <h1 id="amazon-neptune">Amazon Neptune</h1>
-<p>A fast, reliable, fully-managed graph database service that makes it easy to build and run applications that work with highly connected datasets</p>
-<h1 id="amazon-redshift">Amazon Redshift</h1>
+<ul>
+<li>A fast, reliable, fully-managed <strong>graph</strong> database service that makes it easy to build and run applications that work with highly connected datasets</li>
+<li>Architecture
+<ol type="1">
+<li>Data is structured as nodes with edges
+<ul>
+<li>Edges are shared attributes between nodes</li>
+</ul></li>
+<li>Can reveal hidden patterns in data</li>
+</ol></li>
+<li>Interface languages
+<ol type="1">
+<li>Apache Gremlin
+<ul>
+<li>Graph structure: property</li>
+<li>query pattern: traversal</li>
+</ul></li>
+<li>W3C SPARQL
+<ul>
+<li>Graph structure: Resource Description Framework (RDF)</li>
+<li>query pattern: SQL</li>
+</ul></li>
+</ol></li>
+<li>Use cases
+<ol type="1">
+<li>Security - pattern recognition</li>
+<li>Social media - targeting advertisement</li>
+<li>Science - Scientific modeling</li>
+</ol></li>
+</ul>
+<h1 id="documentdb">DocumentDB</h1>
+<ul>
+<li>Fully managed auto-scaling Document Store Database Management System</li>
+<li>Features
+<ol type="1">
+<li>Great for structured / semi-structured documents - JSON / YAML</li>
+<li>Metadata is stored with document records</li>
+<li>Can hit critical scale failures</li>
+<li>MongoDB compatible</li>
+</ol></li>
+<li>Use cases
+<ol type="1">
+<li>Social Media Profiles</li>
+<li>Object Catalogues</li>
+<li>Content Management Systems</li>
+</ol></li>
+</ul>
+<h1 id="redshift">Redshift</h1>
 <ul>
 <li>Fast, fully managed Cloud Data Warehouse for BI available in 1 AZ</li>
-<li>Definitions
-<ul>
-<li>Data warehouse is a collection of computing resources (<em>nodes</em>)</li>
-<li><em>Nodes</em> are organized into a group called a <em>cluster</em></li>
-<li>Each <em>cluster</em> runs an Amazon Redshift engine and contains one or more databases running on EC2 instances</li>
-<li>Named as <em>RedShift</em> as it’s the same as the context of Universe Expansion as observed in Hubble’s telescope</li>
-</ul></li>
-<li>Architecture
+<li>Features
 <ul>
 <li>A relational <em>database</em> management system (RDBMS) based on an older version of PostgreSQL 8.0.2
 <ul>
 <li>RDBMS</li>
 <li>PostgreSQL</li>
 </ul></li>
-<li>S3 vs. RedShift
-<ul>
-<li>Amazon S3 a simple web services interface to store and retrieve any amount of data from anywhere on the web</li>
-<li>data can be pumped into your warehouse from s3</li>
-</ul></li>
-</ul></li>
-<li>Configuration types
-<ul>
-<li>Single Node: 160 G</li>
-<li>Multi Node
-<ul>
-<li>Leader node - manage client connection</li>
-<li>Compute nodes - up to 128 nodes</li>
-</ul></li>
-</ul></li>
-<li>Features
-<ul>
 <li>can query against up to 1 PB (1024 TB) stored in RedShift, and 1 EB (1024 PB) in S3</li>
 <li>gives you fast querying capabilities over structured data using familiar SQL-based clients and business intelligence (BI) tools using standard ODBC and JDBC connections. Queries are distributed and parallelized across multiple physical resources.</li>
+<li>Named as <em>RedShift</em> as it’s the same as the context of Universe Expansion as observed in Hubble’s telescope</li>
+</ul></li>
+<li>Architecture
+<ul>
+<li>Node
+<ul>
+<li>Data warehouse is a collection of computing resources (<em>nodes</em>)</li>
+<li>Node Configurations
+<ol type="1">
+<li>Single node - 160 G</li>
+<li>Multi node
+<ol type="1">
+<li>Leader node
+<ul>
+<li>has a SQL endpoint
+<ul>
+<li>e.g. <code>redshiftsample.xxx.us-east-1.redshift.amazonaws.com:5439</code></li>
+<li>To view the endpint
+<ul>
+<li>Redshift -&gt; Clusters -&gt; Choose cluster -&gt; Configuration -&gt; Endpoint</li>
+</ul></li>
+</ul></li>
+<li>coordinates parallet query execution
+<ul>
+<li>leader nodes compiles execution plan and distribute to compute nodes</li>
+</ul></li>
+<li>stores metadata</li>
+</ul></li>
+<li>Compute node - up to 128 nodes
+<ul>
+<li>execute queries in parallel</li>
+<li>dedicated CPU, memory and local storage</li>
+<li>auto backups</li>
+<li>Consists of slices
+<ul>
+<li>Slices are portion of mem and disk</li>
+<li>data would be loaded to slices in parallel</li>
+<li>processes a portion of the query</li>
+<li><h1 id="of-slices-depend-on-the-table-design-nodes">of slices depend on the table design &amp; nodes</h1></li>
+</ul></li>
+</ul></li>
+</ol></li>
+</ol></li>
+<li>Node types
+<ol type="1">
+<li>Dense Compute</li>
+<li>Dense Storage</li>
+</ol></li>
+</ul></li>
+<li>Cluster
+<ul>
+<li><em>Nodes</em> are organized into a group called a <em>cluster</em></li>
+<li>Each <em>cluster</em> runs an Amazon Redshift engine and contains one or more databases running on EC2 instances</li>
+</ul></li>
 </ul></li>
 <li>Use cases
 <ul>
 <li>best suited for analyzing data using standard SQL and Business Intelligence(BI) tools</li>
+<li>Do not use it for OLTP use cases</li>
 </ul></li>
 <li>Usage
 <ul>
@@ -4576,18 +5020,50 @@
 <li>There is limited dynamic statement available for RedShift, using python might be better</li>
 </ul></li>
 </ul>
+<h2 id="columnar-data-store">Columnar Data Store</h2>
+<ul>
+<li>Redshift stores data tables as columns rather than as rows</li>
+<li>Benefits
+<ol type="1">
+<li>Avoid wasted reads if the query is on a few columns</li>
+<li>Data aggregation - compress same columns</li>
+<li>Supports compression -&gt; save cost
+<ul>
+<li>Compress same columns (also called a column-oriented database)</li>
+<li>Other compression techiques may be applied automatically</li>
+</ul></li>
+</ol></li>
+<li>Not for
+<ol type="1">
+<li>Querying specific values from a huge database</li>
+<li>Small amount of data</li>
+<li>OLTP
+<ul>
+<li>Avoid single line inserts i.e. inserting rows</li>
+</ul></li>
+<li>Binary large objects</li>
+</ol></li>
+</ul>
 <h2 id="enhanced-vpc-routing">Enhanced VPC Routing</h2>
 <ul>
 <li>Provides VPC resources access to Redshift so that Redshift can access the resources via VPC endpoints</li>
 <li>Before enabling, Redshift routes traffic through the internet</li>
 <li>After enabling, it forces all <code>COPY</code> and <code>UNLOAD</code> traffic between the cluster and data repositories through VPC</li>
 </ul>
-<h2 id="columnar-data-store">Columnar Data Store</h2>
+<h2 id="integration-with-other-aws-services-1">Integration with other AWS services</h2>
 <ul>
-<li>Compress same columns (also called a column-oriented database)</li>
-<li>Other compression techiques may be applied automatically</li>
+<li>S3
+<ul>
+<li>via COPY / UNLOAD commands e.g. <code>copy {table-name} from '{s3-object-path}' credentials '{IAM-role-ARN}'</code></li>
+<li>can use COPY to move data from DynamoDB, EMR, and EC2</li>
+</ul></li>
+<li>Data Pipeline</li>
+<li>Database Migration Service</li>
+<li>Lambda</li>
+<li>QuickSight</li>
+<li>Kinesis</li>
 </ul>
-<h2 id="massively-parallel-processing-mpp">massively parallel processing (MPP)</h2>
+<h2 id="massively-parallel-processing-mpp">Massively Parallel Processing (MPP)</h2>
 <ul>
 <li>Auto distribute data &amp; query load across all nodes</li>
 <li>Scaling while maintaining query performance</li>
@@ -4615,6 +5091,10 @@
 <li>Data Transfer within VPC</li>
 </ul></li>
 <li>Can reserve EC2 instances to save cost</li>
+</ul>
+<h1 id="lake-formation">Lake Formation</h1>
+<ul>
+<li>Help builds a data lake, i.e. a centralized storage</li>
 </ul>
 <h1 id="efs-elastic-file-system">EFS (Elastic File System)</h1>
 <ul>
@@ -4673,6 +5153,28 @@
 <li>EFS is native to Unix and Linux</li>
 </ul></li>
 </ul>
+<h1 id="sagemaker">SageMaker</h1>
+<ul>
+<li>helps data scientists and developers to prepare, build, train, and deploy high-quality machine learning (ML) models quickly by bringing together a broad set of capabilities purpose-built for ML.</li>
+<li>Features
+<ol type="1">
+<li>purpose-built tools for every step of ML development, including labeling, data preparation, feature engineering, statistical bias detection, auto-ML, training, tuning, hosting, explainability, monitoring, and workflows.</li>
+<li>Supports ML frameworks TensorFlow, PyTorch, and mxnet</li>
+</ol></li>
+</ul>
+<h2 id="s3-integration">S3 Integration</h2>
+<ul>
+<li>S3 can store input and model trained from SageMaker</li>
+<li>Can add Amazon FSx for Lustre between S3 and SageMaker
+<ul>
+<li>Fastest file loading</li>
+</ul></li>
+<li>EFS
+<ul>
+<li>Can download the data from S3 to the training instance’s EBS before training starts</li>
+<li>Good if the size of data is not big</li>
+</ul></li>
+</ul>
 <h1 id="application-integration-services">Application Integration Services</h1>
 <ul>
 <li>Consumer-Producer
@@ -4717,7 +5219,7 @@
 <li>State machine - workflow template</li>
 <li>Execution - specific workflow based on template</li>
 </ul>
-<h3 id="management-7">Management</h3>
+<h3 id="management-8">Management</h3>
 <ul>
 <li>Create
 <ul>
@@ -4955,6 +5457,10 @@
 <li>SSM can then apply the same configuration to other instances</li>
 </ol></li>
 </ul>
+<h3 id="cloudwatch-insights">CloudWatch Insights</h3>
+<ul>
+<li>Analysis tool to check insights</li>
+</ul>
 <h3 id="logs">Logs</h3>
 <ul>
 <li>Retention:
@@ -4963,6 +5469,21 @@
 <li>Can customerize</li>
 </ul></li>
 </ul>
+<h3 id="cost-1">Cost</h3>
+<ul>
+<li>Majority of cost on the size of logs emitted by the CW agent</li>
+<li>Query &amp; storage cost are typically negligible</li>
+</ul>
+<h3 id="bp">BP</h3>
+<ol type="1">
+<li>Create some CW insights regex to faciliate searches</li>
+<li>To save cost
+<ol type="1">
+<li>reduce the overhead of each log statement (e.g. truncate/delete some general information)</li>
+<li>remove redundant logs</li>
+<li>remove request/response logs</li>
+</ol></li>
+</ol>
 <h2 id="cloudtrail">CloudTrail</h2>
 <ul>
 <li>CloudTrail is a service that allows for auditing of IAM users within in AWS account.</li>
@@ -5219,7 +5740,7 @@
 <li>Or can update the command in Build Commands section during the build run in AWS Console</li>
 </ul></li>
 </ul>
-<h3 id="management-8">Management</h3>
+<h3 id="management-9">Management</h3>
 <ul>
 <li>Create
 <ul>
@@ -5375,7 +5896,7 @@
 </ul>
 <h3 id="cfn-drift-detection">CFn Drift Detection</h3>
 <ul>
-<li>used to detect changes made to AWS resources outside of CFn templates</li>
+<li>used to detect changes made to CFn created AWS resources outside of CFn templates</li>
 <li>Can run against individual stack resources / entire CFn stack / EC2 instances</li>
 <li>Only checks property values explicitly set by stack templates or template parameters</li>
 </ul>
@@ -5451,7 +5972,7 @@
 <li>defines the point in a Lambda function’s code where execution begins</li>
 </ul></li>
 </ul>
-<h3 id="management-9">Management</h3>
+<h3 id="management-10">Management</h3>
 <ul>
 <li>Lambda deployment
 <ol type="1">
@@ -5742,7 +6263,7 @@
 <ul>
 <li>Default: grant root user access to created keys</li>
 </ul>
-<h3 id="management-10">Management</h3>
+<h3 id="management-11">Management</h3>
 <ul>
 <li>Create
 <ol type="1">
@@ -5830,9 +6351,10 @@
 <h1 id="aws-analytics">AWS Analytics</h1>
 <h2 id="athena">Athena</h2>
 <ul>
-<li>Serverless interactive query service
+<li>Fully managed serverless interactive query service
 <ul>
 <li>Analyze and query data in S3 using SQL</li>
+<li>RDMS</li>
 </ul></li>
 <li>Use cases
 <ul>
@@ -5855,11 +6377,17 @@
 </ul>
 <h2 id="emr-elastic-map-reduce">EMR (Elastic Map Reduce)</h2>
 <ul>
-<li>Big data platform using open-source tools including Apache Spark, Apache Hive …</li>
-<li>Managed Hadoop (MapReduce programming model for distributed storage &amp; big data) framework</li>
+<li>Big data platform</li>
 <li>Features
 <ul>
-<li>Can read large amounts of data</li>
+<li>Managed cluster platform</li>
+<li>Can read, process and analyze large amounts of data</li>
+<li>Several big data frameworks &amp; open-source projects
+<ul>
+<li>Frameworks: managed Hadoop (MapReduce programming model for distributed storage &amp; big data) framework</li>
+<li>Open-source tools: Apache Spark, Apache Hive</li>
+</ul></li>
+<li>Single AZ</li>
 </ul></li>
 <li>Benefits
 <ul>
@@ -5867,20 +6395,181 @@
 <li>x3 faster than Apache Spark</li>
 </ul></li>
 <li>Components
-<ul>
+<ol type="1">
 <li>Cluster: a group of interconnected EC2 instances; each instances is a node
 <ul>
 <li>Master node: manages the cluster, track job status, and monitor health
 <ul>
+<li>Features
+<ol type="1">
+<li>Coordinates distribution and parallel execution of MapReduce executables</li>
+<li>Tracking and directing against HDFS</li>
+<li>Resource Manager</li>
+</ol></li>
 <li>Logs can be persisted in S3 every 5 minutes.
 <ul>
 <li>This needs to be set up when the cluster is created.</li>
 </ul></li>
 </ul></li>
-<li>Core node: run tasks &amp; store data in HDFS (Hadoop Distributed File System)</li>
-<li>Task node (optional): only run tasks</li>
+<li>Core node (slave node): run tasks &amp; store data in HDFS (Hadoop Distributed File System)
+<ul>
+<li>DataNode daemon
+<ul>
+<li>manage data blocks and I/O requests under core node</li>
+</ul></li>
+<li>NodeManger
+<ul>
+<li>manage resources on core node</li>
+</ul></li>
+<li>ApplicationMaster
+<ul>
+<li>work with node manager &amp; resource manager, and execute and monitor containers</li>
 </ul></li>
 </ul></li>
+<li>Task node (optional): only run tasks
+<ul>
+<li>No HDFS</li>
+</ul></li>
+<li>Instance Group
+<ul>
+<li>Nodes are grouped in instance groups</li>
+<li>Size limit of total instance groups: 50
+<ul>
+<li>Master node: 1 group</li>
+<li>Core node: 1 or 2 groups</li>
+<li>Task node: up to 48 groups</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>HDFS
+<ul>
+<li>Distributed file system
+<ul>
+<li>allows concurrent access</li>
+</ul></li>
+<li>Features
+<ol type="1">
+<li>High throughput</li>
+<li>Replication
+<ul>
+<li>Default replication factor is 3</li>
+<li>Management
+<ul>
+<li>View factor: <code>hadoop fs -stat %r filename</code></li>
+<li>Update factor: <code>hadoop fs -setrep -R -w {new factor} filename</code></li>
+</ul></li>
+</ul></li>
+</ol></li>
+<li>Components
+<ol type="1">
+<li>Global Namespace</li>
+<li>Block
+<ul>
+<li>Block size
+<ul>
+<li>default block size: 64 MB
+<ul>
+<li>general block size: 64 - 256 MB</li>
+</ul></li>
+<li>Large block sizes
+<ul>
+<li>minimizes random disk seeks and latency</li>
+</ul></li>
+<li>Can be set per file</li>
+</ul></li>
+</ul></li>
+</ol></li>
+</ul></li>
+<li>Storage options
+<ol type="1">
+<li>Instance Store
+<ul>
+<li>High IOPS at low cost</li>
+</ul></li>
+<li>EBS for HDFS
+<ul>
+<li>Note that volume would not be persisted</li>
+</ul></li>
+<li>EMRFS
+<ul>
+<li>store on S3
+<ul>
+<li>data would be persisted after termination of EMR instances</li>
+</ul></li>
+<li>Features
+<ol type="1">
+<li>Can use EMRFS and HDFS together
+<ul>
+<li>Copy data from S3 to HDFS using S3DistCp</li>
+</ul></li>
+<li>Consistent View</li>
+</ol></li>
+</ul></li>
+</ol></li>
+</ol></li>
+<li>Use cases
+<ol type="1">
+<li>Log processing</li>
+<li>ETL</li>
+<li>Stream analysis</li>
+<li>Machine learning</li>
+</ol></li>
+</ul>
+<h3 id="mapreduce-overview">MapReduce Overview</h3>
+<ul>
+<li>MapReduce is a programming model and an associated implementation for processing and generating big data sets with a parallel, distributed algorithm on a cluster</li>
+<li>components
+<ol type="1">
+<li>Input - unstructured data</li>
+<li>Split
+<ul>
+<li>Read input and split inputs into records</li>
+<li>Each record is a key-value pair</li>
+</ul></li>
+<li>Map procedure
+<ul>
+<li>Data would be distributed in the cluster to nodes for processing</li>
+</ul></li>
+<li>Suffle
+<ul>
+<li>Moving intermediate KV pairs to the reducers</li>
+<li>Records would be sorted and grouped based on keys in KV<br />
+</li>
+</ul></li>
+<li>Reduce method
+<ul>
+<li>Take the results from the Map phase and reduce (combine) into a single value</li>
+</ul></li>
+</ol></li>
+</ul>
+<h3 id="apache-hadoop">Apache Hadoop</h3>
+<ul>
+<li>A framework</li>
+<li>Features
+<ol type="1">
+<li>Distributed processing across clusters using simple programming models</li>
+<li>Scalibility</li>
+<li>Error detection at application layer</li>
+</ol></li>
+<li>YARN Architecture
+<ul>
+<li>Client -&gt;</li>
+<li>Master node -&gt;
+<ul>
+<li>Resource Manager: assigns the map phase the data records to start parallel processing</li>
+</ul></li>
+<li>Slave node -&gt;
+<ul>
+<li>Node manager</li>
+<li>Application master</li>
+<li>Container: data processing</li>
+</ul></li>
+<li>HDFS</li>
+</ul></li>
+</ul>
+<h3 id="emr-architecture">EMR Architecture</h3>
+<ul>
+<li>Core and task nodes are the slave nodes</li>
 </ul>
 <h2 id="cloudsearch">CloudSearch</h2>
 <p>Service to help set up, manage, and scale a search solution for the website and application</p>
@@ -5890,16 +6579,51 @@
 <ul>
 <li>Help collect, process, and analyze real-time, streaming data so you can get timely insights and react quickly to new information</li>
 <li>Real-time data examples: purchases, stock, game data, iOT sensor data</li>
+<li>Benefits
+<ol type="1">
+<li>Real-time aggregation of data</li>
+<li>Loading data into Redshift / EMR / S3 / DynamoDB</li>
+<li>Parallel application readers</li>
+</ol></li>
 </ul>
 <h3 id="kinesis-data-streams">Kinesis Data Streams</h3>
 <ul>
 <li>A massively scalable and durable real-time data streaming service</li>
 <li>can be used to collect log and event data from sources such as servers, desktops, and mobile devices</li>
+<li>Features
+<ul>
+<li>can capture, transform, and load streaming data into Amazon S3, Amazon Redshift, Amazon Elasticsearch Service, and Splunk</li>
+</ul></li>
 <li>Model
 <ul>
-<li>Producers -&gt; Shards (storage) -&gt; consumers (analysis)
+<li>Producers -&gt; Shards (storage) -&gt; consumers (analysis)</li>
+</ul></li>
+<li>Data Blob
 <ul>
-<li>Each shard is a sequence of data-records in a stream, each data record has a unique sequence number</li>
+<li>the data that producer adds to a stream</li>
+<li>max size is 1 MB</li>
+</ul></li>
+<li>Streams Record
+<ul>
+<li>Unit of data stored in a stream</li>
+<li>Components
+<ol type="1">
+<li>Partition key
+<ul>
+<li>helps group the data by shard by telling which shard the data belongs to</li>
+<li>specified by the app putting the data into a stream</li>
+</ul></li>
+<li>Sequence number
+<ul>
+<li>unique id for records in a shard</li>
+<li>assigned when a producer calls <code>PutRecord</code> or <code>PutRecords</code> operations to add data to a stream</li>
+</ul></li>
+<li>User records - actual data being sent to Kinesis</li>
+</ol></li>
+</ul></li>
+<li>Shard
+<ul>
+<li>a sequence (group) of data-records in a stream, each data record has a unique sequence number</li>
 <li>Shard limit
 <ul>
 <li>Read
@@ -5912,33 +6636,139 @@
 <li>1000 records per sec</li>
 <li>Data rate: 1 MB per sec</li>
 </ul></li>
-<li>Retention period: 24 hours to 7 days</li>
-</ul></li>
-<li>When data rate increases, need to increase the # of shards (resharding)</li>
-</ul></li>
-</ul></li>
-<li>Features
+<li>Retention period: 24 hours (default) to 7 days
 <ul>
-<li>can capture, transform, and load streaming data into Amazon S3, Amazon Redshift, Amazon Elasticsearch Service, and Splunk</li>
+<li>can change via CLI</li>
+</ul></li>
+</ul></li>
+<li>Resharding
+<ul>
+<li>enables you to increase or decrease the number of shards in a stream in order to adapt to changes in the rate of data flowing through the stream</li>
+<li>the number of instances does not exceed the number of shards</li>
+<li>one worker can process any number of shards</li>
+<li>Options
+<ol type="1">
+<li>Shard split</li>
+<li>Shard merge</li>
+</ol></li>
+</ul></li>
+</ul></li>
+<li>Producers
+<ul>
+<li>Options
+<ol type="1">
+<li>SDK Kinesis Streams API
+<ol type="1">
+<li><code>PutRecord</code></li>
+<li><code>PutRecords</code> - recommended by AWS</li>
+</ol></li>
+<li>KPL (Kinesis Producer Library)
+<ul>
+<li>Helps write to 1 or more Kinesis Streams with an auto-retry configurable mechanism</li>
+<li>Features
+<ol type="1">
+<li>Collects records to write multiple records to multiple shards per request</li>
+<li>Aggregation
+<ul>
+<li>Combine multiple user records into 1 Streams record</li>
+<li>Shard write capacity - 1 MB / sec &amp; 1000 Streams record / sec</li>
+<li>Can combine user records to fill up the 1 MB / sec space , thus improving the throughput of each shards</li>
+</ul></li>
+<li>Collection (batching)
+<ul>
+<li>Combine multiple Streams records into a single HTTP request with <code>PutRecords</code> API operation</li>
+</ul></li>
+</ol></li>
+<li>KCL integration</li>
+<li>Use cases
+<ul>
+<li>inject thousands of requests per sec</li>
+</ul></li>
+<li>Not suitable when
+<ul>
+<li>producer app cannot incur additional processing delay</li>
+</ul></li>
+</ul></li>
+<li>Kinesis Agent
+<ul>
+<li>Standalone java app that Kinesis provides</li>
+<li>Features
+<ol type="1">
+<li>Monitor multiple directories and write to multiple streams</li>
+<li>Can pre-process data
+<ol type="1">
+<li>Multi-line record to single line</li>
+<li>Convert data to JSON format</li>
+</ol></li>
+</ol></li>
+</ul></li>
+</ol></li>
+</ul></li>
+<li>Consumers
+<ul>
+<li>KCL (Kinesis Consumer Library)
+<ul>
+<li>consumes and processes data</li>
+<li>features
+<ol type="1">
+<li>Contains a Record Processor</li>
+<li>Resharding</li>
+<li>Load balancing</li>
+<li>Checkpointing</li>
+<li>De-aggregation</li>
+</ol></li>
 </ul></li>
 <li>Order
 <ul>
 <li>Cannot guarantee the order across shards</li>
 <li>Kinesis gives you the ability to consume records according to a sequence number applied when data is written to the Kinesis shard</li>
 </ul></li>
-<li>Re-sharding
+<li>Checkpointing - track processed records (via DDB)
 <ul>
-<li>enables you to increase or decrease the number of shards in a stream in order to adapt to changes in the rate of data flowing through the stream</li>
-<li>the number of instances does not exceed the number of shards</li>
-<li>one worker can process any number of shards</li>
+<li>Uses unique DDB for each app to track app state</li>
+<li>As KCL uses the name of Streams app to create DDB table, application names should be unique
+<ul>
+<li>The DDB that KCL creates would have 10 WCU and 10 RCU
+<ul>
+<li>Cases where RCU/WCU is not enough
+<ol type="1">
+<li>Frequent checkpointing in app</li>
+<li>Too many shards</li>
+</ol></li>
+</ul></li>
+</ul></li>
+<li>Each row in DDB table represents a shard
+<ul>
+<li>Hash key is the shard id</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>Loads data into S3 / ElasticSearch / Redshift / DDB
+<ul>
+<li>Can use
+<ol type="1">
+<li>Kinesis Connector Library (Java)
+<ul>
+<li>Kinesis Stream -&gt; iEmitter -&gt; other AWS services</li>
+</ul></li>
+<li>Spark Streaming</li>
+<li>Lambda
+<ul>
+<li>Can auto read records from Kinesis streams and process them</li>
+</ul></li>
+</ol></li>
 </ul></li>
 </ul>
 <h3 id="kinesis-firehose">Kinesis Firehose</h3>
 <ul>
 <li>reliably load streaming data into data lakes, data stores, and analytics tools</li>
+<li>Features
+<ul>
 <li>capture, transform, and load streaming data into Amazon S3, Amazon Redshift, Amazon Elasticsearch Service, and Splunk, enabling near-real-time analytics</li>
 <li>automatically scales to match the throughput of your data and requires no ongoing administration</li>
-<li>can also batch, compress, transform, and encrypt the data before loading it</li>
+<li>can also batch, compress (e.g. reduce storage in S3), transform, and encrypt the data before loading it</li>
+<li>No storage, while KDS has</li>
+</ul></li>
 <li>Components
 <ol type="1">
 <li>Delivery streams</li>
@@ -5948,7 +6778,45 @@
 <ul>
 <li>Producers -&gt; Kinesis Firehose (lambda - capture &amp; transform) -&gt; S3 / Redshift / ElasticSearch</li>
 </ul></li>
-<li>No storage, while KDS has</li>
+<li>Methods to load data into Firehose
+<ol type="1">
+<li>Kinesis agent</li>
+<li>AWS SDK
+<ul>
+<li><code>PutRecord</code> / <code>PutRecordBatch</code></li>
+</ul></li>
+</ol></li>
+<li>Data Transformation
+<ul>
+<li>Flow
+<ol type="1">
+<li>Firehose buffers incoming data up to 3 MB</li>
+<li>Invokes Lambda to transform data async (will retry 3 times)</li>
+<li>Transformed data sent back to Firehose for buffering and then delivers to destination</li>
+</ol></li>
+<li>Lambda params for transformation
+<ol type="1">
+<li>recordId - need to be consistent before / after transformation</li>
+<li>result - transformed record status</li>
+<li>data - transformed data payload</li>
+</ol></li>
+</ul></li>
+<li>Delivery
+<ul>
+<li>Buffer size (1 - 128 MB) / buffer interval (60 - 900 sec)
+<ul>
+<li>Determines how data is packed and sent to other AWS services</li>
+<li>Firehose can raise the buffer size dynamically to catch up if there were errors</li>
+</ul></li>
+<li>Error handling
+<ol type="1">
+<li>S3 - retries delivery for up to 24 hours; data would be lost if past 24 hours</li>
+<li>Redshift - retry duration can be configured between 0 - 7200 seconds from copying from S3
+<ul>
+<li>Manifest files could be created for backfilling</li>
+</ul></li>
+</ol></li>
+</ul></li>
 </ul>
 <h3 id="kinesis-analytics">Kinesis Analytics</h3>
 <ul>
@@ -5976,12 +6844,30 @@
 <li><h1 id="of-consumer-instances-should-be-less-than-of-shards">of consumer instances should be less than # of shards</h1></li>
 <li>Use auto scaling group with dynamic scaling on CPU utlization to help manage the # of consumer instances</li>
 </ol>
-<h2 id="aws-quicksight">AWS QuickSight</h2>
-<p>A scalable, serverless, embeddable, machine learning-powered business intelligence (BI) service built for the cloud</p>
-<h2 id="aws-glue">AWS Glue</h2>
+<h2 id="quicksight">QuickSight</h2>
+<ul>
+<li>A scalable, serverless, embeddable, machine learning-powered business intelligence (BI) service built for the cloud</li>
+<li>Features
+<ol type="1">
+<li>Supported data sources:
+<ol type="1">
+<li>Redshift, Aurora, Athena, RDS, S3</li>
+<li>Databases in EC2 for AWS / On-prem</li>
+<li>On-prem files</li>
+<li>Salesforce</li>
+</ol></li>
+</ol></li>
+<li>Use cases
+<ol type="1">
+<li>Business Intelligence tool</li>
+<li>Marketing, sales, financial, operational data analysis</li>
+</ol></li>
+</ul>
+<h2 id="glue">Glue</h2>
 <ul>
 <li>A serverless data integration service that makes it easy to discover, prepare, and combine data for analytics, machine learning, and application development</li>
 <li>can visually create, run, and monitor ETL workflows with a few clicks in AWS Glue Studio</li>
+<li>Can do batch processing</li>
 </ul>
 <h1 id="other-aws-services">Other AWS Services</h1>
 <h2 id="aws-config">AWS Config</h2>
@@ -5990,14 +6876,90 @@
 <li>continuously monitors and records your AWS resource configurations and allows you to automate the evaluation of recorded configurations against desired configurations</li>
 <li>can notify the changes to the state of AWS environment</li>
 </ul>
-<h2 id="aws-data-pipeline">AWS Data Pipeline</h2>
-<ul>
-<li>A web service that helps you reliably process and move data between different AWS compute and storage services, as well as on-premises data sources, at specified intervals.</li>
-</ul>
 <h2 id="aws-elastic-transcoder">AWS Elastic Transcoder</h2>
 <ul>
 <li>Media Transcoder in the cloud</li>
 <li>Transcode video to formats that look good on each devices</li>
+</ul>
+<h2 id="aws-iot">AWS IOT</h2>
+<ul>
+<li>Takes data from IoT devices and write data to ElasticSearch / Kinesis Firehose / Kinesis Streams / DDB / Machine Learning</li>
+<li>Invokes Lambda functions</li>
+<li>General Flow
+<ol type="1">
+<li>Registray establishes identities of the devices -&gt;</li>
+<li>IoT device SDK helps devices transfer data via HTTP / HTTPS -&gt;</li>
+<li>Device gateway -&gt;</li>
+<li>Rule engines (transforming messages) -&gt; other AWS Services</li>
+</ol></li>
+<li>Components
+<ul>
+<li>Operations
+<ol type="1">
+<li>Control plane API
+<ul>
+<li>admin tasks</li>
+</ul></li>
+<li>Data plane API
+<ul>
+<li>sending / receiving data from AWS IoT</li>
+</ul></li>
+</ol></li>
+<li>Authentication
+<ul>
+<li>Each connected devices requires an X509 cert to authenticate the device connection with AWS IoT
+<ul>
+<li>Management
+<ul>
+<li>‘IoT’ -&gt; ‘Security’ -&gt; ‘Certificates’</li>
+</ul></li>
+</ul></li>
+<li>IAM / Cognito
+<ul>
+<li>Can attach an IOT policy to a cognito identity</li>
+</ul></li>
+</ul></li>
+<li>Authorization
+<ol type="1">
+<li>IoT policies</li>
+<li>IAM policies</li>
+</ol></li>
+<li>Device Gateway
+<ul>
+<li>Maintains sessions and subscriptions for all connected devices</li>
+<li>Allows 1:1 and 1:many communications</li>
+<li>Protocols supported: MQTT, WebSockets, HTTP</li>
+</ul></li>
+<li>Device Registrary
+<ul>
+<li>A central location for storing attributes related to each thing</li>
+<li>What is a Thing in IoT?
+<ul>
+<li>A physical device or logical entity</li>
+</ul></li>
+<li>Management
+<ul>
+<li>‘IoT’ -&gt; ‘Registray’ -&gt; ‘things’</li>
+</ul></li>
+</ul></li>
+<li>Device Shadow
+<ul>
+<li>JSON to store and retrieve the current state of a thing</li>
+<li>Acts as a message channel to send commands to a thing</li>
+</ul></li>
+<li>Rules Engine
+<ul>
+<li>Features
+<ol type="1">
+<li>Provide a thing the ability to interact with AWS services</li>
+<li>Transform messages via SQL based syntex and route them to AWS services</li>
+</ol></li>
+<li>Management
+<ul>
+<li>‘IoT’ -&gt; ‘Rules’ -&gt; Select a rule -&gt; View ‘Rule query statement’ and ‘Actions’</li>
+</ul></li>
+</ul></li>
+</ul></li>
 </ul>
 <h2 id="aws-marketplace">AWS Marketplace</h2>
 <ul>
@@ -6036,6 +6998,48 @@
 <h3 id="vm-importexport">VM Import/Export</h3>
 <p>Migrate existing virtual machines / applications in EC2</p>
 <h3 id="download-amazon-linux-2-as-an-iso">Download Amazon Linux 2 as an ISO</h3>
+<h2 id="data-pipeline">Data Pipeline</h2>
+<ul>
+<li>A web service that helps you reliably process and move data between different AWS compute and storage services, as well as on-premises data sources, at specified intervals.</li>
+<li>Features
+<ol type="1">
+<li>Create an ETL workflow to automate processing and movement of data at scheduled intervals, and then terminate the resources</li>
+<li>Cross-region migration</li>
+<li>Run on EC2 instances / EMR cluster</li>
+<li>A fair amount of functionality has been replaced by Lambda</li>
+</ol></li>
+<li>components
+<ol type="1">
+<li>Datanodes
+<ul>
+<li>End destination of the data</li>
+<li>Management
+<ul>
+<li>‘Data Pipeline’ -&gt; Select pipeline -&gt; Execution Details -&gt; ‘Add’ -&gt; xxxNode</li>
+</ul></li>
+</ul></li>
+<li>Activities
+<ul>
+<li>An action that Data Pipeline initiates</li>
+<li>e.g. <code>CopyActivity</code>, <code>EmrActivity</code>, <code>HadoopActivity</code></li>
+</ul></li>
+<li>Preconditions
+<ul>
+<li>Readiness check</li>
+<li>Can be applied to an activity or a data source</li>
+</ul></li>
+<li>Schedules
+<ul>
+<li>Defines time &amp; frequency</li>
+</ul></li>
+</ol></li>
+</ul>
+<h3 id="on-prem-flow">On-prem flow</h3>
+<ol type="1">
+<li>Install a Task Runner package on on-prem hosts</li>
+<li>Task Runner would poll the Data Pipeline for work to perform</li>
+<li>Task Runner executes the commands issued by Data Pipeline</li>
+</ol>
 <h2 id="opswork">OpsWork</h2>
 <ul>
 <li>AWS OpsWorks is a configuration management service that provides managed instances of Chef and Puppet.
@@ -6404,10 +7408,10 @@
 <h1 id="other-notes">Other Notes</h1>
 <h2 id="caching">Caching</h2>
 <ul>
-<li>CloudFront (lazy-loading), API Gateway (lazy-loading), ElasticCache (lazy-loading, write-through), DynamoDb Accelerator (write-through)</li>
+<li>CloudFront (lazy-loading), API Gateway (lazy-loading), ElastiCache (lazy-loading, write-through), DynamoDb Accelerator (write-through)</li>
 <li>Senario
 <ul>
-<li>CloudFront -&gt; API Gateway -&gt; Lambda -&gt; ElasticCache</li>
+<li>CloudFront -&gt; API Gateway -&gt; Lambda -&gt; ElastiCache</li>
 <li>Earlier stage of caching is, lower the latency would be</li>
 </ul></li>
 </ul>
@@ -6465,6 +7469,44 @@
 <li>FAQs
 <ul>
 <li>Main ones: Lambda, DynamoDB, S3, IAM, ECS, SQS</li>
+<li>ML main ones
+<ol type="1">
+<li>Data engineering
+<ol type="1">
+<li>Data storage: Lake formation, S3, FSx for lustre, EFS</li>
+<li>Data ingestion: Glue, Apache Kafka, Kinesis</li>
+<li>Data transformation: EMR with Apache spark, Glue, Athena, SageMaker + Apache spark</li>
+</ol></li>
+<li>Data analysis
+<ol type="1">
+<li>Sanitize and prep data for modeling: SageMaker Ground Truth
+<ul>
+<li>Examine the data
+<ul>
+<li>the dimensions of the data (column - # of features, row - # of data)</li>
+<li>Correlations between features</li>
+<li>Stats (descriptive, informative)</li>
+</ul></li>
+<li>Prepare
+<ul>
+<li>Data augmentation</li>
+</ul></li>
+<li>Sanitize
+<ul>
+<li>ensure each column does not contain multiple features</li>
+<li>Handle missing data</li>
+</ul></li>
+</ul></li>
+<li>Feature engineering
+<ol type="1">
+<li>Dimensionality reduction e.g. PCA, T-distributed stochastic neighbor embedding</li>
+<li>Transformation (for numerical features)</li>
+<li>Convert categorical data into numerical data</li>
+</ol></li>
+<li></li>
+</ol></li>
+<li>Modeling</li>
+</ol></li>
 </ul></li>
 <li>Re:Invent videos</li>
 <li>Whitepapers</li>
@@ -6485,6 +7527,13 @@
 <li>Recertification testing would be half price and shorter</li>
 <li>Passing Pro level would renew Associate level certificates</li>
 </ul>
+<h2 id="strategies">Strategies</h2>
+<ol type="1">
+<li>Read and understand the question before reading answer options</li>
+<li>Identify key phrases and qualifiers</li>
+<li>Anticipate the answer before looking at answer choices</li>
+<li>Eliminate options based on what we know about the question / topic</li>
+</ol>
 <div class="status-banner" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; text-align: center;">
     <div style="display: inline-block; padding: 0.8em 2em 0.5em 2em; background: black; color: white; font-size: 2em;">
         Rendering <svg xmlns="http://www.w3.org/2000/svg" height="1.4em" viewbox="0 0 1200 500" style="vertical-align: text-bottom"><title>LaTeX logo</title><g transform="matrix(45 0 0 45 40 40)" fill="white"><path d="M5.5 4.4C5.5 4.4 5.2 4.4 5.2 4.4 5.1 5.4 5 6.7 3.2 6.7 3.2 6.7 2.4 6.7 2.4 6.7 1.9 6.7 1.9 6.6 1.9 6.3 1.9 6.3 1.9 1 1.9 1 1.9 0.6 1.9 0.5 2.9 0.5 2.9 0.5 3.2 0.5 3.2 0.5 3.2 0.5 3.2 0.2 3.2 0.2 2.8 0.2 1.9 0.2 1.5 0.2 1.1 0.2 0.3 0.2 0 0.2 0 0.2 0 0.5 0 0.5 0 0.5 0.2 0.5 0.2 0.5 1 0.5 1 0.6 1 0.9 1 0.9 1 6.2 1 6.2 1 6.6 1 6.7 0.2 6.7 0.2 6.7 0 6.7 0 6.7 0 6.7 0 7 0 7 0 7 5.2 7 5.2 7 5.2 7 5.5 4.4 5.5 4.4z"/><path d="M5.3 0.2C5.3 0 5.2 0 5.1 0 5 0 4.9 0 4.9 0.2 4.9 0.2 3.3 4.2 3.3 4.2 3.2 4.4 3.1 4.7 2.5 4.7 2.5 4.7 2.5 5 2.5 5 2.5 5 4 5 4 5 4 5 4 4.7 4 4.7 3.7 4.7 3.5 4.6 3.5 4.4 3.5 4.3 3.5 4.3 3.6 4.2 3.6 4.2 3.9 3.4 3.9 3.4 3.9 3.4 5.9 3.4 5.9 3.4 5.9 3.4 6.3 4.4 6.3 4.4 6.3 4.4 6.3 4.5 6.3 4.5 6.3 4.7 5.9 4.7 5.8 4.7 5.8 4.7 5.8 5 5.8 5 5.8 5 7.7 5 7.7 5 7.7 5 7.7 4.7 7.7 4.7 7.7 4.7 7.6 4.7 7.6 4.7 7.1 4.7 7.1 4.7 7 4.5 7 4.5 5.3 0.2 5.3 0.2zM4.9 0.9C4.9 0.9 5.8 3.1 5.8 3.1 5.8 3.1 4 3.1 4 3.1 4 3.1 4.9 0.9 4.9 0.9z"/><path d="M13.3 0.2C13.3 0.2 7.2 0.2 7.2 0.2 7.2 0.2 7 2.5 7 2.5 7 2.5 7.3 2.5 7.3 2.5 7.4 0.9 7.6 0.5 9.1 0.5 9.3 0.5 9.5 0.5 9.6 0.6 9.8 0.6 9.8 0.7 9.8 0.9 9.8 0.9 9.8 6.2 9.8 6.2 9.8 6.5 9.8 6.7 8.8 6.7 8.8 6.7 8.4 6.7 8.4 6.7 8.4 6.7 8.4 7 8.4 7 8.8 6.9 9.8 6.9 10.3 6.9 10.7 6.9 11.7 6.9 12.2 7 12.2 7 12.2 6.7 12.2 6.7 12.2 6.7 11.8 6.7 11.8 6.7 10.7 6.7 10.7 6.5 10.7 6.2 10.7 6.2 10.7 0.9 10.7 0.9 10.7 0.7 10.7 0.6 10.9 0.6 11 0.5 11.3 0.5 11.5 0.5 13 0.5 13.1 0.9 13.2 2.5 13.2 2.5 13.5 2.5 13.5 2.5 13.5 2.5 13.3 0.2 13.3 0.2z"/><path d="M18.7 6.7C18.7 6.7 18.4 6.7 18.4 6.7 18.2 8.2 17.9 8.9 16.2 8.9 16.2 8.9 14.9 8.9 14.9 8.9 14.4 8.9 14.4 8.8 14.4 8.5 14.4 8.5 14.4 5.9 14.4 5.9 14.4 5.9 15.3 5.9 15.3 5.9 16.3 5.9 16.4 6.2 16.4 7 16.4 7 16.6 7 16.6 7 16.6 7 16.6 4.4 16.6 4.4 16.6 4.4 16.4 4.4 16.4 4.4 16.4 5.2 16.3 5.5 15.3 5.5 15.3 5.5 14.4 5.5 14.4 5.5 14.4 5.5 14.4 3.2 14.4 3.2 14.4 2.8 14.4 2.8 14.9 2.8 14.9 2.8 16.2 2.8 16.2 2.8 17.7 2.8 18 3.3 18.1 4.7 18.1 4.7 18.4 4.7 18.4 4.7 18.4 4.7 18.1 2.5 18.1 2.5 18.1 2.5 12.5 2.5 12.5 2.5 12.5 2.5 12.5 2.8 12.5 2.8 12.5 2.8 12.7 2.8 12.7 2.8 13.5 2.8 13.5 2.9 13.5 3.2 13.5 3.2 13.5 8.4 13.5 8.4 13.5 8.8 13.5 8.9 12.7 8.9 12.7 8.9 12.5 8.9 12.5 8.9 12.5 8.9 12.5 9.2 12.5 9.2 12.5 9.2 18.2 9.2 18.2 9.2 18.2 9.2 18.7 6.7 18.7 6.7z"/><path d="M21.7 3.1C21.7 3.1 23 1.1 23 1.1 23.3 0.8 23.6 0.5 24.5 0.5 24.5 0.5 24.5 0.2 24.5 0.2 24.5 0.2 22.1 0.2 22.1 0.2 22.1 0.2 22.1 0.5 22.1 0.5 22.5 0.5 22.7 0.7 22.7 0.9 22.7 1 22.7 1.1 22.6 1.2 22.6 1.2 21.5 2.8 21.5 2.8 21.5 2.8 20.2 0.9 20.2 0.9 20.2 0.9 20.1 0.8 20.1 0.8 20.1 0.7 20.4 0.5 20.8 0.5 20.8 0.5 20.8 0.2 20.8 0.2 20.4 0.2 19.7 0.2 19.3 0.2 19 0.2 18.4 0.2 18 0.2 18 0.2 18 0.5 18 0.5 18 0.5 18.2 0.5 18.2 0.5 18.8 0.5 19 0.5 19.2 0.8 19.2 0.8 21 3.6 21 3.6 21 3.6 19.4 6 19.4 6 19.2 6.2 18.9 6.7 17.9 6.7 17.9 6.7 17.9 7 17.9 7 17.9 7 20.3 7 20.3 7 20.3 7 20.3 6.7 20.3 6.7 19.8 6.7 19.7 6.4 19.7 6.2 19.7 6.1 19.7 6.1 19.8 6 19.8 6 21.2 3.9 21.2 3.9 21.2 3.9 22.8 6.3 22.8 6.3 22.8 6.3 22.8 6.3 22.8 6.4 22.8 6.5 22.6 6.7 22.2 6.7 22.2 6.7 22.2 7 22.2 7 22.5 6.9 23.2 6.9 23.6 6.9 24 6.9 24.5 7 24.9 7 24.9 7 24.9 6.7 24.9 6.7 24.9 6.7 24.7 6.7 24.7 6.7 24.2 6.7 24 6.6 23.8 6.3 23.8 6.3 21.7 3.1 21.7 3.1z"/></g></svg> math...

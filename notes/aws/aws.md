@@ -1275,9 +1275,11 @@ The key pair .pem file should be 400 before connecting to an EC2 instance. This 
 		* For configuring traffic for Internet Gateway, we can create a NLB as an internet-facing load balancer on Internet Gateway attaching to the VPC
 		* Extreme performance
 			* TCP and SSL listeners, millions TPS
+		* Supports static IPs (i.e. can assign a static elastic IP to a NLB)
 	1. Classic LB (old)
 		* Layer 7 features: X-Forwarded & sticky sessions
 			* X-Forwarded-For header: Contains public IP address of the end user
+		* Does not support static IPs
 * Responds 504 if application stops responding within the idle timeout period and gateway times out
 * ELB is a foundational component of **high availability** and **fault tolerance**
 * Logging
@@ -1570,6 +1572,7 @@ The key pair .pem file should be 400 before connecting to an EC2 instance. This 
 	* DynamoDB, Kinesis, MQ, Apache Kafka, SQS
 1. S3 Event notification
 	* Can invoke lambda whenever a file is uploaded 
+1. Cloudwatch Events
 
 ## Accessing VPC
 1. Lambda needs following information to access a private subnet
@@ -1808,100 +1811,40 @@ Deploy and manage HPC clusters
 	* path-style URLs: https://s3.Region.amazonaws.com/bucket-name/key-name
 	* virtual hosted-style URLs: https://bucket-name.s3.Region.amazonaws.com/key-name
 * Resource S3 ARN must include /* at the end of the S3 bucket name to be a valid ARN.	
+* Use cases
+	* Content storage
+	* Backup
+	* Big data analytics
+	* Static website hosting
+		* Can be used together with CloudFront - a CDN (content delivery network)
+* Components
+	* Bucket (folder) name needs to be **globally unique** (because it would create a web address)
+	* object (file) - unique name in the bucket
+		* each object can be from 0 bytes to 5 TB
+	    * components: object key (name), value, metadata, version id
+	    	* key name determines which partition the file is stored in
+	    * logging can be enabled to track object level activities
+* Data Consistency
+	* Read after Write for PUTS of new objects: be able to view directly after upload a new object
+	* Eventual Consistency for override PUTS and DELETES: updating existing file could take time to propagate the change
 
-## Components
-* Bucket (folder) name needs to be **globally unique** (because it would create a web address)
-* object (file) - unique name in the bucket
-	* each object can be from 0 bytes to 5 TB
-    * components: object key (name), value, metadata, version id
-    	* key name determines which partition the file is stored in
-    * logging can be enabled to track object level activities
-
-## Data Consistency
-* Read after Write for PUTS of new objects: be able to view directly after upload a new object
-* Eventual Consistency for override PUTS and DELETES: updating existing file could take time to propagate the change
-
-## Versioning
-* Good backup tool
-* After enable versioning, each object has metadata and version Id
-* Features
-	* Can see different versions when clicking into the object
-    * Versions may need different permissions to retrieve
-    * Cannot disable; can only suspend
-	* Make one version public does not make the previous versions public 
-	* Supports object locking
-* Versioned bucket would not be deleted immediately
-	* Deleted object can be retrieved via previous versions 
-	* Have the option to perminantly delete all versions at once
-
-## Object Locking
-* Prevent objects from being deleted or modified for a period of time
-	* Follows **WORM model** (write once, read many)
-* Can be applied to an object or to the whole bucket
-* Modes
-	* Governance - needs permission to delete/overwrite rules
-	* Compilance - even root account cannot delete the object for a fixed retention period
-	* Legal Holds - can be deleted by any users who have **s3:PutObjectLegalHold** permission
-* Glacier Vault Lock
-	* Cannot be changed once updated
-* Modificating locked objects
-	* With version enabled S3 buckets, each version can have a different retention period
-	* To modify a locked object, can create another version and edit on that version
-
-## Use cases
-* Content storage
-* Backup
-* Big data analytics
-* Static website hosting
-	* Can be used together with CloudFront - a CDN (content delivery network)
-
-## Permissions
-* default: all buckets would only be available to the owner when created
-* Policies for access
-	* ACL (Access Control List)
-		* Permission up to individual file level
-   	* Bucket Policies
-   		* JSON format
-   		* Specify what actions are allowed or denied for which principals on the bucket that the bucket policy is attached to
-   		* Deny would override allow in ACL 
-   		* Management
-   			* 'Bucket' -> 'Permissions' -> Scroll down to 'Bucket policies'
-   			* Create
-   				* can use 'Policy generator'
-* client / server authentication
-* Access logs can be configured on bucket level to log all requests made to the S3 bucket 
-	* Can be written to another S3 bucket
-
-## Security
-* All new buckets are private by default
-* Encryption in Transit (SSL/TLS)
-* Encryption at Rest (At hard-drive)
-	* Can encrypt in object level & bucket level
-	* Server-side (Amazon does encryption upon receiving new objects)
-		* Options
-			1. Server-side Encryption S3 Managed Keys (SSE-S3) stores keys
-			1. SSE-KMS
-			1. SSE-C - customers' keys
-		* Ways to enforce encryption on S3 buckets during uploading objects:
-			1. Check the box on SSE
-			1. Configure a bucket policy to only allow `PUT` requests with a request header `x-amz-server-side-encryption` with value `AES256` / `ams:kms`
-	* Client-side (Encrypt and then upload)
-* Bucket encryption
-	* AES 256
 
 ## Storage Tiers
 * A storage class represents the 'classification' assigned to each object in S3
 	* The objects would be classified based on different use cases. e.g. frequency of retrieval, data classification, retention, etc.
 * Storage class types 
 	* Standard: frequently accessed data
-		* 99.99% availability, 99.999999999% (i.e. 11 9s) durability
+		* Design: 99.99% availability, 99.999999999% (i.e. 11 9s) durability
+			- SLA: 99.9% availability
 		* low 
 		* stored in multiple devices in multiple facilities; can sustain the loss of 2 facilities concurrently
 		* the most expensive storage class
 	* Standard-IA: long-lived, not frequently accessed
 		* 99.9% availability, 99.999999999% (i.e. 11 9s) durability
+		- retrieved weekly / monthly
 		* Can have rapid access when needed 
 		* Low storage fee; has retrieval fee
+			- objects smaller than 128KB are billed as 128KB objects
 	* One Zone-IA: long-lived, not frequently accessed, non-critical data
 	* Intelligent-Tiering 
 		* will have limited management fee
@@ -1909,15 +1852,17 @@ Deploy and manage HPC clusters
 		* Minimum storage duration: 30 days
 	* **Glacier** long term storage; archiving
 		* Minimum storage duration: 90 days
+		* $0.004/GB for storage cost
 		* Retrieval 
 			* Standard: within 6 hours; can configure from within minutes to hours
-			* **Expedited retrieval** allows accessing data in 1 - 5 minutes for $0.03 per GB retrieved
+			* **Expedited retrieval** allows accessing data in 1 - 5 minutes for $0.03 per GB retrieved (or $10 for 1000 requests)
 			* Bulk retrievals: cheapest option with 5 - 12 hours retrieval time
 		* Glacier Console
 			* Can access the vaults and objects in them 
 	* **Glacier deep archive** is used to archive data with the intent that it will not be retrieved for long periods
 		* Retrieval time: within 12 hours
 		* Minimum storage duration: 180 days
+		* Good for storing security & compliance data
 	* S3 Outposts 
 		* Deliver object storage to on-prem AWS Outpost environment
 * **S3 Lifecycle Policy** 
@@ -1926,6 +1871,9 @@ Deploy and manage HPC clusters
 	* Incomplete uploads
 		* Would not be deleted automatically by S3
 		* Can create S3 lifecycle config to abort incomplete multipart uploads
+	- Actions
+		1. Filter
+		1. Transition
 * S3 Console can restore objects from Glacier and copy to another storage class
 	* Select bucket -> select objects -> 'Actions' -> 'Edit storage class'
 
@@ -1951,44 +1899,6 @@ Deploy and manage HPC clusters
 	* Configure CORS on the destination bucket 
 1. JS making authenticated GET / PUT against same/different bucket via S3 API endpoint or FNDQ
 1. loading web fonts
-
-## Cross Account Sharing
-* 3 ways
-	1. Bucket policy && IAM (Programmatic Access)
-	1. Bucket ACL (Programmatic Access)
-	1. IAM Role (Programmatic & Console Access)
-
-
-## CRR (Cross Region Replication)
-* A way to auto replicate objects across or within region(s)
-* Prereq
-	* Versionings need to be enabled on both source & destination buckets
-* Features
-	* Existing files would not be replicated automatically; subsequent updated files would be replicated
-	* Deleting versions would not be replicated 
-* Use cases
-	* Disaster Recovery
-
-
-## S3 Transfer Acceleration
-* You have customers that upload to a centralized bucket from all over the world via CloudFront. You transfer gigabytes to terabytes of data on a regular basis across continents.
-	* Upload to edge location then upload to S3 bucket via backbone network
-* Helps end users reduce upload / download time
-* Speeds up transfer to and from S3 by 50 - 500%
-
-## Performance
-* **AWS Prefix** is the path to object excluding bucket and object
-* S3 limit
-	* 100 - 200 ms for GET
-	* TPS limit 
-		* 3500 for PUT/COPY/POST/DELETE, 5500 GET/HEAD per prefix
-		* Bounded by KMS limits (encrypt & decrypt) if use SSE-KMS, where uploading & downloading would both contribute to KMS quota
-			* KMS TPS limit: 5500 / 10000 / 30000 depending on region
-* S3 Select
-	* Retrieve only a subset of data from an object with simple SQL expressions
-	* Up to 400% performance improvement, up to 80% cheaper
-* Glacier Select
-	* Run SQL queries against Glacier directly
 
 
 ## CloudFront Distribution
@@ -2028,7 +1938,61 @@ Deploy and manage HPC clusters
 		* Check `Grant Read Permissions on Bucket` so that CloudFront can use the OAI to access the files in the bucket
 
 
+## Cross Account Sharing
+* 3 ways
+	1. Bucket policy && IAM (Programmatic Access)
+	1. Bucket ACL (Programmatic Access)
+	1. IAM Role (Programmatic & Console Access)
+
+
+## CRR (Cross Region Replication)
+* A way to auto replicate objects across or within region(s)
+* Prereq
+	* **Versioning** need to be enabled on both source & destination buckets
+* Features
+	* Existing files would not be replicated automatically; subsequent updated files would be replicated
+	* Deleting versions would not be replicated 
+* Use cases
+	* Disaster Recovery
+
+
+## Management
+1. COPY
+	- `aws s3 cp file s3://{bucket-name}`
+1. List
+	- show buckets: `aws s3 ls`
+	- show bucket's objects: `aws s3 ls {bucket-name}`
+1. Move
+	- `aws s3 mv file s3://{bucket-name}`
+1. Sync
+	- upload updated files to S3: `aws s3 sync . s3://{bucket-name}` 
+	- download updated files from S3 to local: `aws s3 sync s3://{bucket-name} .` 
+
+
+## Multipart Download
+* Can use 'Range' HTTP header in a GET request to download the specified range bytes of an object
+* Able to establish concurrent connections to fetch different parts from the same object
+
+
 ## Multipart Upload
+- Features
+	1. Upload files > 5 GB
+		- The largest object that can be uploaded in a single PUT is 5 GB
+		- S3 object can be up to 5 TB
+	1. Parallel upload of a single large object
+	1. File can be divided into up to 10,000 parts
+	1. All parts must be at least 5 MB (except the final part)
+		- part in general should be from 5 - 100 MB
+	1. Parts can be overridden by specifying a new upload with the same part number
+	1. Auto-Abort
+		- Can specify bucket lifecycle policy to auto abort uploads after a period of time  
+- Steps
+	1. Prepare - break data into pieces
+		- `CreateMultipartUpload` API
+	1. Move pieces
+		- `UploadPart`
+	1. Combine pieces into the object
+		- `CompleteMultipartUpload`
 * Benefits
 	1. Can begin upload before knowing the final object size
 	1. Quick recovery from network issues
@@ -2036,12 +2000,128 @@ Deploy and manage HPC clusters
 	1. Can pause and resume uploads
 * Does not improve security in transit
 * Users should consider multipart upload for objects > 100 MB
-* The largest object that can be uploaded in a single PUT is 5 GB
 
-## Multipart Download
-* Can use 'Range' HTTP header in a GET request to download the specified range bytes of an object
-* Able to establish concurrent connections to fetch different parts from the same object
 
+## Object Locking
+* Prevent objects from being deleted or modified for a period of time
+	* Follows **WORM model** (write once, read many)
+	* Used for compilance reasons
+* Can be applied to an object or to the whole bucket
+* Modes
+	* Governance - needs permission to delete/overwrite rules
+	* Compilance - even root account cannot delete the object for a fixed retention period
+	* Legal Holds - can be deleted by any users who have **s3:PutObjectLegalHold** permission
+* Glacier Vault Lock
+	* Cannot be changed once updated
+	- Implemented via IAM policies
+	- Lock controls
+		1. Time-based retention
+		1. `Undeleteable`
+	- Operations
+		1. Initiate lock
+			- Attaching a vault lock policy to the vault
+			- Lock is set to an `InProgress` state and a lock ID is returned
+			- Can validate the lock within 24 hours
+		1. Complete lock
+			- Change `InProgress` to `Locked` (immutable)
+* Modificating locked objects
+	* With version enabled S3 buckets, each version can have a different retention period
+	* To modify a locked object, can create another version and edit on that version
+
+
+## Performance
+* **AWS Prefix** is the path to object excluding bucket and object
+* S3 limit
+	* 100 - 200 ms for GET
+	* TPS limit 
+		* 3500 for PUT/COPY/POST/DELETE, 5500 GET/HEAD per prefix
+		* Bounded by KMS limits (encrypt & decrypt) if use SSE-KMS, where uploading & downloading would both contribute to KMS quota
+			* KMS TPS limit: 5500 / 10000 / 30000 depending on region
+* S3 Select
+	* Retrieve only a subset of data from an object with simple SQL expressions
+		- Supports CSV, JSON, Parquet, ORC, Avro
+	* Up to 400% performance improvement, up to 80% cheaper
+* Glacier Select
+	* Run SQL queries against Glacier directly
+
+
+## Permissions / Access
+* default: all buckets would only be available to the owner when created
+* Policies for access
+	* Object / Bucket ACL (Access Control List)
+		* Permission up to individual file level
+   	* Bucket Policies
+   		* JSON format
+   		* Specify what actions are allowed or denied for which principals on the bucket that the bucket policy is attached to
+   		* Deny would override allow in ACL 
+   		* Management
+   			* 'Bucket' -> 'Permissions' -> Scroll down to 'Bucket policies'
+   			* Create
+   				* can use 'Policy generator'
+	- Object policy
+	* IAM policies
+	- Service Control Policy (from AWS Orgnization)
+* client / server authentication
+* Logging
+	* Access logs can be configured on bucket level to log all requests made to the S3 bucket 
+		* Can be written to another S3 bucket
+	* CloudTrail
+* Auditing
+	- Access Analyzer for S3
+		- analyze access policies and generate report
+
+
+## S3 Transfer Acceleration
+* You have customers that upload to a centralized bucket from all over the world via CloudFront. You transfer gigabytes to terabytes of data on a regular basis across continents.
+- Features
+	1. Upload to edge location then upload to S3 bucket via backbone network
+	1. Enabled per bucket
+	1. Different endpoint from original S3 bucket
+		- format: `{bucketname}.s3-accelerate.amazonaws.com`
+			- for IPv6: `{bucketname}.s3-accelerate.dualstack.amazonaws.com`
+- Benefits
+	1. Helps end users reduce upload / download time
+		- Speeds up transfer to and from S3 by 50 - 500%
+
+
+## Security
+* All new buckets are private by default
+* Encryption in Transit (SSL/TLS)
+	- Clients must support Perfect Forward Secrecy (PFS) cipher suites
+		- e.g. Ephemeral Diffie-Hellman (DHE), Elliptic Curve Diffie-Hellman Ephemeral (ECDHE) 
+* Encryption at Rest (At hard-drive)
+	* Can encrypt in object level & bucket level
+	* Server-side (Amazon does encryption upon receiving new objects)
+		* Options
+			1. Server-side Encryption S3 Managed Keys (SSE-S3) stores keys
+			1. SSE-KMS
+				- Can use AWS-managed / customer-managed CMK
+				- CMK must be symmetric
+			1. SSE-C - customers' keys
+		* Ways to enforce encryption on S3 buckets during uploading objects:
+			1. Check the box on SSE
+			1. Configure a bucket policy to only allow `PUT` requests with a request header `x-amz-server-side-encryption` with value `AES256` / `ams:kms`
+	* Client-side (Encrypt and then upload; download then decrypt)
+		- Options
+			1. CMK in KMS
+			1. Application Stored key
+		- Can use AWS SDK
+* Bucket encryption
+	* AES 256
+
+
+## Versioning
+* Good backup tool
+* After enable versioning, each object has metadata and version Id
+* Features
+	* Can see different versions when clicking into the object
+    * Versions may need different permissions to retrieve
+    * Cannot disable; can only suspend
+	* Make one version public does not make the previous versions public 
+	* Supports object locking
+* Versioned bucket would not be deleted immediately
+	* Deleted object can be retrieved via previous versions 
+	* Have the option to perminantly delete all versions at once
 
 ## Billing aspects
 * Storage
@@ -2145,21 +2225,25 @@ Deploy and manage HPC clusters
 	* Reside in VPC
 	* AWS maintains the underlying OS and performs software patching on the database.
 * Features
+	- Runs and manages multiple database engines
 	* Multi-AZ - Disaster Recovery; RDS would auto update DB endpoint to another AZ if the preferred one is not available for CRUD
 	* Read Replicas
 	* Runs in VMs; users cannot ssh into the VMs
+		- No OS access
 	* Not serverless except Aurora Serverless
 	* Supports Transparent Data Encryption for SQL Server
 	- Logs
 		- Error log
 		- General query log
 		- Slow query logs
+	- Second level service
+		- use `dig` command
 * Benefits
 	* low cost
 	* no hardware provisioning
 	* scalability
 	* high availability
-	* Can use ElasticCache in front of EC2 RDS instances
+	* Can use ElastiCache in front of EC2 RDS instances
 - To connect to MySQL instance, can get instance endpoint from
 	1. `DescribeDBInstances` API / CLI / AWS console
 	1. Database administrator	
@@ -2174,7 +2258,7 @@ Deploy and manage HPC clusters
 * Microsoft SQL Server (several options)
 	* up to 16TB of storage
 
-### Amazon Aurora (Based on MySQL)
+### Aurora (Based on MySQL)
 * A MySQL and PostgreSQL-compatible relational database built for the cloud
 * Features
 	* Autoscaling
@@ -2196,6 +2280,10 @@ Deploy and manage HPC clusters
 * Aurora Serverless
 	* Serverless platform
 	* Good for infrequent, intermittent, or unpredictable traffic pattern
+	* ACU
+		- Aurora Capacity Units
+		- MySQL: 1 - 256 ACU
+		- PostgreSQL: 2 - 384 ACU
 
 ## Backups
 * Upon recovery, it would be a new RDS instance with a new DNS endpoint
@@ -2213,6 +2301,16 @@ Deploy and manage HPC clusters
 * Manually
 * May persist even after the RDS instance is deleted
 
+
+## Relational Engine Types
+1. Row based storage
+	- All RDS options support except PostgreSQL
+	- Good for OLTP
+		- rapid transactions
+		- good for low latency use case
+1. Columnar storage
+	- Supported by Aurora, PostgreSQL, Oracle, Redshift
+
 ## Security
 * Encryption At Rest
 	* Supported for all RDS options
@@ -2224,6 +2322,11 @@ Deploy and manage HPC clusters
 ## Multi-AZ (Disaster Recovery)
 * Persist an exact copy of DB in another AZ
 	* For disaster recovery only; not for improving performance
+- Flow
+	1. Block level replication
+		- EBS is replicated
+	1. RDS monitors DB engines, EC2 instances, EBS and EBS replication in both AZs
+	1. Upon engine / EC2 / EBS fails, the RDS would wake up the engine / EC2 instance in another AZ
 * Can auto switch upon planned maintenance, DB instance failure, AZ failure 
 	* takes 1 - 2 min
 	* SQL Server instances use SQL Server Database Mirroring (DBM) or Always On Availability Groups (AGs) instead of Amazon's failover technology
@@ -2248,14 +2351,21 @@ Deploy and manage HPC clusters
 ## Management
 * Debugging
 	* To find out if an error occurred, look for an Error node in the response from the Amazon RDS API
+- Parameter Group
+	- Manage engine parameters
+- Option Group
+	- Manage plugins in database engines
+
+
+
 
 
 # Dynamodb
 * Non-relational Database (NoSQL)
-	* Collection == Table, Document == Row, KV pairs == fields
+	* Collection == Table, Document/Item == Row, Attributes / KV pairs == fields
 	* Replacement of Oracle NoSQL, Cassandra DB, and MongoDB; Amazon DynamoDB does not allow for alternative NoSQL database software options.
 * Features
-    * Fully managed
+    * Fully managed; no visible servers
     * Stored on SSD; spread across 3 geographically distinct data centers (i.e. multi-AZ by default)
     * Serverless
     * Stores data as a JSON-like document instead of an entry
@@ -2278,51 +2388,13 @@ Deploy and manage HPC clusters
 	* Have the option to pick an alternative AWS or Customer Managed KMS key if required.
 * Cardinality
 	* The # of values in a set
-* High Cardinality
-	* In DB, refers to the number of unique values contained in a particular column is high
+	* High Cardinality
+		* In DB, refers to the number of unique values contained in a particular column is high
 * Hot Partitions
 	* A few partitions where more requests are received than the average of partitions
 	* Typically happen due to low cardinality of partition key
 	* Can be resolved by using high cardinality data / composite data as partition key
-* Both partition and sort keys attributes must be defined as type string, number, or binary (i.e. bytes).
-* ACID operations
-	* `TransactWriteItems` operation
-* Condition-expression
-	* Using a condition-expression we can perform a conditional update to an item. The condition must evaluate to true; otherwise, the update operation fails
-	* can use this feature to make sure the content of an article has not changed since it was last read, before we update it
-* Projection expression 
-	* a string that identifies the attributes that you want. To retrieve a single attribute, specify its name. For multiple attributes, the names must be comma-separated.
-* Expression attribute name
-	* a placeholder that you use in an Amazon DynamoDB expression as an alternative to an actual attribute name
-	```
-	aws dynamodb get-item \
-     --table-name ProductCatalog \
-     --key '{"Id":{"N":"123"}}' \
-     --projection-expression "#c" \
-     --expression-attribute-names '{"#c":"Comment"}' // #c is an alternative name for Comment attribute
-	```
-- Query
-	- needs 
-		1. a key condition expression
-			- a string that determines the items to be read from the table or index.
-		1. specify the partition key name and value as an equality condition
-* Update expression 
-	* specifies how `UpdateItem` will modify the attributes of an item
-	- e.g. setting a scalar value or removing elements from a list or a map.
-* DAX
-	- would not cache strong consistent read requests
-	- store in Query cache for eventual query & scan
-	- store in Item cache for eventual `GetItem` / `BatchGetItems`
-* Index
-	* LSI
-		* maintains an alternate sort key for a given partition key value
-		* The data in a local secondary index is organized by the same partition key as the base table, but with a different sort key
-		* can create up to five local secondary indexes per table
-	* GSI 
-		* can use Random Prefix as the partition key to avoid hot partitions and the thing wanna search as sort key
-- Get the consumption of read capacity
-	- Can be done via setting `ReturnConsumedCapacity` in query request to `TOTAL`
-		- `NONE` is the default value; `INDEX` shows the aggregated # of RCUs consumed + capacity for each table and index
+
 
 ## API Ref
 The `BatchGetItem` operation returns the attributes of one or more items from one or more tables
@@ -2340,65 +2412,139 @@ The `BatchGetItem` operation returns the attributes of one or more items from on
 	* returns a result that reflects all successful writes that occurred before the read
 	* slightly more latency
 
+
+## Data types
+- Both partition and sort keys attributes must be defined as type string, number, or binary (i.e. bytes).
+- Other attributes can be Boolean, Null, Document, Set
+
+
 ## DynamoDb Accelerator (DAX)
 * Fully managed, highly available (Multi-AZ) in-mem cache
 	* only offers **write-through** option (updates cache when DB is updated)
 * How it works?
 	* DAX sits between application & DynamoDb
 	* Points API calls to DAX cluster instead of DB
+	- Eventual query & scan stores in Query cache
+	- Eventual `GetItem` / `BatchGetItems` stores in Item cache
 * Benefits
 	* 10x read performance improvement
 	* Reduces request time from milliseconds to microseconds
 * Ideal for read-heavy and bursty workloads
 * NOT for
 	1. Strong consistency required
+		- would not cache strong consistent read requests
 	1. Heavy writes
 	1. Do not require microseconds response times
 * Cache Miss
 	* DAX performs eventual consistent GET against DB
 
 
-## On-demand Throughput
-* Charges applied for reading, writing, and storing
-	* Pay per request
-* Great for unpredictable workloads
-
-## Provisioned Throughput
-* Measured in Capacity Units
-* Can specify RCU & WCU
-	* RCU = 1 strong consistent read of 4 KB per sec / 2 eventual consistent reads per sec
-	* WCU = 1 write of 1KB per sec 
-* Calculations
-	* RCU = celling(data size per item / 4KB) * number of read items per sec  / (is strong consistency) ? 1 : 2
-	* WCU = celling(data size per item / 1KB) * number of write items per sec
-* If exceeding the throughput
-	* there would be `ProvisionedThroughputExceededException`
-	* SDK would auto retry until successful
+## Expressions
+* Condition-expression
+	* Using a condition-expression we can perform a conditional update to an item. The condition must evaluate to true; otherwise, the update operation fails
+	* can use this feature to make sure the content of an article has not changed since it was last read, before we update it
+* Projection expression 
+	* a string that identifies the attributes that you want. To retrieve a single attribute, specify its name. For multiple attributes, the names must be comma-separated.
+* Expression attribute name
+	* a placeholder that you use in an Amazon DynamoDB expression as an alternative to an actual attribute name
+	```
+	aws dynamodb get-item \
+     --table-name ProductCatalog \
+     --key '{"Id":{"N":"123"}}' \
+     --projection-expression "#c" \
+     --expression-attribute-names '{"#c":"Comment"}' // #c is an alternative name for Comment attribute
+	```
+* Update expression 
+	* specifies how `UpdateItem` will modify the attributes of an item
+	- e.g. setting a scalar value or removing elements from a list or a map.
 
 
 ## Indexes
 * In DB, an index is a data structure allowing fast queries on specific columns
 	* Select the columns to the index and run query on the index rather than the entire dataset
-* DynamoDb indexes
-	1. Local Secondary Index
-		* Can only be created during table creation
-			* cannot add, remove, or modify later
-		* Same partition key; different sort key
-		* Any queries based on the Sort key would be much faster using the index than main table	
-	1. GSI (Global Secondary Index)
-		* Can create at any table
-		* Can issue Query requests with a variety of different attributes as query criteria against these indexes
-		* Can set a different partition key and sort key
-		* Default quota is 20 GSIs per table; can request increase
+	- Avoid unnecessary scan operations
+
+### LSI (Local Secondary Index)
+* Can only be created during table creation
+	* cannot add, remove, or modify later
+	* can create up to 5 local secondary indexes per table
+* Same partition key; different sort key
+	* The data in a local secondary index is organized by the same partition key as the base table, but with a different sort key
+	* Any queries based on the Sort key would be much faster using the index than main table
+- Components
+	- Partition key, new sort key, old sort key, projected values (optional; for further lookup)
+- Any data written to the table is copied Async to LSIs
+- LSI is a sparse index
+	- An index will only have an ITEM if the new sort key attribute is contained in the table item
+		- which means the new sort key would not be Null in the index
+- Retrival cost
+	- If query attributes are 
+		- projected: only charged for index entries
+		- Not projected: items would be fetched from original table; charged for original query + **each** full ITEM in original table
+		- e.g. Each full item is 1 KB, and each LSI item is 200 bytes, a query returns 5 items
+			- For query with projected attributes, query size = 5 * size of LSI item = 1 kb rounded to 4kb
+				- rounded to 1 RCU
+			- For query with unprojected attributes, query size = 1 LSI query size + 5 full item queries = 4kb + 5 * (1KB rounded to 4 kb) = 24 kb
+				- rounted to 3 RCUs for eventual consistent reads
+
+### GSI (Global Secondary Index)
+* Can create at any table
+* Can issue Query requests with a variety of different attributes as query criteria against these indexes
+* Can set a different partition key and sort key
+* Default quota is 20 GSIs per table; can request increase
+* can use Random Prefix as the partition key to avoid hot partitions and the thing wanna search as sort key
+* Have separate RCU and WCU than the original table
+	* WCU should at least be the same as main table in most cases; however, it depends on the partition key of the GSI
+
+## Integration with other AWS services
+- Redshift
+	- Can use `COPY` command in Redshift to load data from DDB
+- EMR
+	- Can use Apache Hive to integrate
+- S3
+	- 2 way loading via Data Pipeline
+- EC2
+	- SDK
+- Lambda
+	- DDB streams
+
+
+## Partitions
+- Underlying storage and processing nodes of DDB
+- Features
+	- Initially all data in a table is stored in 1 partition
+	- Users cannot directly control # of partitions for a table
+		- Partitions would auto increase, but would not auto decrease if traffic reduces
+	- 1 partition 
+		- can store 10 GB
+		- can handle 3000 RCU and 1000 WCU
+- Users need to design tables to avoid I/O 'hot spots' / 'hot keys'
+	- Otherwise even if users request e.g. 5000 WCU. A single hot partition would throttle requests for 1000 WCU
+- Data would be distributed based on partition key if more than 1 partition
+- RCU & WCU would be splitted evenly across partitions
+- To determine the # of partitions
+	1. Based on performance
+		- # of partitions = Desired RCU / 3000 + Desired WCU / 1000
+	1. Based on capacity
+		- # of size = Data size / 10 GB
+	1. The actual # of partitions is the Max of the performance and size partitions
+
+## PITR (Point-in-Time-Recovery)
+* What does it do
+	* Protects against accidential writes
+	* Restore to any point from past 5 min to last 35 days
+* Not enabled by default
+* Incremental backups
+
 
 ## Primary Keys
 * primary key - identifier of an item
-* Partition key
+* Partition key (hash key)
 	* Value of the Partition key is input to an internal hash function which determines the partition or physical location on which the data is stored
     * Spread table into partitions (each partition should be well distributed)
     * If only partition key is used as primary key, it needs to be unique for each entry
 * Composite Key 
-	* Partition Key + Sort Key
+	* Partition Key + Sort (Range) Key
 	* sort key (optional, if specified then this is part of primary key)
 	    * should set to one of the most frequently searched attribute
 	    * sort keys need to be unique if partition keys are the same
@@ -2407,6 +2553,10 @@ The `BatchGetItem` operation returns the attributes of one or more items from on
 ## Search
 ### Query
 * A query operation finds items in a table based on the Primary Key attribute and a distinct value to search for
+- needs 
+	1. a key condition expression
+		- a string that determines the items to be read from the table or index.
+	1. specify the partition key name and value as an equality condition
 * Results refine
 	* Sort Key name and value 
 	* `ProjectionExpression` parameter 
@@ -2426,50 +2576,33 @@ The `BatchGetItem` operation returns the attributes of one or more items from on
 ### Scan vs Query
 * Query is more efficient
 
+
+
 ## Streams
 * Time-ordered sequence of item-level changes in a table
 * Terms
 	* Stream Record: contains the info about a single modification to the DB table
-		* Primary key would be recorded by default
+		* Only Primary key would be recorded by default
 		* Sequence number would be assigned to stream record reflecting the sequence of the operation
 	* Shards: group (container) of multiple stream records
-* Operations would be persisted in order in Stream Records; stored for 24 hours
+- Features
+	* Operations would be persisted in order in Stream Records; stored for 24 hours
+	- Streams endpoint would be different from table endpoint
+	- Modes
+		1. KEYS_ONLY: only keys are in streams
+		1. NEW_IMAGE: updated full item
+		1. OLD_IMAGE: origin full item
+		1. NEW_AND_OLD_IMAGES
+- Flow
+	1. Replication would be done via Elastic Beanstalk
+	1. use KCL (Kinesis Client Lib) on EC2 
 * Use cases
-	* Cross-region replication (global tables)
+	* Cross-region replication (global tables / disaster recovery)
 	* Establish relationships across tables via streams
+	* Triggers e.g. Lambda
 * Lambda can poll DynamoDB streams
 
-## Transactions
-* Dealing with 'all-or-nothing' operations (i.e. ACID transactions)
-	* Check for a pre-req condition before writing
-	* Can write multiple items across multiple tables
-		* Up to 25 items or 4 MB of data at the same time
-* 2 underlying reads/writes - prepare/commit
-
-
-
-## TTL
-* Can set TTL to give an expiry date to the data  
-* Expired data would be marked as deleted
-* For
-	1. Session data
-	1. Logs
-	1. Temporary data
-* TTL format
-	* Epoch time (# of seconds elapsed from 1970 Jan 1st)
-* Reduces cost automatically
-
-
-## PITR (Point-in-Time-Recovery)
-* What does it do
-	* Protects against accidential writes
-	* Restore to any point from past 5 min to last 35 days
-* Not enabled by default
-* Incremental backups
-
-
-
-## Global Tables
+### Global Tables
 * How to create? 
 	1. Create local tables
 	1. enable stream
@@ -2482,6 +2615,54 @@ The `BatchGetItem` operation returns the attributes of one or more items from on
 * Constraints
 	* Need stream enabled
 	* Not all regions are supported
+
+
+## Transactions
+* Dealing with 'all-or-nothing' operations (i.e. ACID transactions)
+	* Check for a pre-req condition before writing
+	* Can write multiple items across multiple tables
+		* Up to 25 items or 4 MB of data at the same time
+* 2 underlying reads/writes - prepare/commit
+* `TransactWriteItems` operation
+
+
+## Throughputs
+## On-demand Throughput
+* Charges applied for reading, writing, and storing
+	* Pay per request
+* Great for unpredictable workloads
+
+## Provisioned Throughput
+* Measured in Capacity Units
+* Can specify RCU & WCU
+	* RCU = 1 strong consistent read of 4 KB per sec / 2 eventual consistent reads per sec
+	* WCU = 1 write of 1KB per sec 
+* Calculations
+	* RCU = celling(data size per item / 4KB) * number of read items per sec  / (is strong consistency) ? 1 : 2
+	* WCU = celling(data size per item / 1KB) * number of write items per sec
+* If exceeding the throughput
+	* there would be `ProvisionedThroughputExceededException`
+	* SDK would auto retry until successful
+- Get the consumption of read capacity
+	- Can be done via setting `ReturnConsumedCapacity` in query request to `TOTAL`
+		- `NONE` is the default value; `INDEX` shows the aggregated # of RCUs consumed + capacity for each table and index
+
+
+## TTL
+* Can set TTL to give an expiry date to the data  
+- Features
+	1. After you enable TTL on a table, a per-partition scanner background process automatically and continuously evaluates the expiry status of items in the table
+	1. DeleteItem operation would be performed
+	1. Tagged as `system delete` in DynamoDB stream
+* Expired data would be marked as deleted
+* For
+	1. Session data
+	1. Logs
+	1. Temporary data
+* TTL format
+	* Epoch time (# of seconds elapsed from 1970 Jan 1st)
+* Reduces cost automatically
+
 
 ## Security
 * Encryption at rest via KMS
@@ -2502,6 +2683,11 @@ The `BatchGetItem` operation returns the attributes of one or more items from on
 	```
 
 ## Best Practices
+1. Creating tables
+	1. Choose appropriate partition keys to avoid hot partitions
+1. Creating LSIs
+	1. Choose new sort keys based on frequently queried attributes
+	1. Think about attributes being projected to save costs during queries
 1. Query / Scan
 	1. Reduce query / scan capacity by setting a smaller page size
 	1. Can perform a larger # of small requests to allow other requests to succeed before throttling
@@ -2510,6 +2696,13 @@ The `BatchGetItem` operation returns the attributes of one or more items from on
 	1. Use parallel scans 
 		* Divides table / index into segments and scan each segment in parallel
 		* Avoid if table has already had heavy read / write capacity
+1. Handling bursts
+	1. Write
+		1. Can change the application to force spreading periodic batch writes over time
+		1. Can use SQS as a managed write buffer
+	1. Read
+		1. Caching - CloudFront / DAX
+
 
 ## Pricing
 * If pay upfront (provisioned capacity) - cheaper read/write later e.g. costco
@@ -2524,24 +2717,37 @@ The `BatchGetItem` operation returns the attributes of one or more items from on
 
 
 
-# ElasticCache
+# ElastiCache
 * A data caching service used to help improve speed/performance of web applications running on AWS
-* Cache in memory
+- Features
+	* Cache in memory
+		- Memory access is much faster than disk access
+		- However, all data can be lost if there is a hardware failure
+	- NoSQL key-value store
 * Benefits
 	* Speed/performance increases
 	* Removes huge load from DB
-* Supports 2 open-source in-memory engines
-	* **Redis** A fast, open source, in-memory data store and cache
-		* Use cases: Advanced data types, sorting data sets, Multi-AZ, Backups, Master / slave replication, Pub/sub support
-	* **Memcached** A common memory object caching system
-		* Simple caching model
-		* Use cases: offload DB, multi-threaded performance
 * Can be used as a data store for session data
 * Parameter Group
 	- manage runtime settings for supported engine software
 	- Parameters are used to control memory usage, eviction policies, item sizes, and more.
 * Security Group
 * Subnet Group
+
+## Supports 2 open-source in-memory key-value database engines
+1. **Redis** A fast, open source, in-memory data store and cache
+	- Features
+		1. Complex data types e.g. strings, hashes, list
+		1. Can have disk persistence in addition to in mem cache at the cost of speed
+		1. Can configure fall-over
+	* Use cases: Advanced data types, sorting data sets, Multi-AZ, Backups, Master / slave replication, Pub/sub support
+	- Cluster mode enabled vs disabled
+1. **Memcached** A common memory object caching system
+	* Features
+		1. Multi-threading support
+		1. Only supports string to string mapping
+		1. Simple caching model
+	* Use cases: offload DB, multi-threaded performance
 
 ## Caching Strategies
 1. Lazy Loading
@@ -2563,49 +2769,119 @@ The `BatchGetItem` operation returns the attributes of one or more items from on
 			* Can be mitigated by combining Lazy Loading
 		1. resource wasted if the data is never read
 
+
+
 # Amazon Neptune
-A fast, reliable, fully-managed graph database service that makes it easy to build and run applications that work with highly connected datasets
+- A fast, reliable, fully-managed **graph** database service that makes it easy to build and run applications that work with highly connected datasets
+- Architecture
+	1. Data is structured as nodes with edges
+		- Edges are shared attributes between nodes
+	1. Can reveal hidden patterns in data
+- Interface languages
+	1. Apache Gremlin
+		- Graph structure: property
+		- query pattern: traversal
+	1. W3C SPARQL
+		- Graph structure: Resource Description Framework (RDF)
+		- query pattern: SQL
+- Use cases
+	1. Security - pattern recognition
+	1. Social media - targeting advertisement
+	1. Science - Scientific modeling
 
 
 
-# Amazon Redshift
+# DocumentDB
+- Fully managed auto-scaling Document Store Database Management System
+- Features
+	1. Great for structured / semi-structured documents - JSON / YAML
+	1. Metadata is stored with document records
+	1. Can hit critical scale failures
+	1. MongoDB compatible
+- Use cases
+	1. Social Media Profiles
+	1. Object Catalogues
+	1. Content Management Systems
+
+
+
+# Redshift
 * Fast, fully managed Cloud Data Warehouse for BI available in 1 AZ
-* Definitions
-    * Data warehouse is a collection of computing resources (*nodes*)
-    * *Nodes* are organized into a group called a *cluster*
-    * Each *cluster* runs an Amazon Redshift engine and contains one or more databases running on EC2 instances
-    * Named as *RedShift* as it’s the same as the context of Universe Expansion as observed in Hubble's telescope
-* Architecture
+* Features
     * A relational *database* management system (RDBMS) based on an older version of PostgreSQL 8.0.2
         * RDBMS
         * PostgreSQL
-    * S3 vs. RedShift
-        * Amazon S3 a simple web services interface to store and retrieve any amount of data from anywhere on the web
-        * data can be pumped into your warehouse from s3
-* Configuration types
-	* Single Node: 160 G
-	* Multi Node
-		* Leader node - manage client connection
-		* Compute nodes - up to 128 nodes 
-* Features
     * can query against up to 1 PB (1024 TB) stored in RedShift, and 1 EB (1024 PB) in S3
     * gives you fast querying capabilities over structured data using familiar SQL-based clients and business intelligence (BI) tools using standard ODBC and JDBC connections. Queries are distributed and parallelized across multiple physical resources.
+    * Named as *RedShift* as it’s the same as the context of Universe Expansion as observed in Hubble's telescope
+* Architecture
+	- Node
+	    - Data warehouse is a collection of computing resources (*nodes*)
+	    - Node Configurations
+	    	1. Single node - 160 G
+	    	1. Multi node
+		    	1. Leader node
+		    		- has a SQL endpoint
+		    			- e.g. `redshiftsample.xxx.us-east-1.redshift.amazonaws.com:5439`
+		    			- To view the endpint
+		    				- Redshift -> Clusters -> Choose cluster -> Configuration -> Endpoint
+					- coordinates parallet query execution
+						- leader nodes compiles execution plan and distribute to compute nodes
+					- stores metadata
+		    	1. Compute node - up to 128 nodes 
+		    		- execute queries in parallel
+		    		- dedicated CPU, memory and local storage
+		    		- auto backups
+		    		- Consists of slices
+		    			- Slices are portion of mem and disk
+		    			- data would be loaded to slices in parallel
+		    			- processes a portion of the query
+		    			- # of slices depend on the table design & nodes
+		- Node types
+			1. Dense Compute
+			1. Dense Storage
+	- Cluster
+	    * *Nodes* are organized into a group called a *cluster*
+	    * Each *cluster* runs an Amazon Redshift engine and contains one or more databases running on EC2 instances
 * Use cases
 	* best suited for analyzing data using standard SQL and Business Intelligence(BI) tools
+	* Do not use it for OLTP use cases
 * Usage
     * Can setup SQL Workbench with JDBC
     * There is limited dynamic statement available for RedShift, using python might be better
+
+## Columnar Data Store
+- Redshift stores data tables as columns rather than as rows
+- Benefits
+	1. Avoid wasted reads if the query is on a few columns
+	1. Data aggregation - compress same columns
+	1. Supports compression -> save cost
+		* Compress same columns (also called a column-oriented database)
+		* Other compression techiques may be applied automatically
+- Not for
+	1. Querying specific values from a huge database
+	1. Small amount of data
+	1. OLTP
+		- Avoid single line inserts i.e. inserting rows
+	1. Binary large objects
 
 ## Enhanced VPC Routing
 * Provides VPC resources access to Redshift so that Redshift can access the resources via VPC endpoints
 * Before enabling, Redshift routes traffic through the internet
 * After enabling, it forces all `COPY` and `UNLOAD` traffic between the cluster and data repositories through VPC
 
-## Columnar Data Store
-* Compress same columns (also called a column-oriented database)
-* Other compression techiques may be applied automatically
+## Integration with other AWS services
+- S3
+	- via COPY / UNLOAD commands
+		e.g. `copy {table-name} from '{s3-object-path}' credentials '{IAM-role-ARN}'`
+	- can use COPY to move data from DynamoDB, EMR, and EC2
+- Data Pipeline
+- Database Migration Service
+- Lambda
+- QuickSight
+- Kinesis
 
-## massively parallel processing (MPP)
+## Massively Parallel Processing (MPP)
 * Auto distribute data & query load across all nodes
 * Scaling while maintaining query performance
 
@@ -2626,6 +2902,9 @@ A fast, reliable, fully-managed graph database service that makes it easy to bui
 	* Data Transfer within VPC
 * Can reserve EC2 instances to save cost
 
+
+# Lake Formation
+- Help builds a data lake, i.e. a centralized storage
 
 
 
@@ -2666,6 +2945,23 @@ A fast, reliable, fully-managed graph database service that makes it easy to bui
 	* EFS is native to Unix and Linux
 
 
+
+
+
+# SageMaker
+- helps data scientists and developers to prepare, build, train, and deploy high-quality machine learning (ML) models quickly by bringing together a broad set of capabilities purpose-built for ML.
+- Features
+	1. purpose-built tools for every step of ML development, including labeling, data preparation, feature engineering, statistical bias detection, auto-ML, training, tuning, hosting, explainability, monitoring, and workflows.
+	1. Supports ML frameworks TensorFlow, PyTorch, and mxnet
+
+
+## S3 Integration
+- S3 can store input and model trained from SageMaker
+- Can add Amazon FSx for Lustre between S3 and SageMaker
+	- Fastest file loading
+- EFS
+	- Can download the data from S3 to the training instance's EBS before training starts
+	- Good if the size of data is not big  
 
 
 # Application Integration Services
@@ -2858,10 +3154,24 @@ A managed message broker service for Apache ActiveMQ and RabbitMQ that makes it 
 	1. The configuration can then be saved to the **Parameter Store** in SSM
 	1. SSM can then apply the same configuration to other instances
 
+### CloudWatch Insights
+- Analysis tool to check insights
+
 ### Logs
 * Retention:
 	* Default: forever (even after EC2 termination)
 	* Can customerize
+
+### Cost
+- Majority of cost on the size of logs emitted by the CW agent
+- Query & storage cost are typically negligible
+
+### BP
+1. Create some CW insights regex to faciliate searches
+1. To save cost
+	1. reduce the overhead of each log statement (e.g. truncate/delete some general information)
+	1. remove redundant logs
+	1. remove request/response logs
 
 
 
@@ -3143,7 +3453,7 @@ Connects to on-prem AD
 
 
 ### CFn Drift Detection
-* used to detect changes made to AWS resources outside of CFn templates
+* used to detect changes made to CFn created AWS resources outside of CFn templates
 * Can run against individual stack resources / entire CFn stack / EC2 instances
 * Only checks property values explicitly set by stack templates or template parameters
 
@@ -3442,10 +3752,13 @@ Connects to on-prem AD
 * Parameter Store 
 	1. no additional charges; limit: 10,000 keys & secrets
 
+
+
 # AWS Analytics
 ## Athena
-* Serverless interactive query service
+* Fully managed serverless interactive query service
 	* Analyze and query data in S3 using SQL
+	* RDMS
 * Use cases
 	* Query log files on S3
 	* Generate busines reports
@@ -3458,21 +3771,111 @@ Connects to on-prem AD
 	* pay per query / per TB scanned
 
 ## EMR (Elastic Map Reduce)
-* Big data platform using open-source tools including Apache Spark, Apache Hive ...
-* Managed Hadoop (MapReduce programming model for distributed storage & big data) framework
+* Big data platform
 * Features
-	* Can read large amounts of data
+	- Managed cluster platform
+	- Can read, process and analyze large amounts of data
+	- Several big data frameworks & open-source projects
+		- Frameworks: managed Hadoop (MapReduce programming model for distributed storage & big data) framework
+		- Open-source tools: Apache Spark, Apache Hive
+	- Single AZ
 * Benefits
 	* Half of the cost of on-prem solutions
 	* x3 faster than Apache Spark
 * Components
-	* Cluster: a group of interconnected EC2 instances; each instances is a node
+	1. Cluster: a group of interconnected EC2 instances; each instances is a node
 		* Master node: manages the cluster, track job status, and monitor health
+			- Features
+				1. Coordinates distribution and parallel execution of MapReduce executables
+				1. Tracking and directing against HDFS
+				1. Resource Manager
 			* Logs can be persisted in S3 every 5 minutes. 
 				* This needs to be set up when the cluster is created.
-		* Core node: run tasks & store data in HDFS (Hadoop Distributed File System)
+		* Core node (slave node): run tasks & store data in HDFS (Hadoop Distributed File System)
+			- DataNode daemon 
+				- manage data blocks and I/O requests under core node
+			- NodeManger
+				- manage resources on core node
+			- ApplicationMaster
+				- work with node manager & resource manager, and execute and monitor containers
 		* Task node (optional): only run tasks
+			- No HDFS
+		- Instance Group
+			- Nodes are grouped in instance groups
+			- Size limit of total instance groups: 50
+				- Master node: 1 group
+				- Core node: 1 or 2 groups
+				- Task node: up to 48 groups
+	1. HDFS
+		- Distributed file system
+			- allows concurrent access
+		- Features
+			1. High throughput
+			1. Replication
+				- Default replication factor is 3
+				- Management
+					- View factor: `hadoop fs -stat %r filename`
+					- Update factor: `hadoop fs -setrep -R -w {new factor} filename`
+		- Components
+			1. Global Namespace
+			1. Block
+				- Block size
+					- default block size: 64 MB
+						- general block size: 64 - 256 MB
+					- Large block sizes
+						- minimizes random disk seeks and latency
+					- Can be set per file
+	1. Storage options
+		1. Instance Store
+			- High IOPS at low cost
+		1. EBS for HDFS
+			- Note that volume would not be persisted 
+		1. EMRFS
+			- store on S3
+				- data would be persisted after termination of EMR instances
+			- Features
+				1. Can use EMRFS and HDFS together
+					- Copy data from S3 to HDFS using S3DistCp
+				1. Consistent View
+- Use cases
+	1. Log processing
+	1. ETL
+	1. Stream analysis
+	1. Machine learning
 
+### MapReduce Overview
+- MapReduce is a programming model and an associated implementation for processing and generating big data sets with a parallel, distributed algorithm on a cluster
+- components
+	1. Input - unstructured data
+	1. Split
+		- Read input and split inputs into records
+		- Each record is a key-value pair
+	1. Map procedure
+		- Data would be distributed in the cluster to nodes for processing
+	1. Suffle
+		- Moving intermediate KV pairs to the reducers
+		- Records would be sorted and grouped based on keys in KV  
+	1. Reduce method
+		- Take the results from the Map phase and reduce (combine) into a single value
+
+### Apache Hadoop
+- A framework
+- Features
+	1. Distributed processing across clusters using simple programming models
+	1. Scalibility
+	1. Error detection at application layer
+- YARN Architecture
+	- Client -> 
+	- Master node ->
+		- Resource Manager: assigns the map phase the data records to start parallel processing 
+	- Slave node ->
+		- Node manager
+		- Application master
+		- Container: data processing 
+	- HDFS
+
+### EMR Architecture
+- Core and task nodes are the slave nodes
 
 ## CloudSearch
 Service to help set up, manage, and scale a search solution for the website and application
@@ -3483,43 +3886,140 @@ Help deploy, secure, operate, and scale Elasticsearch to search, analyze, and vi
 ## Kinesis
 * Help collect, process, and analyze real-time, streaming data so you can get timely insights and react quickly to new information
 * Real-time data examples: purchases, stock, game data, iOT sensor data
+- Benefits
+	1. Real-time aggregation of data
+	1. Loading data into Redshift / EMR / S3 / DynamoDB
+	1. Parallel application readers
 
 ### Kinesis Data Streams
 * A massively scalable and durable real-time data streaming service
 * can be used to collect log and event data from sources such as servers, desktops, and mobile devices
-* Model
-	* Producers -> Shards (storage) -> consumers (analysis)
-		* Each shard is a sequence of data-records in a stream, each data record has a unique sequence number
-		* Shard limit
-			* Read
-				* TPS: 5
-				* Data rate: 2 MB per sec
-			* Write
-				* 1000 records per sec
-				* Data rate: 1 MB per sec
-			* Retention period: 24 hours to 7 days
-		* When data rate increases, need to increase the # of shards (resharding)
 * Features
 	* can capture, transform, and load streaming data into Amazon S3, Amazon Redshift, Amazon Elasticsearch Service, and Splunk
-* Order
-	* Cannot guarantee the order across shards
-	* Kinesis gives you the ability to consume records according to a sequence number applied when data is written to the Kinesis shard
-* Re-sharding
-	* enables you to increase or decrease the number of shards in a stream in order to adapt to changes in the rate of data flowing through the stream
-	* the number of instances does not exceed the number of shards
-	* one worker can process any number of shards
+* Model
+	* Producers -> Shards (storage) -> consumers (analysis)
+- Data Blob
+	- the data that producer adds to a stream
+	- max size is 1 MB
+- Streams Record
+	- Unit of data stored in a stream
+	- Components
+		1. Partition key
+			- helps group the data by shard by telling which shard the data belongs to
+			- specified by the app putting the data into a stream
+		1. Sequence number
+			- unique id for records in a shard
+			- assigned when a producer calls `PutRecord` or `PutRecords` operations to add data to a stream
+		1. User records - actual data being sent to Kinesis
+* Shard 
+	- a sequence (group) of data-records in a stream, each data record has a unique sequence number
+	* Shard limit
+		* Read
+			* TPS: 5
+			* Data rate: 2 MB per sec
+		* Write
+			* 1000 records per sec
+			* Data rate: 1 MB per sec
+		* Retention period: 24 hours (default) to 7 days
+			- can change via CLI
+	* Resharding
+		* enables you to increase or decrease the number of shards in a stream in order to adapt to changes in the rate of data flowing through the stream
+		* the number of instances does not exceed the number of shards
+		* one worker can process any number of shards
+		- Options
+			1. Shard split
+			1. Shard merge
+- Producers
+	- Options
+		1. SDK Kinesis Streams API
+			1. `PutRecord`
+			1. `PutRecords` - recommended by AWS
+		1. KPL (Kinesis Producer Library)
+			- Helps write to 1 or more Kinesis Streams with an auto-retry configurable mechanism
+			- Features
+				1. Collects records to write multiple records to multiple shards per request
+				1. Aggregation
+					- Combine multiple user records into 1 Streams record
+					- Shard write capacity - 1 MB / sec & 1000 Streams record / sec
+					- Can combine user records to fill up the 1 MB / sec space , thus improving the throughput of each shards
+				1. Collection (batching)
+					- Combine multiple Streams records into a single HTTP request with `PutRecords` API operation
+			- KCL integration
+			- Use cases
+				- inject thousands of requests per sec
+			- Not suitable when
+				- producer app cannot incur additional processing delay
+		1. Kinesis Agent
+			- Standalone java app that Kinesis provides
+			- Features
+				1. Monitor multiple directories and write to multiple streams
+				1. Can pre-process data
+					1. Multi-line record to single line
+					1. Convert data to JSON format
+- Consumers
+	- KCL (Kinesis Consumer Library)
+		- consumes and processes data
+		- features
+			1. Contains a Record Processor
+			1. Resharding
+			1. Load balancing
+			1. Checkpointing
+			1. De-aggregation
+	* Order
+		* Cannot guarantee the order across shards
+		* Kinesis gives you the ability to consume records according to a sequence number applied when data is written to the Kinesis shard
+	* Checkpointing - track processed records (via DDB)
+		- Uses unique DDB for each app to track app state
+		- As KCL uses the name of Streams app to create DDB table, application names should be unique
+			- The DDB that KCL creates would have 10 WCU and 10 RCU
+				- Cases where RCU/WCU is not enough
+					1. Frequent checkpointing in app
+					1. Too many shards
+		- Each row in DDB table represents a shard 
+			- Hash key is the shard id
+- Loads data into S3 / ElasticSearch / Redshift / DDB
+	- Can use 
+		1. Kinesis Connector Library (Java)
+			- Kinesis Stream -> iEmitter -> other AWS services 
+		1. Spark Streaming 
+		1. Lambda
+			- Can auto read records from Kinesis streams and process them
+
 
 ### Kinesis Firehose
 * reliably load streaming data into data lakes, data stores, and analytics tools
-* capture, transform, and load streaming data into Amazon S3, Amazon Redshift, Amazon Elasticsearch Service, and Splunk, enabling near-real-time analytics
-* automatically scales to match the throughput of your data and requires no ongoing administration
-* can also batch, compress, transform, and encrypt the data before loading it
+* Features
+	* capture, transform, and load streaming data into Amazon S3, Amazon Redshift, Amazon Elasticsearch Service, and Splunk, enabling near-real-time analytics
+	* automatically scales to match the throughput of your data and requires no ongoing administration
+	* can also batch, compress (e.g. reduce storage in S3), transform, and encrypt the data before loading it
+	* No storage, while KDS has
 * Components
 	1. Delivery streams
 	1. Records of data and destinations
 * Model
 	* Producers -> Kinesis Firehose (lambda - capture & transform) -> S3 / Redshift / ElasticSearch
-* No storage, while KDS has
+- Methods to load data into Firehose
+	1. Kinesis agent
+	1. AWS SDK
+		- `PutRecord` / `PutRecordBatch`
+- Data Transformation 
+	- Flow
+		1. Firehose buffers incoming data up to 3 MB
+		1. Invokes Lambda to transform data async (will retry 3 times)
+		1. Transformed data sent back to Firehose for buffering and then delivers to destination
+	- Lambda params for transformation
+		1. recordId - need to be consistent before / after transformation
+		1. result - transformed record status
+		1. data - transformed data payload
+- Delivery
+	- Buffer size (1 - 128 MB) / buffer interval (60 - 900 sec)
+		- Determines how data is packed and sent to other AWS services
+		- Firehose can raise the buffer size dynamically to catch up if there were errors
+	- Error handling
+		1. S3 - retries delivery for up to 24 hours; data would be lost if past 24 hours
+		1. Redshift - retry duration can be configured between 0 - 7200 seconds from copying from S3
+			- Manifest files could be created for backfilling
+
 
 ### Kinesis Analytics
 * analyze streaming data, gain actionable insights, and respond to your business and customer needs in real time
@@ -3541,13 +4041,23 @@ Help deploy, secure, operate, and scale Elasticsearch to search, analyze, and vi
 1. Use auto scaling group with dynamic scaling on CPU utlization to help manage the # of consumer instances
 
 
-## AWS QuickSight
-A scalable, serverless, embeddable, machine learning-powered business intelligence (BI) service built for the cloud
+## QuickSight
+- A scalable, serverless, embeddable, machine learning-powered business intelligence (BI) service built for the cloud
+- Features
+	1. Supported data sources: 
+		1. Redshift, Aurora, Athena, RDS, S3
+		1. Databases in EC2 for AWS / On-prem
+		1. On-prem files
+		1. Salesforce
+- Use cases
+	1. Business Intelligence tool
+	1. Marketing, sales, financial, operational data analysis
 
-## AWS Glue
+
+## Glue
 * A serverless data integration service that makes it easy to discover, prepare, and combine data for analytics, machine learning, and application development
 * can visually create, run, and monitor ETL workflows with a few clicks in AWS Glue Studio
-
+- Can do batch processing
 
 
 
@@ -3557,13 +4067,54 @@ A scalable, serverless, embeddable, machine learning-powered business intelligen
 * continuously monitors and records your AWS resource configurations and allows you to automate the evaluation of recorded configurations against desired configurations
 * can notify the changes to the state of AWS environment
 
-
-## AWS Data Pipeline
-* A web service that helps you reliably process and move data between different AWS compute and storage services, as well as on-premises data sources, at specified intervals.
-
 ## AWS Elastic Transcoder
 * Media Transcoder in the cloud
 * Transcode video to formats that look good on each devices
+
+## AWS IOT
+- Takes data from IoT devices and write data to ElasticSearch / Kinesis Firehose / Kinesis Streams / DDB / Machine Learning
+- Invokes Lambda functions
+- General Flow
+	1. Registray establishes identities of the devices -> 
+	1. IoT device SDK helps devices transfer data via HTTP / HTTPS ->
+	1. Device gateway -> 
+	1. Rule engines (transforming messages) -> other AWS Services
+- Components
+	- Operations
+		1. Control plane API
+			- admin tasks
+		1. Data plane API
+			- sending / receiving data from AWS IoT
+	- Authentication
+		- Each connected devices requires an X509 cert to authenticate the device connection with AWS IoT
+			- Management
+				- 'IoT' -> 'Security' -> 'Certificates'
+		- IAM / Cognito
+			- Can attach an IOT policy to a cognito identity 
+	- Authorization
+		1. IoT policies
+		1. IAM policies 
+	- Device Gateway
+		- Maintains sessions and subscriptions for all connected devices
+		- Allows 1:1 and 1:many communications
+		- Protocols supported: MQTT, WebSockets, HTTP
+	- Device Registrary
+		- A central location for storing attributes related to each thing
+		- What is a Thing in IoT?
+			- A physical device or logical entity
+		- Management
+			- 'IoT' -> 'Registray' -> 'things'
+	- Device Shadow
+		- JSON to store and retrieve the current state of a thing
+		- Acts as a message channel to send commands to a thing
+	- Rules Engine
+		- Features
+			1. Provide a thing the ability to interact with AWS services
+			1. Transform messages via SQL based syntex and route them to AWS services
+		- Management
+			- 'IoT' -> 'Rules' -> Select a rule -> View 'Rule query statement' and 'Actions'
+
+
 
 ## AWS Marketplace
 * A digital catalog with thousands of software listings from independent software vendors that make it easy to find, test, buy, and deploy software that runs on AWS.
@@ -3596,6 +4147,32 @@ A scalable, serverless, embeddable, machine learning-powered business intelligen
 Migrate existing virtual machines / applications in EC2
 
 ### Download Amazon Linux 2 as an ISO
+
+## Data Pipeline
+* A web service that helps you reliably process and move data between different AWS compute and storage services, as well as on-premises data sources, at specified intervals.
+- Features
+	1. Create an ETL workflow to automate processing and movement of data at scheduled intervals, and then terminate the resources
+	1. Cross-region migration
+	1. Run on EC2 instances / EMR cluster
+	1. A fair amount of functionality has been replaced by Lambda
+- components
+	1. Datanodes
+		- End destination of the data
+		- Management
+			- 'Data Pipeline' -> Select pipeline -> Execution Details -> 'Add' -> xxxNode
+	1. Activities
+		- An action that Data Pipeline initiates
+		- e.g. `CopyActivity`, `EmrActivity`, `HadoopActivity`
+	1. Preconditions
+		- Readiness check
+		- Can be applied to an activity or a data source
+	1. Schedules
+		- Defines time & frequency
+
+### On-prem flow
+1. Install a Task Runner package on on-prem hosts
+1. Task Runner would poll the Data Pipeline for work to perform
+1. Task Runner executes the commands issued by Data Pipeline
 
 
 ## OpsWork
@@ -3874,9 +4451,9 @@ A repository of tutorials, whitepapers, digital training, and project use cases
 # Other Notes
 
 ## Caching
-* CloudFront (lazy-loading), API Gateway (lazy-loading), ElasticCache (lazy-loading, write-through), DynamoDb Accelerator (write-through)
+* CloudFront (lazy-loading), API Gateway (lazy-loading), ElastiCache (lazy-loading, write-through), DynamoDb Accelerator (write-through)
 * Senario
-	* CloudFront -> API Gateway -> Lambda -> ElasticCache 
+	* CloudFront -> API Gateway -> Lambda -> ElastiCache 
 	* Earlier stage of caching is, lower the latency would be
 
 
@@ -3922,6 +4499,28 @@ Multiple questions
 ## Additional Resources
 1. FAQs
 	* Main ones: Lambda, DynamoDB, S3, IAM, ECS, SQS
+	- ML main ones
+		1. Data engineering
+			1. Data storage: Lake formation, S3, FSx for lustre, EFS
+			1. Data ingestion: Glue, Apache Kafka, Kinesis
+			1. Data transformation: EMR with Apache spark, Glue, Athena, SageMaker + Apache spark
+		1. Data analysis
+			1. Sanitize and prep data for modeling: SageMaker Ground Truth
+				- Examine the data
+					- the dimensions of the data (column - # of features, row - # of data)
+					- Correlations between features
+					- Stats (descriptive, informative)
+				- Prepare
+					- Data augmentation
+				- Sanitize
+					- ensure each column does not contain multiple features
+					- Handle missing data
+			1. Feature engineering
+				1. Dimensionality reduction e.g. PCA, T-distributed stochastic neighbor embedding
+				1. Transformation (for numerical features)
+				1. Convert categorical data into numerical data
+			1. 
+		1. Modeling
 1. Re:Invent videos
 1. Whitepapers
 
@@ -3936,3 +4535,10 @@ Multiple questions
 * Certificates expire in 3 years.
 * Recertification testing would be half price and shorter
 * Passing Pro level would renew Associate level certificates
+
+
+## Strategies
+1. Read and understand the question before reading answer options
+1. Identify key phrases and qualifiers
+1. Anticipate the answer before looking at answer choices
+1. Eliminate options based on what we know about the question / topic

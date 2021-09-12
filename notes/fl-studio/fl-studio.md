@@ -1,15 +1,74 @@
 # FL Studio
 
+## FL Studio Overview
+- FL Studio is a full-featured music production environment capable of multi-track audio recording, sequencing and mixing for the creation of professional quality music tracks. 
+- DAW (Digital Audio Workstation) 
+- UI sections
+   - Channel Rack
+   - Playlist
+   - Piano Roll
+   - Mixer
+   - Browser
+
+### Terminologies
+- VST (Virtual Studio Technology): an audio plug-in software interface that integrates software synthesizers and effects units into digital audio workstations
+- MIDI (Musical Instrument Digital Interface): a technical standard that describes a communications protocol, digital interface, and electrical connectors that connect a wide variety of electronic musical instruments, computers, and related audio devices for playing, editing and recording music.
+
+
+### Menu Bar
+#### Export music
+- Mode
+   - Pattern
+   - Full song
+- Format
+   - Wave: minimal impact to original quality
+   - **OGG**: no gap before start & after end
+- Bit rate: higher -> better quality
+
+#### Import Music
+- All music resources can be directly dragged into panels or tracks
+
+#### Edits
+- **Undo / Redo** can be done via `EDIT` (`Ctrl + Z`) or History panel on the left
+- **Copy / Paste / Move** can be done via holding `shift` and drag the pattern or `Ctrl + b`
+
+#### Other
+- `Beats per bar` and `Steps per beat` can be edited in `project settings`
+- Tempo helper should be on at the beginning of beat making phase
+
+## Playlist
+- Zoom
+   - Vertically: small dot button on the top right
+   - Horizontally: drag the size of the moving bar
+- Magnet button: adjust the closest step that a pattern auto attach to after dragging
+   - `None` is not recommended
+- Knobs value can be changed by dragging up or down
+   - Most knobs and sliders can be linked to external/internal controllers
+- Slide button: cut a pattern into two
+
+
+
+
+
 ## Music Theory
 - Note: a sound with a specific frequency
    - Most songs are made of 12 notes (corresponds to the **octave** in piano keys - 7 white keys & 5 black keys)
    - One octave higher means **double frequency**
 - Beat
-- Bar (typically 4 beats per bar)
+   - Either a strong beat or a weak beat (i.e. on beat / off beat 强拍 弱拍)
+- Bar (小节 typically 4 beats per bar)
+   - e.g. 44拍: Each beat is a 4th note, 4 beats per bar (pattern: strong weak weak weak | strong weak weak weak)
+   - e.g. 43拍: Each beat is a 4th note, 3 beats per bar (pattern: strong weak weak | strong weak weak)
+   - Why 4
+      - 4 is the number of completion.
+      - Verse usually has 16 bars (4 * 4)
+      - Hook usually has 8 bars (4 * 2)
 - Tempo (BPM): Beats per minute
-- Note
+- Note (音符)
    - Full note takes the whole bar
    - Half note takes 2 beats
+   - 8th note: 0.5 beat
+   - 16th note: 0.25 beat
 
 ### Piano Roll
 - 88 keys
@@ -108,50 +167,6 @@
       
    
 
-## FL Studio Overview
-- FL Studio is a full-featured music production environment capable of multi-track audio recording, sequencing and mixing for the creation of professional quality music tracks.   
-- UI sections
-   - Channel Rack
-   - Playlist
-   - Piano Roll
-   - Mixer
-   - Browser
-
-### Terminologies
-- VST (Virtual Studio Technology): an audio plug-in software interface that integrates software synthesizers and effects units into digital audio workstations
-- MIDI (Musical Instrument Digital Interface): a technical standard that describes a communications protocol, digital interface, and electrical connectors that connect a wide variety of electronic musical instruments, computers, and related audio devices for playing, editing and recording music.
-
-
-### Menu Bar
-#### Export music
-- Mode
-   - Pattern
-   - Full song
-- Format
-   - Wave: minimal impact to original quality
-   - **OGG**: no gap before start & after end
-- Bit rate: higher -> better quality
-
-#### Import Music
-- All music resources can be directly dragged into panels or tracks
-
-#### Edits
-- **Undo / Redo** can be done via `EDIT` (`Ctrl + Z`) or History panel on the left
-- **Copy / Paste / Move** can be done via holding `shift` and drag the pattern or `Ctrl + b`
-
-#### Other
-- `Beats per bar` and `Steps per beat` can be edited in `project settings`
-- Tempo helper should be on at the beginning of beat making phase
-
-## Playlist
-- Zoom
-   - Vertically: small dot button on the top right
-   - Horizontally: drag the size of the moving bar
-- Magnet button: adjust the closest step that a pattern auto attach to after dragging
-   - `None` is not recommended
-- Knobs value can be changed by dragging up or down
-   - Most knobs and sliders can be linked to external/internal controllers
-- Slide button: cut a pattern into two
 
 ## Channel Rack
 ### Basics

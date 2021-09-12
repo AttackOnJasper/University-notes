@@ -24,12 +24,71 @@
     ga('send', 'pageview');
 
   </script>
+<div id="TOC">
+<ul>
+<li><a href="#fl-studio">FL Studio</a>
+<ul>
+<li><a href="#fl-studio-overview">FL Studio Overview</a>
+<ul>
+<li><a href="#terminologies">Terminologies</a></li>
+<li><a href="#menu-bar">Menu Bar</a></li>
+</ul></li>
+<li><a href="#playlist">Playlist</a></li>
+<li><a href="#music-theory">Music Theory</a>
+<ul>
+<li><a href="#piano-roll">Piano Roll</a></li>
+<li><a href="#music-interval">Music Interval</a></li>
+<li><a href="#chord">Chord</a></li>
+<li><a href="#circle-of-fifths">Circle of Fifths</a></li>
+</ul></li>
+<li><a href="#channel-rack">Channel Rack</a>
+<ul>
+<li><a href="#basics">Basics</a></li>
+<li><a href="#instrument-properties">Instrument Properties</a></li>
+</ul></li>
+<li><a href="#piano-roll-1">Piano Roll</a>
+<ul>
+<li><a href="#basics-1">Basics</a></li>
+<li><a href="#ghost-channel">Ghost channel</a></li>
+<li><a href="#control-panel">Control panel</a></li>
+</ul></li>
+<li><a href="#mixer">Mixer</a></li>
+<li><a href="#automation-clip">Automation clip</a>
+<ul>
+<li><a href="#why-automation-clip">Why automation clip</a></li>
+</ul></li>
+<li><a href="#audio-recording">Audio Recording</a></li>
+<li><a href="#plugins">Plugins</a></li>
+<li><a href="#best-practices">Best Practices</a>
+<ul>
+<li><a href="#audio">Audio</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
   <h1>Notes by <a href="/">Jasper Wang</a>.</h1>
   <ul class="site_links">
     <span class="divider"></span>
   </ul>
 <h1 id="fl-studio">FL Studio</h1>
-<h2 id="overview">Overview</h2>
+<h2 id="fl-studio-overview">FL Studio Overview</h2>
+<ul>
+<li>FL Studio is a full-featured music production environment capable of multi-track audio recording, sequencing and mixing for the creation of professional quality music tracks.</li>
+<li>DAW (Digital Audio Workstation)</li>
+<li>UI sections
+<ul>
+<li>Channel Rack</li>
+<li>Playlist</li>
+<li>Piano Roll</li>
+<li>Mixer</li>
+<li>Browser</li>
+</ul></li>
+</ul>
+<h3 id="terminologies">Terminologies</h3>
+<ul>
+<li>VST (Virtual Studio Technology): an audio plug-in software interface that integrates software synthesizers and effects units into digital audio workstations</li>
+<li>MIDI (Musical Instrument Digital Interface): a technical standard that describes a communications protocol, digital interface, and electrical connectors that connect a wide variety of electronic musical instruments, computers, and related audio devices for playing, editing and recording music.</li>
+</ul>
 <h3 id="menu-bar">Menu Bar</h3>
 <h4 id="export-music">Export music</h4>
 <ul>
@@ -43,7 +102,7 @@
 <li>Wave: minimal impact to original quality</li>
 <li><strong>OGG</strong>: no gap before start &amp; after end</li>
 </ul></li>
-<li>Bitrate: higher -&gt; better quality</li>
+<li>Bit rate: higher -&gt; better quality</li>
 </ul>
 <h4 id="import-music">Import Music</h4>
 <ul>
@@ -59,6 +118,263 @@
 <li><code>Beats per bar</code> and <code>Steps per beat</code> can be edited in <code>project settings</code></li>
 <li>Tempo helper should be on at the beginning of beat making phase</li>
 </ul>
+<h2 id="playlist">Playlist</h2>
+<ul>
+<li>Zoom
+<ul>
+<li>Vertically: small dot button on the top right</li>
+<li>Horizontally: drag the size of the moving bar</li>
+</ul></li>
+<li>Magnet button: adjust the closest step that a pattern auto attach to after dragging
+<ul>
+<li><code>None</code> is not recommended</li>
+</ul></li>
+<li>Knobs value can be changed by dragging up or down
+<ul>
+<li>Most knobs and sliders can be linked to external/internal controllers</li>
+</ul></li>
+<li>Slide button: cut a pattern into two</li>
+</ul>
+<h2 id="music-theory">Music Theory</h2>
+<ul>
+<li>Note: a sound with a specific frequency
+<ul>
+<li>Most songs are made of 12 notes (corresponds to the <strong>octave</strong> in piano keys - 7 white keys &amp; 5 black keys)</li>
+<li>One octave higher means <strong>double frequency</strong></li>
+</ul></li>
+<li>Beat
+<ul>
+<li>Either a strong beat or a weak beat (i.e. on beat / off beat 强拍 弱拍)</li>
+</ul></li>
+<li>Bar (小节 typically 4 beats per bar)
+<ul>
+<li>e.g. 44拍: Each beat is a 4th note, 4 beats per bar (pattern: strong weak weak weak | strong weak weak weak)</li>
+<li>e.g. 43拍: Each beat is a 4th note, 3 beats per bar (pattern: strong weak weak | strong weak weak)</li>
+<li>Why 4
+<ul>
+<li>4 is the number of completion.</li>
+<li>Verse usually has 16 bars (4 * 4)</li>
+<li>Hook usually has 8 bars (4 * 2)</li>
+</ul></li>
+</ul></li>
+<li>Tempo (BPM): Beats per minute</li>
+<li>Note (音符)
+<ul>
+<li>Full note takes the whole bar</li>
+<li>Half note takes 2 beats</li>
+<li>8th note: 0.5 beat</li>
+<li>16th note: 0.25 beat</li>
+</ul></li>
+</ul>
+<h3 id="piano-roll">Piano Roll</h3>
+<ul>
+<li>88 keys</li>
+<li>12 keys (7 white keys and 5 black keys) are grouped together (octave).
+<ul>
+<li>White keys range from C,D,E,F,G,A,B.</li>
+<li>Black keys range from C# (D b), D#, … A#</li>
+</ul></li>
+<li>There are a total of 8 groups of keys. Range from
+<ul>
+<li>China: A_2, C_1, C, c, c^1 (center), c^2, c^3, c^4, c^5</li>
+<li>Other places: c5 is the center</li>
+</ul></li>
+</ul>
+<h4 id="major-keys-minor-keys">Major Keys &amp; Minor Keys</h4>
+<ul>
+<li>7 notes in a key
+<ul>
+<li>Every notes have distinct letters; after assigning a letter we would determine if a note is shape or flat</li>
+</ul></li>
+<li>Major pattern
+<ul>
+<li>whole, whole, half, whole, whole, whole, half (In semitone distances: 2, 2, 1, 2, 2, 2, 1)</li>
+<li>e.g.</li>
+<li><strong>C major</strong>: C, D, E, F, G, A, B (all 7 white keys)</li>
+<li><strong>D major</strong>: D, E, F#, G, A, B, C#</li>
+<li>Majors with black keys marked as #: G, D, A, E, B, F#, C#</li>
+<li>Stability order: 1 5 3 6 2 4 7 (e.g. In C major, C is most stable, and B is most unstable)</li>
+<li>Unstable notes have the tendency to move to stable notes in a pattern</li>
+</ul></li>
+<li><ul>
+<li><strong>Trap beat</strong> typically uses <strong>D minor</strong></li>
+</ul></li>
+</ul>
+<h3 id="music-interval">Music Interval</h3>
+<ul>
+<li>Categories
+<ul>
+<li>Horizontal, Linear, Melodic</li>
+</ul></li>
+<li>Semitone
+<ul>
+<li>smallest distance unit between notes. All distances can be described as x semitones.</li>
+<li>distance between C and C# is 1 semitone</li>
+<li>the interval of 2 semitones is called a whole step / whole tone / tone</li>
+</ul></li>
+<li>Intervals vs. # of semitones:
+<ul>
+<li>0 semitone: Perfect unison</li>
+<li>1 semitone: Minor second</li>
+<li>2 semitones: Major second</li>
+<li>3 semitones: Minor third</li>
+</ul></li>
+<li><strong>Perfect consonant intervals</strong>: octaves (8th), unison (same alphabetical note), fifths, fourth</li>
+<li><strong>Imperfect consonant intervals</strong>: major and minor thirds, and major and minor sixths</li>
+<li><strong>Augmented</strong> vs <strong>Diminished</strong>
+<ul>
+<li>Check if the upper note is in the key of the lower note (i.e. lower note major)</li>
+<li>If it is in the key, then it’s major or perfect</li>
+<li><strong>Augmented</strong> is used to describe the interval which is one semitone higher than <strong>major / perfect</strong> intervals</li>
+<li><strong>Dimished</strong> is used to describe the interval which is one semitone lower than the <strong>perfect</strong> intervals</li>
+<li><strong>Minor</strong> is used to describe the interval which is one semitone lower than the <strong>minor</strong> intervals</li>
+<li>e.g.
+<ul>
+<li>C to G_b is <strong>diminished fifth</strong> (C major does not contain G_b).
+<ul>
+<li>Note that diminished fifth is ‘identical’ to augmented fourth; however, we should count notes (letters) first to get the interval number before counting half steps to resolve the actual interval</li>
+</ul></li>
+<li>C to G# is augmented fifth (C major does not contain G#)</li>
+</ul></li>
+</ul></li>
+<li>Inversion rules
+<ul>
+<li>the number of semitones of original + inversion = 9</li>
+<li>Inversion of a major interval is a minor interval</li>
+</ul></li>
+</ul>
+<h3 id="chord">Chord</h3>
+<ul>
+<li>Combination of 3 or more notes at the same time</li>
+<li>A chord is built based of a single note called <strong>root</strong></li>
+<li>A <strong>major chord</strong> is built by adding root with the <strong>major third</strong> and <strong>perfect fifth</strong> e.g. C, F, G
+<ul>
+<li>4 semitones &amp; 3 semitones apart</li>
+</ul></li>
+<li>A <strong>minor chord</strong> is built by adding root with the <strong>minor third</strong> and <strong>perfect fifth</strong> e.g. Dm, Em, Am
+<ul>
+<li>3 semitones &amp; 4 semitones apart</li>
+</ul></li>
+<li>First 6 triads of the major scale is: M, m, m, M, M, m. (In roman scale, I, ii, iii, IV, V, vi)
+<ul>
+<li><code>B chord</code> does not belong to either major or minor, so B chord is noted as <code>Bdim</code> (<code>dim</code> stands for diminished)</li>
+</ul></li>
+<li><strong>Trap beat</strong> typically uses triads</li>
+</ul>
+<h4 id="chord-progression">Chord Progression</h4>
+<ul>
+<li>Chord progression rules
+<ul>
+<li>I -&gt; any</li>
+<li>ii -&gt; V</li>
+<li>iii -&gt; vi</li>
+<li>IV -&gt; I or V</li>
+<li>V -&gt; I</li>
+<li>vi -&gt; ii</li>
+</ul></li>
+<li>Chord progression examples
+<ul>
+<li>4-chord song:
+<ul>
+<li>I, V, vi, IV</li>
+<li>I -&gt; vi -&gt; ii -&gt; V</li>
+<li>IV -&gt; V -&gt; iii -&gt; vi (-&gt; ii -&gt; V -&gt; I)</li>
+</ul></li>
+</ul></li>
+</ul>
+<h4 id="melodies">Melodies</h4>
+<ul>
+<li>Melody are usually built on top of chords with higher octave
+<ul>
+<li>Typically 4th and 7th notes are unstable for melody</li>
+<li>Melody notes are usually in chords; ending note should be in chord</li>
+</ul></li>
+</ul>
+<h3 id="circle-of-fifths">Circle of Fifths</h3>
+<ul>
+<li>Circle: F - C - G - D - A - E - B - G_b - D_b - A_b - E_b - B_b - F</li>
+<li>Interval between 2 notes are always <strong>perfect fifth</strong></li>
+<li>Can be used for notes, chords, and keys
+<ul>
+<li>think them as notes
+<ul>
+<li>e.g. count the A_b chord: A_b, C, E_b (from circle), G</li>
+</ul></li>
+<li>think as chords
+<ul>
+<li>Fifth chord is the dominant chord (polarized from root chord)</li>
+<li>sample use case: find the fifth chord</li>
+</ul></li>
+<li>think as keys
+<ul>
+<li>shows what keys are similar to each other, making smoothier to transition into different keys</li>
+<li>e.g. C major’s key arrangement is same as G major’s except the last note</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="channel-rack">Channel Rack</h2>
+<h3 id="basics">Basics</h3>
+<ul>
+<li><strong>Kick</strong>: usually the largest drum in the kit. Its located on the floor in front of you and you use a pedal to strike it</li>
+<li><strong>Clap</strong>: whether it’s the recorded sound of humans hitting their hands together or a synthetic equivalent, it’s a percussive sound that cracks, sizzles and repeats throughout clubs the world over</li>
+<li><strong>Snare</strong>: the drum that sits directly in front of you on a stand and has what are called “snares” on the underside or the “resonance” side and can be engaged and disengaged with a throw off.</li>
+<li><strong>High hat</strong>: A hi-hat (hihat, high-hat, etc.) is a combination of two cymbals and a pedal, all mounted on a metal stand.</li>
+<li>Channel Panning tune button: left ear or right ear</li>
+<li>Volume tune button: control volume</li>
+</ul>
+<h3 id="instrument-properties">Instrument Properties</h3>
+<ul>
+<li>In button</li>
+<li>Out button</li>
+<li>Envelope pattern: control when would the sound come out
+<ul>
+<li>ATT tune button: will postpone the head to make the sound volume lower</li>
+</ul></li>
+<li>Filter</li>
+<li></li>
+</ul>
+<h2 id="piano-roll-1">Piano Roll</h2>
+<h3 id="basics-1">Basics</h3>
+<ul>
+<li>Hold <code>Command</code> and drag to select a group of keys</li>
+<li>Hold <code>Shift</code> and copy a group of keys to the next bar</li>
+</ul>
+<h3 id="ghost-channel">Ghost channel</h3>
+<p>If you wanna see how the other instrument was implemented in the same pattern, ‘ghost channel’ button can be toggled to reflect that</p>
+<h3 id="control-panel">Control panel</h3>
+<ul>
+<li>Velocity: volume of each key</li>
+<li>Pan: If the sound would come from left or right</li>
+</ul>
+<h2 id="mixer">Mixer</h2>
+<ul>
+<li>Upon selecting track on a channel rack entry, we can view the status of the track in mixer</li>
+<li>On the right side bar of mixer view, mixers can be inserted</li>
+<li><strong>Channel Routing</strong> (right-click on a track in mixer): binds multiple channels into one track / following tracks</li>
+<li>Studio separation tune button: make sounds wider or narrower</li>
+<li>Copy mixer effect to another track: right click the mixer, hold and drag ‘save presets as …’ to the track</li>
+</ul>
+<h2 id="automation-clip">Automation clip</h2>
+<ul>
+<li>In channel rack’s channel properties view, we can add automation clip by right clicking the pitch tune button</li>
+<li>Updating a point on automation clip will impact this point and left side</li>
+</ul>
+<h3 id="why-automation-clip">Why automation clip</h3>
+<ul>
+<li>Can edit properties as a whole for multiple consistent patterns</li>
+</ul>
+<h2 id="audio-recording">Audio Recording</h2>
+<ul>
+<li>Playlist -&gt; select a track -&gt; right click -&gt; track mode -&gt; audio track</li>
+<li>In Mixer, select input source and disable the hear back in <strong>Master</strong> track</li>
+<li>Turn on ‘Recording’ and click ‘Play’ to start</li>
+</ul>
+<h2 id="plugins">Plugins</h2>
+<ul>
+<li>Press ‘F8’ opens ‘plugin picker’</li>
+</ul>
+<h2 id="best-practices">Best Practices</h2>
+<h3 id="audio">Audio</h3>
 <div class="status-banner" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; text-align: center;">
     <div style="display: inline-block; padding: 0.8em 2em 0.5em 2em; background: black; color: white; font-size: 2em;">
         Rendering <svg xmlns="http://www.w3.org/2000/svg" height="1.4em" viewbox="0 0 1200 500" style="vertical-align: text-bottom"><title>LaTeX logo</title><g transform="matrix(45 0 0 45 40 40)" fill="white"><path d="M5.5 4.4C5.5 4.4 5.2 4.4 5.2 4.4 5.1 5.4 5 6.7 3.2 6.7 3.2 6.7 2.4 6.7 2.4 6.7 1.9 6.7 1.9 6.6 1.9 6.3 1.9 6.3 1.9 1 1.9 1 1.9 0.6 1.9 0.5 2.9 0.5 2.9 0.5 3.2 0.5 3.2 0.5 3.2 0.5 3.2 0.2 3.2 0.2 2.8 0.2 1.9 0.2 1.5 0.2 1.1 0.2 0.3 0.2 0 0.2 0 0.2 0 0.5 0 0.5 0 0.5 0.2 0.5 0.2 0.5 1 0.5 1 0.6 1 0.9 1 0.9 1 6.2 1 6.2 1 6.6 1 6.7 0.2 6.7 0.2 6.7 0 6.7 0 6.7 0 6.7 0 7 0 7 0 7 5.2 7 5.2 7 5.2 7 5.5 4.4 5.5 4.4z"/><path d="M5.3 0.2C5.3 0 5.2 0 5.1 0 5 0 4.9 0 4.9 0.2 4.9 0.2 3.3 4.2 3.3 4.2 3.2 4.4 3.1 4.7 2.5 4.7 2.5 4.7 2.5 5 2.5 5 2.5 5 4 5 4 5 4 5 4 4.7 4 4.7 3.7 4.7 3.5 4.6 3.5 4.4 3.5 4.3 3.5 4.3 3.6 4.2 3.6 4.2 3.9 3.4 3.9 3.4 3.9 3.4 5.9 3.4 5.9 3.4 5.9 3.4 6.3 4.4 6.3 4.4 6.3 4.4 6.3 4.5 6.3 4.5 6.3 4.7 5.9 4.7 5.8 4.7 5.8 4.7 5.8 5 5.8 5 5.8 5 7.7 5 7.7 5 7.7 5 7.7 4.7 7.7 4.7 7.7 4.7 7.6 4.7 7.6 4.7 7.1 4.7 7.1 4.7 7 4.5 7 4.5 5.3 0.2 5.3 0.2zM4.9 0.9C4.9 0.9 5.8 3.1 5.8 3.1 5.8 3.1 4 3.1 4 3.1 4 3.1 4.9 0.9 4.9 0.9z"/><path d="M13.3 0.2C13.3 0.2 7.2 0.2 7.2 0.2 7.2 0.2 7 2.5 7 2.5 7 2.5 7.3 2.5 7.3 2.5 7.4 0.9 7.6 0.5 9.1 0.5 9.3 0.5 9.5 0.5 9.6 0.6 9.8 0.6 9.8 0.7 9.8 0.9 9.8 0.9 9.8 6.2 9.8 6.2 9.8 6.5 9.8 6.7 8.8 6.7 8.8 6.7 8.4 6.7 8.4 6.7 8.4 6.7 8.4 7 8.4 7 8.8 6.9 9.8 6.9 10.3 6.9 10.7 6.9 11.7 6.9 12.2 7 12.2 7 12.2 6.7 12.2 6.7 12.2 6.7 11.8 6.7 11.8 6.7 10.7 6.7 10.7 6.5 10.7 6.2 10.7 6.2 10.7 0.9 10.7 0.9 10.7 0.7 10.7 0.6 10.9 0.6 11 0.5 11.3 0.5 11.5 0.5 13 0.5 13.1 0.9 13.2 2.5 13.2 2.5 13.5 2.5 13.5 2.5 13.5 2.5 13.3 0.2 13.3 0.2z"/><path d="M18.7 6.7C18.7 6.7 18.4 6.7 18.4 6.7 18.2 8.2 17.9 8.9 16.2 8.9 16.2 8.9 14.9 8.9 14.9 8.9 14.4 8.9 14.4 8.8 14.4 8.5 14.4 8.5 14.4 5.9 14.4 5.9 14.4 5.9 15.3 5.9 15.3 5.9 16.3 5.9 16.4 6.2 16.4 7 16.4 7 16.6 7 16.6 7 16.6 7 16.6 4.4 16.6 4.4 16.6 4.4 16.4 4.4 16.4 4.4 16.4 5.2 16.3 5.5 15.3 5.5 15.3 5.5 14.4 5.5 14.4 5.5 14.4 5.5 14.4 3.2 14.4 3.2 14.4 2.8 14.4 2.8 14.9 2.8 14.9 2.8 16.2 2.8 16.2 2.8 17.7 2.8 18 3.3 18.1 4.7 18.1 4.7 18.4 4.7 18.4 4.7 18.4 4.7 18.1 2.5 18.1 2.5 18.1 2.5 12.5 2.5 12.5 2.5 12.5 2.5 12.5 2.8 12.5 2.8 12.5 2.8 12.7 2.8 12.7 2.8 13.5 2.8 13.5 2.9 13.5 3.2 13.5 3.2 13.5 8.4 13.5 8.4 13.5 8.8 13.5 8.9 12.7 8.9 12.7 8.9 12.5 8.9 12.5 8.9 12.5 8.9 12.5 9.2 12.5 9.2 12.5 9.2 18.2 9.2 18.2 9.2 18.2 9.2 18.7 6.7 18.7 6.7z"/><path d="M21.7 3.1C21.7 3.1 23 1.1 23 1.1 23.3 0.8 23.6 0.5 24.5 0.5 24.5 0.5 24.5 0.2 24.5 0.2 24.5 0.2 22.1 0.2 22.1 0.2 22.1 0.2 22.1 0.5 22.1 0.5 22.5 0.5 22.7 0.7 22.7 0.9 22.7 1 22.7 1.1 22.6 1.2 22.6 1.2 21.5 2.8 21.5 2.8 21.5 2.8 20.2 0.9 20.2 0.9 20.2 0.9 20.1 0.8 20.1 0.8 20.1 0.7 20.4 0.5 20.8 0.5 20.8 0.5 20.8 0.2 20.8 0.2 20.4 0.2 19.7 0.2 19.3 0.2 19 0.2 18.4 0.2 18 0.2 18 0.2 18 0.5 18 0.5 18 0.5 18.2 0.5 18.2 0.5 18.8 0.5 19 0.5 19.2 0.8 19.2 0.8 21 3.6 21 3.6 21 3.6 19.4 6 19.4 6 19.2 6.2 18.9 6.7 17.9 6.7 17.9 6.7 17.9 7 17.9 7 17.9 7 20.3 7 20.3 7 20.3 7 20.3 6.7 20.3 6.7 19.8 6.7 19.7 6.4 19.7 6.2 19.7 6.1 19.7 6.1 19.8 6 19.8 6 21.2 3.9 21.2 3.9 21.2 3.9 22.8 6.3 22.8 6.3 22.8 6.3 22.8 6.3 22.8 6.4 22.8 6.5 22.6 6.7 22.2 6.7 22.2 6.7 22.2 7 22.2 7 22.5 6.9 23.2 6.9 23.6 6.9 24 6.9 24.5 7 24.9 7 24.9 7 24.9 6.7 24.9 6.7 24.9 6.7 24.7 6.7 24.7 6.7 24.2 6.7 24 6.6 23.8 6.3 23.8 6.3 21.7 3.1 21.7 3.1z"/></g></svg> math...
