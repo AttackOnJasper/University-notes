@@ -1563,6 +1563,10 @@ The key pair .pem file should be 400 before connecting to an EC2 instance. This 
 * External dependencies
 	- can be installed prior or during runtime
 	- don't need to be in root folder
+- Python 
+	- Update lambda function via CLI
+		1. `zip my-deployment-package.zip lambda_function.py`
+		1. `aws lambda update-function-code --function-name MyLambdaFunction --zip-file fileb://my-deployment-package.zip`
 
 ## How to trigger lambda
 1. Respond to HTTP requests from API gateways / AWS SDK
@@ -1642,8 +1646,6 @@ The key pair .pem file should be 400 before connecting to an EC2 instance. This 
 	1. 0.2 for each million requests afterwards
 1. Duration of requests
 1. RAM assigned
-
-
 
 # Other Compute Services
 ## AWS Batch
