@@ -682,6 +682,7 @@
 </ul></li>
 <li>SaaS: provide completed product e.g. Gmail, Office 365</li>
 <li>DaaS: Desktop as a Service e.g. Amazon Workspaces</li>
+<li>FaaS: Function as a Service e.g. Lambda</li>
 </ul></li>
 <li>Cloud Types
 <ul>
@@ -1231,7 +1232,7 @@
 <li>AWS resources can be launched into a specified subnet.</li>
 <li>Customize IP range
 <ul>
-<li>Largest subnet has a prefix of 16 in IP address (i.e. IP range: <span class="math display">2^16 = 65536 </span>)</li>
+<li>Largest subnet has a prefix of 16 in IP address (i.e. IP range: <span class="math display">2^{16} = 65536 </span>)</li>
 </ul></li>
 <li>Any user-created VPC subnet WILL NOT automatically assign Public IPv4 Addresses to instances</li>
 <li>AWS releases an EC2 instance’s public IP address when it is stopped, hibernated, or terminated.</li>
@@ -1918,7 +1919,7 @@
 <ol type="1">
 <li>RESTful (Representational State Transfer) APIs - 70% of real-world APIs are RESTful
 <ul>
-<li>Uses JSON</li>
+<li>Uses JSON for request and response payload</li>
 <li><em>REST</em> {REpresentational State Transfer) is an <em>architectural style</em> for providing standards between computer systems on the web, making it easier for systems to communicate with each other.
 <ul>
 <li>REST-compliant systems, often called RESTful systems, are characterized by how they are stateless and separate the concerns of client and server</li>
@@ -3051,6 +3052,14 @@
 <ul>
 <li>can be installed prior or during runtime</li>
 <li>don’t need to be in root folder</li>
+</ul></li>
+<li>Python
+<ul>
+<li>Update lambda function via CLI
+<ol type="1">
+<li><code>zip my-deployment-package.zip lambda_function.py</code></li>
+<li><code>aws lambda update-function-code --function-name MyLambdaFunction --zip-file fileb://my-deployment-package.zip</code></li>
+</ol></li>
 </ul></li>
 </ul>
 <h2 id="how-to-trigger-lambda">How to trigger lambda</h2>
@@ -4542,11 +4551,11 @@
 <ol type="1">
 <li>Based on performance
 <ul>
-<li><h1 id="of-partitions-desired-rcu-3000-desired-wcu-1000">of partitions = Desired RCU / 3000 + Desired WCU / 1000</h1></li>
+<li>number of partitions = Desired RCU / 3000 + Desired WCU / 1000</li>
 </ul></li>
 <li>Based on capacity
 <ul>
-<li><h1 id="of-size-data-size-10-gb">of size = Data size / 10 GB</h1></li>
+<li>number of size = Data size / 10 GB</li>
 </ul></li>
 <li>The actual # of partitions is the Max of the performance and size partitions</li>
 </ol></li>
@@ -4992,7 +5001,7 @@
 <li>Slices are portion of mem and disk</li>
 <li>data would be loaded to slices in parallel</li>
 <li>processes a portion of the query</li>
-<li><h1 id="of-slices-depend-on-the-table-design-nodes">of slices depend on the table design &amp; nodes</h1></li>
+<li>Number of slices depend on the table design &amp; nodes</li>
 </ul></li>
 </ul></li>
 </ol></li>
@@ -6841,7 +6850,7 @@
 </ul>
 <h3 id="best-practices-5">Best Practices</h3>
 <ol type="1">
-<li><h1 id="of-consumer-instances-should-be-less-than-of-shards">of consumer instances should be less than # of shards</h1></li>
+<li>Number of consumer instances should be less than # of shards</li>
 <li>Use auto scaling group with dynamic scaling on CPU utlization to help manage the # of consumer instances</li>
 </ol>
 <h2 id="quicksight">QuickSight</h2>

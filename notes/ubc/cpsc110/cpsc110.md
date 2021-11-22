@@ -106,6 +106,56 @@
 ### Big-bang Mechanism
 - Big-bang expression
 	- Format: `(big-bang {initial-world-state} (on-tick {func-to-get-next-world-state}) (to-draw {func-to-render-based-on-world-state}))`
+		- `on-tick` has 28 ticks per sec
 	- Polymorphic
 		- works for any type of world state
 	- This expression is a simple user-interface framework
+- Besides `on-tick` which triggers via time changes, we also have `on-key` or `on-mouse` for mouse / keyboard listeners
+
+### Domain Analysis steps
+1. Sketch program scenarios (draw different world states)
+1. Identify constant information (note that the 0, 0 is in upper left of screen)
+	- e.g. mts (empty scene; background) does not change 
+1. Identify changing information 
+	- e.g. coordinates
+1. Identify big-bang options
+	- e.g. `on-tick`, `to-draw`
+
+### Build the actual program
+1. Constants & data defintions
+1. Functions
+	1. `main` first
+	1. wish list entries for big-bang handlers (helper signatures)
+1. Implement helper logic
+
+## Compound Data
+- Declares a structure: `(define-struct pos (x y))`
+	- Initiates an instance of the structure: `(define p1 (make-pos 1 2))`
+	- Selector: `(pos-x p1)` -> 1
+	- Predicate: `(pos? p1)` -> true
+
+## Self-reference
+- List: 
+	- construction: e.g. `(define L1 (cons 1 (cons 2 empty)))`
+	- reference:
+		- `(first L1)` 
+		- `(rest L1)`
+	- predicate
+		- `(empty? L1)`
+- Recursion
+
+## Reference
+
+## Naturals
+- Built-in functions
+	1. `(add1 0)` -> 1
+	1. `(sub1 1)` -> 0
+- Self-referential definition of natural:
+	- Natural is one of:
+		- 0
+		- (add1 Natural)
+
+## Helpers
+
+
+## BST

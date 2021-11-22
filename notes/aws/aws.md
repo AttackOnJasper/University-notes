@@ -35,6 +35,7 @@
         * e.g. S3
     * SaaS: provide completed product e.g. Gmail, Office 365
     * DaaS: Desktop as a Service e.g. Amazon Workspaces
+    * FaaS: Function as a Service e.g. Lambda
 * Cloud Types
 	* Public e.g. AWS
 		* No capital cost, pay as customers go
@@ -388,7 +389,7 @@
 	* Multiple subnets can be created in one AZ
 	* AWS resources can be launched into a specified subnet.
 	* Customize IP range
-		* Largest subnet has a prefix of 16 in IP address (i.e. IP range: $$2^16 = 65536 $$)
+		* Largest subnet has a prefix of 16 in IP address (i.e. IP range: $$2^{16} = 65536 $$)
 	* Any user-created VPC subnet WILL NOT automatically assign Public IPv4 Addresses to instances
 	* AWS releases an EC2 instance's public IP address when it is stopped, hibernated, or terminated.
 * When the default VPC is created, a default subnet is created in each of the AZs of the default region
@@ -833,7 +834,7 @@
 ### API basics
 * Types
 	1. RESTful (Representational State Transfer) APIs - 70% of real-world APIs are RESTful
-		* Uses JSON
+		* Uses JSON for request and response payload
 		* *REST* {REpresentational State Transfer) is an *architectural style* for providing standards between computer systems on the web, making it easier for systems to communicate with each other. 
     		* REST-compliant systems, often called RESTful systems, are characterized by how they are stateless and separate the concerns of client and server
     		* Systems that follow the REST paradigm are *stateless*, meaning that the server does not need to know anything about what state the client is in and vice versa
@@ -2526,9 +2527,9 @@ The `BatchGetItem` operation returns the attributes of one or more items from on
 - RCU & WCU would be splitted evenly across partitions
 - To determine the # of partitions
 	1. Based on performance
-		- # of partitions = Desired RCU / 3000 + Desired WCU / 1000
+		- number of partitions = Desired RCU / 3000 + Desired WCU / 1000
 	1. Based on capacity
-		- # of size = Data size / 10 GB
+		- number of size = Data size / 10 GB
 	1. The actual # of partitions is the Max of the performance and size partitions
 
 ## PITR (Point-in-Time-Recovery)
@@ -2838,7 +2839,7 @@ The `BatchGetItem` operation returns the attributes of one or more items from on
 		    			- Slices are portion of mem and disk
 		    			- data would be loaded to slices in parallel
 		    			- processes a portion of the query
-		    			- # of slices depend on the table design & nodes
+		    			- Number of slices depend on the table design & nodes
 		- Node types
 			1. Dense Compute
 			1. Dense Storage
@@ -4039,7 +4040,7 @@ Help deploy, secure, operate, and scale Elasticsearch to search, analyze, and vi
 	* load balances by creating record processors across consumers
 
 ### Best Practices
-1. # of consumer instances should be less than # of shards
+1. Number of consumer instances should be less than # of shards
 1. Use auto scaling group with dynamic scaling on CPU utlization to help manage the # of consumer instances
 
 
