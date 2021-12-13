@@ -1522,6 +1522,7 @@ The key pair .pem file should be 400 before connecting to an EC2 instance. This 
 * Simple resource model
 	* Can choose memory from 128 MB to 10 GB (prices are proportional)
 	* Allocates CPU power linearly in proportion to the amount of memory configured.
+* Flexible Authorization
 * Monitoring & Logging - CloudWatch
 * Stateless - persist data in external storage
 * Scales horizontally automatically
@@ -1603,7 +1604,14 @@ The key pair .pem file should be 400 before connecting to an EC2 instance. This 
         * Dependency injection not front-loading all necessary classes 
         * Known values not provided leading to auto discovery
         * Reflection & classpath scanning
-    * Quick fix: allocates more memory to lambda
+    * To lower cold start: 
+    	* allocates more memory to lambda
+    	* Remove reflection: use dagger (static DI) instead of spring/guice for dependency injection
+        * Put dynamoDb initialization into static init methods
+        * Use aws java sdk v2
+        * Use AWSXRay to figure out the code segment contributing to the code start
+        * Use lambda warmer - wake service up after a period of time
+        * Check other reinvent guide: e.g. https://www.youtube.com/watch?v=ddg1u5HLwg8&ab_channel=AWSEvents
 * No GraalVM Native Image
     * GraalVM: virtual machine
 * Concurrent Executions Limit
@@ -1647,6 +1655,7 @@ The key pair .pem file should be 400 before connecting to an EC2 instance. This 
 	1. 0.2 for each million requests afterwards
 1. Duration of requests
 1. RAM assigned
+
 
 # Other Compute Services
 ## AWS Batch

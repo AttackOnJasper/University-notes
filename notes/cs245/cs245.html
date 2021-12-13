@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta http-equiv="Content-Style-Type" content="text/css" />
-  <title>智慧农业项目 | Jasper Wang</title>
+  <title>cs245 | Jasper Wang</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
 
   <!-- The loading of KaTeX is deferred to speed up page rendering -->
@@ -12,7 +12,60 @@
   <!-- To automatically render math in text elements, include the auto-render extension: -->
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
         onload="renderMathInElement(document.body);"></script>
-  </head>
+    <script type="text/javascript">
+  window.onload = function() {
+    document.getElementsByClassName("status-banner")[0].style.display = "block";
+    setTimeout(function() {
+      renderMathElements(document.getElementsByClassName("math"));
+      document.getElementsByClassName("status-banner")[0].style.display = "none";
+    }, 50); // delay to allow status banner to show
+  }
+
+  function renderMathElements(mathElements) {
+    var mathOptions = {
+      macros: {
+        "\\set": "\\left\\{ #1 \\right\\}",
+        "\\tup": "\\left\\langle #1 \\right\\rangle",
+        "\\abs": "\\left\\lvert #1 \\right\\rvert",
+        "\\floor": "\\left\\lfloor #1 \\right\\rfloor",
+        "\\ceil": "\\left\\lceil#1 \\right\\rceil",
+        "\\mb": "\\mathbb{#1}",
+        "\\rem": "\\operatorname{rem}",
+        "\\ord": "\\operatorname{ord}",
+        "\\sign": "\\operatorname{sign}",
+        "\\imag": "\\bm{i}",
+        "\\dee": "\\mathop{}\\!\\mathrm{d}",
+        "\\lH": "\\overset{\\text{l'H}}{=}",
+        "\\evalat": "\\left.\\left(#1\\right)\\right|",
+        "\\sech": "\\operatorname{sech}",
+        "\\spn": "\\operatorname{Span}",
+        "\\proj": "\\operatorname{proj}",
+        "\\prp": "\\operatorname{perp}",
+        "\\refl": "\\operatorname{refl}",
+        "\\magn": "\\left\\lVert #1 \\right\\rVert",
+        "\\rank": "\\operatorname{rank}",
+        "\\sys": "\\left[ #1 \\mid #2\\space \\right]",
+        "\\range": "\\operatorname{Range}",
+        "\\adj": "\\operatorname{adj}",
+        "\\cof": "\\operatorname{cof}",
+        "\\coord": "{\\left\\lbrack #1 \\right\\rbrack}_{#2}",
+        "\\diag": "\\operatorname{diag}",
+        "\\formlp": "\\operatorname{Form}(\\mathcal{L}^P)",
+
+        // not yet available in KaTeX
+        "\\operatorname": "\\mathop{\\text{#1}}\\nolimits", //wip: spacing is slightly off
+        "\\not": "\\rlap{\\kern{7.5mu}/}", //wip: slash angle is slightly off
+        "\\bm": "\\mathbf", //wip: should be italic, but isn't
+      },
+      throwOnError: false,
+    };
+    for (var i=0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      katex.render(texText.data, mathElements[i], mathOptions);
+    }
+  }
+  </script>
+</head>
 <body>
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -24,60 +77,96 @@
     ga('send', 'pageview');
 
   </script>
+<div id="TOC">
+<ul>
+<li><a href="#cs245-logic-and-computation">CS245 Logic and Computation</a><ul>
+<li><a href="#propositional-logic">Propositional Logic</a><ul>
+<li><a href="#logic">Logic</a></li>
+<li><a href="#proposition">Proposition</a></li>
+<li><a href="#formula">formula</a></li>
+<li><a href="#induction">Induction</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
   <h1>Notes by <a href="/">Jasper Wang</a>.</h1>
   <ul class="site_links">
     <span class="divider"></span>
   </ul>
-<h1 id="智慧农业项目">智慧农业项目</h1>
-<h2 id="摘要">摘要</h2>
+<h1 id="cs245-logic-and-computation">CS245 Logic and Computation</h1>
+<h2 id="propositional-logic">Propositional Logic</h2>
+<h3 id="logic">Logic</h3>
 <ul>
-<li>农业林业潜力很大 物联网主要服务方向</li>
-<li>林园管理（需求：维护不够 监管不力 人力不足 -&gt; 解决方案：物联网）</li>
-<li>物联网
-<ul>
-<li>感知：水 土壤 养分 环境 气象 植物本身</li>
-</ul></li>
-<li>just like webhook, instead of sampling and measure properties, push notifications whenever something happens</li>
-<li>育苗（容器）流水线化</li>
-<li>今天：
-<ul>
-<li>怎么结合</li>
-<li>怎么推进</li>
-</ul></li>
-<li>德国/以色列合作
-<ul>
-<li>结合德国的技术和国内的实际情况</li>
-<li>如果有技术 -&gt; 直接拿过来</li>
-<li>没技术 -&gt; 联合研发</li>
-</ul></li>
-<li>容器育苗：机械化 -&gt; 智能化 -&gt; 智慧化
-<ul>
-<li>难度大 - 人力成本高</li>
-</ul></li>
-</ul>
-<h2 id="需求-问题---影响---解决方案">需求 （问题） -&gt; 影响 -&gt; 解决方案</h2>
+<li><strong>Definition</strong> the systematic study of the principles of valid reasoning and inference</li>
+<li>Why bother?
 <ol type="1">
-<li>喷滴管，管子不通， 人工很难发现问题</li>
-<li>工人干活不力 -&gt; 手环</li>
-<li>病虫害防治 早期肉眼无法发现 -&gt; 树木死亡 -&gt; 防护系统
+<li>Help modeling hardware, software, and embedded systems by reasoning them in a mathematically correct manner</li>
+<li>Understand how to develop systems that can apply reasoning themselves (AI)</li>
+</ol></li>
+<li>A logic is formalized by
+<ol type="1">
+<li>Syntax - the statement expression</li>
+<li>Semantics - meaning of the statement</li>
+<li>Proof procedure - how to prove a statement is true?</li>
+</ol></li>
+<li>Symbolic logic
 <ul>
-<li>目前方法：
+<li>use symbols to state propositions and build argument
 <ul>
-<li>人力，分泌物，根据地理历史信息，无人机航拍</li>
+<li>i.e. each symbol is a proposition</li>
 </ul></li>
 </ul></li>
-<li>嫁接 -&gt; 人力需求巨大，成活率低 -&gt; 暂无（容器育苗，流水线，嫁接）</li>
-<li>罐装，卖苗 -&gt; 人力需求巨大，天气因素影响</li>
-<li>采果 -&gt; （美国 震动机，采果机）</li>
-</ol>
-<h2 id="下面计划">下面计划</h2>
-<ul>
-<li>实地考察</li>
 </ul>
-<h2 id="问题">问题</h2>
+<h3 id="proposition">Proposition</h3>
 <ul>
-<li>现在有监管还有控制，想问下控制是否可以代替所有的人力</li>
-<li>机器学习，智能操作</li>
+<li><strong>Definition</strong> a declarative sentence that is either true or false
+<ul>
+<li>can be thought of a boolean operation</li>
+</ul></li>
+<li>Types
+<ol type="1">
+<li>atomic: single proposition</li>
+<li>compound: combination of atomic propositions</li>
+</ol></li>
+</ul>
+<h3 id="formula">formula</h3>
+<ul>
+<li>Propositions are represented by formulas</li>
+<li>Formula components
+<ol type="1">
+<li>Propositional variables (lower case symbols)</li>
+<li>connectives: <span class="math display">\displaystyle  \neg\vee\wedge </span></li>
+<li>punctuation: <code>()</code></li>
+</ol></li>
+<li>Each formula is a sequence of symbols, but not all sequences of symbols are formulas
+<ul>
+<li>A finite sequence of symbols is called an <strong>expression</strong> (or a string)
+<ul>
+<li>e.g. <span class="math display">\displaystyle  \neg q\vee\wedge </span> is an expression, but it's not a formula</li>
+</ul></li>
+</ul></li>
+<li>Definition of formula is <strong>inductive</strong>:
+<ul>
+<li>Let P be a set of proposition symbols. We define the set of formulas over P inductively as follows.
+<ol type="1">
+<li>An expression consisting of a single symbol p of P is a formula.</li>
+<li>If A is a formula, then (¬A) is a formula.</li>
+<li>If A is a formula, B is a formula, and <span class="math display">\displaystyle s\in\{\vee,\wedge,\rightarrow\}</span>, then (A s B) is a formula.</li>
+<li>Nothing else is a formula</li>
+</ol></li>
+</ul></li>
+<li>Forms: atom, negation, conjunction, disjunction, implication</li>
+</ul>
+<h3 id="induction">Induction</h3>
+<ul>
+<li>Simple Induction
+<ul>
+<li>Shows P(k+1) holds for every P(k)</li>
+</ul></li>
+<li>Strong Induction
+<ul>
+<li>Assumes P(m) holds for every m &lt;= k, prove P(k+1) holds</li>
+</ul></li>
 </ul>
 <div class="status-banner" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; text-align: center;">
     <div style="display: inline-block; padding: 0.8em 2em 0.5em 2em; background: black; color: white; font-size: 2em;">
