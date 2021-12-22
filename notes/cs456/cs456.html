@@ -77,6 +77,133 @@
     ga('send', 'pageview');
 
   </script>
+<div id="TOC">
+<ul>
+<li><a href="#cs-456-2018-spring">CS 456 2018 Spring</a><ul>
+<li><a href="#course-outline">Course Outline</a><ul>
+<li><a href="#textbook">Textbook</a></li>
+</ul></li>
+<li><a href="#what-is-internet-2018-05-01">1.1 What is Internet (2018-05-01)</a><ul>
+<li><a href="#elements-nuts-and-bolts-view">Elements (nuts and bolts) view</a></li>
+<li><a href="#service-view-infrastructure-treat-as-blackbox-that-provides-services-api-to-applications"><strong>Service view</strong>: Infrastructure (treat as blackbox) that provides services + API to applications</a></li>
+<li><a href="#socket-interface-analogy-to-post-office-during-sending-letters-process">Socket Interface (analogy to post office during sending letters process)</a></li>
+<li><a href="#protocols">Protocols</a></li>
+</ul></li>
+<li><a href="#network-edge-2018-05-03">1.2 Network edge (2018-05-03)</a><ul>
+<li><a href="#access-networks-bandwidth-shared-dedicated">Access networks (bandwidth, shared / dedicated)</a></li>
+<li><a href="#physical-media">Physical media</a></li>
+</ul></li>
+<li><a href="#network-core-routers-network-of-networks-2018-05-08">1.3 Network core: routers, network of networks (2018-05-08)</a></li>
+<li><a href="#delay-loss-and-throughput-in-networks-2018-05-10">1.4 Delay, Loss, and throughput in networks (2018-05-10)</a></li>
+<li><a href="#protocol-layers-security">1.5 Protocol Layers &amp; Security</a><ul>
+<li><a href="#protocol-layers">Protocol Layers</a></li>
+<li><a href="#data-naming-for-each-layer">data naming for each layer</a></li>
+</ul></li>
+<li><a href="#security">1.6 Security</a></li>
+<li><a href="#application-layer-overview-2018-05-17">2.1 Application Layer Overview (2018-05-17)</a><ul>
+<li><a href="#application-architectures-on-end-systems-not-network-core">Application architectures (on end systems; not network core)</a></li>
+<li><a href="#processes-communicating">Processes communicating</a></li>
+<li><a href="#sockets-act-as-door">Sockets (act as door)</a></li>
+<li><a href="#application-layer-protocol">Application-layer protocol</a></li>
+<li><a href="#transport-services">Transport services</a></li>
+</ul></li>
+<li><a href="#web-and-http-2018-05-24">2.2 Web and HTTP (2018-05-24)</a><ul>
+<li><a href="#http">HTTP</a></li>
+<li><a href="#http-2">HTTP 2</a></li>
+<li><a href="#cookie">Cookie</a></li>
+<li><a href="#web-caches-proxy">Web caches (proxy)</a></li>
+</ul></li>
+<li><a href="#electronic-mail-2018-05-29">2.3 Electronic mail (2018-05-29)</a><ul>
+<li><a href="#components">3 components</a></li>
+<li><a href="#process-of-sending-mails">Process of sending mails</a></li>
+<li><a href="#mail-access-protocols-retrieval-from-mail-server">Mail access protocols: retrieval from mail server</a></li>
+</ul></li>
+<li><a href="#dns-domain-name-system-2018-06-05">2.4 DNS (Domain name system) (2018-06-05)</a><ul>
+<li><a href="#components-1">Components</a></li>
+<li><a href="#functionality">Functionality</a></li>
+<li><a href="#attacking-dns">Attacking DNS</a></li>
+</ul></li>
+<li><a href="#p2p-applications-2018-06-07">2.5 P2P applications (2018-06-07)</a></li>
+<li><a href="#video-streaming-and-cdns-2018-06-07">2.6 Video streaming and CDNs (2018-06-07)</a><ul>
+<li><a href="#cdn">CDN</a></li>
+</ul></li>
+<li><a href="#socket-programming">2.7 Socket Programming</a><ul>
+<li><a href="#udp">UDP</a></li>
+<li><a href="#tcp">TCP</a></li>
+</ul></li>
+<li><a href="#transport-layer-services">3.1 Transport-layer services</a><ul>
+<li><a href="#protocols-1">Protocols</a></li>
+</ul></li>
+<li><a href="#multiplexing-and-demultiplexing">3.2 Multiplexing and demultiplexing</a></li>
+<li><a href="#udp-1">3.3 UDP</a></li>
+<li><a href="#reliable-data-transfer-in-transport-layer">3.4 Reliable Data Transfer (in transport layer)</a><ul>
+<li><a href="#core-methods-in-the-order-of-data-flow">Core methods (in the order of data flow)</a></li>
+<li><a href="#development-of-rdt">Development of rdt</a></li>
+<li><a href="#pipeline-all-of-above-are-stop-and-wait-sender-sends-one-packet-then-waits-for-receiver-response">Pipeline (all of above are <strong>stop-and-wait</strong>: sender sends one packet, then waits for receiver response)</a></li>
+</ul></li>
+<li><a href="#tcp-1">3.5 TCP</a><ul>
+<li><a href="#segment-structure">Segment structure</a></li>
+<li><a href="#reliable-data-transfer">Reliable data transfer</a></li>
+<li><a href="#flow-control-ensure-sender-wont-overflow-receivers-buffer">Flow control (Ensure sender won't overflow receiver's buffer)</a></li>
+<li><a href="#connection-management">Connection management</a></li>
+</ul></li>
+<li><a href="#principles-of-congestion-control">3.6 Principles of congestion control</a></li>
+<li><a href="#tcp-congestion-control">3.7 TCP congestion control</a></li>
+<li><a href="#overview-of-network-layer">4.1 Overview of Network layer</a></li>
+<li><a href="#router">4.2 Router</a></li>
+<li><a href="#ip">4.3 IP</a><ul>
+<li><a href="#datagram-format">Datagram format</a></li>
+<li><a href="#fragmentation">Fragmentation</a></li>
+<li><a href="#ipv4-addressing">IPv4 addressing</a></li>
+<li><a href="#nat-network-address-translation">NAT (Network address translation)</a></li>
+<li><a href="#ipv6">IPv6</a></li>
+</ul></li>
+<li><a href="#generalized-forward-and-sdn">4.4 Generalized Forward and SDN</a><ul>
+<li><a href="#openflow-data-plane">OpenFlow data plane</a></li>
+</ul></li>
+<li><a href="#network-layer-control-plane-overview">5.1 Network layer control plane overview</a></li>
+<li><a href="#routing-protocol">5.2 Routing Protocol</a><ul>
+<li><a href="#abstraction-cost">Abstraction: Cost</a></li>
+<li><a href="#link-state">Link state</a></li>
+<li><a href="#distance-vector">Distance vector</a></li>
+</ul></li>
+<li><a href="#intra-as-routing">5.3 Intra-AS routing</a></li>
+<li><a href="#inter-as-routing-bgp">5.4 Inter-AS routing: BGP</a><ul>
+<li><a href="#basics">Basics</a></li>
+<li><a href="#messages">Messages</a></li>
+<li><a href="#route-selection">Route Selection</a></li>
+<li><a href="#why-different-intra-inter-as-routing">Why different intra, inter-AS routing</a></li>
+</ul></li>
+<li><a href="#sdn-control-plane">5.5 SDN control plane</a><ul>
+<li><a href="#features">Features</a></li>
+<li><a href="#perspective">Perspective</a></li>
+</ul></li>
+<li><a href="#icmp-internet-control-message-protocol">5.6 ICMP (Internet Control Message Protocol)</a><ul>
+<li><a href="#traceroute">Traceroute</a></li>
+</ul></li>
+<li><a href="#link-layer-introduction">6.1 Link layer introduction</a><ul>
+<li><a href="#location">Location</a></li>
+</ul></li>
+<li><a href="#multiple-access-protocols">6.2 Multiple access protocols</a><ul>
+<li><a href="#protocols-taxonomy">protocols taxonomy</a></li>
+</ul></li>
+<li><a href="#lans-local-area-network">6.3 LANs (local area network)</a><ul>
+<li><a href="#addressing-arp">addressing, ARP</a></li>
+<li><a href="#ethernet">Ethernet</a></li>
+<li><a href="#switches">switches</a></li>
+</ul></li>
+<li><a href="#data-center-networking">6.4 Data center networking</a></li>
+<li><a href="#send-request-to-www.google.com">6.5 Send request to www.google.com</a></li>
+<li><a href="#top-10-network-challenges">Top-10 network challenges</a></li>
+<li><a href="#other">Other</a><ul>
+<li><a href="#how-is-data-transmitted-in-physical-layer-layer-1">How is data transmitted in physical layer (layer 1)</a></li>
+<li><a href="#clock-synchronization-layer-1">Clock Synchronization (layer 1)</a></li>
+<li><a href="#other-parts-of-layer-1">Other parts of layer 1</a></li>
+<li><a href="#layer-2-data-link">Layer 2 Data Link</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
   <h1>Notes by <a href="/">Jasper Wang</a>.</h1>
   <ul class="site_links">
     <span class="divider"></span>
@@ -296,7 +423,7 @@
 <li>allows identification of complex system's structure</li>
 <li>modularization (maintenance)</li>
 </ul></li>
-<li>Protocol Stack
+<li>Protocol Stack (OSI Model)
 <ul>
 <li>Application layer: supporting network applications
 <ul>
@@ -1332,6 +1459,115 @@ Services<br />
 <li>Principles of congestion control</li>
 <li>routing</li>
 </ol>
+<h2 id="other">Other</h2>
+<h3 id="how-is-data-transmitted-in-physical-layer-layer-1">How is data transmitted in physical layer (layer 1)</h3>
+<ol type="1">
+<li>Wire: data is transmitted via the change in voltages
+<ul>
+<li>0v - 0; 5v - 1</li>
+<li>In such way, binary arrays are sent</li>
+</ul></li>
+<li>Fiber
+<ul>
+<li>Two fiber lines</li>
+<li>1 fiber light up: 0; 2 fibers light up: 1</li>
+</ul></li>
+<li>Radio waves</li>
+</ol>
+<h3 id="clock-synchronization-layer-1">Clock Synchronization (layer 1)</h3>
+<ul>
+<li>Clock synchronization is needed to ensure that either side can read the same set of values from the other side
+<ul>
+<li>If not in sync, clock slip may happen - i.e. some bits could be dropped and not be read</li>
+</ul></li>
+<li>Initial way to ensure
+<ul>
+<li>Send clock data and application data in parallel from server to server</li>
+</ul></li>
+<li>Improved way: Manchester coding
+<ul>
+<li>Read voltage drop as 0 and voltage increase as 1</li>
+<li>Encodes clock into application data</li>
+</ul></li>
+</ul>
+<h3 id="other-parts-of-layer-1">Other parts of layer 1</h3>
+<ol type="1">
+<li>NRZ</li>
+<li>QAM</li>
+<li>Type of links
+<ol type="1">
+<li>Point-to-point: direct connect</li>
+<li>Multipoint / Broadcast</li>
+</ol></li>
+</ol>
+<h3 id="layer-2-data-link">Layer 2 Data Link</h3>
+<ul>
+<li>Framing (the way to partition network bytes)
+<ol type="1">
+<li>Ethernet Framing
+<ul>
+<li>Use the preamble in interfering gap to denote frames
+<ul>
+<li>e.g. 101010....11 (ends with 11)</li>
+</ul></li>
+<li>Framing format
+<ol type="1">
+<li>Preamble</li>
+<li>Destination address (6 bytes)
+<ul>
+<li>AKA Ethernet address / MAC address</li>
+<li>Unique id of network component; built into a network hardware</li>
+<li>e.g. <code>68:e8:56:37:de:2e</code></li>
+</ul></li>
+<li>Source address (6 bytes)</li>
+<li>Ether type
+<ul>
+<li>Format of the payload
+<ul>
+<li>e.g. 0800 stands for IP data pack</li>
+</ul></li>
+</ul></li>
+<li>Payload
+<ul>
+<li>Length: 46 - 1500 bytes</li>
+</ul></li>
+<li>Frame check sequence (4 bytes)
+<ul>
+<li>like a checksum</li>
+</ul></li>
+</ol></li>
+</ul></li>
+<li>HDLC (High-level Data Link Control)
+<ul>
+<li>Use a flag to determine the start of a frame</li>
+<li>Typically used in point-to-point</li>
+<li>PPP Framing format
+<ol type="1">
+<li>Flag
+<ul>
+<li><code>01111110</code></li>
+</ul></li>
+<li>Address
+<ul>
+<li><code>ff</code></li>
+</ul></li>
+<li>Control
+<ul>
+<li><code>03</code></li>
+</ul></li>
+<li>Protocol (2 bytes)</li>
+<li>Payload<br />
+</li>
+<li>Frame check sequence (4 bytes)</li>
+<li>Flag
+<ul>
+<li><code>01111110</code></li>
+</ul></li>
+</ol></li>
+</ul></li>
+</ol></li>
+<li>Logic Link Control</li>
+</ul>
 <div class="status-banner" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; text-align: center;">
     <div style="display: inline-block; padding: 0.8em 2em 0.5em 2em; background: black; color: white; font-size: 2em;">
         Rendering <svg xmlns="http://www.w3.org/2000/svg" height="1.4em" viewbox="0 0 1200 500" style="vertical-align: text-bottom"><title>LaTeX logo</title><g transform="matrix(45 0 0 45 40 40)" fill="white"><path d="M5.5 4.4C5.5 4.4 5.2 4.4 5.2 4.4 5.1 5.4 5 6.7 3.2 6.7 3.2 6.7 2.4 6.7 2.4 6.7 1.9 6.7 1.9 6.6 1.9 6.3 1.9 6.3 1.9 1 1.9 1 1.9 0.6 1.9 0.5 2.9 0.5 2.9 0.5 3.2 0.5 3.2 0.5 3.2 0.5 3.2 0.2 3.2 0.2 2.8 0.2 1.9 0.2 1.5 0.2 1.1 0.2 0.3 0.2 0 0.2 0 0.2 0 0.5 0 0.5 0 0.5 0.2 0.5 0.2 0.5 1 0.5 1 0.6 1 0.9 1 0.9 1 6.2 1 6.2 1 6.6 1 6.7 0.2 6.7 0.2 6.7 0 6.7 0 6.7 0 6.7 0 7 0 7 0 7 5.2 7 5.2 7 5.2 7 5.5 4.4 5.5 4.4z"/><path d="M5.3 0.2C5.3 0 5.2 0 5.1 0 5 0 4.9 0 4.9 0.2 4.9 0.2 3.3 4.2 3.3 4.2 3.2 4.4 3.1 4.7 2.5 4.7 2.5 4.7 2.5 5 2.5 5 2.5 5 4 5 4 5 4 5 4 4.7 4 4.7 3.7 4.7 3.5 4.6 3.5 4.4 3.5 4.3 3.5 4.3 3.6 4.2 3.6 4.2 3.9 3.4 3.9 3.4 3.9 3.4 5.9 3.4 5.9 3.4 5.9 3.4 6.3 4.4 6.3 4.4 6.3 4.4 6.3 4.5 6.3 4.5 6.3 4.7 5.9 4.7 5.8 4.7 5.8 4.7 5.8 5 5.8 5 5.8 5 7.7 5 7.7 5 7.7 5 7.7 4.7 7.7 4.7 7.7 4.7 7.6 4.7 7.6 4.7 7.1 4.7 7.1 4.7 7 4.5 7 4.5 5.3 0.2 5.3 0.2zM4.9 0.9C4.9 0.9 5.8 3.1 5.8 3.1 5.8 3.1 4 3.1 4 3.1 4 3.1 4.9 0.9 4.9 0.9z"/><path d="M13.3 0.2C13.3 0.2 7.2 0.2 7.2 0.2 7.2 0.2 7 2.5 7 2.5 7 2.5 7.3 2.5 7.3 2.5 7.4 0.9 7.6 0.5 9.1 0.5 9.3 0.5 9.5 0.5 9.6 0.6 9.8 0.6 9.8 0.7 9.8 0.9 9.8 0.9 9.8 6.2 9.8 6.2 9.8 6.5 9.8 6.7 8.8 6.7 8.8 6.7 8.4 6.7 8.4 6.7 8.4 6.7 8.4 7 8.4 7 8.8 6.9 9.8 6.9 10.3 6.9 10.7 6.9 11.7 6.9 12.2 7 12.2 7 12.2 6.7 12.2 6.7 12.2 6.7 11.8 6.7 11.8 6.7 10.7 6.7 10.7 6.5 10.7 6.2 10.7 6.2 10.7 0.9 10.7 0.9 10.7 0.7 10.7 0.6 10.9 0.6 11 0.5 11.3 0.5 11.5 0.5 13 0.5 13.1 0.9 13.2 2.5 13.2 2.5 13.5 2.5 13.5 2.5 13.5 2.5 13.3 0.2 13.3 0.2z"/><path d="M18.7 6.7C18.7 6.7 18.4 6.7 18.4 6.7 18.2 8.2 17.9 8.9 16.2 8.9 16.2 8.9 14.9 8.9 14.9 8.9 14.4 8.9 14.4 8.8 14.4 8.5 14.4 8.5 14.4 5.9 14.4 5.9 14.4 5.9 15.3 5.9 15.3 5.9 16.3 5.9 16.4 6.2 16.4 7 16.4 7 16.6 7 16.6 7 16.6 7 16.6 4.4 16.6 4.4 16.6 4.4 16.4 4.4 16.4 4.4 16.4 5.2 16.3 5.5 15.3 5.5 15.3 5.5 14.4 5.5 14.4 5.5 14.4 5.5 14.4 3.2 14.4 3.2 14.4 2.8 14.4 2.8 14.9 2.8 14.9 2.8 16.2 2.8 16.2 2.8 17.7 2.8 18 3.3 18.1 4.7 18.1 4.7 18.4 4.7 18.4 4.7 18.4 4.7 18.1 2.5 18.1 2.5 18.1 2.5 12.5 2.5 12.5 2.5 12.5 2.5 12.5 2.8 12.5 2.8 12.5 2.8 12.7 2.8 12.7 2.8 13.5 2.8 13.5 2.9 13.5 3.2 13.5 3.2 13.5 8.4 13.5 8.4 13.5 8.8 13.5 8.9 12.7 8.9 12.7 8.9 12.5 8.9 12.5 8.9 12.5 8.9 12.5 9.2 12.5 9.2 12.5 9.2 18.2 9.2 18.2 9.2 18.2 9.2 18.7 6.7 18.7 6.7z"/><path d="M21.7 3.1C21.7 3.1 23 1.1 23 1.1 23.3 0.8 23.6 0.5 24.5 0.5 24.5 0.5 24.5 0.2 24.5 0.2 24.5 0.2 22.1 0.2 22.1 0.2 22.1 0.2 22.1 0.5 22.1 0.5 22.5 0.5 22.7 0.7 22.7 0.9 22.7 1 22.7 1.1 22.6 1.2 22.6 1.2 21.5 2.8 21.5 2.8 21.5 2.8 20.2 0.9 20.2 0.9 20.2 0.9 20.1 0.8 20.1 0.8 20.1 0.7 20.4 0.5 20.8 0.5 20.8 0.5 20.8 0.2 20.8 0.2 20.4 0.2 19.7 0.2 19.3 0.2 19 0.2 18.4 0.2 18 0.2 18 0.2 18 0.5 18 0.5 18 0.5 18.2 0.5 18.2 0.5 18.8 0.5 19 0.5 19.2 0.8 19.2 0.8 21 3.6 21 3.6 21 3.6 19.4 6 19.4 6 19.2 6.2 18.9 6.7 17.9 6.7 17.9 6.7 17.9 7 17.9 7 17.9 7 20.3 7 20.3 7 20.3 7 20.3 6.7 20.3 6.7 19.8 6.7 19.7 6.4 19.7 6.2 19.7 6.1 19.7 6.1 19.8 6 19.8 6 21.2 3.9 21.2 3.9 21.2 3.9 22.8 6.3 22.8 6.3 22.8 6.3 22.8 6.3 22.8 6.4 22.8 6.5 22.6 6.7 22.2 6.7 22.2 6.7 22.2 7 22.2 7 22.5 6.9 23.2 6.9 23.6 6.9 24 6.9 24.5 7 24.9 7 24.9 7 24.9 6.7 24.9 6.7 24.9 6.7 24.7 6.7 24.7 6.7 24.2 6.7 24 6.6 23.8 6.3 23.8 6.3 21.7 3.1 21.7 3.1z"/></g></svg> math...

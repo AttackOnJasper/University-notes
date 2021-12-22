@@ -12,60 +12,7 @@
   <!-- To automatically render math in text elements, include the auto-render extension: -->
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
         onload="renderMathInElement(document.body);"></script>
-    <script type="text/javascript">
-  window.onload = function() {
-    document.getElementsByClassName("status-banner")[0].style.display = "block";
-    setTimeout(function() {
-      renderMathElements(document.getElementsByClassName("math"));
-      document.getElementsByClassName("status-banner")[0].style.display = "none";
-    }, 50); // delay to allow status banner to show
-  }
-
-  function renderMathElements(mathElements) {
-    var mathOptions = {
-      macros: {
-        "\\set": "\\left\\{ #1 \\right\\}",
-        "\\tup": "\\left\\langle #1 \\right\\rangle",
-        "\\abs": "\\left\\lvert #1 \\right\\rvert",
-        "\\floor": "\\left\\lfloor #1 \\right\\rfloor",
-        "\\ceil": "\\left\\lceil#1 \\right\\rceil",
-        "\\mb": "\\mathbb{#1}",
-        "\\rem": "\\operatorname{rem}",
-        "\\ord": "\\operatorname{ord}",
-        "\\sign": "\\operatorname{sign}",
-        "\\imag": "\\bm{i}",
-        "\\dee": "\\mathop{}\\!\\mathrm{d}",
-        "\\lH": "\\overset{\\text{l'H}}{=}",
-        "\\evalat": "\\left.\\left(#1\\right)\\right|",
-        "\\sech": "\\operatorname{sech}",
-        "\\spn": "\\operatorname{Span}",
-        "\\proj": "\\operatorname{proj}",
-        "\\prp": "\\operatorname{perp}",
-        "\\refl": "\\operatorname{refl}",
-        "\\magn": "\\left\\lVert #1 \\right\\rVert",
-        "\\rank": "\\operatorname{rank}",
-        "\\sys": "\\left[ #1 \\mid #2\\space \\right]",
-        "\\range": "\\operatorname{Range}",
-        "\\adj": "\\operatorname{adj}",
-        "\\cof": "\\operatorname{cof}",
-        "\\coord": "{\\left\\lbrack #1 \\right\\rbrack}_{#2}",
-        "\\diag": "\\operatorname{diag}",
-        "\\formlp": "\\operatorname{Form}(\\mathcal{L}^P)",
-
-        // not yet available in KaTeX
-        "\\operatorname": "\\mathop{\\text{#1}}\\nolimits", //wip: spacing is slightly off
-        "\\not": "\\rlap{\\kern{7.5mu}/}", //wip: slash angle is slightly off
-        "\\bm": "\\mathbf", //wip: should be italic, but isn't
-      },
-      throwOnError: false,
-    };
-    for (var i=0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      katex.render(texText.data, mathElements[i], mathOptions);
-    }
-  }
-  </script>
-</head>
+  </head>
 <body>
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -79,48 +26,32 @@
   </script>
 <div id="TOC">
 <ul>
-<li><a href="#fl-studio">FL Studio</a>
-<ul>
-<li><a href="#fl-studio-overview">FL Studio Overview</a>
-<ul>
+<li><a href="#fl-studio">FL Studio</a><ul>
+<li><a href="#fl-studio-overview">FL Studio Overview</a><ul>
 <li><a href="#terminologies">Terminologies</a></li>
 <li><a href="#menu-bar">Menu Bar</a></li>
 </ul></li>
 <li><a href="#playlist">Playlist</a></li>
-<li><a href="#music-theory">Music Theory</a>
-<ul>
-<li><a href="#piano-roll">Piano Roll</a></li>
-<li><a href="#music-interval">Music Interval</a></li>
-<li><a href="#scales-major-keys-minor-keys">Scales (Major Keys &amp; Minor Keys)</a></li>
-<li><a href="#circle-of-fifths">Circle of Fifths</a></li>
-<li><a href="#consonant-intervals-interval-quality">Consonant intervals (Interval Quality)</a></li>
-<li><a href="#chord">Chord</a></li>
-</ul></li>
-<li><a href="#channel-rack">Channel Rack</a>
-<ul>
+<li><a href="#channel-rack">Channel Rack</a><ul>
 <li><a href="#basics">Basics</a></li>
 <li><a href="#instrument-properties">Instrument Properties</a></li>
 </ul></li>
-<li><a href="#piano-roll-1">Piano Roll</a>
-<ul>
+<li><a href="#piano-roll">Piano Roll</a><ul>
 <li><a href="#basics-1">Basics</a></li>
 <li><a href="#ghost-channel">Ghost channel</a></li>
 <li><a href="#control-panel">Control panel</a></li>
 </ul></li>
-<li><a href="#midi-settings">Midi settings</a>
-<ul>
+<li><a href="#midi-settings">Midi settings</a><ul>
 <li><a href="#general-midi-settings">General midi settings</a></li>
 <li><a href="#drum-mapping">Drum Mapping</a></li>
 </ul></li>
 <li><a href="#mixer">Mixer</a></li>
-<li><a href="#automation-clip">Automation clip</a>
-<ul>
+<li><a href="#automation-clip">Automation clip</a><ul>
 <li><a href="#why-automation-clip">Why automation clip</a></li>
 </ul></li>
 <li><a href="#audio-recording">Audio Recording</a></li>
 <li><a href="#plugins">Plugins</a></li>
-<li><a href="#best-practices">Best Practices</a>
-<ul>
+<li><a href="#best-practices">Best Practices</a><ul>
 <li><a href="#audio">Audio</a></li>
 </ul></li>
 </ul></li>
@@ -135,14 +66,12 @@
 <ul>
 <li>FL Studio is a full-featured music production environment capable of multi-track audio recording, sequencing and mixing for the creation of professional quality music tracks.</li>
 <li>DAW (Digital Audio Workstation)</li>
-<li>UI sections
-<ul>
+<li>UI sections</li>
 <li>Channel Rack</li>
 <li>Playlist</li>
 <li>Piano Roll</li>
 <li>Mixer</li>
 <li>Browser</li>
-</ul></li>
 </ul>
 <h3 id="terminologies">Terminologies</h3>
 <ul>
@@ -152,16 +81,12 @@
 <h3 id="menu-bar">Menu Bar</h3>
 <h4 id="export-music">Export music</h4>
 <ul>
-<li>Mode
-<ul>
+<li>Mode</li>
 <li>Pattern</li>
 <li>Full song</li>
-</ul></li>
-<li>Format
-<ul>
+<li>Format</li>
 <li>Wave: minimal impact to original quality</li>
 <li><strong>OGG</strong>: no gap before start &amp; after end</li>
-</ul></li>
 <li>Bit rate: higher -&gt; better quality</li>
 </ul>
 <h4 id="import-music">Import Music</h4>
@@ -180,405 +105,14 @@
 </ul>
 <h2 id="playlist">Playlist</h2>
 <ul>
-<li>Zoom
-<ul>
+<li>Zoom</li>
 <li>Vertically: small dot button on the top right</li>
 <li>Horizontally: drag the size of the moving bar</li>
-</ul></li>
-<li>Magnet button: adjust the closest step that a pattern auto attach to after dragging
-<ul>
+<li>Magnet button: adjust the closest step that a pattern auto attach to after dragging</li>
 <li><code>None</code> is not recommended</li>
-</ul></li>
-<li>Knobs value can be changed by dragging up or down
-<ul>
+<li>Knobs value can be changed by dragging up or down</li>
 <li>Most knobs and sliders can be linked to external/internal controllers</li>
-</ul></li>
 <li>Slide button: cut a pattern into two</li>
-</ul>
-<h2 id="music-theory">Music Theory</h2>
-<ul>
-<li>Beat
-<ul>
-<li>beat is the basic unit of time, the pulse (regularly repeating event), of the mensural level</li>
-<li>Strong / weak beat (i.e. on beat / off beat 强拍 弱拍 up beat / down beat)
-<ul>
-<li>e.g. In 44 meter,
-<ul>
-<li>classical music beat pattern: strong weak strong weak | strong weak strong weak</li>
-<li>Jazz music beat pattern: WSWS | WSWS
-<ul>
-<li>typically because of drum set (kick and snare)</li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li>Note (音符): a sound with a specific frequency (pitch)
-<ul>
-<li>Note length: (assume 4 beats per bar i.e. quadruple meter, Common Time, and each beat is a 4th note)
-<ul>
-<li>Full (Whole) note (‘o’): 4 beats</li>
-<li>Half note (circle and line): 2 beats</li>
-<li>4th note（4分音符; filled circle and line）: takes 1 beat</li>
-<li>8th note: 0.5 beat</li>
-<li>16th note: 0.25 beat</li>
-<li>triplet 8th notes: 1 beat</li>
-</ul></li>
-<li>Most songs are made of one <strong>octave</strong> (or 12 notes)
-<ul>
-<li>in piano keys - 7 white keys &amp; 5 black keys</li>
-<li>The octave is not divided by 8 in general, it’s divided into 12.</li>
-</ul></li>
-</ul></li>
-<li>Bar (小节 typically 4 beats per bar)
-<ul>
-<li>A group of beats</li>
-<li>Meter (2 numbers representing the number of beats and beat types in a bar)
-<ul>
-<li>Numerator specifies number of beats per bar (e.g. duple, triple, quadruple)</li>
-<li>Denominator specifies the beat type</li>
-<li>e.g. 44 meter: Each beat is a 4th note, 4 beats per bar</li>
-<li>e.g. 34 meter: Each beat is a 4th note, 3 beats per bar (pattern: strong weak weak | strong weak weak)</li>
-<li>Simple vs Compound
-<ul>
-<li>Simple: Powers of 2</li>
-<li>Compound: Powers of 3 for numerator. e.g. 68 meter</li>
-</ul></li>
-</ul></li>
-<li>Why 4 is the most common?
-<ul>
-<li>4 is the number of completion.</li>
-<li>Verse usually has 16 bars (4 * 4)</li>
-<li>Hook usually has 8 bars (4 * 2)</li>
-</ul></li>
-</ul></li>
-<li>Octave（八度）
-<ul>
-<li>The interval between (in including) 2 notes, one having twice or half the frequency of vibration of the other</li>
-<li>i.e. One octave higher means double frequency</li>
-<li>e.g. A B C D E F G A - 440 Hz, 440 * 1.0595 Hz, 440 * 1.0595^2 Hz, 440 * 1.0595^3 Hz</li>
-</ul></li>
-<li>Beams
-<ul>
-<li>Groups of notes</li>
-</ul></li>
-<li>Stave (aka Staff, 五线谱)
-<ul>
-<li>Introduced in 16th century</li>
-<li>A is between middle line and the line below it</li>
-<li>Clefs
-<ol type="1">
-<li>The treble clef (or G clef)</li>
-<li>The bass clef (very common)</li>
-<li>Alto clef (common for viola or alto)</li>
-<li>Tenor clef (common for cello)</li>
-</ol></li>
-<li>Middle C:
-<ul>
-<li>It’s called middle C because it is
-<ul>
-<li>one ledger line below the lowest line in treble clef</li>
-<li>one ledger line above the highest line in bass clef</li>
-</ul></li>
-</ul></li>
-<li>Memorization
-<ul>
-<li>On line notes are E G B D F (every good boy deserves food)</li>
-<li>Off line notes are F A C E (face)</li>
-</ul></li>
-</ul></li>
-<li>Tempo (BPM): Beats per minute</li>
-<li>Anacrusis
-<ul>
-<li>Pickup notes (at the beginning)</li>
-<li>Analogy to 弱起</li>
-</ul></li>
-<li>Phrase
-<ul>
-<li>A group of bars in melody; typically 4 bars</li>
-</ul></li>
-<li>Structure
-<ul>
-<li>Motif: short musical statements</li>
-<li>Notes -&gt; songs
-<ul>
-<li>Notes -&gt; Beats -&gt; Bars -&gt; Phrases -&gt; Period (Phrase groups) / Melodies -&gt; Sections -&gt; Song / movements</li>
-</ul></li>
-</ul></li>
-<li>Forms
-<ul>
-<li>Binary form: AB</li>
-<li>Ternary (prime) form: ABA / ABA’ (A’ is modified A)
-<ul>
-<li>e.g. Sonata</li>
-</ul></li>
-<li>Rondo form: ABACA</li>
-<li>12 Bar blue form</li>
-</ul></li>
-</ul>
-<h3 id="piano-roll">Piano Roll</h3>
-<ul>
-<li>88 keys</li>
-<li>12 keys (7 white keys and 5 black keys) are grouped together (octave).
-<ul>
-<li>White keys range from C,D,E,F,G,A,B.</li>
-<li>Black keys range from C# (D b), D#, … A#</li>
-</ul></li>
-<li>There are a total of 8 groups of keys. Range from
-<ul>
-<li>China: <span class="math display"> A_2, C_1, C, c, c^1 (center), c^2, c^3, c^4, c^5 </span></li>
-<li>Other places: c5 is the center</li>
-</ul></li>
-</ul>
-<h3 id="music-interval">Music Interval</h3>
-<ul>
-<li>Categories
-<ul>
-<li>Horizontal, Linear, Melodic</li>
-</ul></li>
-<li>Can be measured from the stave
-<ul>
-<li>e.g.
-<ol type="1">
-<li>G - A: second</li>
-<li>C - E: third</li>
-<li>C - C: octave</li>
-</ol></li>
-</ul></li>
-<li>Semitone
-<ul>
-<li>smallest distance unit between notes. All distances can be described as x semitones.</li>
-<li>e.g. the distance between C and C# is 1 semitone</li>
-<li>the interval of 2 semitones is called a whole step / whole tone / tone</li>
-</ul></li>
-<li>Intervals vs. # of semitones:
-<ul>
-<li>0 semitone: Perfect unison (i.e. 2 notes having the same pitch)</li>
-<li>1 semitone: Minor second</li>
-<li>2 semitones: Major second</li>
-<li>3 semitones: Minor third</li>
-<li>4 semitones: Major third</li>
-</ul></li>
-</ul>
-<h3 id="scales-major-keys-minor-keys">Scales (Major Keys &amp; Minor Keys)</h3>
-<ul>
-<li>Key
-<ol type="1">
-<li>refers to the way in which we perceive the hierarchy of notes and chords. It specifies the home note and modality also</li>
-</ol></li>
-<li>7 notes in a key
-<ul>
-<li>Every notes have distinct letters; after assigning a letter we would determine if a note is shape or flat</li>
-</ul></li>
-<li>Major pattern (major scale)
-<ul>
-<li>Pattern: whole, whole, half, whole, whole, whole, half (In semitone distances: 2, 2, 1, 2, 2, 2, 1 - i.e. TTSTTTS, where T is for tone, S is for semitone)</li>
-<li>e.g.
-<ul>
-<li><strong>C major</strong>: C, D, E, F, G, A, B (all 7 white keys - semitone between B and C, E and F thus there’s no black keys in between)
-<ul>
-<li>C is the tonic (key - will have the feeling of completeness, returning to base / ground / home)</li>
-</ul></li>
-<li><strong>D major</strong>: D, E, F#, G, A, B, C#</li>
-</ul></li>
-<li>Majors with black keys marked as #:
-<ul>
-<li>e.g. G major: G, D, A, E, B, F#, C#</li>
-</ul></li>
-<li>Stability order: 1 5 3 6 2 4 7 (e.g. In C major, C is most stable, and B is most unstable)</li>
-<li>Unstable notes have the tendency to move to stable notes in a pattern</li>
-</ul></li>
-<li>Minor pattern (scale)
-<ol type="1">
-<li>natural minor scale (also a diatonic scale)
-<ul>
-<li>Pattern: 2, 1, 2, 2, 1, 2, 2 (TSTTSTT)</li>
-<li>e.g. <strong>A minor</strong></li>
-</ul></li>
-<li>Harmonic minor scale
-<ul>
-<li>Raise the 6th and 7th degree when ascending, same as natural minor scale in descending
-<ul>
-<li>i.e. Ascending: TSTTTTS</li>
-</ul></li>
-</ul></li>
-<li>Melodic minor scale
-<ul>
-<li>Raise the 7th degree both ascending and descending</li>
-<li>Pattern: 2, 1, 2, 2, 1, 3, 1</li>
-</ul></li>
-</ol></li>
-<li><strong>Trap beat</strong> typically uses <strong>D minor</strong></li>
-<li>Diatonic Scale
-<ul>
-<li>A musical scale (as a major or minor scale) comprising intervals of 5 whole steps and 2 half steps</li>
-</ul></li>
-<li>Degrees
-<ul>
-<li>Tonic (key): 1st degree of the scale</li>
-<li>Subdominant: the fourth tonal degree (scale degree 4) of the diatonic scale</li>
-<li>Dominant: the fifth scale degree of either a major scale or a minor scale</li>
-<li>Leading note: 7th degree</li>
-</ul></li>
-<li>Starting from different notes other than C on C major
-<ol type="1">
-<li>Starting from the 2nd note D on C major. i.e. DEFGABC
-<ul>
-<li>Dorian mode</li>
-<li>Pattern: 2, 1, 2, 2, 2, 1, 2</li>
-</ul></li>
-<li>Starting from the 3rd note E on C major
-<ul>
-<li>Phyrgian mode</li>
-</ul></li>
-<li>Starting from F -&gt; Lydian mode</li>
-<li>Starting from G -&gt; Mixolydian mode</li>
-<li>Startomg from A -&gt; Aeolian mode (Natural Minor scale)</li>
-<li>B -&gt; Locrian mode</li>
-</ol></li>
-<li>Key Signature
-<ul>
-<li>Tells the tonic or the key</li>
-<li>Circle of fifths help memorize the specific key signatures</li>
-</ul></li>
-</ul>
-<h3 id="circle-of-fifths">Circle of Fifths</h3>
-<ul>
-<li>Circle: F - C - G - D - A - E - B - G_b - D_b - A_b - E_b - B_b - F</li>
-<li>Interval between 2 notes are always <strong>perfect fifth</strong></li>
-<li>Can be used for notes, chords, and keys
-<ul>
-<li>think them as notes
-<ul>
-<li>e.g. count the A_b chord: A_b, C, E_b (from circle), G</li>
-</ul></li>
-<li>think as chords
-<ul>
-<li>Fifth chord is the dominant chord (polarized from root chord)</li>
-<li>sample use case: find the fifth chord</li>
-</ul></li>
-<li>think as keys
-<ul>
-<li>shows what keys are similar to each other, making smoothier to transition into different keys
-<ul>
-<li>e.g. C major’s key arrangement is same as G major’s except the last note</li>
-</ul></li>
-<li>can help for recognizing key signatures
-<ul>
-<li>e.g. 1 sharp - F# (G major), 2 sharps - F# C# (D major), 3 sharps - F# C# G# (A major)</li>
-<li>Reversed order for flat key signatures
-<ul>
-<li>e.g. 1 flat - B_b (F major / D Minor), 2 flats - B_b, E_b (B_b major / G Minor), 3 flats - B_b, E_b, A_b (E_b major)</li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
-<h3 id="consonant-intervals-interval-quality">Consonant intervals (Interval Quality)</h3>
-<ul>
-<li><strong>Perfect consonant intervals</strong>: octaves (8th), unison (same alphabetical note), fifths, fourth
-<ul>
-<li>Fifths
-<ul>
-<li>Perfect fifths: 7 semitone difference
-<ul>
-<li>e.g. C &amp; G, A &amp; E</li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li><strong>Imperfect consonant intervals</strong>: major and minor thirds, and major and minor sixths
-<ul>
-<li>Major thirds: 4 semitones
-<ul>
-<li>e.g. C &amp; E</li>
-</ul></li>
-</ul></li>
-<li>Pattern of intervals on any major scales (Describes the quality of intervals)
-<ul>
-<li>Perfect uison, Major 2nd, Major 3rd, Perfect 4th, Perfect 5th, Major 6th, Major 7th, Perfect 8ve</li>
-</ul></li>
-<li>Pattern of intervals on natural minor scales
-<ul>
-<li>Perfect uison, Major 2nd, Minor 3rd, Perfect 4th, Perfect 5th, Minor 6th, Minor 7th, Perfect 8ve</li>
-</ul></li>
-<li>Qualities of intervals other than perfect / major
-<ul>
-<li><strong>Augmented</strong> describes the interval which is one semitone higher than <strong>major / perfect</strong> intervals</li>
-<li><strong>Diminished</strong> describes the interval which is one semitone lower than the <strong>perfect / minor</strong> intervals</li>
-<li><strong>Major</strong> describes the interval which is one semitone higher than the <strong>minor</strong> intervals</li>
-<li><strong>Minor</strong> describes the interval which is one semitone lower than the <strong>major</strong> intervals</li>
-</ul></li>
-<li>To check the quality of the interval, check if the upper note is in the major key of the lower note (i.e. treat the lower note as the tonic of the major scale)
-<ul>
-<li>If it is in the key, then it’s a major or perfect (depending on the numeric interval e.g. 3rd - major; 4th - perfect)</li>
-<li>Otherwise, check how many semitones between the upper note and the note on the major key</li>
-<li>e.g.
-<ul>
-<li>C to G_b is <strong>diminished fifth</strong> (Checked that C major does not contain G_b).
-<ul>
-<li>Note that diminished fifth is ‘identical’ to augmented fourth; however, we should count notes (letters) first to get the interval number before counting half steps to resolve the actual interval</li>
-</ul></li>
-<li>C to G# is augmented fifth (C major does not contain G#)</li>
-</ul></li>
-</ul></li>
-<li>Inversion rules
-<ul>
-<li>the number of semitones of original + inversion = 9</li>
-<li>Inversion of a major interval is a minor interval</li>
-</ul></li>
-</ul>
-<h3 id="chord">Chord</h3>
-<ul>
-<li>Combination of 3 or more notes at the same time
-<ul>
-<li>Combination of 3 is called a triad</li>
-</ul></li>
-<li>A chord is built based of a single note called <strong>root</strong></li>
-<li>A <strong>major chord</strong> is built by adding root with the <strong>major third</strong> and <strong>perfect fifth</strong> e.g. C, F, G
-<ul>
-<li>4 semitones &amp; 3 semitones apart</li>
-</ul></li>
-<li>A <strong>minor chord</strong> is built by adding root with the <strong>minor third</strong> and <strong>perfect fifth</strong> e.g. Dm, Em, Am
-<ul>
-<li>3 semitones &amp; 4 semitones apart</li>
-</ul></li>
-<li>First 6 triads of the major scale is: M, m, m, M, M, m. (In roman scale, I, ii, iii, IV, V, vi)
-<ul>
-<li><code>B chord</code> does not belong to either major or minor, so B chord is noted as <code>Bdim</code> (<code>dim</code> stands for diminished)</li>
-</ul></li>
-<li><strong>Trap beat</strong> typically uses triads</li>
-</ul>
-<h4 id="popular-chords">Popular Chords</h4>
-<ul>
-<li>C major (tonic triad), F major (Subdominant) G major (Dominant)</li>
-</ul>
-<h4 id="chord-progression">Chord Progression</h4>
-<ul>
-<li>Chord progression rules
-<ul>
-<li>I -&gt; any</li>
-<li>ii -&gt; V</li>
-<li>iii -&gt; vi</li>
-<li>IV -&gt; I or V</li>
-<li>V -&gt; I</li>
-<li>vi -&gt; ii</li>
-</ul></li>
-<li>Chord progression examples
-<ul>
-<li>4-chord song:
-<ul>
-<li>I, V, vi, IV</li>
-<li>I -&gt; vi -&gt; ii -&gt; V</li>
-<li>IV -&gt; V -&gt; iii -&gt; vi (-&gt; ii -&gt; V -&gt; I)</li>
-</ul></li>
-</ul></li>
-</ul>
-<h4 id="melodies">Melodies</h4>
-<ul>
-<li>Melody are usually built on top of chords with higher octave
-<ul>
-<li>Typically 4th and 7th notes are unstable for melody</li>
-<li>Melody notes are usually in chords; ending note should be in chord</li>
-</ul></li>
 </ul>
 <h2 id="channel-rack">Channel Rack</h2>
 <h3 id="basics">Basics</h3>
@@ -594,13 +128,11 @@
 <ul>
 <li>In button</li>
 <li>Out button</li>
-<li>Envelope pattern: control when would the sound come out
-<ul>
+<li>Envelope pattern: control when would the sound come out</li>
 <li>ATT tune button: will postpone the head to make the sound volume lower</li>
-</ul></li>
 <li>Filter</li>
 </ul>
-<h2 id="piano-roll-1">Piano Roll</h2>
+<h2 id="piano-roll">Piano Roll</h2>
 <h3 id="basics-1">Basics</h3>
 <ul>
 <li>Hold <code>Command</code> and drag to select a group of keys</li>
@@ -608,7 +140,7 @@
 <li><code>Fn</code> + <code>delete</code> to remove all selected notes</li>
 </ul>
 <h3 id="ghost-channel">Ghost channel</h3>
-<p>If you wanna see how the other instrument was implemented in the same pattern, ‘ghost channel’ button can be toggled to reflect that</p>
+<p>If you wanna see how the other instrument was implemented in the same pattern, 'ghost channel' button can be toggled to reflect that</p>
 <h3 id="control-panel">Control panel</h3>
 <ul>
 <li>Velocity: volume of each key</li>
@@ -621,7 +153,7 @@
 </ul>
 <h3 id="drum-mapping">Drum Mapping</h3>
 <ul>
-<li>FPC -&gt; Click drop down arrow -&gt; ‘Map notes for entire bank’</li>
+<li>FPC -&gt; Click drop down arrow -&gt; 'Map notes for entire bank'</li>
 </ul>
 <h2 id="mixer">Mixer</h2>
 <ul>
@@ -629,11 +161,11 @@
 <li>On the right side bar of mixer view, mixers can be inserted</li>
 <li><strong>Channel Routing</strong> (right-click on a track in mixer): binds multiple channels into one track / following tracks</li>
 <li>Studio separation tune button: make sounds wider or narrower</li>
-<li>Copy mixer effect to another track: right click the mixer, hold and drag ‘save presets as …’ to the track</li>
+<li>Copy mixer effect to another track: right click the mixer, hold and drag 'save presets as ...' to the track</li>
 </ul>
 <h2 id="automation-clip">Automation clip</h2>
 <ul>
-<li>In channel rack’s channel properties view, we can add automation clip by right clicking the pitch tune button</li>
+<li>In channel rack's channel properties view, we can add automation clip by right clicking the pitch tune button</li>
 <li>Updating a point on automation clip will impact this point and left side</li>
 </ul>
 <h3 id="why-automation-clip">Why automation clip</h3>
@@ -644,11 +176,11 @@
 <ul>
 <li>Playlist -&gt; select a track -&gt; right click -&gt; track mode -&gt; audio track</li>
 <li>In Mixer, select input source and disable the hear back in <strong>Master</strong> track</li>
-<li>Turn on ‘Recording’ and click ‘Play’ to start</li>
+<li>Turn on 'Recording' and click 'Play' to start</li>
 </ul>
 <h2 id="plugins">Plugins</h2>
 <ul>
-<li>Press ‘F8’ opens ‘plugin picker’</li>
+<li>Press 'F8' opens 'plugin picker'</li>
 </ul>
 <h2 id="best-practices">Best Practices</h2>
 <h3 id="audio">Audio</h3>

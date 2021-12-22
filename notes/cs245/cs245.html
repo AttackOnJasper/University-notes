@@ -85,6 +85,7 @@
 <li><a href="#proposition">Proposition</a></li>
 <li><a href="#formula">formula</a></li>
 <li><a href="#induction">Induction</a></li>
+<li><a href="#semantics">Semantics</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -166,6 +167,24 @@
 <li>Strong Induction
 <ul>
 <li>Assumes P(m) holds for every m &lt;= k, prove P(k+1) holds</li>
+</ul></li>
+<li>Structural Induction
+<ul>
+<li>Proves that
+<ol type="1">
+<li>property A holds for all atomic formula p</li>
+<li>if property A holds for formula P, then (¬A(P)) holds and (A(P) s A(Q)) <span class="math display">\displaystyle s\in\{\vee,\wedge,\rightarrow\}</span> holds for any formula Q</li>
+</ol></li>
+<li>Then A holds for any formulas</li>
+</ul></li>
+<li>W.l.o.g.: without loss of generality</li>
+</ul>
+<h3 id="semantics">Semantics</h3>
+<ul>
+<li>Interprets the well-formed formulas of logic</li>
+<li>Semantic of propositional logic is <strong>compositional</strong>
+<ul>
+<li>derived from individual parts</li>
 </ul></li>
 </ul>
 <div class="status-banner" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; text-align: center;">
