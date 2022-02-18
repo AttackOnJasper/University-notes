@@ -79,21 +79,25 @@
   </script>
 <div id="TOC">
 <ul>
-<li><a href="#aws-cloud">AWS Cloud</a><ul>
+<li><a href="#aws-cloud">AWS Cloud</a>
+<ul>
 <li><a href="#architecture-evolution">Architecture Evolution</a></li>
 <li><a href="#aws-history">AWS History</a></li>
 <li><a href="#overview">Overview</a></li>
 <li><a href="#infrastructure-overview">Infrastructure Overview</a></li>
-<li><a href="#regionsazs">Regions/AZs</a><ul>
+<li><a href="#regionsazs">Regions/AZs</a>
+<ul>
 <li><a href="#edge-location">Edge Location</a></li>
 </ul></li>
-<li><a href="#networking---aws-foundation-service">Networking - AWS Foundation Service</a><ul>
+<li><a href="#networking---aws-foundation-service">Networking - AWS Foundation Service</a>
+<ul>
 <li><a href="#upon-aws-account-creation">Upon AWS Account Creation</a></li>
 </ul></li>
 <li><a href="#best-practices">Best Practices</a></li>
 <li><a href="#aws-management-console-basics">AWS Management Console Basics</a></li>
 </ul></li>
-<li><a href="#iam-identity-and-access-management">IAM (Identity and Access Management)</a><ul>
+<li><a href="#iam-identity-and-access-management">IAM (Identity and Access Management)</a>
+<ul>
 <li><a href="#features">Features</a></li>
 <li><a href="#terms">Terms</a></li>
 <li><a href="#credentials">Credentials</a></li>
@@ -104,52 +108,65 @@
 <li><a href="#aws-resource-access-manager-ram">AWS Resource Access Manager (RAM)</a></li>
 <li><a href="#aws-sso">AWS SSO</a></li>
 <li><a href="#sts-security-token-service">STS (Security Token Service)</a></li>
-<li><a href="#vpc-virtual-private-cloud">VPC (Virtual Private Cloud)</a><ul>
+<li><a href="#vpc-virtual-private-cloud">VPC (Virtual Private Cloud)</a>
+<ul>
 <li><a href="#networking-terms">Networking Terms</a></li>
 <li><a href="#subnet">Subnet</a></li>
 <li><a href="#vpc-cidr">VPC CIDR</a></li>
 <li><a href="#internet-gateway">Internet Gateway</a></li>
 <li><a href="#route-table">Route Table</a></li>
-<li><a href="#networking-security">Networking Security</a><ul>
+<li><a href="#networking-security">Networking Security</a>
+<ul>
 <li><a href="#network-access-control-list-nacl">Network Access Control List (NACL)</a></li>
 <li><a href="#security-group">Security Group</a></li>
 </ul></li>
 <li><a href="#vpc-peering">VPC Peering</a></li>
-<li><a href="#nat-instances">NAT Instances</a><ul>
+<li><a href="#nat-instances">NAT Instances</a>
+<ul>
 <li><a href="#management">Management</a></li>
 </ul></li>
-<li><a href="#nat-gateways">NAT Gateways</a><ul>
+<li><a href="#nat-gateways">NAT Gateways</a>
+<ul>
 <li><a href="#management-1">Management</a></li>
 </ul></li>
 <li><a href="#vpc-flow-logs">VPC Flow Logs</a></li>
 <li><a href="#bastion">Bastion</a></li>
-<li><a href="#vpc-endpoint">VPC Endpoint</a><ul>
+<li><a href="#vpc-endpoint">VPC Endpoint</a>
+<ul>
 <li><a href="#management-2">Management</a></li>
 </ul></li>
-<li><a href="#vpn">VPN</a><ul>
+<li><a href="#vpn">VPN</a>
+<ul>
 <li><a href="#customer-gateway">Customer Gateway</a></li>
 </ul></li>
 <li><a href="#vpc-management">VPC Management</a></li>
 </ul></li>
-<li><a href="#direct-connect">Direct Connect</a><ul>
+<li><a href="#direct-connect">Direct Connect</a>
+<ul>
 <li><a href="#virtual-private-gateway">Virtual Private Gateway</a></li>
 <li><a href="#steps-for-creating-a-direct-connect">Steps for creating a Direct Connect</a></li>
 </ul></li>
-<li><a href="#route-53">Route 53</a><ul>
-<li><a href="#routing-policies">Routing Policies</a><ul>
+<li><a href="#route-53">Route 53</a>
+<ul>
+<li><a href="#routing-policies">Routing Policies</a>
+<ul>
 <li><a href="#policy-types">Policy Types</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#cloudfront-its-like-a-supermarket-which-gets-supply-from-farms-and-provide-products-to-customers">CloudFront (It's like a Supermarket which gets supply from farms and provide products to customers)</a><ul>
+<li><a href="#cloudfront-its-like-a-supermarket-which-gets-supply-from-farms-and-provide-products-to-customers">CloudFront (It’s like a Supermarket which gets supply from farms and provide products to customers)</a>
+<ul>
 <li><a href="#origin">Origin</a></li>
-<li><a href="#distribution">Distribution</a><ul>
+<li><a href="#distribution">Distribution</a>
+<ul>
 <li><a href="#content-access">Content Access</a></li>
 </ul></li>
 <li><a href="#benefits">Benefits</a></li>
 </ul></li>
-<li><a href="#other-aws-networking-services">Other AWS Networking Services</a><ul>
+<li><a href="#other-aws-networking-services">Other AWS Networking Services</a>
+<ul>
 <li><a href="#global-accelerator">Global Accelerator</a></li>
-<li><a href="#api-gateway">API Gateway</a><ul>
+<li><a href="#api-gateway">API Gateway</a>
+<ul>
 <li><a href="#api-basics">API basics</a></li>
 <li><a href="#cors-cross-origin-resource-sharing">CORS (Cross-origin resource sharing)</a></li>
 <li><a href="#import-apis">Import APIs</a></li>
@@ -160,7 +177,8 @@
 <li><a href="#vpn-cloudhub">VPN CloudHub</a></li>
 <li><a href="#network-billing">Network Billing</a></li>
 </ul></li>
-<li><a href="#ec2-elastic-compute-cloud">EC2 (Elastic Compute Cloud)</a><ul>
+<li><a href="#ec2-elastic-compute-cloud">EC2 (Elastic Compute Cloud)</a>
+<ul>
 <li><a href="#terms-1">Terms</a></li>
 <li><a href="#computer-components">Computer Components</a></li>
 <li><a href="#use-cases">Use Cases</a></li>
@@ -168,56 +186,68 @@
 <li><a href="#instance-types">Instance types</a></li>
 <li><a href="#cost">Cost</a></li>
 <li><a href="#iam-ec2">IAM &amp; EC2</a></li>
-<li><a href="#ebs-elastic-block-store">EBS (Elastic Block Store)</a><ul>
+<li><a href="#ebs-elastic-block-store">EBS (Elastic Block Store)</a>
+<ul>
 <li><a href="#ebs-snapshots">EBS Snapshots</a></li>
 <li><a href="#types">Types</a></li>
 <li><a href="#security">Security</a></li>
 </ul></li>
-<li><a href="#ami-amazon-machine-image">AMI (Amazon Machine Image)</a><ul>
+<li><a href="#ami-amazon-machine-image">AMI (Amazon Machine Image)</a>
+<ul>
 <li><a href="#types-1">Types</a></li>
 <li><a href="#purchase-options">Purchase Options</a></li>
 </ul></li>
-<li><a href="#eni-ena-efa">ENI, ENA, EFA</a><ul>
+<li><a href="#eni-ena-efa">ENI, ENA, EFA</a>
+<ul>
 <li><a href="#eni-elastic-network-interface">ENI (Elastic Network Interface)</a></li>
 <li><a href="#ena-enhanced-networking-adaptor">ENA (Enhanced Networking Adaptor)</a></li>
 <li><a href="#efa-elastic-fabric-adapter">EFA (Elastic Fabric adapter)</a></li>
 </ul></li>
 <li><a href="#ec2-hibernate">EC2 Hibernate</a></li>
-<li><a href="#placement-groups">Placement Groups</a><ul>
+<li><a href="#placement-groups">Placement Groups</a>
+<ul>
 <li><a href="#types-2">Types</a></li>
 </ul></li>
 <li><a href="#hpc">HPC</a></li>
-<li><a href="#hypervisor">Hypervisor</a><ul>
+<li><a href="#hypervisor">Hypervisor</a>
+<ul>
 <li><a href="#nitro">Nitro</a></li>
 <li><a href="#xen">Xen</a></li>
 </ul></li>
 <li><a href="#security-1">Security</a></li>
-<li><a href="#elb">ELB</a><ul>
+<li><a href="#elb">ELB</a>
+<ul>
 <li><a href="#sticky-sessions">Sticky Sessions</a></li>
 <li><a href="#cross-zone-load-balancing">Cross Zone Load Balancing</a></li>
 <li><a href="#path-patterns">Path Patterns</a></li>
 </ul></li>
-<li><a href="#autoscaling">Autoscaling</a><ul>
+<li><a href="#autoscaling">Autoscaling</a>
+<ul>
 <li><a href="#management-3">Management</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#container-basics">Container Basics</a><ul>
+<li><a href="#container-basics">Container Basics</a>
+<ul>
 <li><a href="#docker-container-engine">Docker (Container Engine)</a></li>
 </ul></li>
-<li><a href="#ecs">ECS</a><ul>
+<li><a href="#ecs">ECS</a>
+<ul>
 <li><a href="#ecs-terms">ECS Terms</a></li>
 <li><a href="#codebuild-integration">CodeBuild integration</a></li>
-<li><a href="#fargate">Fargate</a><ul>
+<li><a href="#fargate">Fargate</a>
+<ul>
 <li><a href="#fargate-vs-ec2">Fargate vs EC2</a></li>
 </ul></li>
 <li><a href="#ecs-features">ECS Features</a></li>
 <li><a href="#ecs-elb">ECS + ELB</a></li>
-<li><a href="#security-2">Security</a><ul>
+<li><a href="#security-2">Security</a>
+<ul>
 <li><a href="#ec2-instance-role-vs-task-role">EC2 Instance Role vs Task Role</a></li>
 </ul></li>
 <li><a href="#management-4">Management</a></li>
 </ul></li>
-<li><a href="#lambda">Lambda</a><ul>
+<li><a href="#lambda">Lambda</a>
+<ul>
 <li><a href="#features-1">Features</a></li>
 <li><a href="#how-to-trigger-lambda">How to trigger lambda</a></li>
 <li><a href="#accessing-vpc">Accessing VPC</a></li>
@@ -227,33 +257,41 @@
 <li><a href="#best-practice">Best practice</a></li>
 <li><a href="#pricing">Pricing</a></li>
 </ul></li>
-<li><a href="#other-compute-services">Other Compute Services</a><ul>
+<li><a href="#other-compute-services">Other Compute Services</a>
+<ul>
 <li><a href="#aws-batch">AWS Batch</a></li>
-<li><a href="#elastic-beanstalk">Elastic Beanstalk</a><ul>
+<li><a href="#elastic-beanstalk">Elastic Beanstalk</a>
+<ul>
 <li><a href="#configuration-files">Configuration Files</a></li>
 <li><a href="#deployments-options">Deployments Options</a></li>
 <li><a href="#ways-to-integrate-with-rds">2 ways to integrate with RDS</a></li>
 <li><a href="#docker-containers-deployment">Docker Containers deployment</a></li>
 <li><a href="#management-5">Management</a></li>
 </ul></li>
-<li><a href="#aws-eks-elastic-kubernetes-service">AWS EKS (Elastic Kubernetes Service)</a><ul>
+<li><a href="#aws-eks-elastic-kubernetes-service">AWS EKS (Elastic Kubernetes Service)</a>
+<ul>
 <li><a href="#k8s">K8s</a></li>
 <li><a href="#why-eks">Why EKS?</a></li>
 </ul></li>
 <li><a href="#amazon-lightsail">Amazon Lightsail</a></li>
 <li><a href="#aws-parallel-cluster">AWS Parallel Cluster</a></li>
 </ul></li>
-<li><a href="#storage-overview">Storage Overview</a><ul>
+<li><a href="#storage-overview">Storage Overview</a>
+<ul>
 <li><a href="#data-warehousing">Data Warehousing</a></li>
+<li><a href="#data-storage-types">Data Storage Types</a></li>
 </ul></li>
-<li><a href="#s3-simple-storage-service">S3 (Simple Storage Service)</a><ul>
+<li><a href="#s3-simple-storage-service">S3 (Simple Storage Service)</a>
+<ul>
 <li><a href="#storage-tiers">Storage Tiers</a></li>
-<li><a href="#cors-cross-origin-resource-sharing-1">CORS (Cross Origin Resource Sharing)</a><ul>
+<li><a href="#cors-cross-origin-resource-sharing-1">CORS (Cross Origin Resource Sharing)</a>
+<ul>
 <li><a href="#why-need-cors">Why Need CORS</a></li>
 <li><a href="#what-does-cors-do">What does CORS do</a></li>
 <li><a href="#use-cases-1">Use Cases</a></li>
 </ul></li>
-<li><a href="#cloudfront-distribution">CloudFront Distribution</a><ul>
+<li><a href="#cloudfront-distribution">CloudFront Distribution</a>
+<ul>
 <li><a href="#https">HTTPS</a></li>
 <li><a href="#cloudfront-signed-urls-cookies-to-secure-authorized-contents">CloudFront Signed URLs &amp; Cookies (to secure authorized contents)</a></li>
 <li><a href="#to-only-access-s3-through-cloudfront-url">To only access S3 through CloudFront URL</a></li>
@@ -272,20 +310,25 @@
 <li><a href="#billing-aspects">Billing aspects</a></li>
 <li><a href="#best-practices-2">Best Practices</a></li>
 </ul></li>
-<li><a href="#aws-datasync">AWS DataSync</a><ul>
+<li><a href="#aws-datasync">AWS DataSync</a>
+<ul>
 <li><a href="#security-4">Security</a></li>
 <li><a href="#vs-storage-gateway">vs Storage Gateway</a></li>
 </ul></li>
 <li><a href="#dms-database-migration-service">DMS (Database Migration Service)</a></li>
-<li><a href="#storage-gateway">Storage Gateway</a><ul>
+<li><a href="#storage-gateway">Storage Gateway</a>
+<ul>
 <li><a href="#how-it-works">How it works</a></li>
 <li><a href="#deployment-types">Deployment types</a></li>
 </ul></li>
-<li><a href="#rds-relational-database-service">RDS (Relational Database Service)</a><ul>
-<li><a href="#options">Options</a><ul>
+<li><a href="#rds-relational-database-service">RDS (Relational Database Service)</a>
+<ul>
+<li><a href="#options">Options</a>
+<ul>
 <li><a href="#aurora-based-on-mysql">Aurora (Based on MySQL)</a></li>
 </ul></li>
-<li><a href="#backups">Backups</a><ul>
+<li><a href="#backups">Backups</a>
+<ul>
 <li><a href="#automated">Automated</a></li>
 <li><a href="#snapshots">Snapshots</a></li>
 </ul></li>
@@ -296,14 +339,16 @@
 <li><a href="#performance-1">Performance</a></li>
 <li><a href="#management-7">Management</a></li>
 </ul></li>
-<li><a href="#dynamodb">Dynamodb</a><ul>
+<li><a href="#dynamodb">Dynamodb</a>
+<ul>
 <li><a href="#api-ref">API Ref</a></li>
 <li><a href="#backup">Backup</a></li>
 <li><a href="#consistency-options">Consistency Options</a></li>
 <li><a href="#data-types">Data types</a></li>
 <li><a href="#dynamodb-accelerator-dax">DynamoDb Accelerator (DAX)</a></li>
 <li><a href="#expressions">Expressions</a></li>
-<li><a href="#indexes">Indexes</a><ul>
+<li><a href="#indexes">Indexes</a>
+<ul>
 <li><a href="#lsi-local-secondary-index">LSI (Local Secondary Index)</a></li>
 <li><a href="#gsi-global-secondary-index">GSI (Global Secondary Index)</a></li>
 </ul></li>
@@ -311,12 +356,14 @@
 <li><a href="#partitions">Partitions</a></li>
 <li><a href="#pitr-point-in-time-recovery">PITR (Point-in-Time-Recovery)</a></li>
 <li><a href="#primary-keys">Primary Keys</a></li>
-<li><a href="#search">Search</a><ul>
+<li><a href="#search">Search</a>
+<ul>
 <li><a href="#query">Query</a></li>
 <li><a href="#scan">Scan</a></li>
 <li><a href="#scan-vs-query">Scan vs Query</a></li>
 </ul></li>
-<li><a href="#streams">Streams</a><ul>
+<li><a href="#streams">Streams</a>
+<ul>
 <li><a href="#global-tables">Global Tables</a></li>
 </ul></li>
 <li><a href="#transactions">Transactions</a></li>
@@ -328,13 +375,15 @@
 <li><a href="#best-practices-3">Best Practices</a></li>
 <li><a href="#pricing-1">Pricing</a></li>
 </ul></li>
-<li><a href="#elasticache">ElastiCache</a><ul>
+<li><a href="#elasticache">ElastiCache</a>
+<ul>
 <li><a href="#supports-2-open-source-in-memory-key-value-database-engines">Supports 2 open-source in-memory key-value database engines</a></li>
 <li><a href="#caching-strategies">Caching Strategies</a></li>
 </ul></li>
 <li><a href="#amazon-neptune">Amazon Neptune</a></li>
 <li><a href="#documentdb">DocumentDB</a></li>
-<li><a href="#redshift">Redshift</a><ul>
+<li><a href="#redshift">Redshift</a>
+<ul>
 <li><a href="#columnar-data-store">Columnar Data Store</a></li>
 <li><a href="#enhanced-vpc-routing">Enhanced VPC Routing</a></li>
 <li><a href="#integration-with-other-aws-services-1">Integration with other AWS services</a></li>
@@ -347,30 +396,37 @@
 <li><a href="#efs-elastic-file-system">EFS (Elastic File System)</a></li>
 <li><a href="#amazon-fsx-for-lustre">Amazon FSx for Lustre</a></li>
 <li><a href="#amazon-fsx-for-windows-file-server">Amazon FSx for Windows File Server</a></li>
-<li><a href="#sagemaker">SageMaker</a><ul>
+<li><a href="#sagemaker">SageMaker</a>
+<ul>
 <li><a href="#s3-integration">S3 Integration</a></li>
 </ul></li>
-<li><a href="#application-integration-services">Application Integration Services</a><ul>
-<li><a href="#step-functions">Step Functions</a><ul>
+<li><a href="#application-integration-services">Application Integration Services</a>
+<ul>
+<li><a href="#step-functions">Step Functions</a>
+<ul>
 <li><a href="#why-need-step-functions">Why Need step functions</a></li>
 <li><a href="#terminologies">Terminologies</a></li>
 <li><a href="#management-8">Management</a></li>
 <li><a href="#best-practices-4">Best Practices</a></li>
 </ul></li>
-<li><a href="#sqs">SQS</a><ul>
+<li><a href="#sqs">SQS</a>
+<ul>
 <li><a href="#queue-types">Queue Types</a></li>
 <li><a href="#polling-messages">Polling messages</a></li>
 </ul></li>
 <li><a href="#sns">SNS</a></li>
 <li><a href="#amazon-mq">Amazon MQ</a></li>
 <li><a href="#ses">SES</a></li>
-<li><a href="#swf-simple-workflow-service">SWF (Simple Workflow Service)</a><ul>
+<li><a href="#swf-simple-workflow-service">SWF (Simple Workflow Service)</a>
+<ul>
 <li><a href="#swf-actors">SWF Actors</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#management-services">Management Services</a><ul>
+<li><a href="#management-services">Management Services</a>
+<ul>
 <li><a href="#aws-systems-manager">AWS Systems Manager</a></li>
-<li><a href="#cloudwatch">CloudWatch</a><ul>
+<li><a href="#cloudwatch">CloudWatch</a>
+<ul>
 <li><a href="#cloudwatch-agent-on-ec2">CloudWatch Agent on EC2</a></li>
 <li><a href="#cloudwatch-insights">CloudWatch Insights</a></li>
 <li><a href="#logs">Logs</a></li>
@@ -378,12 +434,14 @@
 <li><a href="#bp">BP</a></li>
 </ul></li>
 <li><a href="#cloudtrail">CloudTrail</a></li>
-<li><a href="#x-ray">X-Ray</a><ul>
+<li><a href="#x-ray">X-Ray</a>
+<ul>
 <li><a href="#configuration">Configuration</a></li>
 <li><a href="#annotation-indexing">Annotation &amp; Indexing</a></li>
 </ul></li>
 <li><a href="#aws-service-catalog">AWS Service Catalog</a></li>
-<li><a href="#aws-directory-service">AWS Directory Service</a><ul>
+<li><a href="#aws-directory-service">AWS Directory Service</a>
+<ul>
 <li><a href="#active-directory">Active Directory</a></li>
 <li><a href="#aws-directory-service-for-microsoft-active-directory-aws-managed-microsoft-ad">AWS Directory Service for Microsoft Active Directory (AWS Managed Microsoft AD)</a></li>
 <li><a href="#simple-ad">Simple AD</a></li>
@@ -392,34 +450,41 @@
 <li><a href="#cognito">Cognito</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#developer-tools">Developer Tools</a><ul>
+<li><a href="#developer-tools">Developer Tools</a>
+<ul>
 <li><a href="#cicd-continous-integration-continous-delivery">CI/CD (Continous Integration / Continous Delivery)</a></li>
 <li><a href="#cloud9">Cloud9</a></li>
 <li><a href="#codestar">CodeStar</a></li>
-<li><a href="#codebuild">CodeBuild</a><ul>
+<li><a href="#codebuild">CodeBuild</a>
+<ul>
 <li><a href="#to-override-the-build-command">To override the build command</a></li>
 <li><a href="#management-9">Management</a></li>
 </ul></li>
 <li><a href="#codecommit">CodeCommit</a></li>
-<li><a href="#codedeploy">CodeDeploy</a><ul>
+<li><a href="#codedeploy">CodeDeploy</a>
+<ul>
 <li><a href="#appspec-file">AppSpec file</a></li>
 <li><a href="#deployment-approaches">Deployment Approaches</a></li>
 </ul></li>
-<li><a href="#cloudformation">CloudFormation</a><ul>
+<li><a href="#cloudformation">CloudFormation</a>
+<ul>
 <li><a href="#cfn-drift-detection">CFn Drift Detection</a></li>
 <li><a href="#nested-stacks">Nested Stacks</a></li>
 </ul></li>
 <li><a href="#codepipeline">CodePipeline</a></li>
-<li><a href="#sam-serverless-application-model">SAM (Serverless Application Model)</a><ul>
+<li><a href="#sam-serverless-application-model">SAM (Serverless Application Model)</a>
+<ul>
 <li><a href="#management-10">Management</a></li>
 <li><a href="#template-format-order">Template format / order</a></li>
 </ul></li>
 </ul></li>
 <li><a href="#cdk">CDK</a></li>
-<li><a href="#aws-security-complience">AWS Security &amp; Complience</a><ul>
+<li><a href="#aws-security-complience">AWS Security &amp; Complience</a>
+<ul>
 <li><a href="#aws-shared-responsibility-model">AWS Shared Responsibility Model</a></li>
 <li><a href="#client-penetration-testing">Client Penetration Testing</a></li>
-<li><a href="#aws-security-services">AWS Security Services</a><ul>
+<li><a href="#aws-security-services">AWS Security Services</a>
+<ul>
 <li><a href="#aws-artifact">AWS Artifact</a></li>
 <li><a href="#amazon-guardduty">Amazon GuardDuty</a></li>
 <li><a href="#amazon-inspector-policy-engine">Amazon Inspector (Policy Engine)</a></li>
@@ -427,7 +492,8 @@
 <li><a href="#aws-shield---mentioned-in-route-53">AWS Shield - mentioned in route 53</a></li>
 <li><a href="#amazon-macie">Amazon Macie</a></li>
 </ul></li>
-<li><a href="#kms-key-management-service">KMS (Key Management Service)</a><ul>
+<li><a href="#kms-key-management-service">KMS (Key Management Service)</a>
+<ul>
 <li><a href="#cmks">CMKs</a></li>
 <li><a href="#symmetric-vs-asymmetric-cmks">Symmetric vs Asymmetric CMKs</a></li>
 <li><a href="#key-policies">Key Policies</a></li>
@@ -435,22 +501,26 @@
 </ul></li>
 <li><a href="#cloudhsm">CloudHSM</a></li>
 <li><a href="#alb">ALB</a></li>
-<li><a href="#ssm-system-manager">SSM (System Manager)</a><ul>
+<li><a href="#ssm-system-manager">SSM (System Manager)</a>
+<ul>
 <li><a href="#parameter-store">Parameter Store</a></li>
 <li><a href="#secrets-manager">Secrets Manager</a></li>
 <li><a href="#secrets-manager-vs-systems-manager-parameter-store">Secrets Manager vs Systems Manager Parameter Store</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#aws-analytics">AWS Analytics</a><ul>
+<li><a href="#aws-analytics">AWS Analytics</a>
+<ul>
 <li><a href="#athena">Athena</a></li>
-<li><a href="#emr-elastic-map-reduce">EMR (Elastic Map Reduce)</a><ul>
+<li><a href="#emr-elastic-map-reduce">EMR (Elastic Map Reduce)</a>
+<ul>
 <li><a href="#mapreduce-overview">MapReduce Overview</a></li>
 <li><a href="#apache-hadoop">Apache Hadoop</a></li>
 <li><a href="#emr-architecture">EMR Architecture</a></li>
 </ul></li>
 <li><a href="#cloudsearch">CloudSearch</a></li>
 <li><a href="#elasticsearch">Elasticsearch</a></li>
-<li><a href="#kinesis">Kinesis</a><ul>
+<li><a href="#kinesis">Kinesis</a>
+<ul>
 <li><a href="#kinesis-data-streams">Kinesis Data Streams</a></li>
 <li><a href="#kinesis-firehose">Kinesis Firehose</a></li>
 <li><a href="#kinesis-analytics">Kinesis Analytics</a></li>
@@ -460,36 +530,43 @@
 <li><a href="#quicksight">QuickSight</a></li>
 <li><a href="#glue">Glue</a></li>
 </ul></li>
-<li><a href="#other-aws-services">Other AWS Services</a><ul>
+<li><a href="#other-aws-services">Other AWS Services</a>
+<ul>
 <li><a href="#aws-config">AWS Config</a></li>
 <li><a href="#aws-elastic-transcoder">AWS Elastic Transcoder</a></li>
 <li><a href="#aws-iot">AWS IOT</a></li>
 <li><a href="#aws-marketplace">AWS Marketplace</a></li>
 <li><a href="#amazon-mechanical-turk">Amazon Mechanical Turk</a></li>
 <li><a href="#aws-migration-hub">AWS Migration Hub</a></li>
-<li><a href="#aws-on-prem-services">AWS On-Prem Services</a><ul>
+<li><a href="#aws-on-prem-services">AWS On-Prem Services</a>
+<ul>
 <li><a href="#sms-server-migration-service">SMS (Server Migration Service)</a></li>
 <li><a href="#aws-app-discovery-service">AWS App Discovery Service</a></li>
 <li><a href="#vm-importexport">VM Import/Export</a></li>
 <li><a href="#download-amazon-linux-2-as-an-iso">Download Amazon Linux 2 as an ISO</a></li>
 </ul></li>
-<li><a href="#data-pipeline">Data Pipeline</a><ul>
+<li><a href="#data-pipeline">Data Pipeline</a>
+<ul>
 <li><a href="#on-prem-flow">On-prem flow</a></li>
 </ul></li>
-<li><a href="#opswork">OpsWork</a><ul>
+<li><a href="#opswork">OpsWork</a>
+<ul>
 <li><a href="#opsworks-for-puppet-enterprise">OpsWorks for Puppet Enterprise</a></li>
 </ul></li>
 <li><a href="#aws-quick-start">AWS Quick Start</a></li>
 <li><a href="#amazon-rekognition">Amazon Rekognition</a></li>
 <li><a href="#aws-security-center">AWS Security Center</a></li>
 <li><a href="#aws-service-health-dashboard">AWS Service Health Dashboard</a></li>
-<li><a href="#aws-snowball">AWS Snowball</a><ul>
+<li><a href="#aws-snowball">AWS Snowball</a>
+<ul>
 <li><a href="#snowball-edge">Snowball Edge</a></li>
 </ul></li>
 <li><a href="#amazon-workspaces">Amazon Workspaces</a></li>
 </ul></li>
-<li><a href="#billing">Billing</a><ul>
-<li><a href="#aws-organizations">AWS Organizations</a><ul>
+<li><a href="#billing">Billing</a>
+<ul>
+<li><a href="#aws-organizations">AWS Organizations</a>
+<ul>
 <li><a href="#moving-the-master-account-from-aws-org-a-to-b">Moving the master account from AWS Org A to B</a></li>
 <li><a href="#moving-an-account-from-aws-org-a-to-b">Moving an account from AWS Org A to B</a></li>
 <li><a href="#service-control-policies">Service Control Policies</a></li>
@@ -505,16 +582,19 @@
 <li><a href="#aws-budgets">AWS Budgets</a></li>
 <li><a href="#cost-allocation-tags">Cost Allocation Tags</a></li>
 </ul></li>
-<li><a href="#aws-support">AWS Support</a><ul>
+<li><a href="#aws-support">AWS Support</a>
+<ul>
 <li><a href="#aws-support-plans">AWS Support Plans</a></li>
-<li><a href="#aws-trusted-advisor">AWS Trusted Advisor</a><ul>
+<li><a href="#aws-trusted-advisor">AWS Trusted Advisor</a>
+<ul>
 <li><a href="#aws-personal-health-dashboard">AWS Personal Health Dashboard</a></li>
 </ul></li>
 <li><a href="#actions-upon-an-aws-account-is-compromised">Actions upon an AWS account is compromised</a></li>
 <li><a href="#aws-resource-center">AWS Resource Center</a></li>
 </ul></li>
 <li><a href="#ha-architecture">HA Architecture</a></li>
-<li><a href="#whitepaper-5-pillars-of-the-aws-well-architected-framework-prc-os">Whitepaper: 5 pillars of the AWS Well Architected Framework (<strong>PRC OS</strong>)</a><ul>
+<li><a href="#whitepaper-5-pillars-of-the-aws-well-architected-framework-prc-os">Whitepaper: 5 pillars of the AWS Well Architected Framework (<strong>PRC OS</strong>)</a>
+<ul>
 <li><a href="#operational-excellence">Operational Excellence</a></li>
 <li><a href="#security-8">Security</a></li>
 <li><a href="#performance-efficiency">Performance Efficiency</a></li>
@@ -522,15 +602,18 @@
 <li><a href="#cost-optimization">Cost Optimization</a></li>
 </ul></li>
 <li><a href="#cloud-best-practices">Cloud Best Practices</a></li>
-<li><a href="#other-notes">Other Notes</a><ul>
+<li><a href="#other-notes">Other Notes</a>
+<ul>
 <li><a href="#caching">Caching</a></li>
 <li><a href="#microservices-architecture">Microservices Architecture</a></li>
-<li><a href="#native-feature-supports">Native feature supports</a><ul>
+<li><a href="#native-feature-supports">Native feature supports</a>
+<ul>
 <li><a href="#encryption-at-rest">Encryption at Rest</a></li>
 <li><a href="#native-multi-az">Native Multi-AZ</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#certification-exam">Certification Exam</a><ul>
+<li><a href="#certification-exam">Certification Exam</a>
+<ul>
 <li><a href="#purpose">Purpose</a></li>
 <li><a href="#format">Format</a></li>
 <li><a href="#exam-stucture">Exam Stucture</a></li>
@@ -560,16 +643,16 @@
 </ul></li>
 <li>Evolution: Cloud
 <ul>
-<li>e.g. Instead of storing stuff in PC, we store in Google Drive, Dropbox, etc.</li>
+<li>e.g. Instead of storing stuff in PC, we store in Google Drive, Dropbox, etc.</li>
 </ul></li>
 </ul>
 <h2 id="aws-history">AWS History</h2>
 <ul>
-<li>'Invention requires 2 things: 1. The ability to try a lot of experiments, and 2. not having to live with the collateral damage of failed experiments.' - Andy Jassy
+<li>‘Invention requires 2 things: 1. The ability to try a lot of experiments, and 2. not having to live with the collateral damage of failed experiments.’ - Andy Jassy
 <ul>
 <li>AWS gives start-ups the above 2 things</li>
 </ul></li>
-<li>2003: Chris Pinkham &amp; Benjamin Black present a paper on what Amazon's own internal infrastructure should look like</li>
+<li>2003: Chris Pinkham &amp; Benjamin Black present a paper on what Amazon’s own internal infrastructure should look like</li>
 <li>2004: Amazon launches SQS</li>
 <li>2006: AWS officially launched</li>
 <li>2007: over 180,000 developers on the platform</li>
@@ -586,7 +669,7 @@
 <li>Parts or all of the infrastructure is provided by a 3rd party</li>
 <li>Provide basic building blocks: hardware, computer, storage</li>
 <li>Very flexible</li>
-<li>e.g. EC2
+<li>e.g. EC2
 <ul>
 <li>EC2 users do not own the physical servers; AWS provides virtual servers</li>
 </ul></li>
@@ -596,15 +679,15 @@
 <li>Cloud vendor provides IaaS + Operating System</li>
 <li>enable users to run applications without the need to manage underlying infrastructure</li>
 <li>think of it as an API - don’t need to know how it’s implemented</li>
-<li>e.g. S3</li>
+<li>e.g. S3</li>
 </ul></li>
-<li>SaaS: provide completed product e.g. Gmail, Office 365</li>
-<li>DaaS: Desktop as a Service e.g. Amazon Workspaces</li>
-<li>FaaS: Function as a Service e.g. Lambda</li>
+<li>SaaS: provide completed product e.g. Gmail, Office 365</li>
+<li>DaaS: Desktop as a Service e.g. Amazon Workspaces</li>
+<li>FaaS: Function as a Service e.g. Lambda</li>
 </ul></li>
 <li>Cloud Types
 <ul>
-<li>Public e.g. AWS
+<li>Public e.g. AWS
 <ul>
 <li>No capital cost, pay as customers go</li>
 </ul></li>
@@ -646,7 +729,7 @@
 <li>Cloud computing enables you to stop thinking of the infrastructure as hardware, and instead think of it as software
 <ul>
 <li>Definition: <em>on-demand</em> delivery of IT resources and applications <em>via the internet</em></li>
-<li>e.g. EC2 - virtual machine</li>
+<li>e.g. EC2 - virtual machine</li>
 <li>reference: https://aws.amazon.com/what-is-cloud-computing/</li>
 </ul></li>
 </ul>
@@ -654,10 +737,10 @@
 <ul>
 <li>AWS is the vendor:
 <ul>
-<li>AWS engineers are responsible for e.g. maintenance, DDos attacks, delays, etc.</li>
+<li>AWS engineers are responsible for e.g. maintenance, DDos attacks, delays, etc.</li>
 <li><em>Availability</em>, <em>fault tolerance</em>, and <em>scaling</em> are handled by AWS
 <ul>
-<li>e.g. hosting a static website on S3
+<li>e.g. hosting a static website on S3
 <ul>
 <li>Developers don’t need to worry about actual physical hosts, instead just enjoy the service</li>
 </ul></li>
@@ -667,7 +750,7 @@
 <ul>
 <li>AWS Foundation Services
 <ul>
-<li>Compute i.e. CPU + RAM (ability for processing)
+<li>Compute i.e. CPU + RAM (ability for processing)
 <ul>
 <li>EC2 (Elastic Compute Cloud); can combine with Elastic Load Balancing and Auto Scaling
 <ul>
@@ -684,28 +767,28 @@
 </ul></li>
 <li>Networking - communication means
 <ul>
-<li>e.g. VPC, Route 53, Elastic Load Balacing, CloudFront</li>
+<li>e.g. VPC, Route 53, Elastic Load Balacing, CloudFront</li>
 </ul></li>
 <li>Storage
 <ul>
-<li>e.g. S3, EBS, EFS, Glacier</li>
+<li>e.g. S3, EBS, EFS, Glacier</li>
 </ul></li>
 </ul></li>
 <li>AWS Platform services
 <ul>
-<li>Compute e.g. Lambda</li>
-<li>Db e.g. DynamoDB, RDS, ElastiCache, Redshift</li>
-<li>Analytics e.g. Kinesis, EMR</li>
-<li>App integration e.g. SQS, SNS, SES</li>
-<li>Development tools e.g. CodeCommit, CodeDeploy, CodePipeline, CodeBuild, X-Ray</li>
+<li>Compute e.g. Lambda</li>
+<li>Db e.g. DynamoDB, RDS, ElastiCache, Redshift</li>
+<li>Analytics e.g. Kinesis, EMR</li>
+<li>App integration e.g. SQS, SNS, SES</li>
+<li>Development tools e.g. CodeCommit, CodeDeploy, CodePipeline, CodeBuild, X-Ray</li>
 </ul></li>
 <li>Applications
 <ul>
 <li>Virtual Desktops</li>
 <li>Collaboration and Sharing</li>
 </ul></li>
-<li>Toolkits: e.g. IDE plugin, Cloud 9</li>
-<li>Management tools: e.g. CloudWatch, CloudTrail</li>
+<li>Toolkits: e.g. IDE plugin, Cloud 9</li>
+<li>Management tools: e.g. CloudWatch, CloudTrail</li>
 </ul></li>
 </ul>
 <h2 id="regionsazs">Regions/AZs</h2>
@@ -714,10 +797,10 @@
 <ul>
 <li>Region example: us-west-2</li>
 </ul></li>
-<li>Each region is a geographical area divided into 2 or more AZs e.g. us-west-2a</li>
+<li>Each region is a geographical area divided into 2 or more AZs e.g. us-west-2a</li>
 <li>Each AZs has 1 or more data centers
 <ul>
-<li>AZs are designed for fault isolation (e.g. power failure)</li>
+<li>AZs are designed for fault isolation (e.g. power failure)</li>
 <li>Interconnected with other AZs using high-speed private links</li>
 </ul></li>
 <li>AWS recommends replicating across AZs for resiliency</li>
@@ -732,24 +815,24 @@
 <li>Typically used for caching</li>
 <li>datacenter owned by a trusted partner of AWS</li>
 <li>Route53 (Load Balancer), CDN (Cache) are typically on the coast</li>
-<li>e.g. Boston, Dallas, Los Angeles, Toronto</li>
+<li>e.g. Boston, Dallas, Los Angeles, Toronto</li>
 </ul>
 <h2 id="networking---aws-foundation-service">Networking - AWS Foundation Service</h2>
 <ul>
 <li>VPC is the basis of all aws networking services</li>
-<li>Direct Connect: connect corp network/infrastructure (e.g. own data center) to AWS environment via VPC</li>
+<li>Direct Connect: connect corp network/infrastructure (e.g. own data center) to AWS environment via VPC</li>
 <li>Route 53: AWS service for DNS (Domain Name Services): domain name -&gt; ip resolution</li>
 </ul>
 <h3 id="upon-aws-account-creation">Upon AWS Account Creation</h3>
 <ul>
 <li>Upon creation of an AWS account, a VPC is created across multiple AZs</li>
-<li>While deploying e.g. an EC2 instance, the instance would reside in one of the AZs covered by the VPC</li>
+<li>While deploying e.g. an EC2 instance, the instance would reside in one of the AZs covered by the VPC</li>
 </ul>
 <h2 id="best-practices">Best Practices</h2>
 <ul>
 <li>Change components without impacting services
 <ul>
-<li>e.g. modifying capabilities should not affect consumers</li>
+<li>e.g. modifying capabilities should not affect consumers</li>
 </ul></li>
 <li>Use a simple API
 <ul>
@@ -771,7 +854,7 @@
 <ul>
 <li>Organize your AWS resources
 <ul>
-<li>e.g. Can manage a large number of S3 buckets and automate tasks on these buckets at one time</li>
+<li>e.g. Can manage a large number of S3 buckets and automate tasks on these buckets at one time</li>
 </ul></li>
 <li>Can add and manage custom tags on AWS resources</li>
 </ul></li>
@@ -788,7 +871,7 @@
 <h2 id="features">Features</h2>
 <ul>
 <li>Granular Permissions</li>
-<li>Identity Federation (e.g. login via Facebook, Linkedin) via Cognito</li>
+<li>Identity Federation (e.g. login via Facebook, Linkedin) via Cognito</li>
 <li>Explicit Deny would override all other conflicting policies</li>
 <li>Policy Simulator
 <ul>
@@ -825,7 +908,7 @@
 <li>Action: a list of operations; specific APIs to the AWS service</li>
 <li>Resources are specified via ARNs
 <ul>
-<li>ARN format: <strong>arn:partition:service:region:account_id:{resource, qualifiers}</strong> e.g. arn:aws:s3:us-east-1:1234:bucket_name/object</li>
+<li>ARN format: <strong>arn:partition:service:region:account_id:{resource, qualifiers}</strong> e.g. arn:aws:s3:us-east-1:1234:bucket_name/object</li>
 </ul></li>
 </ol></li>
 <li>Policy to identity or resource
@@ -868,7 +951,7 @@
 </ul></li>
 <li>Policies can be granted to a specific user
 <ul>
-<li>e.g. S3 full access policy</li>
+<li>e.g. S3 full access policy</li>
 </ul></li>
 <li>Problem: key might be compromised</li>
 </ul></li>
@@ -943,7 +1026,7 @@
 </ul></li>
 <li>Management
 <ul>
-<li>'IAM' -&gt; 'Users' -&gt; 'Permissions' -&gt; 'Permissions Boundary'</li>
+<li>‘IAM’ -&gt; ‘Users’ -&gt; ‘Permissions’ -&gt; ‘Permissions Boundary’</li>
 </ul></li>
 <li>Benefit
 <ul>
@@ -987,7 +1070,7 @@
 </ul></li>
 <li>Management
 <ul>
-<li>'RAM' -&gt; 'Create Resource Share' -&gt; Specify AWS accounts for sharing</li>
+<li>‘RAM’ -&gt; ‘Create Resource Share’ -&gt; Specify AWS accounts for sharing</li>
 <li>In the other AWS account, accept the pending request for sharing</li>
 </ul></li>
 <li>RAM vs AWS Organizations
@@ -1054,23 +1137,23 @@
 </ul></li>
 <li>Constraints
 <ul>
-<li>AWS reserves both the first 4 and the last IP address in each subnet's CIDR block</li>
+<li>AWS reserves both the first 4 and the last IP address in each subnet’s CIDR block</li>
 </ul></li>
 <li>The purpose of an egress-only internet gateway is to allow IPv6 based traffic within a VPC to access the internet, whilst denying any internet based resources to connection back into the VPC.</li>
 </ul>
 <h2 id="networking-terms">Networking Terms</h2>
 <ul>
 <li>Ipv6 is created to solve IPv4 depletion</li>
-<li>Domain names (URL e.g. www.google.com)
+<li>Domain names (URL e.g. www.google.com)
 <ul>
 <li>Controlled by IANA (Internet Assigned Numbers Authority)</li>
-<li>Top Level Domain: the last word in the domain name e.g. <code>.com</code>, <code>.uk</code></li>
-<li>Second Level Domain: The second word in a domain name; could be optional depends on TLD e.g. <code>.co.uk</code>, <code>.gov.uk</code></li>
+<li>Top Level Domain: the last word in the domain name e.g. <code>.com</code>, <code>.uk</code></li>
+<li>Second Level Domain: The second word in a domain name; could be optional depends on TLD e.g. <code>.co.uk</code>, <code>.gov.uk</code></li>
 </ul></li>
 <li>Registrar
 <ul>
 <li>An authority that can assign domain names directly under top level domains</li>
-<li>e.g. Amazon, GoDaddy.com</li>
+<li>e.g. Amazon, GoDaddy.com</li>
 <li>InterNIC (a service of ICANN)
 <ul>
 <li>Enforces uniqueness of domain names across the internet</li>
@@ -1079,7 +1162,7 @@
 </ul></li>
 <li>NS (Name Server) records
 <ul>
-<li>Allow TLD servers to direct traffic to contents DNS server, which contains the authoritative DNS records (e.g. SOA)</li>
+<li>Allow TLD servers to direct traffic to contents DNS server, which contains the authoritative DNS records (e.g. SOA)</li>
 </ul></li>
 <li>SOA (Start of Authority Record)
 <ul>
@@ -1108,7 +1191,7 @@
 <ul>
 <li>Canonical Name</li>
 <li>Resolve (map) one domain name to another</li>
-<li>Cannot be used to map naked domain names (zone apex record) e.g. cannot resolve https://amazon.com</li>
+<li>Cannot be used to map naked domain names (zone apex record) e.g. cannot resolve https://amazon.com</li>
 </ul></li>
 <li>Alias Records
 <ul>
@@ -1121,7 +1204,7 @@
 <li>Alias provides a Route 53-specific extension to the DNS functionality
 <ul>
 <li>Upon DNS query that matches an alias record, route 53 can route domain name to the resources specified in the alias record</li>
-<li>e.g. to route domain traffic to an ELB load balancer, use Amazon Route 53 to create an alias record that points to your load balancer.</li>
+<li>e.g. to route domain traffic to an ELB load balancer, use Amazon Route 53 to create an alias record that points to your load balancer.</li>
 </ul></li>
 </ul></li>
 <li>Senario
@@ -1138,7 +1221,7 @@
 <li>A subnet is a subsection of a network
 <ul>
 <li>Includes all computers/hosts in a specific location</li>
-<li>Analogy: home network is a 'subnet' of the ISP's network</li>
+<li>Analogy: home network is a ‘subnet’ of the ISP’s network</li>
 </ul></li>
 <li>The machines within the same subnet would have the same IP prefix</li>
 <li>In AWS, a subnet is a range of IP addresses in your VPC.</li>
@@ -1150,10 +1233,10 @@
 <li>AWS resources can be launched into a specified subnet.</li>
 <li>Customize IP range
 <ul>
-<li>Largest subnet has a prefix of 16 in IP address (i.e. IP range: <span class="math display">\displaystyle 2^{16} = 65536 </span>)</li>
+<li>Largest subnet has a prefix of 16 in IP address (i.e. IP range: <span class="math display">2^{16} = 65536 </span>)</li>
 </ul></li>
 <li>Any user-created VPC subnet WILL NOT automatically assign Public IPv4 Addresses to instances</li>
-<li>AWS releases an EC2 instance's public IP address when it is stopped, hibernated, or terminated.</li>
+<li>AWS releases an EC2 instance’s public IP address when it is stopped, hibernated, or terminated.</li>
 </ul></li>
 <li>When the default VPC is created, a default subnet is created in each of the AZs of the default region
 <ul>
@@ -1180,8 +1263,8 @@
 <li>CIDR
 <ul>
 <li>https://tools.ietf.org/html/rfc4632</li>
-<li>a prefix is shown as a 4-octet quantity, just like a traditional IPv4 address or network number, followed by the &quot;/&quot; (slash) character, followed by a decimal value between 0 and 32 that describes the number of significant bits.</li>
-<li>e.g. 172.16.0.0/16 the &quot;/16&quot; indicating that the mask to extract the network portion of the prefix is a 32-bit value where the most significant 16 bits are ones and the least significant 16 bits are zeros</li>
+<li>a prefix is shown as a 4-octet quantity, just like a traditional IPv4 address or network number, followed by the “/” (slash) character, followed by a decimal value between 0 and 32 that describes the number of significant bits.</li>
+<li>e.g. 172.16.0.0/16 the “/16” indicating that the mask to extract the network portion of the prefix is a 32-bit value where the most significant 16 bits are ones and the least significant 16 bits are zeros</li>
 </ul></li>
 </ul>
 <h2 id="internet-gateway">Internet Gateway</h2>
@@ -1205,24 +1288,24 @@
 <li>Firewall: A type of software that either allows or blocks certain kind of internet traffic to pass through it</li>
 <li><code>0.0.0.0/0</code> would allow ANYONE from ANYWHERE to connect to your instances.</li>
 <li><code>ssh</code> access: inbound/outbound for NACL and inbound for SG</li>
-<li>In a custom VPC with new subnets in each AZ, there is a route within the route table that supports communication across all subnets/AZs. Additionally, it has a Default SG with an &quot;allow&quot; rule: all traffic, all protocols, all ports, from resource using this default security group.</li>
+<li>In a custom VPC with new subnets in each AZ, there is a route within the route table that supports communication across all subnets/AZs. Additionally, it has a Default SG with an “allow” rule: all traffic, all protocols, all ports, from resource using this default security group.</li>
 </ul>
 <h3 id="network-access-control-list-nacl">Network Access Control List (NACL)</h3>
 <ul>
 <li>A firewall on subnet level for both inbound &amp; outbound calls</li>
 <li>Used to control access among subnets and between subnet &amp; internet
 <ul>
-<li>e.g. Block IP addresses</li>
+<li>e.g. Block IP addresses</li>
 </ul></li>
 <li>Auth is based on rules
 <ul>
 <li>Rules are evaluated based on rule number from lowest to highest</li>
 <li>The first rule that would apply to the traffic would be applied immediately (like a group of OR statements)</li>
-<li>Each network ACL also includes a rule whose rule number is an asterisk. This rule ensures that if a packet doesn't match any of the other numbered rules, it's denied. You can't modify or remove this rule.</li>
+<li>Each network ACL also includes a rule whose rule number is an asterisk. This rule ensures that if a packet doesn’t match any of the other numbered rules, it’s denied. You can’t modify or remove this rule.</li>
 <li>Components: Rule #, type, protocol, port range, source / destination, allow / deny</li>
 </ul></li>
 <li><strong>Stateless</strong> - so NACL would check inbound &amp; outbound separately</li>
-<li>In 'default' NACL (auto created for the default VPC), all outbound/inbound traffic are allowed by default. In a new NACL, all traffic would be denied by default</li>
+<li>In ‘default’ NACL (auto created for the default VPC), all outbound/inbound traffic are allowed by default. In a new NACL, all traffic would be denied by default</li>
 <li>Each subnet must be associated with one and only one NACL at a time. Will associate with default NACL if not specified</li>
 <li>Each NACL can be associated with multiple subnets</li>
 </ul>
@@ -1231,13 +1314,13 @@
 <li>Acts as virtual firewall to one or more instances on the instance/server level</li>
 <li>Management
 <ul>
-<li>To view SGs &amp; rules, go to 'EC2' -&gt; 'Instances'</li>
-<li>Can use multiple SGs for one instance: 'Instances' -&gt; 'actions' -&gt; 'Networking' -&gt; 'Change Security Groups'</li>
+<li>To view SGs &amp; rules, go to ‘EC2’ -&gt; ‘Instances’</li>
+<li>Can use multiple SGs for one instance: ‘Instances’ -&gt; ‘actions’ -&gt; ‘Networking’ -&gt; ‘Change Security Groups’</li>
 </ul></li>
 <li>Rules are different from NACLs
 <ul>
 <li>Implicitly deny all inbound traffic and <strong>allow</strong> all outboound traffic</li>
-<li>No deny rules available, so if want to deny certain traffic, just don't create related rules</li>
+<li>No deny rules available, so if want to deny certain traffic, just don’t create related rules</li>
 <li>Rule changes would be in effect immediately</li>
 <li>Cannot block specific IP addresses (can use NACLs to achieve this)</li>
 <li>All rules are evaluated before the decision is made</li>
@@ -1269,13 +1352,13 @@
 <ul>
 <li>The logical networks still use the same common AWS backbone network infrastructure to communicate</li>
 <li>Traffic between VPC peers is encrypted by default</li>
-<li>No transitive peering is allowed. i.e. cannot connect from A to C via B if there is no VPC peering between A and C
+<li>No transitive peering is allowed. i.e. cannot connect from A to C via B if there is no VPC peering between A and C
 <ul>
 <li>Can use AWS Transit Gateway (see below) instead</li>
 </ul></li>
 <li>Edge to edge routing through a gateway or private connection is not supported.
 <ul>
-<li>i.e. cannot extend the peering relationship to AWS Direct Connect connection or IGWs</li>
+<li>i.e. cannot extend the peering relationship to AWS Direct Connect connection or IGWs</li>
 </ul></li>
 <li>All resources in the VPC would have access to resources in another VPC</li>
 </ul></li>
@@ -1298,16 +1381,16 @@
 <ol type="1">
 <li>Creation
 <ul>
-<li>EC2 -&gt; Create Instance -&gt; Choose AMI -&gt; Community AMIs -&gt; Type 'NAT' -&gt; Select public VPC -&gt; Select SG</li>
+<li>EC2 -&gt; Create Instance -&gt; Choose AMI -&gt; Community AMIs -&gt; Type ‘NAT’ -&gt; Select public VPC -&gt; Select SG</li>
 </ul></li>
 <li>Need to <strong>disable source/destination checks (required for any NAT instances)</strong>
 <ul>
-<li>Actions -&gt; Networking -&gt; 'Change Source/Dest. Check'</li>
+<li>Actions -&gt; Networking -&gt; ‘Change Source/Dest. Check’</li>
 </ul></li>
 <li>Add route in main route table to help private subnet get access to internet
 <ul>
 <li>Put NAT instance as target and <code>0.0.0.0\0</code></li>
-<li>If NAT instance is terminated, then the status of route would become 'Blackhole'</li>
+<li>If NAT instance is terminated, then the status of route would become ‘Blackhole’</li>
 </ul></li>
 </ol>
 <h2 id="nat-gateways">NAT Gateways</h2>
@@ -1386,7 +1469,7 @@
 <ul>
 <li>Creation
 <ul>
-<li>'VPC' -&gt; 'Endpoints' -&gt; Choose interface/gateway endpoint -&gt; select VPC &amp; Route table</li>
+<li>‘VPC’ -&gt; ‘Endpoints’ -&gt; Choose interface/gateway endpoint -&gt; select VPC &amp; Route table</li>
 <li>Will be created instantly, but update to route table would take around 5 min</li>
 </ul></li>
 </ul>
@@ -1399,7 +1482,7 @@
 <li>have low-to-modest bandwidth requirements</li>
 <li>can tolerate the inherent variability in Internet-based connectivity</li>
 </ol></li>
-<li>A VPG sits at the edge of your VPC and is a key component when using a VPN. It's responsible for site-to-site connection from on-premises to a VPC.</li>
+<li>A VPG sits at the edge of your VPC and is a key component when using a VPN. It’s responsible for site-to-site connection from on-premises to a VPC.</li>
 </ul>
 <h3 id="customer-gateway">Customer Gateway</h3>
 <ul>
@@ -1410,19 +1493,19 @@
 <ul>
 <li>VPC creation
 <ol type="1">
-<li>'Create VPC'
+<li>‘Create VPC’
 <ul>
 <li>Will auto create a route table, a NACL, and a Security group when a new VPC is created</li>
 </ul></li>
-<li>'Create Subnet' for the new VPC
+<li>‘Create Subnet’ for the new VPC
 <ul>
-<li>Have the option to enable 'auto assign IPv4 addresses'</li>
+<li>Have the option to enable ‘auto assign IPv4 addresses’</li>
 </ul></li>
-<li>'Create internet gateway' -&gt; 'Attach to VPC'</li>
+<li>‘Create internet gateway’ -&gt; ‘Attach to VPC’</li>
 <li>Configure route table
 <ul>
-<li>'Route Tables' -&gt; select route table -&gt; 'Routes' tab</li>
-<li>BP: Any unassociated subnets would be routed to the main route table. If we allow public internet access to main route table, we would be prone to security risks. Thus it's best to create a separate route table for public internet access</li>
+<li>‘Route Tables’ -&gt; select route table -&gt; ‘Routes’ tab</li>
+<li>BP: Any unassociated subnets would be routed to the main route table. If we allow public internet access to main route table, we would be prone to security risks. Thus it’s best to create a separate route table for public internet access</li>
 </ul></li>
 <li>Create public route table
 <ol type="1">
@@ -1432,15 +1515,15 @@
 </ol></li>
 <li>Launch EC2 in VPC
 <ol type="1">
-<li>'Configure Instance' -&gt; 'VPC'</li>
-<li>'Configure Security Group'</li>
+<li>‘Configure Instance’ -&gt; ‘VPC’</li>
+<li>‘Configure Security Group’</li>
 </ol></li>
 <li>To ssh into the EC2 instances
 <ul>
 <li>Create a security group and add inbound rules
 <ol type="1">
-<li>'All ICMP - IPv4' and specify the source as IP address or another SG</li>
-<li>'SSH'</li>
+<li>‘All ICMP - IPv4’ and specify the source as IP address or another SG</li>
+<li>‘SSH’</li>
 </ol></li>
 <li>For prod, use Bastion host</li>
 </ul></li>
@@ -1461,7 +1544,7 @@
 <ul>
 <li>Amazon VPC side of a VPN connection</li>
 </ul></li>
-<li>Is used to connect the AWS cloud with clients' on-premises data center</li>
+<li>Is used to connect the AWS cloud with clients’ on-premises data center</li>
 <li>VPG vs IGW
 <ul>
 <li>VPG is for connecting to Internet, whereas VPG is for VPN connection</li>
@@ -1469,10 +1552,10 @@
 </ul>
 <h2 id="steps-for-creating-a-direct-connect">Steps for creating a Direct Connect</h2>
 <ol type="1">
-<li>'Direct Connect' -&gt; Create a virtual interface (public)</li>
-<li>'VPC' -&gt; 'VPN connections' -&gt; 'Customer Gateway'</li>
-<li>Create a 'VPG' and attach to desired VPC</li>
-<li>'Create new VPN connection' -&gt; Select the VPG and the Customer Gateway</li>
+<li>‘Direct Connect’ -&gt; Create a virtual interface (public)</li>
+<li>‘VPC’ -&gt; ‘VPN connections’ -&gt; ‘Customer Gateway’</li>
+<li>Create a ‘VPG’ and attach to desired VPC</li>
+<li>‘Create new VPN connection’ -&gt; Select the VPG and the Customer Gateway</li>
 <li>Once VPN is up, setup the VPN on customer gateway or firewall</li>
 </ol>
 <h1 id="route-53">Route 53</h1>
@@ -1483,16 +1566,16 @@
 <ul>
 <li>Domain registration
 <ul>
-<li>e.g. buy 'www.example.com' for a year</li>
+<li>e.g. buy ‘www.example.com’ for a year</li>
 <li>Steps
 <ol type="1">
-<li>Go to 'Domain Registration'</li>
+<li>Go to ‘Domain Registration’</li>
 <li>Domain Search -&gt; Type &amp; Search -&gt; Register</li>
-<li>Can check 'Pending requests' for status
+<li>Can check ‘Pending requests’ for status
 <ul>
 <li>Could take up to 3 days to complete; usually would be ready in 1 or 2 hours</li>
 </ul></li>
-<li>Once provisioned, Check 'Hosted zones' / 'Registered domains' to view the domain name</li>
+<li>Once provisioned, Check ‘Hosted zones’ / ‘Registered domains’ to view the domain name</li>
 </ol></li>
 </ul></li>
 <li>DNS service
@@ -1501,9 +1584,9 @@
 <ul>
 <li>Steps
 <ol type="1">
-<li>Go to 'Route 53'</li>
-<li>Navigate to 'Hosted Zone' tab</li>
-<li>'Create Hosted Zone'
+<li>Go to ‘Route 53’</li>
+<li>Navigate to ‘Hosted Zone’ tab</li>
+<li>‘Create Hosted Zone’
 <ul>
 <li>Types:
 <ul>
@@ -1511,7 +1594,7 @@
 <li>Private zone for VPC</li>
 </ul></li>
 </ul></li>
-<li>'Create record set' to map domain name to IP address</li>
+<li>‘Create record set’ to map domain name to IP address</li>
 </ol></li>
 </ul></li>
 </ul></li>
@@ -1541,16 +1624,16 @@
 </ul></li>
 <li>DNS config for web servers
 <ul>
-<li>ALBs require an Alias to ALB and a record type &quot;A – IPv4 address&quot;. CNAME record maps a name to another name, it can't be used with the public IP address of the ALB. However, a CNAME can be used to route traffic to your ALB DNS name (A Record).</li>
-<li>attaching EIPs directly to the instances with an &quot;A&quot; record accomplishes similar results, but doesn't incur the cost of an ALB</li>
+<li>ALBs require an Alias to ALB and a record type “A – IPv4 address”. CNAME record maps a name to another name, it can’t be used with the public IP address of the ALB. However, a CNAME can be used to route traffic to your ALB DNS name (A Record).</li>
+<li>attaching EIPs directly to the instances with an “A” record accomplishes similar results, but doesn’t incur the cost of an ALB</li>
 </ul></li>
 </ul>
 <h2 id="routing-policies">Routing Policies</h2>
 <ul>
 <li>Management
 <ul>
-<li>'Hosted Zones' -&gt; select domain name -&gt; 'Go to Record Sets'</li>
-<li>'Create Record Set'</li>
+<li>‘Hosted Zones’ -&gt; select domain name -&gt; ‘Go to Record Sets’</li>
+<li>‘Create Record Set’</li>
 <li>Paste IP addresses, Update TTL (time to live for DNS cache)</li>
 <li>Select Routing Policy types</li>
 </ul></li>
@@ -1572,7 +1655,7 @@
 <li>Weighted Routing
 <ul>
 <li>Split traffic based on assigned weights</li>
-<li>e.g. 80% to US-EAST-1 and 20% to US-WEST-2</li>
+<li>e.g. 80% to US-EAST-1 and 20% to US-WEST-2</li>
 <li>To create a weighted routing
 <ul>
 <li>Create n record sets to the same A record pointing to different IPs so that the assigned weights aggregate to 100</li>
@@ -1601,9 +1684,9 @@
 <li>Simple Routing + health check</li>
 </ul></li>
 </ol>
-<h1 id="cloudfront-its-like-a-supermarket-which-gets-supply-from-farms-and-provide-products-to-customers">CloudFront (It's like a Supermarket which gets supply from farms and provide products to customers)</h1>
+<h1 id="cloudfront-its-like-a-supermarket-which-gets-supply-from-farms-and-provide-products-to-customers">CloudFront (It’s like a Supermarket which gets supply from farms and provide products to customers)</h1>
 <ul>
-<li>Content Delivery Network (CDN) that allows users to cache content at &quot;edge locations&quot; (Points of Presence) located all around the world.
+<li>Content Delivery Network (CDN) that allows users to cache content at “edge locations” (Points of Presence) located all around the world.
 <ul>
 <li>By replication of the data to edge locations at the first time when the user near that edge location accesses the data</li>
 <li>There is a TTL assigned to the cache (customizable)</li>
@@ -1617,7 +1700,7 @@
 <li>Clear cache would be charged</li>
 <li>PCI compliant
 <ul>
-<li>If running PCI / HIPAA compliant workloads, it's recommended to log CloudFront usage data for 1 year for auditing purposes
+<li>If running PCI / HIPAA compliant workloads, it’s recommended to log CloudFront usage data for 1 year for auditing purposes
 <ol type="1">
 <li>Enable CloudFront access logs</li>
 <li>Capture requests sent to CloudFront API</li>
@@ -1633,13 +1716,13 @@
 <li>Origin Protocol policy
 <ul>
 <li>specify rules to communicate with custom origin</li>
-<li>e.g. HTTPS only</li>
+<li>e.g. HTTPS only</li>
 </ul></li>
 </ul>
 <h2 id="origin">Origin</h2>
 <ul>
 <li>Origin of all files that CDN would distribute</li>
-<li>e.g. S3, EC2, ELB, Route53</li>
+<li>e.g. S3, EC2, ELB, Route53</li>
 </ul>
 <h2 id="distribution">Distribution</h2>
 <ul>
@@ -1729,14 +1812,14 @@
 </ul></li>
 <li>Caching
 <ul>
-<li>Cache endpoint's response for better performance</li>
+<li>Cache endpoint’s response for better performance</li>
 </ul></li>
 <li>Throttling
 <ul>
 <li>Can implement method specific throttling / universal settings for all methods</li>
 </ul></li>
 <li>Monitoring via CloudWatch</li>
-<li>Maintaining different versions of API (e.g. beta &amp; prod)</li>
+<li>Maintaining different versions of API (e.g. beta &amp; prod)</li>
 <li>Integration with AWS Certificate Manager for free SSL/TLS certs</li>
 <li>CORS</li>
 <li>SOAP web service passthrough</li>
@@ -1754,7 +1837,7 @@
 <ul>
 <li>define resources and nested resources (URL paths)</li>
 <li>HTTP methods</li>
-<li>Choose target (e.g. EC2, Lambda, DynamoDb)</li>
+<li>Choose target (e.g. EC2, Lambda, DynamoDb)</li>
 </ul></li>
 </ul></li>
 <li>Deploying API
@@ -1779,19 +1862,19 @@
 <ol type="1">
 <li>A full URI without protocol
 <ul>
-<li>e.g. http://${stageVariables.variable_name}</li>
+<li>e.g. http://${stageVariables.variable_name}</li>
 </ul></li>
 <li>A full domain
 <ul>
-<li>e.g. http://${stageVariables.variable_name}/resource/operation</li>
+<li>e.g. http://${stageVariables.variable_name}/resource/operation</li>
 </ul></li>
 <li>A subdomain
 <ul>
-<li>e.g. http://${stageVariables.variable_name}.example.com/resource/operation</li>
+<li>e.g. http://${stageVariables.variable_name}.example.com/resource/operation</li>
 </ul></li>
 <li>A path
 <ul>
-<li>e.g. http://example.com/${stageVariables.variable_name}/bar</li>
+<li>e.g. http://example.com/${stageVariables.variable_name}/bar</li>
 </ul></li>
 <li>A query string</li>
 </ol></li>
@@ -1804,7 +1887,7 @@
 <li>Backend interactions
 <ul>
 <li>Controlled by Integration request / response</li>
-<li>e.g. DynamoDB as backend</li>
+<li>e.g. DynamoDB as backend</li>
 </ul></li>
 <li>Deployment
 <ul>
@@ -1857,7 +1940,7 @@
 </ul></li>
 <li>Level 2
 <ul>
-<li>Use different HTTP verb e.g. GET, PUT</li>
+<li>Use different HTTP verb e.g. GET, PUT</li>
 <li>Services typically support several of the HTTP verbs on each exposed resource – Create, Read, Update and Delete (CRUD) services.</li>
 </ul></li>
 <li>Level 3
@@ -1876,8 +1959,8 @@
 <ul>
 <li>A cross-origin HTTP request is one that is made to
 <ol type="1">
-<li>A different domain (e.g. from a.com to b.com)</li>
-<li>A different subdomain (e.g. from a.com to www.a.com)</li>
+<li>A different domain (e.g. from a.com to b.com)</li>
+<li>A different subdomain (e.g. from a.com to www.a.com)</li>
 <li>A different port (for example, from example.com to example.com:10777)</li>
 <li>A different protocol (for example, from https://example.com to http://example.com)</li>
 </ol></li>
@@ -1885,7 +1968,7 @@
 <ol type="1">
 <li>Simple HTTP request
 <ul>
-<li>Don't trigger a CORS preflight requests to server</li>
+<li>Don’t trigger a CORS preflight requests to server</li>
 </ul></li>
 <li>Non simple requests
 <ul>
@@ -1908,11 +1991,11 @@
 <li><code>Access-Control-Allow-Methods</code></li>
 <li><code>Access-Control-Allow-Headers</code></li>
 </ol></li>
-<li><p>Example</p>
+<li>Example</li>
+</ul>
 <pre><code>&quot;Access-Control-Allow-Headers&quot; : &quot;Content-Type&quot;,
 &quot;Access-Control-Allow-Origin&quot;: &quot;https://www.example.com&quot;,
 &quot;Access-Control-Allow-Methods&quot;: &quot;OPTIONS,POST,GET&quot;</code></pre></li>
-</ul></li>
 </ol></li>
 <li>Lambda custom (non-proxy) integrations
 <ul>
@@ -1987,7 +2070,7 @@
 </ul></li>
 <li><strong>User data</strong> user specified when launching your instance
 <ul>
-<li>e.g. specify parameters for configuring your instance, or include a simple script</li>
+<li>e.g. specify parameters for configuring your instance, or include a simple script</li>
 <li>Can assign user data in tags to help manage EC2 instances</li>
 <li>Sample command: <code>curl http://169.254.169.254/latest/user-data</code></li>
 </ul></li>
@@ -2005,7 +2088,7 @@
 <ul>
 <li>this will not change hosting settings for existing instances, only future ones</li>
 </ul></li>
-<li>The tenancy of an instance can only be changed between variants of ‘dedicated' tenancy hosting. It cannot be changed from or to default tenancy hosting.
+<li>The tenancy of an instance can only be changed between variants of ‘dedicated’ tenancy hosting. It cannot be changed from or to default tenancy hosting.
 <ul>
 <li>Tenancy change can apply on the fly</li>
 </ul></li>
@@ -2020,12 +2103,12 @@
 <ul>
 <li>OS: base platform for software to operate
 <ul>
-<li>e.g. windows, mac, linux</li>
+<li>e.g. windows, mac, linux</li>
 <li>In EC2, this is called an AMI (Amazon Machine Image), a package of a pre-configured OS</li>
 </ul></li>
 <li>CPU: brain - processing of tasks
 <ul>
-<li>In EC2, it's called an instance (e.g. m5.large, m4.xlarge)</li>
+<li>In EC2, it’s called an instance (e.g. m5.large, m4.xlarge)</li>
 </ul></li>
 <li>Hard drive (could be local or remote): data storage
 <ul>
@@ -2037,7 +2120,7 @@
 </ul></li>
 <li>RAM (random access memory): short-term memory
 <ul>
-<li>In EC2, it's still RAM in that instance</li>
+<li>In EC2, it’s still RAM in that instance</li>
 </ul></li>
 <li>Network card: Internet Access
 <ul>
@@ -2073,7 +2156,7 @@
 <ul>
 <li>significant discount (up to 72%) compared to On-Demand Instance pricing</li>
 <li>1-year or 3-year term.</li>
-<li>Have the flexibility to change the AZ, the instance size (e.g. m5.large -&gt; m5.xlarge), and networking type (e.g. Enhanced Networking) of the instances</li>
+<li>Have the flexibility to change the AZ, the instance size (e.g. m5.large -&gt; m5.xlarge), and networking type (e.g. Enhanced Networking) of the instances</li>
 <li>More upfront payment / longer term -&gt; greater discount</li>
 </ul></li>
 <li>Scheduled Reserved Instances
@@ -2082,17 +2165,17 @@
 </ul></li>
 <li>Convertible Reserved Instances
 <ul>
-<li>Can exchange instance family, instance type, platform (e.g. from windows to linux), scope, or tenancy for a 1-year term</li>
+<li>Can exchange instance family, instance type, platform (e.g. from windows to linux), scope, or tenancy for a 1-year term</li>
 </ul></li>
 </ul></li>
 </ul></li>
-<li>Spot 'bid/auction'
+<li>Spot ‘bid/auction’
 <ul>
-<li>only pay and use an instance when the spot price &lt;= the 'bid' price
+<li>only pay and use an instance when the spot price &lt;= the ‘bid’ price
 <ul>
 <li>biggest savings; up to 90%</li>
 <li>spot price fluctuates based on market supply and demand</li>
-<li>Have <strong>2 min</strong> to decide whether to stop an instance when spot price &gt; 'bid' price
+<li>Have <strong>2 min</strong> to decide whether to stop an instance when spot price &gt; ‘bid’ price
 <ul>
 <li>Could use <strong>Spot Blocks</strong> to auto prevent terminating the instance for 1 - 6 hours</li>
 </ul></li>
@@ -2116,7 +2199,7 @@
 <ul>
 <li>auto provisions instances from the most-available Spot Instance pools</li>
 </ul></li>
-<li>Cannot enable 'Termination Protection' for spot instances</li>
+<li>Cannot enable ‘Termination Protection’ for spot instances</li>
 <li>Users would NOT get interrupt notifications 2 minutes prior if AWS would perform hibernation on the instance
 <ul>
 <li>Hibernation would start immediately</li>
@@ -2131,7 +2214,7 @@
 <li>Most expensive</li>
 <li>Use case
 <ul>
-<li>when you have strict server-bound licensing that won't support multi-tenancy or cloud deployments
+<li>when you have strict server-bound licensing that won’t support multi-tenancy or cloud deployments
 <ul>
 <li><strong>Multi-tenancy</strong> when multiple customers are running workloads on the same hardware</li>
 <li><strong>Single-tenant</strong> when a single customer has dedicated hardware</li>
@@ -2146,7 +2229,7 @@
 <li>F - FPGA (Field Programmable Gate Array)</li>
 <li>I - High Speed Storage; IOPS</li>
 <li>G - Graphics</li>
-<li>H - High Disk Throughput (e.g. MapReduce, distributed file system)</li>
+<li>H - High Disk Throughput (e.g. MapReduce, distributed file system)</li>
 <li>T - Lowest cost; general purpose
 <ul>
 <li>Use cases: web server, small DBs</li>
@@ -2198,7 +2281,7 @@
 <ul>
 <li>Highly reliable and available</li>
 <li>Auto replicated within AZ to protect from component failure</li>
-<li>Could persist indefinitely from the life of the instance (i.e. could be persisted even if the instance is terminated)
+<li>Could persist indefinitely from the life of the instance (i.e. could be persisted even if the instance is terminated)
 <ul>
 <li>When the instance is terminated
 <ul>
@@ -2211,20 +2294,20 @@
 </ul></li>
 <li>Pricing
 <ul>
-<li>bases on storage (i.e. GB)</li>
+<li>bases on storage (i.e. GB)</li>
 </ul></li>
 <li>Management
 <ul>
-<li>View: 'EC2' -&gt; 'EBS'
+<li>View: ‘EC2’ -&gt; ‘EBS’
 <ul>
 <li>Distinguish root EBS: the one that comes with the AMI (see snapshot)</li>
 </ul></li>
 <li>Create
 <ol type="1">
-<li>Create EC2 instance -&gt; 'Add storage'</li>
-<li>Create under 'EBS'</li>
+<li>Create EC2 instance -&gt; ‘Add storage’</li>
+<li>Create under ‘EBS’</li>
 </ol></li>
-<li>Modification: under 'EBS'
+<li>Modification: under ‘EBS’
 <ul>
 <li>can resize EBS and update type (update on the fly - the effect would not bring down the EC2 instance)</li>
 </ul></li>
@@ -2288,7 +2371,7 @@
 </ul></li>
 <li>Magnetic (Previous gen HDD)
 <ul>
-<li>For infrequently accessed data e.g. archiving</li>
+<li>For infrequently accessed data e.g. archiving</li>
 <li>IOPs: 40 - 200</li>
 </ul></li>
 </ol>
@@ -2300,7 +2383,7 @@
 <li>Supports client side encryption</li>
 <li>Server side
 <ol type="1">
-<li>Encrypt using OS native encryption tools (e.g. Windows BitLocker)</li>
+<li>Encrypt using OS native encryption tools (e.g. Windows BitLocker)</li>
 <li>3rd party volume encryption tools</li>
 </ol></li>
 </ul></li>
@@ -2323,7 +2406,7 @@
 <li>There would be only root EBS volume by default</li>
 <li>Instance state cannot be stopped (can only reboot - data would be persisted / terminate - data would be lost)
 <ul>
-<li>It's because stopping would let 'Status Checks' fail, which would erase the contents in Instance Store</li>
+<li>It’s because stopping would let ‘Status Checks’ fail, which would erase the contents in Instance Store</li>
 <li>Reboot would not lose data</li>
 </ul></li>
 </ul></li>
@@ -2358,7 +2441,7 @@
 <li>Separate management network / logging network from production network</li>
 <li>Network &amp; security appliances in VPC</li>
 </ul></li>
-<li>You can attach a network interface to an instance 1. when it's running (hot attach) 1. when it's stopped (warm attach) 1. when the instance is being launched (cold attach)</li>
+<li>You can attach a network interface to an instance 1. when it’s running (hot attach) 1. when it’s stopped (warm attach) 1. when the instance is being launched (cold attach)</li>
 <li>You can detach secondary network interfaces when the instance is running or stopped; CANNOT detach primary network interfaces</li>
 </ul>
 <h3 id="ena-enhanced-networking-adaptor">ENA (Enhanced Networking Adaptor)</h3>
@@ -2406,7 +2489,7 @@
 </ol></li>
 <li>Usage
 <ul>
-<li>'EC2' -&gt; 'Instances' -&gt; 'Stop - Hiberate'</li>
+<li>‘EC2’ -&gt; ‘Instances’ -&gt; ‘Stop - Hiberate’</li>
 </ul></li>
 <li>Benefits
 <ol type="1">
@@ -2471,7 +2554,7 @@
 <h3 id="nitro">Nitro</h3>
 <ul>
 <li>primarily provides CPU and memory isolation for EC2 instances</li>
-<li>AWS' own hypervisor; starts rolling out in 2017</li>
+<li>AWS’ own hypervisor; starts rolling out in 2017</li>
 </ul>
 <h3 id="xen">Xen</h3>
 <ul>
@@ -2487,8 +2570,8 @@
 </ul></li>
 <li>Management
 <ul>
-<li>Can be created under 'EC2' in AWS console</li>
-<li>We can test the ELB by accessing the ELB's 'DNS name' from a browser</li>
+<li>Can be created under ‘EC2’ in AWS console</li>
+<li>We can test the ELB by accessing the ELB’s ‘DNS name’ from a browser</li>
 </ul></li>
 <li>Features
 <ul>
@@ -2498,7 +2581,7 @@
 <ol type="1">
 <li>Application load balancer (HTTP(s))
 <ul>
-<li>Application aware - intelligent e.g. path-based routing</li>
+<li>Application aware - intelligent e.g. path-based routing</li>
 <li>An ALB must be deployed into at least 2 subnets.</li>
 <li>Support for path-based routing, host-based routing, routing based on fields in the request, redirecting requests from one URL to another</li>
 </ul></li>
@@ -2509,7 +2592,7 @@
 <ul>
 <li>TCP and SSL listeners, millions TPS</li>
 </ul></li>
-<li>Supports static IPs (i.e. can assign a static elastic IP to a NLB)</li>
+<li>Supports static IPs (i.e. can assign a static elastic IP to a NLB)</li>
 </ul></li>
 <li>Classic LB (old)
 <ul>
@@ -2529,14 +2612,14 @@
 </ul>
 <h3 id="sticky-sessions">Sticky Sessions</h3>
 <ul>
-<li>Allows bind a user's session to a specific EC2 instance</li>
+<li>Allows bind a user’s session to a specific EC2 instance</li>
 <li>Ensures that all requests from the user during the session would be sent to the same instance</li>
 </ul>
 <h3 id="cross-zone-load-balancing">Cross Zone Load Balancing</h3>
 <ul>
 <li>Useful for regions with different amount of instances
 <ul>
-<li>e.g. 1 AZ has 5 instances while another has 1</li>
+<li>e.g. 1 AZ has 5 instances while another has 1</li>
 </ul></li>
 <li>The Cross Zone LB would allow the traffic be evenly distributed across all instances among different AZs</li>
 </ul>
@@ -2564,7 +2647,7 @@
 </ul></li>
 <li>Dynamic Scaling: triggered by rules (scaling policies - on-demand)
 <ul>
-<li>e.g. scale up with CPU utilization is over 80%</li>
+<li>e.g. scale up with CPU utilization is over 80%</li>
 </ul></li>
 <li>Predictive Scaling (proactive scaling)
 <ul>
@@ -2596,7 +2679,7 @@
 <ul>
 <li>If multiple policy triggers
 <ul>
-<li>Follows the policy with the greater impact e.g. would use the policy that add more instances</li>
+<li>Follows the policy with the greater impact e.g. would use the policy that add more instances</li>
 </ul></li>
 <li>Instance warm-up
 <ul>
@@ -2640,11 +2723,11 @@
 </ul>
 <h3 id="management-3">Management</h3>
 <ul>
-<li>'EC2' -&gt; 'Autoscaling' -&gt; 'Create Launch Configuration' / 'Create Launch Template'
+<li>‘EC2’ -&gt; ‘Autoscaling’ -&gt; ‘Create Launch Configuration’ / ‘Create Launch Template’
 <ul>
 <li>Basis for creating an auto scaling group</li>
 </ul></li>
-<li>'Create Auto Scaling Group' based on the launch configuration / template
+<li>‘Create Auto Scaling Group’ based on the launch configuration / template
 <ul>
 <li>Would auto provision EC2 instances based on auto scaling settings</li>
 </ul></li>
@@ -2715,7 +2798,7 @@
 </ul></li>
 <li>Existing users
 <ul>
-<li>Amazon Sagemaker, Amazon Lex, Amazon.com's recommendation engine</li>
+<li>Amazon Sagemaker, Amazon Lex, Amazon.com’s recommendation engine</li>
 </ul></li>
 <li>Deployment
 <ol type="1">
@@ -2745,7 +2828,7 @@
 <li>When an ECS container instance is stopped
 <ul>
 <li>Container instance status: ACTIVE</li>
-<li>ECS container agent's connection status: FALSE</li>
+<li>ECS container agent’s connection status: FALSE</li>
 </ul></li>
 <li>ELB
 <ul>
@@ -2799,13 +2882,13 @@
 <li>Flow
 <ol type="1">
 <li>Store images in ECR</li>
-<li>ECS connects to ECR and uses images to deploy e.g. Docker containers</li>
+<li>ECS connects to ECR and uses images to deploy e.g. Docker containers</li>
 </ol></li>
 </ul></li>
 </ul>
 <h2 id="codebuild-integration">CodeBuild integration</h2>
 <ul>
-<li>CodeBuild could extract code from e.g. CodeCommit and build a docker image</li>
+<li>CodeBuild could extract code from e.g. CodeCommit and build a docker image</li>
 <li>Configuration
 <ol type="1">
 <li>Prepare <code>buildspec.yml</code> file to tell instructions to build, tag, and push docker image</li>
@@ -2827,7 +2910,7 @@
 </ul></li>
 <li>Features
 <ul>
-<li>Don't need to provision and manage services</li>
+<li>Don’t need to provision and manage services</li>
 <li>Pay for needed resources</li>
 <li>Each workload runs in its own kernel
 <ul>
@@ -2880,7 +2963,7 @@
 </ul></li>
 <li>Manage
 <ul>
-<li>Check 'Clusters'</li>
+<li>Check ‘Clusters’</li>
 <li>Check task status in <code>running count</code>, <code>pending count</code>, <code>running count</code>, and <code>Tasks</code> tab</li>
 </ul></li>
 </ul>
@@ -2923,7 +3006,7 @@
 </ul></li>
 <li>Version
 <ul>
-<li>A snapshot of the code that can't be changed after creation</li>
+<li>A snapshot of the code that can’t be changed after creation</li>
 <li>new version would be available to call within seconds</li>
 </ul></li>
 <li>VPC connection
@@ -2939,7 +3022,7 @@
 <li>Can choose the amount of memory you want for your function; proportional CPU power and other resources would be auto allocated</li>
 <li>Environment variables
 <ul>
-<li>Allows different config settings for different stages (e.g. dev, test, prod)</li>
+<li>Allows different config settings for different stages (e.g. dev, test, prod)</li>
 </ul></li>
 <li>Debugging
 <ol type="1">
@@ -2970,7 +3053,7 @@
 <li>External dependencies
 <ul>
 <li>can be installed prior or during runtime</li>
-<li>don't need to be in root folder</li>
+<li>don’t need to be in root folder</li>
 </ul></li>
 <li>Python
 <ul>
@@ -3010,7 +3093,7 @@
 <li>CLI: <code>aws lambda update-function-configuration --function-name func --vpc-config SubnetIds=subnet-1,SecurityGroupIds=sg-1</code></li>
 <li>Console: <code>lambda</code> -&gt; select function -&gt; Scroll down and select <code>Network</code> -&gt; select VPC from dropdown -&gt; provide subnets &amp; SGs</li>
 </ul></li>
-<li>Afterwards Lambda uses the info to set up ENIs using an available IP address from the private subnet's CIDR range</li>
+<li>Afterwards Lambda uses the info to set up ENIs using an available IP address from the private subnet’s CIDR range</li>
 </ol>
 <h2 id="benefits-1">Benefits</h2>
 <ul>
@@ -3042,7 +3125,7 @@
 <li>Use aws java sdk v2</li>
 <li>Use AWSXRay to figure out the code segment contributing to the code start</li>
 <li>Use lambda warmer - wake service up after a period of time</li>
-<li>Check other reinvent guide: e.g. https://www.youtube.com/watch?v=ddg1u5HLwg8&amp;ab_channel=AWSEvents</li>
+<li>Check other reinvent guide: e.g. https://www.youtube.com/watch?v=ddg1u5HLwg8&amp;ab_channel=AWSEvents</li>
 </ul></li>
 </ul></li>
 <li>No GraalVM Native Image
@@ -3069,12 +3152,12 @@
 </ul></li>
 <li>Can create multiple versions and use aliases to reference the version
 <ul>
-<li>e.g. for testing, mockbank, production</li>
+<li>e.g. for testing, mockbank, production</li>
 <li>Alias is like a pointer to a specific version (like a tag in git)</li>
 </ul></li>
-<li>To invoke another version, simply call that version's ARN
+<li>To invoke another version, simply call that version’s ARN
 <ul>
-<li>Sample versions' ARN
+<li>Sample versions’ ARN
 <ul>
 <li>Alias <code>Test</code> - Lambda ARN: <code>arn:aws:lambda:eu-west-2:{accountid}:function:mylambda:Test</code></li>
 </ul></li>
@@ -3082,7 +3165,7 @@
 <li>To create a new version and an alias to point to the version
 <ol type="1">
 <li>New version: <code>Actions</code> -&gt; <code>Publish new version</code></li>
-<li>New alias: <code>Actions</code> -&gt; <code>Create Alias</code> -&gt; Point to the version that's being created.</li>
+<li>New alias: <code>Actions</code> -&gt; <code>Create Alias</code> -&gt; Point to the version that’s being created.</li>
 </ol></li>
 </ul>
 <h2 id="best-practice">Best practice</h2>
@@ -3095,7 +3178,7 @@
 <li>Use aws java sdk v2</li>
 <li>Use X-Ray to figure out the code segment contributing to the code start</li>
 <li>Use lambda warmer - wake service up after a period of time</li>
-<li>Check other reinvent guide: e.g. https://www.youtube.com/watch?v=ddg1u5HLwg8&amp;ab_channel=AWSEvents</li>
+<li>Check other reinvent guide: e.g. https://www.youtube.com/watch?v=ddg1u5HLwg8&amp;ab_channel=AWSEvents</li>
 </ul></li>
 <li>Avoid recursions</li>
 <li>External dependencies
@@ -3126,7 +3209,7 @@
 <ul>
 <li>Supported languages: Java, .NET, PHP, Node.js, Python, Ruby, Go, and Docker</li>
 <li>Supported servers: Apache, Nginx, Passenger, and IIS.</li>
-<li>User only needs to upload their code; don't need to care about infrastructure (capacity provisioning, load balancing, scaling, and app health monitoring)</li>
+<li>User only needs to upload their code; don’t need to care about infrastructure (capacity provisioning, load balancing, scaling, and app health monitoring)</li>
 <li>Would provision a new dev environment &amp; all AWS resources needed</li>
 <li>Can configure capacity provisioning &amp; auto scaling</li>
 <li>AWS provides configurations for a lot of layers, including web and database, so easy to configure a 2 tier web app</li>
@@ -3272,14 +3355,14 @@
 <ul>
 <li>Bulk storage
 <ul>
-<li>'Giant hard drive'</li>
+<li>‘Giant hard drive’</li>
 <li>No access to underlying storage OS</li>
-<li>e.g. Dropbox, Google Drive, S3</li>
+<li>e.g. Dropbox, Google Drive, S3</li>
 </ul></li>
 <li>Block-based storage
 <ul>
 <li>Just like storage used with the computer, where the computer would see the volume where OS &amp; applications can be installed</li>
-<li>e.g. Amazon EBS - attaches to an EC2 instance</li>
+<li>e.g. Amazon EBS - attaches to an EC2 instance</li>
 </ul></li>
 </ul></li>
 </ul>
@@ -3291,19 +3374,31 @@
 <li>OLTP
 <ul>
 <li>Search via executing queries to get a row of data</li>
-<li>e.g. RDS</li>
+<li>e.g. RDS</li>
 </ul></li>
 <li>OLAP
 <ul>
 <li>Pulls large number of records + apply aggregated functions</li>
-<li>e.g. Redshift</li>
+<li>e.g. Redshift</li>
 </ul></li>
 </ul></li>
 </ul>
+<h2 id="data-storage-types">Data Storage Types</h2>
+<ol type="1">
+<li>Relational
+<ul>
+<li>Row, columnar</li>
+</ul></li>
+<li>Non-relational
+<ul>
+<li>Key:value</li>
+</ul></li>
+<li>Graph</li>
+</ol>
 <h1 id="s3-simple-storage-service">S3 (Simple Storage Service)</h1>
 <ul>
 <li>A cloud <strong>bulk storage</strong> service, where you can remotely store a large sum of data. (Similar to Google drive &amp; dropbox)</li>
-<li>S3 does not reside in any VPCs; it's a global service</li>
+<li>S3 does not reside in any VPCs; it’s a global service</li>
 <li>Features
 <ul>
 <li>CORS</li>
@@ -3312,7 +3407,7 @@
 <li>Transfer Acceleration</li>
 <li>Pre-signed URL
 <ul>
-<li>Can grant access to private bucket's private object</li>
+<li>Can grant access to private bucket’s private object</li>
 </ul></li>
 <li>Notification configuration
 <ul>
@@ -3391,15 +3486,15 @@
 </ul>
 <h2 id="storage-tiers">Storage Tiers</h2>
 <ul>
-<li>A storage class represents the 'classification' assigned to each object in S3
+<li>A storage class represents the ‘classification’ assigned to each object in S3
 <ul>
-<li>The objects would be classified based on different use cases. e.g. frequency of retrieval, data classification, retention, etc.</li>
+<li>The objects would be classified based on different use cases. e.g. frequency of retrieval, data classification, retention, etc.</li>
 </ul></li>
 <li>Storage class types
 <ul>
 <li>Standard: frequently accessed data
 <ul>
-<li>Design: 99.99% availability, 99.999999999% (i.e. 11 9s) durability
+<li>Design: 99.99% availability, 99.999999999% (i.e. 11 9s) durability
 <ul>
 <li>SLA: 99.9% availability</li>
 </ul></li>
@@ -3409,7 +3504,7 @@
 </ul></li>
 <li>Standard-IA: long-lived, not frequently accessed
 <ul>
-<li>99.9% availability, 99.999999999% (i.e. 11 9s) durability</li>
+<li>99.9% availability, 99.999999999% (i.e. 11 9s) durability</li>
 <li>retrieved weekly / monthly</li>
 <li>Can have rapid access when needed</li>
 <li>Low storage fee; has retrieval fee
@@ -3454,7 +3549,7 @@
 <ul>
 <li>helps transition objects to another Amazon S3 storage tier
 <ul>
-<li>e.g. when xxx days old, move to another tier</li>
+<li>e.g. when xxx days old, move to another tier</li>
 </ul></li>
 <li>Incomplete uploads
 <ul>
@@ -3469,7 +3564,7 @@
 </ul></li>
 <li>S3 Console can restore objects from Glacier and copy to another storage class
 <ul>
-<li>Select bucket -&gt; select objects -&gt; 'Actions' -&gt; 'Edit storage class'</li>
+<li>Select bucket -&gt; select objects -&gt; ‘Actions’ -&gt; ‘Edit storage class’</li>
 </ul></li>
 </ul>
 <h2 id="cors-cross-origin-resource-sharing-1">CORS (Cross Origin Resource Sharing)</h2>
@@ -3487,14 +3582,14 @@
 <li>defines a way for client web applications that are loaded in one domain to interact with resources in a different domain</li>
 <li>Can build rich client-side web applications with Amazon S3 and selectively allow cross-origin access to your Amazon S3 resources
 <ul>
-<li>e.g. Allowing code in one S3 bucket to access / reference code in another bucket</li>
+<li>e.g. Allowing code in one S3 bucket to access / reference code in another bucket</li>
 </ul></li>
 </ul>
 <h3 id="use-cases-1">Use Cases</h3>
 <ol type="1">
 <li>API GW
 <ul>
-<li>If see error message 'Origin policy cannot be read at the remote resource' on invoking HTTP calls for the URL to S3 (which invokes S3 then to API GW)
+<li>If see error message ‘Origin policy cannot be read at the remote resource’ on invoking HTTP calls for the URL to S3 (which invokes S3 then to API GW)
 <ul>
 <li>Enable CORS on API Gateway</li>
 <li>For CORSRule AllowedOrigin domains, exact matches are needed to allow access</li>
@@ -3512,7 +3607,7 @@
 <li>Consists of a collection of Edge locations</li>
 <li>How to enable?
 <ul>
-<li>'CloudFront' -&gt; 'Create Distribution' -&gt; Select 'Origin Domain Name' to S3 bucket</li>
+<li>‘CloudFront’ -&gt; ‘Create Distribution’ -&gt; Select ‘Origin Domain Name’ to S3 bucket</li>
 <li>Takes 15 - 20 minutes to deploy / disable a distribution</li>
 </ul></li>
 <li>Invalidation
@@ -3596,18 +3691,18 @@
 <ol type="1">
 <li>COPY
 <ul>
-<li><code>aws s3 cp file s3://{bucket-name}</code></li>
+<li><code>aws s3 cp {file-name} s3://{bucket-name}</code></li>
 </ul></li>
 <li>List
 <ul>
 <li>show buckets: <code>aws s3 ls</code></li>
-<li>show bucket's objects: <code>aws s3 ls {bucket-name}</code></li>
+<li>show bucket’s objects: <code>aws s3 ls {bucket-name}</code></li>
 </ul></li>
 <li>Move
 <ul>
-<li><code>aws s3 mv file s3://{bucket-name}</code></li>
+<li><code>aws s3 mv {file-name} s3://{bucket-name}</code></li>
 </ul></li>
-<li>Sync
+<li>Sync (keep folders/buckets up-to-date)
 <ul>
 <li>upload updated files to S3: <code>aws s3 sync . s3://{bucket-name}</code></li>
 <li>download updated files from S3 to local: <code>aws s3 sync s3://{bucket-name} .</code></li>
@@ -3615,7 +3710,7 @@
 </ol>
 <h2 id="multipart-download">Multipart Download</h2>
 <ul>
-<li>Can use 'Range' HTTP header in a GET request to download the specified range bytes of an object</li>
+<li>Can use ‘Range’ HTTP header in a GET request to download the specified range bytes of an object</li>
 <li>Able to establish concurrent connections to fetch different parts from the same object</li>
 </ul>
 <h2 id="multipart-upload">Multipart Upload</h2>
@@ -3740,7 +3835,7 @@
 <ul>
 <li>default: all buckets would only be available to the owner when created</li>
 <li>Policies for access
-<ul>
+<ol type="1">
 <li>Object / Bucket ACL (Access Control List)
 <ul>
 <li>Permission up to individual file level</li>
@@ -3752,17 +3847,17 @@
 <li>Deny would override allow in ACL</li>
 <li>Management
 <ul>
-<li>'Bucket' -&gt; 'Permissions' -&gt; Scroll down to 'Bucket policies'</li>
+<li>‘Bucket’ -&gt; ‘Permissions’ -&gt; Scroll down to ‘Bucket policies’</li>
 <li>Create
 <ul>
-<li>can use 'Policy generator'</li>
+<li>can use ‘Policy generator’</li>
 </ul></li>
 </ul></li>
 </ul></li>
 <li>Object policy</li>
 <li>IAM policies</li>
 <li>Service Control Policy (from AWS Orgnization)</li>
-</ul></li>
+</ol></li>
 <li>client / server authentication</li>
 <li>Logging
 <ul>
@@ -3802,17 +3897,30 @@
 <li>Speeds up transfer to and from S3 by 50 - 500%</li>
 </ul></li>
 </ol></li>
+<li>Cost
+<ol type="1">
+<li>US, Europe, Japan - $0.04/GB</li>
+<li>All other AWS edge locations - $0.08/GB</li>
+</ol></li>
 </ul>
 <h2 id="security-3">Security</h2>
 <ul>
 <li>All new buckets are private by default</li>
 <li>Encryption in Transit (SSL/TLS)
-<ul>
+<ol type="1">
 <li>Clients must support Perfect Forward Secrecy (PFS) cipher suites
 <ul>
-<li>e.g. Ephemeral Diffie-Hellman (DHE), Elliptic Curve Diffie-Hellman Ephemeral (ECDHE)</li>
+<li>e.g. Ephemeral Diffie-Hellman (DHE), Elliptic Curve Diffie-Hellman Ephemeral (ECDHE)</li>
 </ul></li>
+<li>VPC endpoints
+<ul>
+<li>Provide S3 service to private subnets or restrict network traffic to just intra-VPC network space</li>
 </ul></li>
+<li>Multiple VPN options
+<ul>
+<li>AWS Site-to-site VPN Direct Connect</li>
+</ul></li>
+</ol></li>
 <li>Encryption at Rest (At hard-drive)
 <ul>
 <li>Can encrypt in object level &amp; bucket level</li>
@@ -3826,7 +3934,7 @@
 <li>Can use AWS-managed / customer-managed CMK</li>
 <li>CMK must be symmetric</li>
 </ul></li>
-<li>SSE-C - customers' keys</li>
+<li>SSE-C - customers’ keys</li>
 </ol></li>
 <li>Ways to enforce encryption on S3 buckets during uploading objects:
 <ol type="1">
@@ -3838,7 +3946,10 @@
 <ul>
 <li>Options
 <ol type="1">
-<li>CMK in KMS</li>
+<li>CMK in KMS
+<ul>
+<li>Application will request for the encrypted S3 object first and then call KMS to decrypt the object</li>
+</ul></li>
 <li>Application Stored key</li>
 </ol></li>
 <li>Can use AWS SDK</li>
@@ -3848,6 +3959,7 @@
 <ul>
 <li>AES 256</li>
 </ul></li>
+<li>MFA Delete</li>
 </ul>
 <h2 id="versioning">Versioning</h2>
 <ul>
@@ -4116,7 +4228,7 @@
 </ul>
 <h3 id="automated">Automated</h3>
 <ul>
-<li>Can recover DB to any point specific to sec in time within 'retention period' (between 1 to 35 days)</li>
+<li>Can recover DB to any point specific to sec in time within ‘retention period’ (between 1 to 35 days)</li>
 <li>Enabled by default</li>
 <li>How it works?
 <ul>
@@ -4180,7 +4292,7 @@
 <li>Can auto switch upon planned maintenance, DB instance failure, AZ failure
 <ul>
 <li>takes 1 - 2 min</li>
-<li>SQL Server instances use SQL Server Database Mirroring (DBM) or Always On Availability Groups (AGs) instead of Amazon's failover technology</li>
+<li>SQL Server instances use SQL Server Database Mirroring (DBM) or Always On Availability Groups (AGs) instead of Amazon’s failover technology</li>
 </ul></li>
 <li>Multi-AZ is not available to Aurora because Aurora is completely fault torelant (because of architecture)</li>
 <li>Free of charge</li>
@@ -4233,7 +4345,7 @@
 <li>Features
 <ul>
 <li>Fully managed; no visible servers</li>
-<li>Stored on SSD; spread across 3 geographically distinct data centers (i.e. multi-AZ by default)</li>
+<li>Stored on SSD; spread across 3 geographically distinct data centers (i.e. multi-AZ by default)</li>
 <li>Serverless</li>
 <li>Stores data as a JSON-like document instead of an entry</li>
 </ul></li>
@@ -4304,7 +4416,7 @@
 </ul>
 <h2 id="data-types">Data types</h2>
 <ul>
-<li>Both partition and sort keys attributes must be defined as type string, number, or binary (i.e. bytes).</li>
+<li>Both partition and sort keys attributes must be defined as type string, number, or binary (i.e. bytes).</li>
 <li>Other attributes can be Boolean, Null, Document, Set</li>
 </ul>
 <h2 id="dynamodb-accelerator-dax">DynamoDb Accelerator (DAX)</h2>
@@ -4353,17 +4465,17 @@
 </ul></li>
 <li>Expression attribute name
 <ul>
-<li><p>a placeholder that you use in an Amazon DynamoDB expression as an alternative to an actual attribute name</p>
+<li>a placeholder that you use in an Amazon DynamoDB expression as an alternative to an actual attribute name</li>
+</ul>
 <pre><code>aws dynamodb get-item \
  --table-name ProductCatalog \
  --key &#39;{&quot;Id&quot;:{&quot;N&quot;:&quot;123&quot;}}&#39; \
  --projection-expression &quot;#c&quot; \
  --expression-attribute-names &#39;{&quot;#c&quot;:&quot;Comment&quot;}&#39; // #c is an alternative name for Comment attribute</code></pre></li>
-</ul></li>
 <li>Update expression
 <ul>
 <li>specifies how <code>UpdateItem</code> will modify the attributes of an item</li>
-<li>e.g. setting a scalar value or removing elements from a list or a map.</li>
+<li>e.g. setting a scalar value or removing elements from a list or a map.</li>
 </ul></li>
 </ul>
 <h2 id="indexes">Indexes</h2>
@@ -4404,7 +4516,7 @@
 <ul>
 <li>projected: only charged for index entries</li>
 <li>Not projected: items would be fetched from original table; charged for original query + <strong>each</strong> full ITEM in original table</li>
-<li>e.g. Each full item is 1 KB, and each LSI item is 200 bytes, a query returns 5 items
+<li>e.g. Each full item is 1 KB, and each LSI item is 200 bytes, a query returns 5 items
 <ul>
 <li>For query with projected attributes, query size = 5 * size of LSI item = 1 kb rounded to 4kb
 <ul>
@@ -4469,9 +4581,9 @@
 <li>can handle 3000 RCU and 1000 WCU</li>
 </ul></li>
 </ul></li>
-<li>Users need to design tables to avoid I/O 'hot spots' / 'hot keys'
+<li>Users need to design tables to avoid I/O ‘hot spots’ / ‘hot keys’
 <ul>
-<li>Otherwise even if users request e.g. 5000 WCU. A single hot partition would throttle requests for 1000 WCU</li>
+<li>Otherwise even if users request e.g. 5000 WCU. A single hot partition would throttle requests for 1000 WCU</li>
 </ul></li>
 <li>Data would be distributed based on partition key if more than 1 partition</li>
 <li>RCU &amp; WCU would be splitted evenly across partitions</li>
@@ -4594,7 +4706,7 @@
 <ul>
 <li>Cross-region replication (global tables / disaster recovery)</li>
 <li>Establish relationships across tables via streams</li>
-<li>Triggers e.g. Lambda</li>
+<li>Triggers e.g. Lambda</li>
 </ul></li>
 <li>Lambda can poll DynamoDB streams</li>
 </ul>
@@ -4604,7 +4716,7 @@
 <ol type="1">
 <li>Create local tables</li>
 <li>enable stream</li>
-<li>setup global table via 'Global Tables' on top</li>
+<li>setup global table via ‘Global Tables’ on top</li>
 </ol></li>
 <li>Features
 <ul>
@@ -4621,7 +4733,7 @@
 </ul>
 <h2 id="transactions">Transactions</h2>
 <ul>
-<li>Dealing with 'all-or-nothing' operations (i.e. ACID transactions)
+<li>Dealing with ‘all-or-nothing’ operations (i.e. ACID transactions)
 <ul>
 <li>Check for a pre-req condition before writing</li>
 <li>Can write multiple items across multiple tables
@@ -4693,19 +4805,7 @@
 <h2 id="security-6">Security</h2>
 <ul>
 <li>Encryption at rest via KMS</li>
-<li><p>IAM Condition can allow access only to items where the Partition Key value matches the User ID</p>
-<pre><code>    &quot;Condition&quot;: {
-        &quot;ForAllValues:StringEquals&quot;:{
-            &quot;dynamodb:LeadingKeys&quot;: [
-                &quot;${www.xxx.com:user_id}&quot;
-            ],
-            &quot;dynamodb:Attributes&quot;: [
-                &quot;UserId&quot;,
-                &quot;xxx&quot;,
-                &quot;xxx&quot;
-            ]
-        }
-    }</code></pre></li>
+<li>IAM Condition can allow access only to items where the Partition Key value matches the User ID <code>"Condition": {             "ForAllValues:StringEquals":{                 "dynamodb:LeadingKeys": [                     "${www.xxx.com:user_id}"                 ],                 "dynamodb:Attributes": [                     "UserId",                     "xxx",                     "xxx"                 ]             }         }</code></li>
 </ul>
 <h2 id="best-practices-3">Best Practices</h2>
 <ol type="1">
@@ -4747,7 +4847,7 @@
 </ol>
 <h2 id="pricing-1">Pricing</h2>
 <ul>
-<li>If pay upfront (provisioned capacity) - cheaper read/write later e.g. costco</li>
+<li>If pay upfront (provisioned capacity) - cheaper read/write later e.g. costco</li>
 <li>On-demand
 <ul>
 <li>No minimum capacity</li>
@@ -4788,7 +4888,7 @@
 <ul>
 <li>Features
 <ol type="1">
-<li>Complex data types e.g. strings, hashes, list</li>
+<li>Complex data types e.g. strings, hashes, list</li>
 <li>Can have disk persistence in addition to in mem cache at the cost of speed</li>
 <li>Can configure fall-over</li>
 </ol></li>
@@ -4867,6 +4967,11 @@
 <li>query pattern: SQL</li>
 </ul></li>
 </ol></li>
+<li>Resource Description Framework
+<ol type="1">
+<li>Triple structure definition</li>
+<li>same Node, Data, Edge objects</li>
+</ol></li>
 <li>Use cases
 <ol type="1">
 <li>Security - pattern recognition</li>
@@ -4883,6 +4988,7 @@
 <li>Metadata is stored with document records</li>
 <li>Can hit critical scale failures</li>
 <li>MongoDB compatible</li>
+<li>JSON indexing support</li>
 </ol></li>
 <li>Use cases
 <ol type="1">
@@ -4903,7 +5009,7 @@
 </ul></li>
 <li>can query against up to 1 PB (1024 TB) stored in RedShift, and 1 EB (1024 PB) in S3</li>
 <li>gives you fast querying capabilities over structured data using familiar SQL-based clients and business intelligence (BI) tools using standard ODBC and JDBC connections. Queries are distributed and parallelized across multiple physical resources.</li>
-<li>Named as <em>RedShift</em> as it’s the same as the context of Universe Expansion as observed in Hubble's telescope</li>
+<li>Named as <em>RedShift</em> as it’s the same as the context of Universe Expansion as observed in Hubble’s telescope</li>
 </ul></li>
 <li>Architecture
 <ul>
@@ -4919,7 +5025,7 @@
 <ul>
 <li>has a SQL endpoint
 <ul>
-<li>e.g. <code>redshiftsample.xxx.us-east-1.redshift.amazonaws.com:5439</code></li>
+<li>e.g. <code>redshiftsample.xxx.us-east-1.redshift.amazonaws.com:5439</code></li>
 <li>To view the endpint
 <ul>
 <li>Redshift -&gt; Clusters -&gt; Choose cluster -&gt; Configuration -&gt; Endpoint</li>
@@ -4988,7 +5094,7 @@
 <li>Small amount of data</li>
 <li>OLTP
 <ul>
-<li>Avoid single line inserts i.e. inserting rows</li>
+<li>Avoid single line inserts i.e. inserting rows</li>
 </ul></li>
 <li>Binary large objects</li>
 </ol></li>
@@ -5003,7 +5109,7 @@
 <ul>
 <li>S3
 <ul>
-<li>via COPY / UNLOAD commands e.g. <code>copy {table-name} from '{s3-object-path}' credentials '{IAM-role-ARN}'</code></li>
+<li>via COPY / UNLOAD commands e.g. <code>copy {table-name} from '{s3-object-path}' credentials '{IAM-role-ARN}'</code></li>
 <li>can use COPY to move data from DynamoDB, EMR, and EC2</li>
 </ul></li>
 <li>Data Pipeline</li>
@@ -5043,7 +5149,7 @@
 </ul>
 <h1 id="lake-formation">Lake Formation</h1>
 <ul>
-<li>Help builds a data lake, i.e. a centralized storage</li>
+<li>Help builds a data lake, i.e. a centralized storage</li>
 </ul>
 <h1 id="efs-elastic-file-system">EFS (Elastic File System)</h1>
 <ul>
@@ -5067,9 +5173,9 @@
 </ul></li>
 <li>Usage for adding EFS to EC2
 <ul>
-<li>EFS -&gt; 'Create EFS'</li>
-<li>In EC2 instance creation, load EFS installation scripts in 'Configure Instance' -&gt; 'Advanced Details' -&gt; 'User Data'</li>
-<li>Mount EFS system in EC2 instance via EFS helper (can find CLI command in 'EFS' -&gt; 'EC2 Mount Instructions')</li>
+<li>EFS -&gt; ‘Create EFS’</li>
+<li>In EC2 instance creation, load EFS installation scripts in ‘Configure Instance’ -&gt; ‘Advanced Details’ -&gt; ‘User Data’</li>
+<li>Mount EFS system in EC2 instance via EFS helper (can find CLI command in ‘EFS’ -&gt; ‘EC2 Mount Instructions’)</li>
 </ul></li>
 </ul>
 <h1 id="amazon-fsx-for-lustre">Amazon FSx for Lustre</h1>
@@ -5094,7 +5200,7 @@
 </ul></li>
 <li>Easily move your Windows-based applications that require file storage to AWS
 <ul>
-<li>e.g. SQL server, SharePoint, etc</li>
+<li>e.g. SQL server, SharePoint, etc</li>
 </ul></li>
 <li>Windos FSx vs EFS
 <ul>
@@ -5120,7 +5226,7 @@
 </ul></li>
 <li>EFS
 <ul>
-<li>Can download the data from S3 to the training instance's EBS before training starts</li>
+<li>Can download the data from S3 to the training instance’s EBS before training starts</li>
 <li>Good if the size of data is not big</li>
 </ul></li>
 </ul>
@@ -5135,7 +5241,7 @@
 <h2 id="step-functions">Step Functions</h2>
 <h3 id="why-need-step-functions">Why Need step functions</h3>
 <ul>
-<li>In serverless application, creating one function might not be enough, then we need to implement more and more functions. There are different ways to combine those functions, e.g. chaining; however, what if one function fails? Thus we need a mechanism to combine different Lambda functions.</li>
+<li>In serverless application, creating one function might not be enough, then we need to implement more and more functions. There are different ways to combine those functions, e.g. chaining; however, what if one function fails? Thus we need a mechanism to combine different Lambda functions.</li>
 <li>Step Functions provides the above mechanism as well as the following features:
 <ol type="1">
 <li>Visualize and test serverless applications</li>
@@ -5228,7 +5334,7 @@
 <ul>
 <li>Errors due to eventual consistency can be reduced by setting <strong>delay queues</strong>
 <ul>
-<li>'DelaySeconds' can be set from 0 to 900 sec</li>
+<li>‘DelaySeconds’ can be set from 0 to 900 sec</li>
 </ul></li>
 </ul></li>
 <li>Long polling may affect performance for single instance polling multiple queues</li>
@@ -5261,7 +5367,7 @@
 <li>Long polling
 <ul>
 <li>Returns a message. If the queue is empty, wait until a message comes or time out</li>
-<li>Don't need to poll repeatedly if there are no messages</li>
+<li>Don’t need to poll repeatedly if there are no messages</li>
 <li>Can save money</li>
 <li>Generally preferrable</li>
 <li>Max time out: 20s</li>
@@ -5340,7 +5446,7 @@
 <ul>
 <li>Workflow Starters
 <ul>
-<li>An application that can initiate a workflow (e.g. start placing an order for e-commerce website)</li>
+<li>An application that can initiate a workflow (e.g. start placing an order for e-commerce website)</li>
 </ul></li>
 <li>Deciders
 <ul>
@@ -5358,7 +5464,7 @@
 <li>Provides a unified user interface so you can view operational data from multiple AWS services and allows you to automate operational tasks across your AWS resources</li>
 <li>Can group resources together
 <ul>
-<li>e.g. EC2, EKS clusters, S3 buckets, RDS instances, etc.</li>
+<li>e.g. EC2, EKS clusters, S3 buckets, RDS instances, etc.</li>
 </ul></li>
 </ul>
 <h2 id="cloudwatch">CloudWatch</h2>
@@ -5369,7 +5475,7 @@
 <ul>
 <li>For on-prem, install CW agent on server</li>
 </ul></li>
-<li>Can also create billing alarms under 'Alarms' -&gt; 'Billing' and add SNS to send emails on alarms</li>
+<li>Can also create billing alarms under ‘Alarms’ -&gt; ‘Billing’ and add SNS to send emails on alarms</li>
 </ul></li>
 <li>EC2: CloudWatch analyzes EC2 metrics every 5 minutes for free by default
 <ul>
@@ -5428,7 +5534,7 @@
 <li>Create some CW insights regex to faciliate searches</li>
 <li>To save cost
 <ol type="1">
-<li>reduce the overhead of each log statement (e.g. truncate/delete some general information)</li>
+<li>reduce the overhead of each log statement (e.g. truncate/delete some general information)</li>
 <li>remove redundant logs</li>
 <li>remove request/response logs</li>
 </ol></li>
@@ -5455,7 +5561,7 @@
 </ul></li>
 <li>Provide tools to analyze the data and debug production, distributed applications</li>
 <li>AWS Integration: ELB, Lambda, API GW, EC2, Elastic Beanstalk</li>
-<li>Supported languages: Java, Python, C#, Go, ...</li>
+<li>Supported languages: Java, Python, C#, Go, …</li>
 </ol></li>
 <li>X-Ray Architecture
 <ol type="1">
@@ -5486,7 +5592,7 @@
 <h3 id="annotation-indexing">Annotation &amp; Indexing</h3>
 <ul>
 <li>Annotations: allow recording additional information about requests</li>
-<li>Key-value pairs e.g. game_id=xxxxxx</li>
+<li>Key-value pairs e.g. game_id=xxxxxx</li>
 <li>Can be indexed for use with filter expressions</li>
 </ul>
 <h2 id="aws-service-catalog">AWS Service Catalog</h2>
@@ -5511,7 +5617,7 @@
 <ul>
 <li>Active Directory allows network administrators to create and manage domains, users, and objects within a network.
 <ul>
-<li>e.g. an admin can create a group of users and give them specific access privileges to certain directories on the server.</li>
+<li>e.g. an admin can create a group of users and give them specific access privileges to certain directories on the server.</li>
 </ul></li>
 <li>On-prem directory service</li>
 <li>Hierarchy: Trees &amp; Forest</li>
@@ -5546,7 +5652,7 @@
 <ul>
 <li>Small company with simple user management requirements</li>
 </ul></li>
-<li>Does not support trusts i.e. using on-prem resources</li>
+<li>Does not support trusts i.e. using on-prem resources</li>
 </ul>
 <h3 id="ad-connector">AD Connector</h3>
 <p>Connects to on-prem AD</p>
@@ -5579,7 +5685,7 @@
 <li>Users can be indirectly signed in via identity providers</li>
 <li>Standard attributes MUST be specified during creation of the user pool
 <ul>
-<li>e.g. address, birthdate, email, family name, etc.</li>
+<li>e.g. address, birthdate, email, family name, etc.</li>
 </ul></li>
 </ul></li>
 <li>Identity Pool
@@ -5629,7 +5735,7 @@
 <li>Can enable MFA on user pool</li>
 <li>To enforce new password when original password is compromised
 <ul>
-<li>'Block use' for compromised credentials in Advanced Security section</li>
+<li>‘Block use’ for compromised credentials in Advanced Security section</li>
 </ul></li>
 <li>Use cases
 <ul>
@@ -5641,12 +5747,12 @@
 <h2 id="cicd-continous-integration-continous-delivery">CI/CD (Continous Integration / Continous Delivery)</h2>
 <ul>
 <li>software development best practice</li>
-<li>make small changes &amp; automate everything e.g. code integration, build, test, and deployment</li>
+<li>make small changes &amp; automate everything e.g. code integration, build, test, and deployment</li>
 <li>Components
 <ol type="1">
-<li>Continous integration e.g. CodeCommit</li>
-<li>Continous delivery e.g. CodeBuild &amp; CodeDeploy</li>
-<li>Continous deployment e.g. CodePipeline</li>
+<li>Continous integration e.g. CodeCommit</li>
+<li>Continous delivery e.g. CodeBuild &amp; CodeDeploy</li>
+<li>Continous deployment e.g. CodePipeline</li>
 </ol></li>
 </ul>
 <h2 id="cloud9">Cloud9</h2>
@@ -5669,12 +5775,14 @@
 <ul>
 <li>if have access to run the builds
 <ol type="1">
-<li><p>Set <code>buildspecOverride</code> property to the new <code>buildspec.yml</code> file</p>
+<li>Set <code>buildspecOverride</code> property to the new <code>buildspec.yml</code> file</li>
+</ol>
 <pre><code>{
-...
-&quot;buildspecOverride&quot;: &quot;string&quot;
-...
-}</code></pre></li>
+    ...
+    &quot;buildspecOverride&quot;: &quot;string&quot;
+    ...
+}</code></pre>
+<ol type="1">
 <li>Use <code>aws codebuild start-build --generate-cli-skeleton</code></li>
 </ol></li>
 <li>if have access to code
@@ -5721,12 +5829,12 @@
 <li>Canary
 <ul>
 <li>2 batches</li>
-<li>e.g. <code>Canary10Percent5Minutes</code> would shift 10% traffic to new version in the first 5 minutes and shift the rest 90% after 5 minutes</li>
+<li>e.g. <code>Canary10Percent5Minutes</code> would shift 10% traffic to new version in the first 5 minutes and shift the rest 90% after 5 minutes</li>
 </ul></li>
 <li>Linear
 <ul>
 <li>Incrementally</li>
-<li>e.g. <code>Linear10Percent5Minutes</code> would add 10% traffic to new version every 5 minutes. Complete traffic shifting in 50 mins.</li>
+<li>e.g. <code>Linear10Percent5Minutes</code> would add 10% traffic to new version every 5 minutes. Complete traffic shifting in 50 mins.</li>
 </ul></li>
 </ul></li>
 <li>SSM Param Store integration
@@ -5759,9 +5867,9 @@
 <ul>
 <li>stages/events phases
 <ol type="1">
-<li>De-register from LB e.g. <code>BeforeBlockTraffic</code>, <code>BlockTraffic</code>, <code>AfterBlockTraffic</code></li>
-<li>Deployment e.g. <code>ApplicationStop</code>, <code>DownloadBundle</code>, <code>BeforeInstall</code>, <code>Install</code>, <code>AfterInstall</code>, <code>ApplicationStart</code>, <code>ValidateService</code></li>
-<li>Re-register with LB e.g. <code>BeforeAllowTraffic</code>, <code>AllowTraffic</code>, <code>AfterAllowTraffic</code></li>
+<li>De-register from LB e.g. <code>BeforeBlockTraffic</code>, <code>BlockTraffic</code>, <code>AfterBlockTraffic</code></li>
+<li>Deployment e.g. <code>ApplicationStop</code>, <code>DownloadBundle</code>, <code>BeforeInstall</code>, <code>Install</code>, <code>AfterInstall</code>, <code>ApplicationStart</code>, <code>ValidateService</code></li>
+<li>Re-register with LB e.g. <code>BeforeAllowTraffic</code>, <code>AllowTraffic</code>, <code>AfterAllowTraffic</code></li>
 </ol></li>
 <li>can include scripts in events to
 <ol type="1">
@@ -5773,7 +5881,7 @@
 </ol></li>
 <li>Typical folder setup
 <ul>
-<li>appspec.yml, /Scripts, /Config, /Source, ...</li>
+<li>appspec.yml, /Scripts, /Config, /Source, …</li>
 </ul></li>
 </ul>
 <h3 id="deployment-approaches">Deployment Approaches</h3>
@@ -5797,7 +5905,7 @@
 <li>Rollback: set LB to point back to blue</li>
 <li>Pay a bit more (need to pay 2 sets of instances during deployment)</li>
 <li>For cases when you want to have two versions live simultaneously and be able to swap between the two versions.</li>
-<li>Can use Route 53's weighted routing policies or E/B's swap URL feature to implement</li>
+<li>Can use Route 53’s weighted routing policies or E/B’s swap URL feature to implement</li>
 </ul></li>
 </ol>
 <h2 id="cloudformation">CloudFormation</h2>
@@ -5825,9 +5933,9 @@
 <li>Template Strcture
 <ol type="1">
 <li>Params - specify custom values</li>
-<li>Conditions - e.g. provision different resources based on different conditions</li>
+<li>Conditions - e.g. provision different resources based on different conditions</li>
 <li>Resources (mandatory)</li>
-<li>Mappings - e.g. map different AMIs to different regions</li>
+<li>Mappings - e.g. map different AMIs to different regions</li>
 <li>Transform: reference additional code (lambda or CFn) in S3 or specify the use of SAM for Lambda deployments</li>
 <li>Outputs
 <ul>
@@ -5836,7 +5944,7 @@
 </ol></li>
 <li>cfn-init helper script
 <ul>
-<li>Can preconfigure e.g. NGINX web server</li>
+<li>Can preconfigure e.g. NGINX web server</li>
 </ul></li>
 <li><code>cfn package</code></li>
 <li><code>cfn deploy</code></li>
@@ -5916,7 +6024,7 @@
 </ol></li>
 <li>Handler
 <ul>
-<li>defines the point in a Lambda function's code where execution begins</li>
+<li>defines the point in a Lambda function’s code where execution begins</li>
 </ul></li>
 </ul>
 <h3 id="management-10">Management</h3>
@@ -5924,7 +6032,7 @@
 <li>Lambda deployment
 <ol type="1">
 <li>Create an S3 bucket for code storage</li>
-<li>In CFn template's <code>Transform</code> section, specify <code>AWS:Serverless-2016-10-31</code> to tell CFn that it's a SAM template
+<li>In CFn template’s <code>Transform</code> section, specify <code>AWS:Serverless-2016-10-31</code> to tell CFn that it’s a SAM template
 <ul>
 <li>specify the S3 bucket in CFn template</li>
 </ul></li>
@@ -5934,7 +6042,7 @@
 </ul>
 <h3 id="template-format-order">Template format / order</h3>
 <ol type="1">
-<li>Description. Tells CFn it's a SAM template</li>
+<li>Description. Tells CFn it’s a SAM template</li>
 <li>Properties across regions</li>
 <li>Resources
 <ul>
@@ -5976,20 +6084,20 @@
 <ul>
 <li>Like all constructs, the Bucket class takes three parameters.</li>
 <li><em>scope:</em> Tells the bucket that the stack is its parent: it is defined within the scope of the stack. You can define constructs inside of constructs, creating a hierarchy (tree).</li>
-<li><em>Id:</em> The logical ID of the Bucket within your AWS CDK app. This (plus a hash based on the bucket's location within the stack) uniquely identifies the bucket across deployments so the AWS CDK can update it if you change how it's defined in your app. Buckets can also have a name, which is separate from this ID (it's the bucketName property).</li>
-<li><em>props:</em> A bundle of values that define properties of the bucket. Here we've defined only one property: versioned, which enables versioning for the files in the bucket.</li>
+<li><em>Id:</em> The logical ID of the Bucket within your AWS CDK app. This (plus a hash based on the bucket’s location within the stack) uniquely identifies the bucket across deployments so the AWS CDK can update it if you change how it’s defined in your app. Buckets can also have a name, which is separate from this ID (it’s the bucketName property).</li>
+<li><em>props:</em> A bundle of values that define properties of the bucket. Here we’ve defined only one property: versioned, which enables versioning for the files in the bucket.</li>
 </ul></li>
 </ul></li>
 <li>Why CDK instead of cloudformation
 <ul>
 <li>Higher level abstraction
 <ul>
-<li>e.g. use 5 lines of CDK to do 100 lines of cloudFormation</li>
+<li>e.g. use 5 lines of CDK to do 100 lines of cloudFormation</li>
 </ul></li>
 <li>CDK does not have steep learning curve than cloudformation</li>
 <li>IDE integration
 <ul>
-<li>e.g. syntax check</li>
+<li>e.g. syntax check</li>
 </ul></li>
 </ul></li>
 <li>Commands
@@ -6005,7 +6113,7 @@
 </ul></li>
 <li>Demo
 <ul>
-<li>Create CDK project: cdk init --language typescript</li>
+<li>Create CDK project: cdk init –language typescript</li>
 </ul></li>
 </ul>
 <h1 id="aws-security-complience">AWS Security &amp; Complience</h1>
@@ -6060,7 +6168,7 @@
 <h2 id="aws-security-services">AWS Security Services</h2>
 <h3 id="aws-artifact">AWS Artifact</h3>
 <ul>
-<li>A comprehensive resource center to have access to the AWS' auditor-issued reports &amp; security and compliance documentation from several renowned independent standard organizations
+<li>A comprehensive resource center to have access to the AWS’ auditor-issued reports &amp; security and compliance documentation from several renowned independent standard organizations
 <ul>
 <li>free to use</li>
 <li>to prove AWS meets a compliance based on global compliance frameworks</li>
@@ -6079,7 +6187,7 @@
 <li>Assess exposure, vulnerabilities, and deviations from best practices</li>
 <li>Produces a detailed list of security findings prioritized by the level of severity</li>
 </ul></li>
-<li>Can audit a single EC2 instance that you've selected and generate a report form a long list of security checks</li>
+<li>Can audit a single EC2 instance that you’ve selected and generate a report form a long list of security checks</li>
 </ul>
 <h3 id="aws-waf-web-application-firewall">AWS WAF (Web Application Firewall)</h3>
 <ul>
@@ -6143,7 +6251,7 @@
 </ul></li>
 <li>Can integrate with a number of AWS services and provide keys
 <ul>
-<li>e.g. S3, RDS, DynamoDb, Lambda, EBS, EFS, CloudTrail</li>
+<li>e.g. S3, RDS, DynamoDb, Lambda, EBS, EFS, CloudTrail</li>
 <li>S3 would be the service in which KMS could encrypt an object.</li>
 <li>Integrates with CloudTrail to log KMS key events.</li>
 </ul></li>
@@ -6214,7 +6322,7 @@
 <ul>
 <li>Create
 <ol type="1">
-<li>CLI: <code>aws kms create-key --description &quot;sample CMK&quot;</code>
+<li>CLI: <code>aws kms create-key --description "sample CMK"</code>
 <ul>
 <li>Returns <code>keyId</code></li>
 </ul></li>
@@ -6228,7 +6336,7 @@
 </ul></li>
 <li>Encrypt
 <ul>
-<li>CLI: <code>aws kms encrypt --key-id &quot;&quot; --plaintext file.txt --output text --query CiphertextBlob</code></li>
+<li>CLI: <code>aws kms encrypt --key-id "" --plaintext file.txt --output text --query CiphertextBlob</code></li>
 </ul></li>
 <li>Decrypt
 <ul>
@@ -6261,7 +6369,7 @@
 <li>Features
 <ul>
 <li>Set TTL for secrets rotations</li>
-<li>Organizing parameters into hierarchies via paths e.g. get prod key: /prod/path/to/key</li>
+<li>Organizing parameters into hierarchies via paths e.g. get prod key: /prod/path/to/key</li>
 </ul></li>
 </ul>
 <h3 id="secrets-manager">Secrets Manager</h3>
@@ -6713,7 +6821,7 @@
 <ul>
 <li>capture, transform, and load streaming data into Amazon S3, Amazon Redshift, Amazon Elasticsearch Service, and Splunk, enabling near-real-time analytics</li>
 <li>automatically scales to match the throughput of your data and requires no ongoing administration</li>
-<li>can also batch, compress (e.g. reduce storage in S3), transform, and encrypt the data before loading it</li>
+<li>can also batch, compress (e.g. reduce storage in S3), transform, and encrypt the data before loading it</li>
 <li>No storage, while KDS has</li>
 </ul></li>
 <li>Components
@@ -6858,7 +6966,7 @@
 <ul>
 <li>Management
 <ul>
-<li>'IoT' -&gt; 'Security' -&gt; 'Certificates'</li>
+<li>‘IoT’ -&gt; ‘Security’ -&gt; ‘Certificates’</li>
 </ul></li>
 </ul></li>
 <li>IAM / Cognito
@@ -6886,7 +6994,7 @@
 </ul></li>
 <li>Management
 <ul>
-<li>'IoT' -&gt; 'Registray' -&gt; 'things'</li>
+<li>‘IoT’ -&gt; ‘Registray’ -&gt; ‘things’</li>
 </ul></li>
 </ul></li>
 <li>Device Shadow
@@ -6903,7 +7011,7 @@
 </ol></li>
 <li>Management
 <ul>
-<li>'IoT' -&gt; 'Rules' -&gt; Select a rule -&gt; View 'Rule query statement' and 'Actions'</li>
+<li>‘IoT’ -&gt; ‘Rules’ -&gt; Select a rule -&gt; View ‘Rule query statement’ and ‘Actions’</li>
 </ul></li>
 </ul></li>
 </ul></li>
@@ -6962,13 +7070,13 @@
 <li>End destination of the data</li>
 <li>Management
 <ul>
-<li>'Data Pipeline' -&gt; Select pipeline -&gt; Execution Details -&gt; 'Add' -&gt; xxxNode</li>
+<li>‘Data Pipeline’ -&gt; Select pipeline -&gt; Execution Details -&gt; ‘Add’ -&gt; xxxNode</li>
 </ul></li>
 </ul></li>
 <li>Activities
 <ul>
 <li>An action that Data Pipeline initiates</li>
-<li>e.g. <code>CopyActivity</code>, <code>EmrActivity</code>, <code>HadoopActivity</code></li>
+<li>e.g. <code>CopyActivity</code>, <code>EmrActivity</code>, <code>HadoopActivity</code></li>
 </ul></li>
 <li>Preconditions
 <ul>
@@ -7022,7 +7130,7 @@
 <h2 id="aws-snowball">AWS Snowball</h2>
 <ul>
 <li>A petabyte-scale data transport solution that uses secure appliances to transfer large amounts of data into and out of the AWS cloud</li>
-<li>Uses hardward appliance to transfer data 'physically' instead of via internet</li>
+<li>Uses hardward appliance to transfer data ‘physically’ instead of via internet</li>
 <li>Addressed challenges including
 <ul>
 <li>high network costs</li>
@@ -7052,7 +7160,7 @@
 <ul>
 <li>Consolidated billing - one bill for all accounts</li>
 </ul></li>
-<li>Organizational Units (OU) i.e. department specified in AWS cloud</li>
+<li>Organizational Units (OU) i.e. department specified in AWS cloud</li>
 <li>Free to all AWS customers</li>
 <li>Can enjoy pricing benefits from aggregated usage (volume discounts)</li>
 </ul>
@@ -7097,7 +7205,7 @@
 </ul>
 <h2 id="tco-total-cost-of-ownership-calculator">TCO (Total Cost of Ownership) Calculator</h2>
 <ul>
-<li>Free tool to estimate cost savings to use AWS vs. a data center</li>
+<li>Free tool to estimate cost savings to use AWS vs. a data center</li>
 </ul>
 <h2 id="pricing-calculator">Pricing Calculator</h2>
 <ul>
@@ -7148,7 +7256,7 @@
 </ul></li>
 <li>Management
 <ul>
-<li>'AWS Cost Explorer' -&gt; 'Savings Plans'</li>
+<li>‘AWS Cost Explorer’ -&gt; ‘Savings Plans’</li>
 </ul></li>
 </ul></li>
 </ul>
@@ -7277,7 +7385,7 @@
 <ul>
 <li>Perform operations in code - implement your operations procedures as code and automate their execution by triggering them in response to events
 <ul>
-<li>e.g. automate stress test, integration test &amp; unit test running</li>
+<li>e.g. automate stress test, integration test &amp; unit test running</li>
 </ul></li>
 <li>Make frequent, small, reversible changes</li>
 <li>Refine operations procedures frequently</li>
@@ -7334,7 +7442,7 @@
 </ul></li>
 <li>Manage change in automation
 <ul>
-<li>e.g. Autoscaling</li>
+<li>e.g. Autoscaling</li>
 </ul></li>
 </ul></li>
 </ul>
@@ -7347,9 +7455,9 @@
 <li>Design for failure</li>
 <li>Loose coupling</li>
 <li>Think Parallel</li>
-<li>Implement 'Elasticity'</li>
+<li>Implement ‘Elasticity’</li>
 <li>Build security in every layer</li>
-<li>Don't fear constraints</li>
+<li>Don’t fear constraints</li>
 <li>Leverage different storage options</li>
 </ul>
 <h1 id="other-notes">Other Notes</h1>
@@ -7406,7 +7514,7 @@
 <ul>
 <li>They would be from a different pool of questions</li>
 <li>Each exam may have 5 new questions</li>
-<li>They are not scored (don't assume any question is unscored)</li>
+<li>They are not scored (don’t assume any question is unscored)</li>
 <li>Questions are added/updated slowly (could take months / years)</li>
 </ul></li>
 <li>Check forums may be a good idea to stay up-to-date on topics</li>
@@ -7446,7 +7554,7 @@
 </ul></li>
 <li>Feature engineering
 <ol type="1">
-<li>Dimensionality reduction e.g. PCA, T-distributed stochastic neighbor embedding</li>
+<li>Dimensionality reduction e.g. PCA, T-distributed stochastic neighbor embedding</li>
 <li>Transformation (for numerical features)</li>
 <li>Convert categorical data into numerical data</li>
 </ol></li>

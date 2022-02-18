@@ -1787,6 +1787,14 @@ Deploy and manage HPC clusters
 		* Pulls large number of records + apply aggregated functions
 		* e.g. Redshift
 
+## Data Storage Types
+1. Relational
+	- Row, columnar 
+1. Non-relational
+	- Key:value
+1. Graph
+
+
 
 
 # S3 (Simple Storage Service)
@@ -1970,13 +1978,13 @@ Deploy and manage HPC clusters
 
 ## Management
 1. COPY
-	- `aws s3 cp file s3://{bucket-name}`
+	- `aws s3 cp {file-name} s3://{bucket-name}`
 1. List
 	- show buckets: `aws s3 ls`
 	- show bucket's objects: `aws s3 ls {bucket-name}`
 1. Move
-	- `aws s3 mv file s3://{bucket-name}`
-1. Sync
+	- `aws s3 mv {file-name} s3://{bucket-name}`
+1. Sync (keep folders/buckets up-to-date)
 	- upload updated files to S3: `aws s3 sync . s3://{bucket-name}` 
 	- download updated files from S3 to local: `aws s3 sync s3://{bucket-name} .` 
 
@@ -2060,9 +2068,9 @@ Deploy and manage HPC clusters
 ## Permissions / Access
 * default: all buckets would only be available to the owner when created
 * Policies for access
-	* Object / Bucket ACL (Access Control List)
+	1. Object / Bucket ACL (Access Control List)
 		* Permission up to individual file level
-   	* Bucket Policies
+   	1. Bucket Policies
    		* JSON format
    		* Specify what actions are allowed or denied for which principals on the bucket that the bucket policy is attached to
    		* Deny would override allow in ACL 
@@ -2070,9 +2078,9 @@ Deploy and manage HPC clusters
    			* 'Bucket' -> 'Permissions' -> Scroll down to 'Bucket policies'
    			* Create
    				* can use 'Policy generator'
-	- Object policy
-	* IAM policies
-	- Service Control Policy (from AWS Orgnization)
+	1. Object policy
+	1. IAM policies
+	1. Service Control Policy (from AWS Orgnization)
 * client / server authentication
 * Logging
 	* Access logs can be configured on bucket level to log all requests made to the S3 bucket 
@@ -2094,13 +2102,20 @@ Deploy and manage HPC clusters
 - Benefits
 	1. Helps end users reduce upload / download time
 		- Speeds up transfer to and from S3 by 50 - 500%
+- Cost
+	1. US, Europe, Japan - $0.04/GB
+	1. All other AWS edge locations - $0.08/GB
 
 
 ## Security
 * All new buckets are private by default
 * Encryption in Transit (SSL/TLS)
-	- Clients must support Perfect Forward Secrecy (PFS) cipher suites
+	1. Clients must support Perfect Forward Secrecy (PFS) cipher suites
 		- e.g. Ephemeral Diffie-Hellman (DHE), Elliptic Curve Diffie-Hellman Ephemeral (ECDHE) 
+	1. VPC endpoints
+		- Provide S3 service to private subnets or restrict network traffic to just intra-VPC network space
+	1. Multiple VPN options
+		- AWS Site-to-site VPN Direct Connect
 * Encryption at Rest (At hard-drive)
 	* Can encrypt in object level & bucket level
 	* Server-side (Amazon does encryption upon receiving new objects)
@@ -2116,10 +2131,12 @@ Deploy and manage HPC clusters
 	* Client-side (Encrypt and then upload; download then decrypt)
 		- Options
 			1. CMK in KMS
+				- Application will request for the encrypted S3 object first and then call KMS to decrypt the object
 			1. Application Stored key
 		- Can use AWS SDK
 * Bucket encryption
 	* AES 256
+- MFA Delete
 
 
 ## Versioning
@@ -2796,6 +2813,9 @@ The `BatchGetItem` operation returns the attributes of one or more items from on
 	1. W3C SPARQL
 		- Graph structure: Resource Description Framework (RDF)
 		- query pattern: SQL
+- Resource Description Framework
+	1. Triple structure definition
+	1. same Node, Data, Edge objects
 - Use cases
 	1. Security - pattern recognition
 	1. Social media - targeting advertisement
@@ -2810,6 +2830,7 @@ The `BatchGetItem` operation returns the attributes of one or more items from on
 	1. Metadata is stored with document records
 	1. Can hit critical scale failures
 	1. MongoDB compatible
+	1. JSON indexing support
 - Use cases
 	1. Social Media Profiles
 	1. Object Catalogues
