@@ -2058,8 +2058,11 @@ Deploy and manage HPC clusters
 		* Bounded by KMS limits (encrypt & decrypt) if use SSE-KMS, where uploading & downloading would both contribute to KMS quota
 			* KMS TPS limit: 5500 / 10000 / 30000 depending on region
 * S3 Select
+	- Can be used via `SelectObjectsContents` SDK
+		- e.g. `aws s3api select-object-content --bucket {} --expression {}`
 	* Retrieve only a subset of data from an object with simple SQL expressions
-		- Supports CSV, JSON, Parquet, ORC, Avro
+		- Supports CSV, JSON, Apache Parquet
+		- Data encoding: UTF-8
 	* Up to 400% performance improvement, up to 80% cheaper
 * Glacier Select
 	* Run SQL queries against Glacier directly
@@ -2309,10 +2312,10 @@ Deploy and manage HPC clusters
 * Aurora Serverless
 	* Serverless platform
 	* Good for infrequent, intermittent, or unpredictable traffic pattern
-	* ACU
-		- Aurora Capacity Units
-		- MySQL: 1 - 256 ACU
-		- PostgreSQL: 2 - 384 ACU
+	* ACU (Aurora Capacity Units)
+		- Compute node
+		- MySQL range: 1 - 256 ACU
+		- PostgreSQL range: 2 - 384 ACU
 
 ## Backups
 * Upon recovery, it would be a new RDS instance with a new DNS endpoint
@@ -3792,12 +3795,16 @@ Connects to on-prem AD
 * Fully managed serverless interactive query service
 	* Analyze and query data in S3 using SQL
 	* RDMS
+	* Presto under the hood
 * Use cases
 	* Query log files on S3
 	* Generate busines reports
 	* Analyze AWS cost reports
 * Supported data formats
-	* JSON, Apache Parquet, Apache ORC
+	* CSV, JSON, Apache Parquet, Apache ORC (Optimized Row Columnar), Avro
+- Service Integrations
+	1. Quicksight
+	1. Glue
 * Benefits
 	* No need to set up complex ETL processes
 * Pricing
@@ -3916,6 +3923,7 @@ Service to help set up, manage, and scale a search solution for the website and 
 ## Elasticsearch
 Help deploy, secure, operate, and scale Elasticsearch to search, analyze, and visualize data in real-time
 
+
 ## Kinesis
 * Help collect, process, and analyze real-time, streaming data so you can get timely insights and react quickly to new information
 * Real-time data examples: purchases, stock, game data, iOT sensor data
@@ -3928,7 +3936,7 @@ Help deploy, secure, operate, and scale Elasticsearch to search, analyze, and vi
 * A massively scalable and durable real-time data streaming service
 * can be used to collect log and event data from sources such as servers, desktops, and mobile devices
 * Features
-	* can capture, transform, and load streaming data into Amazon S3, Amazon Redshift, Amazon Elasticsearch Service, and Splunk
+	* can capture, transform, and load streaming (real-time) data into Amazon S3, Amazon Redshift, Amazon Elasticsearch Service, and Splunk
 * Model
 	* Producers -> Shards (storage) -> consumers (analysis)
 - Data Blob
@@ -3945,15 +3953,27 @@ Help deploy, secure, operate, and scale Elasticsearch to search, analyze, and vi
 			- assigned when a producer calls `PutRecord` or `PutRecords` operations to add data to a stream
 		1. User records - actual data being sent to Kinesis
 * Shard 
-	- a sequence (group) of data-records in a stream, each data record has a unique sequence number
-	* Shard limit
+	- a sequence (group) of data-records in a stream
+	- Can think about a shard as a train
+		- Shard partition key == train id
+		- Each data record == one train car
+		- Data == passengers 
+	- Feature
+		1. Collect, store, and aggregate data to send to AWS
+	- Default shards limit: 500
+	- Within a shard
+		- All data records within a shard share a common partition key
+		- each data record 
+			- has a unique sequence number (number depends on the order of the data coming in)
+			- payload can be up to 1 MB
+	* Each Shard limit
 		* Read
 			* TPS: 5
 			* Data rate: 2 MB per sec
-		* Write
+		* Write (ingest)
 			* 1000 records per sec
 			* Data rate: 1 MB per sec
-		* Retention period: 24 hours (default) to 7 days
+		* Retention period: 24 hours (default) to 365 days
 			- can change via CLI
 	* Resharding
 		* enables you to increase or decrease the number of shards in a stream in order to adapt to changes in the rate of data flowing through the stream
@@ -3962,8 +3982,14 @@ Help deploy, secure, operate, and scale Elasticsearch to search, analyze, and vi
 		- Options
 			1. Shard split
 			1. Shard merge
+	- To scale Kinesis stream, we would need to scale the shards
 - Producers
-	- Options
+	- Examples
+		1. Stock
+		1. Application log
+		1. IoT devices
+		1. Social Media streams
+	- Intergration Options
 		1. SDK Kinesis Streams API
 			1. `PutRecord`
 			1. `PutRecords` - recommended by AWS
@@ -3980,24 +4006,34 @@ Help deploy, secure, operate, and scale Elasticsearch to search, analyze, and vi
 			- KCL integration
 			- Use cases
 				- inject thousands of requests per sec
-			- Not suitable when
-				- producer app cannot incur additional processing delay
+			- Comparing to Kinesis Streams API
+				1. Provides a layer of abstraction
+				1. Automatic retry mechanism, whereas API needs to configure stream creation and resharding manually
+				1. Incur additional processing delay (for higher packing efficiency)
+				1. Only available to Java
 		1. Kinesis Agent
-			- Standalone java app that Kinesis provides
+			- Standalone java app that Kinesis provides which can be installed on Linux-based server envs. 
 			- Features
 				1. Monitor multiple directories and write to multiple streams
 				1. Can pre-process data
 					1. Multi-line record to single line
 					1. Convert data to JSON format
 - Consumers
-	- KCL (Kinesis Consumer Library)
-		- consumes and processes data
-		- features
-			1. Contains a Record Processor
-			1. Resharding
-			1. Load balancing
-			1. Checkpointing
-			1. De-aggregation
+	- Consumes data from Kinesis
+	- Examples
+		1. EC2, Lambda (application)
+		1. Kinesis firehose
+		1. Kinesis Data Analytics
+		1. EMR
+	- Integration Options
+		1. KCL (Kinesis Consumer Library)
+			- consumes and processes data
+			- features
+				1. Contains a Record Processor
+				1. Resharding
+				1. Load balancing
+				1. Checkpointing
+				1. De-aggregation
 	* Order
 		* Cannot guarantee the order across shards
 		* Kinesis gives you the ability to consume records according to a sequence number applied when data is written to the Kinesis shard
@@ -4017,6 +4053,10 @@ Help deploy, secure, operate, and scale Elasticsearch to search, analyze, and vi
 		1. Spark Streaming 
 		1. Lambda
 			- Can auto read records from Kinesis streams and process them
+- KDS Use cases
+	1. Process and evaluate logs immediately
+		- e.g. to construct metrics and alarms
+	1. Real-time data analytics
 
 
 ### Kinesis Firehose
