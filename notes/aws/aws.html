@@ -525,6 +525,7 @@
 <li><a href="#kinesis-firehose">Kinesis Firehose</a></li>
 <li><a href="#kinesis-analytics">Kinesis Analytics</a></li>
 <li><a href="#kinesis-client-library">Kinesis Client Library</a></li>
+<li><a href="#kinesis-video-streams">Kinesis Video Streams</a></li>
 <li><a href="#best-practices-5">Best Practices</a></li>
 </ul></li>
 <li><a href="#quicksight">QuickSight</a></li>
@@ -532,6 +533,10 @@
 </ul></li>
 <li><a href="#other-aws-services">Other AWS Services</a>
 <ul>
+<li><a href="#amazon-managed-streaming-for-kafka-msk">Amazon Managed Streaming for Kafka (MSK)</a>
+<ul>
+<li><a href="#apache-kafka">Apache Kafka</a></li>
+</ul></li>
 <li><a href="#aws-config">AWS Config</a></li>
 <li><a href="#aws-elastic-transcoder">AWS Elastic Transcoder</a></li>
 <li><a href="#aws-iot">AWS IOT</a></li>
@@ -3820,9 +3825,14 @@
 </ul></li>
 <li>S3 Select
 <ul>
+<li>Can be used via <code>SelectObjectsContents</code> SDK
+<ul>
+<li>e.g. <code>aws s3api select-object-content --bucket {} --expression {}</code></li>
+</ul></li>
 <li>Retrieve only a subset of data from an object with simple SQL expressions
 <ul>
-<li>Supports CSV, JSON, Parquet, ORC, Avro</li>
+<li>Supports CSV, JSON, Apache Parquet</li>
+<li>Data encoding: UTF-8</li>
 </ul></li>
 <li>Up to 400% performance improvement, up to 80% cheaper</li>
 </ul></li>
@@ -4214,11 +4224,11 @@
 <ul>
 <li>Serverless platform</li>
 <li>Good for infrequent, intermittent, or unpredictable traffic pattern</li>
-<li>ACU
+<li>ACU (Aurora Capacity Units)
 <ul>
-<li>Aurora Capacity Units</li>
-<li>MySQL: 1 - 256 ACU</li>
-<li>PostgreSQL: 2 - 384 ACU</li>
+<li>Compute node</li>
+<li>MySQL range: 1 - 256 ACU</li>
+<li>PostgreSQL range: 2 - 384 ACU</li>
 </ul></li>
 </ul></li>
 </ul>
@@ -6410,6 +6420,7 @@
 <ul>
 <li>Analyze and query data in S3 using SQL</li>
 <li>RDMS</li>
+<li>Presto under the hood</li>
 </ul></li>
 <li>Use cases
 <ul>
@@ -6419,8 +6430,13 @@
 </ul></li>
 <li>Supported data formats
 <ul>
-<li>JSON, Apache Parquet, Apache ORC</li>
+<li>CSV, JSON, Apache Parquet, Apache ORC (Optimized Row Columnar), Avro</li>
 </ul></li>
+<li>Service Integrations
+<ol type="1">
+<li>Quicksight</li>
+<li>Glue</li>
+</ol></li>
 <li>Benefits
 <ul>
 <li>No need to set up complex ETL processes</li>
@@ -6647,7 +6663,7 @@
 <li>can be used to collect log and event data from sources such as servers, desktops, and mobile devices</li>
 <li>Features
 <ul>
-<li>can capture, transform, and load streaming data into Amazon S3, Amazon Redshift, Amazon Elasticsearch Service, and Splunk</li>
+<li>can capture, transform, and load streaming (real-time) data into Amazon S3, Amazon Redshift, Amazon Elasticsearch Service, and Splunk</li>
 </ul></li>
 <li>Model
 <ul>
@@ -6678,20 +6694,40 @@
 </ul></li>
 <li>Shard
 <ul>
-<li>a sequence (group) of data-records in a stream, each data record has a unique sequence number</li>
-<li>Shard limit
+<li>a sequence (group) of data-records in a stream</li>
+<li>Can think about a shard as a train
+<ul>
+<li>Shard partition key == train id</li>
+<li>Each data record == one train car</li>
+<li>Data == passengers</li>
+</ul></li>
+<li>Feature
+<ol type="1">
+<li>Collect, store, and aggregate data to send to AWS</li>
+</ol></li>
+<li>Default shards limit: 500</li>
+<li>Within a shard
+<ul>
+<li>All data records within a shard share a common partition key</li>
+<li>each data record
+<ul>
+<li>has a unique sequence number (number depends on the order of the data coming in)</li>
+<li>payload can be up to 1 MB</li>
+</ul></li>
+</ul></li>
+<li>Each Shard limit
 <ul>
 <li>Read
 <ul>
 <li>TPS: 5</li>
 <li>Data rate: 2 MB per sec</li>
 </ul></li>
-<li>Write
+<li>Write (ingest)
 <ul>
 <li>1000 records per sec</li>
 <li>Data rate: 1 MB per sec</li>
 </ul></li>
-<li>Retention period: 24 hours (default) to 7 days
+<li>Retention period: 24 hours (default) to 365 days
 <ul>
 <li>can change via CLI</li>
 </ul></li>
@@ -6707,10 +6743,18 @@
 <li>Shard merge</li>
 </ol></li>
 </ul></li>
+<li>To scale Kinesis stream, we would need to scale the shards</li>
 </ul></li>
 <li>Producers
 <ul>
-<li>Options
+<li>Examples
+<ol type="1">
+<li>Stock</li>
+<li>Application log</li>
+<li>IoT devices</li>
+<li>Social Media streams</li>
+</ol></li>
+<li>Intergration Options
 <ol type="1">
 <li>SDK Kinesis Streams API
 <ol type="1">
@@ -6739,14 +6783,17 @@
 <ul>
 <li>inject thousands of requests per sec</li>
 </ul></li>
-<li>Not suitable when
-<ul>
-<li>producer app cannot incur additional processing delay</li>
-</ul></li>
+<li>Comparing to Kinesis Streams API
+<ol type="1">
+<li>Provides a layer of abstraction</li>
+<li>Automatic retry mechanism, whereas API needs to configure stream creation and resharding manually</li>
+<li>Incur additional processing delay (for higher packing efficiency)</li>
+<li>Only available to Java</li>
+</ol></li>
 </ul></li>
 <li>Kinesis Agent
 <ul>
-<li>Standalone java app that Kinesis provides</li>
+<li>Standalone java app that Kinesis provides which can be installed on Linux-based server envs.</li>
 <li>Features
 <ol type="1">
 <li>Monitor multiple directories and write to multiple streams</li>
@@ -6761,6 +6808,16 @@
 </ul></li>
 <li>Consumers
 <ul>
+<li>Consumes data from Kinesis</li>
+<li>Examples
+<ol type="1">
+<li>EC2, Lambda (application)</li>
+<li>Kinesis firehose</li>
+<li>Kinesis Data Analytics</li>
+<li>EMR</li>
+</ol></li>
+<li>Integration Options
+<ol type="1">
 <li>KCL (Kinesis Consumer Library)
 <ul>
 <li>consumes and processes data</li>
@@ -6773,6 +6830,7 @@
 <li>De-aggregation</li>
 </ol></li>
 </ul></li>
+</ol></li>
 <li>Order
 <ul>
 <li>Cannot guarantee the order across shards</li>
@@ -6813,13 +6871,21 @@
 </ul></li>
 </ol></li>
 </ul></li>
+<li>KDS Use cases
+<ol type="1">
+<li>Process and evaluate logs immediately
+<ul>
+<li>e.g. to construct metrics and alarms</li>
+</ul></li>
+<li>Real-time data analytics</li>
+</ol></li>
 </ul>
 <h3 id="kinesis-firehose">Kinesis Firehose</h3>
 <ul>
 <li>reliably load streaming data into data lakes, data stores, and analytics tools</li>
 <li>Features
 <ul>
-<li>capture, transform, and load streaming data into Amazon S3, Amazon Redshift, Amazon Elasticsearch Service, and Splunk, enabling near-real-time analytics</li>
+<li>capture, transform, and load (deliver) streaming data into Amazon S3, Amazon Redshift, Amazon Elasticsearch Service, and Splunk, enabling near-real-time analytics</li>
 <li>automatically scales to match the throughput of your data and requires no ongoing administration</li>
 <li>can also batch, compress (e.g. reduce storage in S3), transform, and encrypt the data before loading it</li>
 <li>No storage, while KDS has</li>
@@ -6831,7 +6897,7 @@
 </ol></li>
 <li>Model
 <ul>
-<li>Producers -&gt; Kinesis Firehose (lambda - capture &amp; transform) -&gt; S3 / Redshift / ElasticSearch</li>
+<li>Producers -&gt; Kinesis Firehose (lambda - capture &amp; transform) -&gt; S3 / Redshift / ElasticSearch / Splunk</li>
 </ul></li>
 <li>Methods to load data into Firehose
 <ol type="1">
@@ -6858,9 +6924,12 @@
 </ul></li>
 <li>Delivery
 <ul>
+<li>Data will be buffered first before they are sent to consumers
+<ul>
 <li>Buffer size (1 - 128 MB) / buffer interval (60 - 900 sec)
 <ul>
 <li>Determines how data is packed and sent to other AWS services</li>
+</ul></li>
 <li>Firehose can raise the buffer size dynamically to catch up if there were errors</li>
 </ul></li>
 <li>Error handling
@@ -6872,15 +6941,44 @@
 </ul></li>
 </ol></li>
 </ul></li>
+<li>Consumers
+<ol type="1">
+<li>S3
+<ul>
+<li>Can have backup bucket</li>
+</ul></li>
+<li>Redshift
+<ul>
+<li>Data will go to S3 first then firehose would issue a copy command to load data from S3 to Redshift</li>
+</ul></li>
+<li>Elasticsearch</li>
+<li>Splunk
+<ul>
+<li>Can have an S3 backup bucket</li>
+</ul></li>
+<li>HTTP endpoint (new)</li>
+</ol></li>
 </ul>
 <h3 id="kinesis-analytics">Kinesis Analytics</h3>
 <ul>
 <li>analyze streaming data, gain actionable insights, and respond to your business and customer needs in real time</li>
+<li>Using Kinesis Data Analytics Application
+<ul>
 <li>process streaming data in real time with standard SQL without having to learn new programming languages or processing frameworks</li>
+<li>Data can then be loaded to consumers via KDS / Kinesis firehose</li>
+</ul></li>
 <li>Integrate with KDS &amp; Kinesis Firehose &amp; provide analytics on the fly
 <ul>
 <li>Analyze inside Kinesis</li>
 </ul></li>
+<li>Use cases
+<ol type="1">
+<li>Responsive real-time analytics
+<ul>
+<li>e.g. real-time monitoring metrics</li>
+</ul></li>
+<li>Real-time gaming metrics</li>
+</ol></li>
 </ul>
 <h3 id="kinesis-client-library">Kinesis Client Library</h3>
 <ul>
@@ -6893,6 +6991,19 @@
 <li>Manages the # of record processors relative to # of shards</li>
 <li>load balances by creating record processors across consumers</li>
 </ul></li>
+</ul>
+<h3 id="kinesis-video-streams">Kinesis Video Streams</h3>
+<ul>
+<li>Feature
+<ol type="1">
+<li>Create real-time streaming video processing and applications</li>
+</ol></li>
+<li>Producers: cameras, audio, and radar</li>
+<li>Use Cases
+<ol type="1">
+<li>Amber alert system</li>
+<li>Equipment Preventive Maintenance</li>
+</ol></li>
 </ul>
 <h3 id="best-practices-5">Best Practices</h3>
 <ol type="1">
@@ -6925,6 +7036,28 @@
 <li>Can do batch processing</li>
 </ul>
 <h1 id="other-aws-services">Other AWS Services</h1>
+<h2 id="amazon-managed-streaming-for-kafka-msk">Amazon Managed Streaming for Kafka (MSK)</h2>
+<ul>
+<li>Helps customers manage kafka clusters</li>
+<li>Feature
+<ol type="1">
+<li>Cluster provisioning model</li>
+<li>Keep Kafka up-to-date</li>
+<li>Create broker nodes and zookeeper nodes</li>
+<li>Retention time is 7 days (max is unlimited)</li>
+<li>Strong 3rd party tooling</li>
+</ol></li>
+</ul>
+<h3 id="apache-kafka">Apache Kafka</h3>
+<ul>
+<li>Originally developed by LinkedIn</li>
+<li>Feature
+<ol type="1">
+<li>Publish and subscribe to streams of records, similar to a message queue</li>
+<li>Store streams of records in a durable way</li>
+<li>Process streams of records as they occur</li>
+</ol></li>
+</ul>
 <h2 id="aws-config">AWS Config</h2>
 <ul>
 <li>used to audit and monitor configuration changes</li>

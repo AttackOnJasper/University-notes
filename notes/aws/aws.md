@@ -4062,7 +4062,7 @@ Help deploy, secure, operate, and scale Elasticsearch to search, analyze, and vi
 ### Kinesis Firehose
 * reliably load streaming data into data lakes, data stores, and analytics tools
 * Features
-	* capture, transform, and load streaming data into Amazon S3, Amazon Redshift, Amazon Elasticsearch Service, and Splunk, enabling near-real-time analytics
+	* capture, transform, and load (deliver) streaming data into Amazon S3, Amazon Redshift, Amazon Elasticsearch Service, and Splunk, enabling near-real-time analytics
 	* automatically scales to match the throughput of your data and requires no ongoing administration
 	* can also batch, compress (e.g. reduce storage in S3), transform, and encrypt the data before loading it
 	* No storage, while KDS has
@@ -4070,7 +4070,7 @@ Help deploy, secure, operate, and scale Elasticsearch to search, analyze, and vi
 	1. Delivery streams
 	1. Records of data and destinations
 * Model
-	* Producers -> Kinesis Firehose (lambda - capture & transform) -> S3 / Redshift / ElasticSearch
+	* Producers -> Kinesis Firehose (lambda - capture & transform) -> S3 / Redshift / ElasticSearch / Splunk
 - Methods to load data into Firehose
 	1. Kinesis agent
 	1. AWS SDK
@@ -4085,20 +4085,36 @@ Help deploy, secure, operate, and scale Elasticsearch to search, analyze, and vi
 		1. result - transformed record status
 		1. data - transformed data payload
 - Delivery
-	- Buffer size (1 - 128 MB) / buffer interval (60 - 900 sec)
-		- Determines how data is packed and sent to other AWS services
+	- Data will be buffered first before they are sent to consumers
+		- Buffer size (1 - 128 MB) / buffer interval (60 - 900 sec)
+			- Determines how data is packed and sent to other AWS services
 		- Firehose can raise the buffer size dynamically to catch up if there were errors
 	- Error handling
 		1. S3 - retries delivery for up to 24 hours; data would be lost if past 24 hours
 		1. Redshift - retry duration can be configured between 0 - 7200 seconds from copying from S3
 			- Manifest files could be created for backfilling
+- Consumers
+	1. S3
+		- Can have backup bucket
+	1. Redshift
+		- Data will go to S3 first then firehose would issue a copy command to load data from S3 to Redshift
+	1. Elasticsearch
+	1. Splunk
+		- Can have an S3 backup bucket
+	1. HTTP endpoint (new)
 
 
 ### Kinesis Analytics
 * analyze streaming data, gain actionable insights, and respond to your business and customer needs in real time
-* process streaming data in real time with standard SQL without having to learn new programming languages or processing frameworks
+- Using Kinesis Data Analytics Application
+	* process streaming data in real time with standard SQL without having to learn new programming languages or processing frameworks
+	- Data can then be loaded to consumers via KDS / Kinesis firehose
 * Integrate with KDS & Kinesis Firehose & provide analytics on the fly
 	* Analyze inside Kinesis
+- Use cases
+	1. Responsive real-time analytics
+		- e.g. real-time monitoring metrics
+	1. Real-time gaming metrics
 
 ### Kinesis Client Library
 * Runs on customer instances
@@ -4108,6 +4124,14 @@ Help deploy, secure, operate, and scale Elasticsearch to search, analyze, and vi
 	* ensures that there is a record processor for each shards
 	* Manages the # of record processors relative to # of shards
 	* load balances by creating record processors across consumers
+
+### Kinesis Video Streams
+- Feature
+	1. Create real-time streaming video processing and applications
+- Producers: cameras, audio, and radar
+- Use Cases
+	1. Amber alert system
+	1. Equipment Preventive Maintenance
 
 ### Best Practices
 1. Number of consumer instances should be less than # of shards
@@ -4135,6 +4159,23 @@ Help deploy, secure, operate, and scale Elasticsearch to search, analyze, and vi
 
 
 # Other AWS Services
+## Amazon Managed Streaming for Kafka (MSK)
+- Helps customers manage kafka clusters
+- Feature
+	1. Cluster provisioning model
+	1. Keep Kafka up-to-date
+	1. Create broker nodes and zookeeper nodes
+	1. Retention time is 7 days (max is unlimited)
+	1. Strong 3rd party tooling
+
+### Apache Kafka
+- Originally developed by LinkedIn
+- Feature
+	1. Publish and subscribe to streams of records, similar to a message queue
+	1. Store streams of records in a durable way
+	1. Process streams of records as they occur
+
+
 ## AWS Config
 * used to audit and monitor configuration changes
 * continuously monitors and records your AWS resource configurations and allows you to automate the evaluation of recorded configurations against desired configurations
@@ -4551,6 +4592,8 @@ A repository of tutorials, whitepapers, digital training, and project use cases
 
 ### Native Multi-AZ
 S3, SQS & DynamoDB are already built in a fault tolerant fashion, not need to provision these services across multi AZs.
+
+
 
 
 # Certification Exam
