@@ -12,7 +12,60 @@
   <!-- To automatically render math in text elements, include the auto-render extension: -->
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
         onload="renderMathInElement(document.body);"></script>
-  </head>
+    <script type="text/javascript">
+  window.onload = function() {
+    document.getElementsByClassName("status-banner")[0].style.display = "block";
+    setTimeout(function() {
+      renderMathElements(document.getElementsByClassName("math"));
+      document.getElementsByClassName("status-banner")[0].style.display = "none";
+    }, 50); // delay to allow status banner to show
+  }
+
+  function renderMathElements(mathElements) {
+    var mathOptions = {
+      macros: {
+        "\\set": "\\left\\{ #1 \\right\\}",
+        "\\tup": "\\left\\langle #1 \\right\\rangle",
+        "\\abs": "\\left\\lvert #1 \\right\\rvert",
+        "\\floor": "\\left\\lfloor #1 \\right\\rfloor",
+        "\\ceil": "\\left\\lceil#1 \\right\\rceil",
+        "\\mb": "\\mathbb{#1}",
+        "\\rem": "\\operatorname{rem}",
+        "\\ord": "\\operatorname{ord}",
+        "\\sign": "\\operatorname{sign}",
+        "\\imag": "\\bm{i}",
+        "\\dee": "\\mathop{}\\!\\mathrm{d}",
+        "\\lH": "\\overset{\\text{l'H}}{=}",
+        "\\evalat": "\\left.\\left(#1\\right)\\right|",
+        "\\sech": "\\operatorname{sech}",
+        "\\spn": "\\operatorname{Span}",
+        "\\proj": "\\operatorname{proj}",
+        "\\prp": "\\operatorname{perp}",
+        "\\refl": "\\operatorname{refl}",
+        "\\magn": "\\left\\lVert #1 \\right\\rVert",
+        "\\rank": "\\operatorname{rank}",
+        "\\sys": "\\left[ #1 \\mid #2\\space \\right]",
+        "\\range": "\\operatorname{Range}",
+        "\\adj": "\\operatorname{adj}",
+        "\\cof": "\\operatorname{cof}",
+        "\\coord": "{\\left\\lbrack #1 \\right\\rbrack}_{#2}",
+        "\\diag": "\\operatorname{diag}",
+        "\\formlp": "\\operatorname{Form}(\\mathcal{L}^P)",
+
+        // not yet available in KaTeX
+        "\\operatorname": "\\mathop{\\text{#1}}\\nolimits", //wip: spacing is slightly off
+        "\\not": "\\rlap{\\kern{7.5mu}/}", //wip: slash angle is slightly off
+        "\\bm": "\\mathbf", //wip: should be italic, but isn't
+      },
+      throwOnError: false,
+    };
+    for (var i=0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      katex.render(texText.data, mathElements[i], mathOptions);
+    }
+  }
+  </script>
+</head>
 <body>
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -35,10 +88,194 @@
 <li><a href="#table-joining">Table Joining</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#data-aggregation">Data Aggregation</a></li>
+<li><a href="#data-aggregation">Data Aggregation</a>
+<ul>
+<li><a href="#data-as-variables">Data as Variables</a></li>
+<li><a href="#aggregation">Aggregation</a>
+<ul>
+<li><a href="#tableau-example">Tableau Example</a></li>
+</ul></li>
+<li><a href="#count">Count</a></li>
+<li><a href="#binning">Binning</a></li>
+<li><a href="#visualizating-different-data">Visualizating different data</a></li>
+</ul></li>
 <li><a href="#visql">VisQL</a>
 <ul>
 <li><a href="#polaris">Polaris</a></li>
+<li><a href="#table-algebra">Table Algebra</a></li>
+<li><a href="#query">Query</a></li>
+</ul></li>
+<li><a href="#human-brain-processor">Human Brain Processor</a>
+<ul>
+<li><a href="#reading">Reading</a></li>
+<li><a href="#hearing">Hearing</a></li>
+<li><a href="#hand-eye-coordination">Hand-Eye Coordination</a></li>
+<li><a href="#memory">Memory</a></li>
+<li><a href="#reasoning">Reasoning</a></li>
+<li><a href="#eye">Eye</a>
+<ul>
+<li><a href="#retinal-processing">Retinal Processing</a></li>
+<li><a href="#colour-perception">Colour perception</a></li>
+<li><a href="#laterial-inhibition">Laterial Inhibition</a></li>
+</ul></li>
+<li><a href="#perceiving-perspective">Perceiving Perspective</a></li>
+</ul></li>
+<li><a href="#computer-graphics">Computer Graphics</a>
+<ul>
+<li><a href="#d-graphics">3D Graphics</a></li>
+<li><a href="#photorealism">Photorealism</a>
+<ul>
+<li><a href="#techiques">Techiques</a></li>
+</ul></li>
+<li><a href="#non-photorealism">Non-photorealism</a></li>
+</ul></li>
+<li><a href="#chart-selection">Chart selection</a>
+<ul>
+<li><a href="#data-visualization-framework">Data Visualization Framework</a>
+<ul>
+<li><a href="#data-layer">Data Layer</a></li>
+<li><a href="#mapping-layer">Mapping Layer</a></li>
+<li><a href="#graphics-layer">Graphics Layer</a></li>
+</ul></li>
+<li><a href="#data-types">Data types</a></li>
+<li><a href="#mapping">Mapping</a></li>
+<li><a href="#charts">Charts</a></li>
+<li><a href="#packing">Packing</a></li>
+<li><a href="#parallel-coordinates">Parallel Coordinates</a></li>
+</ul></li>
+<li><a href="#interactive-dynamics-visually-ordering-data">Interactive Dynamics (Visually Ordering Data)</a>
+<ul>
+<li><a href="#data-view-specification">Data &amp; view specification</a>
+<ul>
+<li><a href="#visualize-data-by-choosing-visual-encodings">Visualize data by choosing visual encodings</a></li>
+<li><a href="#sort">Sort</a></li>
+<li><a href="#stacked-bar-charts">Stacked Bar charts</a></li>
+</ul></li>
+<li><a href="#view-manipulation-manipulating-a-data-visualization">View Manipulation (Manipulating a data visualization)</a></li>
+<li><a href="#process-provenance">Process &amp; Provenance</a></li>
+</ul></li>
+<li><a href="#visualizing-multi-dimensional-data">Visualizing Multi-dimensional data</a>
+<ul>
+<li><a href="#dimensionality-reduction">Dimensionality Reduction</a>
+<ul>
+<li><a href="#principal-component-analysis">Principal Component Analysis</a></li>
+<li><a href="#multidimensional-scaling-mds">Multidimensional Scaling (MDS)</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#visualizing-relationships">Visualizing relationships</a>
+<ul>
+<li><a href="#graph-and-network">Graph and Network</a></li>
+<li><a href="#force-directed-layout">Force Directed Layout</a>
+<ul>
+<li><a href="#planar-graph-embedding">Planar graph embedding</a></li>
+<li><a href="#gem">GEM</a></li>
+</ul></li>
+<li><a href="#centralities">Centralities</a></li>
+<li><a href="#edge-bundles">Edge Bundles</a>
+<ul>
+<li><a href="#community-discovery">Community Discovery</a></li>
+</ul></li>
+<li><a href="#tree-maps">Tree Maps</a></li>
+</ul></li>
+<li><a href="#visualizing-information">Visualizing Information</a>
+<ul>
+<li><a href="#schneidermans-mantra">Schneiderman’s Mantra</a>
+<ul>
+<li><a href="#overview-first">Overview First</a></li>
+<li><a href="#zoom">Zoom</a></li>
+<li><a href="#filter">Filter</a></li>
+<li><a href="#details-on-demand">Details on Demand</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#dashboard-design">Dashboard design</a>
+<ul>
+<li><a href="#building-a-wdi-dashboard">Building a WDI Dashboard</a></li>
+<li><a href="#dashboard-layout-navigation">Dashboard Layout &amp; Navigation</a></li>
+<li><a href="#cross-filtering">Cross Filtering</a></li>
+<li><a href="#brushing">Brushing</a></li>
+</ul></li>
+<li><a href="#interactive-storytelling">Interactive Storytelling</a>
+<ul>
+<li><a href="#modes-of-visualization">Modes of visualization</a></li>
+</ul></li>
+<li><a href="#web-page-programming">Web page programming</a>
+<ul>
+<li><a href="#html-css-javascript">HTML &amp; CSS &amp; Javascript</a></li>
+<li><a href="#dom-document-object-model">DOM (Document object model)</a></li>
+<li><a href="#svg-scalable-vector-graphics">SVG (Scalable vector graphics)</a></li>
+</ul></li>
+<li><a href="#d3-data-driven-documents">D3 (Data-Driven Documents)</a>
+<ul>
+<li><a href="#join">Join</a></li>
+<li><a href="#selection-methods">Selection Methods</a></li>
+</ul></li>
+<li><a href="#d3-chart-helpers">D3 Chart helpers</a>
+<ul>
+<li><a href="#scales">Scales</a></li>
+<li><a href="#axes">Axes</a></li>
+<li><a href="#pie-chart">Pie-chart</a></li>
+</ul></li>
+<li><a href="#event-based-programming">Event-based programming</a>
+<ul>
+<li><a href="#interactive-computing">Interactive Computing</a></li>
+<li><a href="#mvc">MVC</a></li>
+<li><a href="#event-callback">Event callback</a></li>
+<li><a href="#js-execution">JS Execution</a></li>
+</ul></li>
+<li><a href="#interactive-dynamic-web-pages">Interactive &amp; Dynamic Web Pages</a>
+<ul>
+<li><a href="#web-page-interaction-design-specific-for-web">Web page interaction design (specific for web)</a></li>
+<li><a href="#d3-event-processing">D3 Event Processing</a></li>
+<li><a href="#tooltips">Tooltips</a></li>
+<li><a href="#d3-graph">D3 Graph</a>
+<ul>
+<li><a href="#force-directed-layout-1">Force directed layout</a></li>
+<li><a href="#dynamic-update-graph">Dynamic Update Graph</a></li>
+</ul></li>
+<li><a href="#d3-transitions">D3 Transitions</a></li>
+</ul></li>
+<li><a href="#narrative-structure">Narrative Structure</a>
+<ul>
+<li><a href="#elements-of-the-visual-narrative">Elements of the Visual Narrative</a></li>
+<li><a href="#elements-of-narrative-structure">Elements of Narrative Structure</a></li>
+<li><a href="#narrative-layouts">Narrative Layouts</a></li>
+</ul></li>
+<li><a href="#effective-structures-for-narrative-visualization">Effective Structures for narrative visualization</a>
+<ul>
+<li><a href="#narrative-spectrum">Narrative Spectrum</a>
+<ul>
+<li><a href="#martini-glass">Martini Glass</a></li>
+<li><a href="#interactive-slideshow">Interactive Slideshow</a></li>
+<li><a href="#drill-down-story">Drill down story</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#creating-a-narrative-visualization">Creating a Narrative Visualization</a>
+<ul>
+<li><a href="#model-for-narrative-visualization">Model for Narrative Visualization</a></li>
+<li><a href="#tableau-narrative-visualization">Tableau narrative visualization</a></li>
+</ul></li>
+<li><a href="#declarative-visualization">Declarative Visualization</a>
+<ul>
+<li><a href="#the-grammar-of-graphics">The grammar of graphics</a></li>
+<li><a href="#declarative-programming">Declarative Programming</a></li>
+</ul></li>
+<li><a href="#declarative-visualization-languages">Declarative Visualization Languages</a>
+<ul>
+<li><a href="#vega">Vega</a>
+<ul>
+<li><a href="#vega-chart">Vega chart</a></li>
+<li><a href="#reactive-vega">Reactive Vega</a></li>
+<li><a href="#vega-lite">Vega-Lite</a></li>
+</ul></li>
+<li><a href="#ellipsis">Ellipsis</a></li>
+</ul></li>
+<li><a href="#js-data-structures">JS Data structures</a></li>
+<li><a href="#d3-references">D3 References</a></li>
+<li><a href="#js-debugging">JS Debugging</a>
+<ul>
+<li><a href="#js">JS</a></li>
+<li><a href="#chrome">Chrome</a></li>
+<li><a href="#other">Other</a></li>
 </ul></li>
 </ul>
 </div>
@@ -54,9 +291,15 @@
 <ul>
 <li>First line consists of field names</li>
 </ul></li>
+<li>Dimension
+<ul>
+<li>Independent variable</li>
+</ul></li>
 <li>Measures:
 <ul>
 <li>Values, either quatitative or qualitative, over dimensions such as time, country</li>
+<li>Note that year is a qualitative measure</li>
+<li>Dependent variable</li>
 </ul></li>
 <li>Indicator
 <ul>
@@ -69,14 +312,32 @@
 <li>In tableau, 2 options to display population over year
 <ol type="1">
 <li>We can put measure values as the column and measure names as the row to display a 2-D diagram of the measure</li>
-<li>Pivoting: in dataset page, we can drag all columns (as the row) and select <code>pivot</code>, which does a transpose of the data from the columns to the row</li>
+<li>Pivoting: in dataset page, we can drag all columns (as the row) via column names, right click, and select <code>pivot</code>, which does a transpose of the data from the columns to the row
+<ul>
+<li>The previous measures of the pivotted fields become dimensions in the new table</li>
+</ul></li>
 </ol></li>
 <li>Pivoting reshapes the data to make it easier for query and visualization</li>
+<li>When pivot 3 fields
+<ul>
+<li>e.g. <code>Measure A, Measure B, Measure C, year1, year2, year3</code> -&gt; 3 rows with <code>year1, year2, year3</code> as the first entry in the row</li>
+<li>this replaces each record in the previous table with 3 records in the new table
+<ul>
+<li>each of 3 new records would have have the 3 pivotted fields, but would instead of have a new field indicating the preivous records’ field name and the second new field indicating the previous record’s field value.</li>
+</ul></li>
+<li>number of records will * 3</li>
+</ul></li>
 </ul>
 <h3 id="table-joining">Table Joining</h3>
 <ul>
-<li>Inner join: the union would result in records that have entries presented in both tables</li>
-<li>Left join: the union would be inner join + any other left table entries</li>
+<li>Inner join: the union would result in records that have entries presented in both tables
+<ul>
+<li>e.g. returned result contains entries from both tables containing <code>id</code> that the other table also has</li>
+</ul></li>
+<li>Left join: the union would be inner join + any other left table entries
+<ul>
+<li>e.g. returns all left table entries + right entries that share the same <code>id</code> with the left table</li>
+</ul></li>
 <li>Right join: the union would be inner join + any other right table entries</li>
 <li>Outer join: the union would be all records from both tables</li>
 </ul>
@@ -87,23 +348,1515 @@
 <li>way to combine measurements into a simpler form</li>
 <li>typically reduces dimensions</li>
 </ul></li>
-<li>Quantitative
+<li>The attribute function ATTR() checks to make sure that only one value for a measure is reported by the query. (However, that one value could be reported multiple times.) The attribute function is not projecting multiple values into a single value as an aggregation would, because if there were multiple different values present, the attribute function would result in the non-numeric asterisk character.</li>
+</ul>
+<h2 id="data-as-variables">Data as Variables</h2>
+<ul>
+<li>Independent variables
+<ul>
+<li>When Independent Variables change, they can have an effect on Dependent Variables</li>
+</ul></li>
+<li>Dependent variables</li>
+</ul>
+<h2 id="aggregation">Aggregation</h2>
 <ul>
 <li>e.g. sum, mean, median, min, max, variance</li>
-<li>Count: converts ordinal / nominal data into quantitative data</li>
-</ul></li>
-<li>Binning: discretizes quantitative data into ordinal / nominal data
+</ul>
+<h3 id="tableau-example">Tableau Example</h3>
+<p>The LOD expression “Include [Country], AVG([Value])” means that the country dimension is no longer part of the AVG([Value]) aggregation, so a separate AVG() aggregation is computed for each country that computes its average value</p>
+<h2 id="count">Count</h2>
+<ul>
+<li>Converts nominal / ordinal data into quantitative data</li>
+</ul>
+<h2 id="binning">Binning</h2>
+<ul>
+<li>discretizes quantitative data into ordinal / nominal data
 <ul>
 <li>from continuous to discrete</li>
 <li>e.g. <code>pandas.cut</code></li>
+<li>e.g. create a bar chart to estimate a continuous function</li>
 </ul></li>
 </ul>
+<h2 id="visualizating-different-data">Visualizating different data</h2>
+<ol type="1">
+<li>2 quantitative: scatterplots</li>
+<li>1 quantitative 1 ordinal: bar chart</li>
+<li>2 ordinal: table</li>
+</ol>
 <h1 id="visql">VisQL</h1>
 <h2 id="polaris">Polaris</h2>
 <ul>
-<li>Designed to improve the UI into the data</li>
+<li>Designed to improve the interactive UI into the data</li>
 <li>Built on pivot tables, user selected rows and columns</li>
+<li>Shelves: can help group and sort the data, and they can control which fields are being plotted horizontally, vertically, and which fields are being encoded as marks.</li>
 </ul>
+<h2 id="table-algebra">Table Algebra</h2>
+<ul>
+<li>e.g. records: A = {a1, a2, a3}, B = {b1, b2, b3}</li>
+<li>Cross Product
+<ul>
+<li>{a1b1, a1b2, a1b3, a2b1, …, a3b3}</li>
+</ul></li>
+<li>Nesting
+<ul>
+<li>Cross product but only keeping the records where there exists an attribute / element that is presented in both set A and set B</li>
+</ul></li>
+</ul>
+<h2 id="query">Query</h2>
+<ul>
+<li><code>SELECT * Where {filters}</code></li>
+<li>Sort: <code>ORDER BY</code></li>
+<li>Aggregate filter: <code>HAVING {filters}</code></li>
+</ul>
+<h1 id="human-brain-processor">Human Brain Processor</h1>
+<h2 id="reading">Reading</h2>
+<ul>
+<li>Read in chunks but we don’t perceive it that way</li>
+</ul>
+<h2 id="hearing">Hearing</h2>
+<ul>
+<li>Sound parameters
+<ol type="1">
+<li>Pitch</li>
+<li>Amplitude</li>
+<li>Timbre - sound waveform</li>
+</ol></li>
+<li>Cocktail party effect</li>
+</ul>
+<h2 id="hand-eye-coordination">Hand-Eye Coordination</h2>
+<ul>
+<li>Fitt’s Law: <span class="math display"> T = 600 + 240 * \log(1 + \frac{D}{S}) </span>, where D is distance to target, S is size of the target</li>
+</ul>
+<h2 id="memory">Memory</h2>
+<ul>
+<li>Types
+<ol type="1">
+<li>Sensory memory</li>
+<li>Working memory
+<ul>
+<li>Size: 7 items on avg</li>
+<li>Persistence: ~ 7 secs</li>
+<li>Recency effect</li>
+</ul></li>
+<li>Long term memory
+<ul>
+<li>Types
+<ol type="1">
+<li>Episodic</li>
+<li>Semantic</li>
+</ol></li>
+</ul></li>
+</ol></li>
+<li>How we remember</li>
+<li>How we forget
+<ul>
+<li>Decay
+<ul>
+<li>Jost’s Law</li>
+</ul></li>
+<li>Interference
+<ol type="1">
+<li>Proactive inhibition</li>
+<li>Retroactive inhibition</li>
+<li>Emotion</li>
+</ol></li>
+</ul></li>
+</ul>
+<h2 id="reasoning">Reasoning</h2>
+<ul>
+<li>Happened at cognitive processor</li>
+<li>Types
+<ol type="1">
+<li>Abductive reasoning - speculate what factors are behind the given data (i.e. why)</li>
+<li>Deductive reasoning - logical</li>
+<li>Inductive reasoning - induction
+<ul>
+<li>Inference</li>
+<li>Includes generalization, extrapolation, interpolation</li>
+</ul></li>
+</ol></li>
+</ul>
+<h2 id="eye">Eye</h2>
+<h3 id="retinal-processing">Retinal Processing</h3>
+<ul>
+<li>Photoreceptors
+<ul>
+<li>Rod</li>
+<li>Cone</li>
+</ul></li>
+<li>Ganglions (nerve cells)
+<ul>
+<li>X-cells: detect pattern</li>
+<li>Y-cells: detect movement</li>
+</ul></li>
+<li>Blue wavelength is hard for retina to focus</li>
+</ul>
+<h3 id="colour-perception">Colour perception</h3>
+<ul>
+<li>The “eye colour space” are the 3 “channels” that are passed onto the brain, and the formulas given are how to convert the information from the retina’s 3 channels: R(ed), G(reen), B(lue) into what gets sent into the brain. Those 3 channels that get sent to the brain are: black &lt;=&gt; white which maps to R(ed) + G(reen) from the retine, yellow &lt;=&gt; blue which maps to Y(ellow) - B(lue), and red &lt;=&gt; green which maps to R(ed) - G(reen).</li>
+<li>Human eye have the most difficulty focusing on blue colour
+<ul>
+<li>Because of the chromatic aberration of the eye’s lens, the blue end of the optical spectrum of light tends to focus off the retina.</li>
+</ul></li>
+</ul>
+<h3 id="laterial-inhibition">Laterial Inhibition</h3>
+<ul>
+<li>Horizontal cells accentuate and exaggerates differences in space and time</li>
+<li>That’s why we can pick up changes even not looking at that direction</li>
+<li>It also helps the visual system see and accentuate shapes</li>
+<li>It can also interfere the perception</li>
+</ul>
+<h2 id="perceiving-perspective">Perceiving Perspective</h2>
+<ul>
+<li>Foreshortening
+<ul>
+<li>Different depth perceived differently</li>
+</ul></li>
+<li>Linear Perspective
+<ul>
+<li>Farther -&gt; smaller</li>
+</ul></li>
+<li>Size Constancy</li>
+</ul>
+<h1 id="computer-graphics">Computer Graphics</h1>
+<h2 id="d-graphics">3D Graphics</h2>
+<ul>
+<li>Simulate shapes with vector primitives e.g. triangles
+<ul>
+<li>Convert objects into triangle meshes</li>
+</ul></li>
+<li>Pixel Discretization
+<ul>
+<li>a rasterization process</li>
+</ul></li>
+<li>3D Graphics pipeline
+<ol type="1">
+<li>Vertex processing
+<ul>
+<li>Taking vertices of 3D triangle surfaces and projecting them on an image plane</li>
+</ul></li>
+<li>Rasterization
+<ul>
+<li>Taking 2D triangles from the plane and converting them into pixels</li>
+</ul></li>
+<li>Pixel processing
+<ul>
+<li>figure out colours on each pixel</li>
+</ul></li>
+</ol></li>
+</ul>
+<h2 id="photorealism">Photorealism</h2>
+<h3 id="techiques">Techiques</h3>
+<ol type="1">
+<li>Occulusion
+<ul>
+<li>observing one object blocking another</li>
+<li>strongest clue</li>
+</ul></li>
+<li>Illumination
+<ul>
+<li>shows how the surface is facing the light source (surface orientation)</li>
+<li>also shows the surface material (in terms of light reflection)
+<ul>
+<li>Diffuse -&gt; rough; Specular -&gt; smoothness</li>
+</ul></li>
+</ul></li>
+<li>Shadowing
+<ul>
+<li>Shows position</li>
+<li>Is occlusion of a light source</li>
+</ul></li>
+<li>Perspective
+<ul>
+<li>Size constancy cues - farther objects would be smaller</li>
+</ul></li>
+<li>Stereopsis
+<ul>
+<li>Rendering from 2 different viewpoints; one for each eye</li>
+<li>e.g. VR</li>
+<li>Provides relative cues of distance across an image</li>
+<li>Useful when other cues are not available</li>
+</ul></li>
+</ol>
+<h2 id="non-photorealism">Non-photorealism</h2>
+<ul>
+<li>Relies on psychology of perception</li>
+<li>Non-photorealistic lighting can be used</li>
+<li>Benefits
+<ol type="1">
+<li>Can help visualize cartoons and inter structure</li>
+<li>Easier to communicate shape without complex lighting</li>
+</ol></li>
+</ul>
+<h1 id="chart-selection">Chart selection</h1>
+<h2 id="data-visualization-framework">Data Visualization Framework</h2>
+<h3 id="data-layer">Data Layer</h3>
+<ul>
+<li>Responsibilities
+<ol type="1">
+<li>Getting data</li>
+<li>Data reformatting</li>
+<li>Relating date between different sources</li>
+<li>Analysis / aggregation</li>
+</ol></li>
+</ul>
+<h3 id="mapping-layer">Mapping Layer</h3>
+<ul>
+<li>Converts data into geometric representation</li>
+<li>Data types
+<ul>
+<li>Quantitative: position, length</li>
+</ul></li>
+</ul>
+<h3 id="graphics-layer">Graphics Layer</h3>
+<ul>
+<li>Converts geometry into images</li>
+<li>Colouring</li>
+<li>Managing interactions</li>
+</ul>
+<h2 id="data-types">Data types</h2>
+<ol type="1">
+<li>Qualitative
+<ol type="1">
+<li>Ordinal - discrete and ordered</li>
+<li>Nominal - discrete and unordered (cannot be compared)</li>
+<li>Categories - discrete and unordered
+<ul>
+<li>e.g. nationality, fruits</li>
+<li>Year may be categorized if shouldn’t be visualized in order</li>
+</ul></li>
+</ol></li>
+<li>Quantitative
+<ul>
+<li>Discrete and ordered</li>
+</ul></li>
+<li>Fields
+<ul>
+<li>Continuous and ordered</li>
+<li>e.g. temperature</li>
+<li>Sometimes the dates are ordered but not evenly splitted, in such cases we may treat them as continuous</li>
+</ul></li>
+<li>Cyclic values
+<ul>
+<li>Continuous and unordered (values not comparable)</li>
+<li>e.g. directions, hues</li>
+</ul></li>
+</ol>
+<h2 id="mapping">Mapping</h2>
+<ul>
+<li>Data types</li>
+</ul>
+<ol type="1">
+<li>Quantitative - Position, length, angle</li>
+<li>Ordinal - Position, Density, Saturation</li>
+<li>Nominal - Position, Hue, Texture</li>
+</ol>
+<h2 id="charts">Charts</h2>
+<ul>
+<li>Types
+<ol type="1">
+<li>Bar chart - independent discrete / norminal data + dependent quantitative</li>
+<li>Line chart - indep. continous + dep. continuous</li>
+<li>Scatter plot - 2 indep. continuous</li>
+<li>Gantt chart - indep. continuous + indep. discrete quantitative / nominal</li>
+<li>Table - indep. quantitative / nominal</li>
+</ol></li>
+</ul>
+<h2 id="packing">Packing</h2>
+<ul>
+<li>Cartogram: area of region outline shape scaled by data value
+<ul>
+<li>a distortion of a map of regions by data values associated with those regions.</li>
+<li>Good for nominal value</li>
+</ul></li>
+<li>Choropleth: for ordinal data visualization, colouring the regions on the map with different saturation values and hues would be better than cartogram</li>
+</ul>
+<h2 id="parallel-coordinates">Parallel Coordinates</h2>
+<ul>
+<li>Colinearity can be captured as an intersection</li>
+<li>Problem
+<ol type="1">
+<li>Can only see the pairwise relationship between the axes</li>
+</ol></li>
+</ul>
+<h1 id="interactive-dynamics-visually-ordering-data">Interactive Dynamics (Visually Ordering Data)</h1>
+<h2 id="data-view-specification">Data &amp; view specification</h2>
+<ul>
+<li>Key Approaches
+<ol type="1">
+<li>Visualize data by choosing visual encodings</li>
+<li>Filter</li>
+<li>Sort</li>
+<li>Derive values or models from source data</li>
+</ol></li>
+</ul>
+<h3 id="visualize-data-by-choosing-visual-encodings">Visualize data by choosing visual encodings</h3>
+<ul>
+<li>Visual encoding ways
+<ol type="1">
+<li>horizontal / vertial axis</li>
+<li>size of elements</li>
+<li>color of elements</li>
+</ol></li>
+<li>Interaction can be done by granting users abilities to specify visual encodings</li>
+</ul>
+<h3 id="sort">Sort</h3>
+<h3 id="stacked-bar-charts">Stacked Bar charts</h3>
+<ul>
+<li>Matrix seriation</li>
+<li>Stacked bar chart
+<ul>
+<li>Can help plotting 2 dependent variables</li>
+</ul></li>
+</ul>
+<h2 id="view-manipulation-manipulating-a-data-visualization">View Manipulation (Manipulating a data visualization)</h2>
+<ul>
+<li>What’s view manipulation
+<ul>
+<li>the ability to organize multiple charts into a dashboard</li>
+</ul></li>
+<li>Key Approaches
+<ol type="1">
+<li>Selecting items for further investigation</li>
+<li>Navigating scales from overview to detail
+<ul>
+<li>e.g. zoom / filter</li>
+</ul></li>
+<li>Organizing a dashboard of multiple charts
+<ul>
+<li>Datazen
+<ul>
+<li>a tool that allows you to create multiple charts and drag them interactively into a dashboard</li>
+</ul></li>
+<li>Layout design
+<ul>
+<li>Put different categories of data into different boxes</li>
+</ul></li>
+</ul></li>
+<li>Coordinating views / charts in a dashboard for linked, multi-dimensional exploration
+<ul>
+<li>brushing</li>
+<li>cross-filtering</li>
+</ul></li>
+</ol></li>
+</ul>
+<h2 id="process-provenance">Process &amp; Provenance</h2>
+<ul>
+<li>Key Approaches
+<ol type="1">
+<li>Recording the steps users / analysts have tried towards producing a data visualization
+<ul>
+<li>In tableau, we can record the interaction history</li>
+</ul></li>
+<li>Annotating patterns to document and highlight interesting aspects of the data
+<ul>
+<li>e.g. circle certain items, put box on certain data, add names</li>
+</ul></li>
+<li>Sharing views with others
+<ul>
+<li>enable collaboration</li>
+<li>e.g. Tableau public</li>
+</ul></li>
+<li>Guide users through analysis tasks or stories
+<ul>
+<li>ensure others can reach similar conclusions</li>
+</ul></li>
+</ol></li>
+</ul>
+<h1 id="visualizing-multi-dimensional-data">Visualizing Multi-dimensional data</h1>
+<h2 id="dimensionality-reduction">Dimensionality Reduction</h2>
+<ul>
+<li>find the right two-dimensional subspace of that high-dimensional coordinate data in order to display the data in a more intuitive manner</li>
+</ul>
+<h3 id="principal-component-analysis">Principal Component Analysis</h3>
+<ul>
+<li>Principal Compoennt Analysis is a method of dimensionality reduction</li>
+<li>Identifying the largest magnitude dimensions that affect the result</li>
+<li>Benefits
+<ol type="1">
+<li>helps us find the directions where the data’s varying a lot</li>
+</ol></li>
+<li>Idea: transforms sphere into an ellipsoid via linear algebra / covariance matrix
+<ul>
+<li>Eigenvalue: how ellipsoid is stretched and squashed</li>
+<li>Eigenvector: what direction the stretching and squashing occur in</li>
+<li>Keeps only the eigenvectors corresponding to the largest eigenvalues</li>
+<li>Uses the eigenvectors corresponding to the largest eigenvalues of the covariance matrix of a high dimensional dataset to show the directions in the high dimensional space of the data where the data is varying the most.</li>
+</ul></li>
+<li>Note: it reveals principal directions where the data varies the most, but each one of these directions will not necessarily correspond to a single dimension of the dataset.</li>
+</ul>
+<h3 id="multidimensional-scaling-mds">Multidimensional Scaling (MDS)</h3>
+<ul>
+<li>Another method for dimensionality reduction</li>
+<li>Layout points in a complete graph when you are given the desired distances between the points. The distances between points are perserved</li>
+</ul>
+<h1 id="visualizing-relationships">Visualizing relationships</h1>
+<h2 id="graph-and-network">Graph and Network</h2>
+<ul>
+<li>Types
+<ul>
+<li>Directed / undirected</li>
+<li>Cyclic / acyclic</li>
+<li>Tree
+<ul>
+<li>Minimally connected</li>
+</ul></li>
+<li>Hierarchy
+<ul>
+<li>acyclic directed graph</li>
+<li>this could be a tree, but could also not be</li>
+</ul></li>
+</ul></li>
+<li>Adjacency Matrix</li>
+</ul>
+<h2 id="force-directed-layout">Force Directed Layout</h2>
+<ul>
+<li>each of the nodes is applying a force to the current nodes position to form a layout</li>
+</ul>
+<h3 id="planar-graph-embedding">Planar graph embedding</h3>
+<ul>
+<li>What’s embedding of a graph?
+<ul>
+<li>A different view with same properties</li>
+</ul></li>
+<li>Convert a graph with crossing edges to a planar graph</li>
+<li>Ways
+<ol type="1">
+<li>Tutte’s method
+<ul>
+<li>Adjacency matrix</li>
+<li>Laplacian Matrix</li>
+<li>Solving system of linear equations to embed a planar graph</li>
+</ul></li>
+<li>Iterative method
+<ul>
+<li>can fix certain nodes’ positions and then iteratively calculate the rest of the nodes’ positions by taking the avg of the neighbouring nodes’ positions</li>
+</ul></li>
+</ol></li>
+</ul>
+<h3 id="gem">GEM</h3>
+<h2 id="centralities">Centralities</h2>
+<ul>
+<li>Measures of whether a node is in or close to the center of the graph</li>
+<li>ways of analyzing you know where a node should be positioned in a layout.</li>
+<li>e.g.
+<ol type="1">
+<li>Node degree
+<ul>
+<li>PageRank: number of incoming links</li>
+</ul></li>
+<li>Isolation metric
+<ul>
+<li>Total distance to all other nodes</li>
+<li>Closeness centrality: <span class="math display"> \frac{1}{isolation metric} </span></li>
+</ul></li>
+<li>Betweenness centrality
+<ul>
+<li>portion of all shortest paths between any two nodes that pass through the given node</li>
+<li>high BC -&gt; closer to centre</li>
+</ul></li>
+</ol></li>
+<li>Simplifiation
+<ul>
+<li>Removing edges with lowest BC that don’t disconnect graph results in a tree shaped ‘backbone’</li>
+</ul></li>
+</ul>
+<h2 id="edge-bundles">Edge Bundles</h2>
+<ul>
+<li>Aggregate similar edges into edge bundles (group them together)</li>
+</ul>
+<h3 id="community-discovery">Community Discovery</h3>
+<ul>
+<li>Cluster nodes / edges into communities for finding ‘similar’ edges</li>
+<li>Via removing edges in decreasing BC order (i.e. removes center first)</li>
+</ul>
+<h2 id="tree-maps">Tree Maps</h2>
+<ul>
+<li>Idea
+<ol type="1">
+<li>Converts data to a tree map, which only have values at leaf at the beginning</li>
+<li>Fill values of parent from leaf to root recursively by summing up child node values</li>
+<li>Partition from root and maps quantities to area</li>
+<li>Colour areas to differentiate</li>
+</ol></li>
+<li>Good for visualizing hierarchy information
+<ul>
+<li>e.g. parent - child</li>
+</ul></li>
+<li>Relates region of hierarchy to the region on screen</li>
+</ul>
+<h1 id="visualizing-information">Visualizing Information</h1>
+<h2 id="schneidermans-mantra">Schneiderman’s Mantra</h2>
+<ul>
+<li>Procedure/Practice used for visualizing abstract information from large datasets</li>
+</ul>
+<h3 id="overview-first">Overview First</h3>
+<ul>
+<li>Provides big picture of the entire dataset</li>
+<li>Need to display all data in data sets</li>
+<li>Choose axes that evenly spread out the data
+<ul>
+<li>Can set tight bounds / use log scale to help spread out data</li>
+</ul></li>
+</ul>
+<h3 id="zoom">Zoom</h3>
+<ul>
+<li>Focus on a portion of the plotted data and get more details</li>
+<li>Considered as a filter on the range of values of the row and column fields of a scatterplot.</li>
+<li>2 ways
+<ol type="1">
+<li>Selecting plot data
+<ul>
+<li>Clicking on specific button / area to expand and focus on a specific portion</li>
+<li>Tableau has the functionality to present a zoom control for users to drag an area and zoom in</li>
+<li>When zooming in, the users may lose the context of the data outside of the portion
+<ul>
+<li>To resolve this, we can use lens (via magnifying and distortion) to let users be able to see both focus and context</li>
+<li>Types of lens
+<ol type="1">
+<li>Zoom lens</li>
+<li>Fisheye distortion lens</li>
+</ol></li>
+<li>Tools
+<ol type="1">
+<li>D3 Javascript library</li>
+</ol></li>
+</ul></li>
+</ul></li>
+<li>Expanding axis fields</li>
+</ol></li>
+</ul>
+<h3 id="filter">Filter</h3>
+<ul>
+<li>Filter out data based on specific attributes</li>
+<li>In Tableau, we can drag the attributes into the filter box</li>
+</ul>
+<h3 id="details-on-demand">Details on Demand</h3>
+<ul>
+<li>Provides details when users requested</li>
+<li>Ways
+<ol type="1">
+<li>Tooltip: pop-up window when mouse is over the data point</li>
+<li>Field Selection: click and show</li>
+</ol></li>
+</ul>
+<h1 id="dashboard-design">Dashboard design</h1>
+<ul>
+<li>Why Dashboard?
+<ul>
+<li>Visually organize the charts so the viewer can better find and understand the data through multiple charts.</li>
+</ul></li>
+</ul>
+<h2 id="building-a-wdi-dashboard">Building a WDI Dashboard</h2>
+<ul>
+<li>Tableau has the functionality of selecting in one graph also highlighting the same group in the other graph</li>
+</ul>
+<h2 id="dashboard-layout-navigation">Dashboard Layout &amp; Navigation</h2>
+<ul>
+<li>See <code>View Manipulation</code> section</li>
+</ul>
+<h2 id="cross-filtering">Cross Filtering</h2>
+<ul>
+<li>The same filter is used for multiple charts.</li>
+<li>Benefits
+<ol type="1">
+<li>Controlling the filter through one chart has its effects realized in a second chart.</li>
+</ol></li>
+</ul>
+<h2 id="brushing">Brushing</h2>
+<ul>
+<li>Manipulating a filter in one chart to see its effect in other charts
+<ul>
+<li>e.g. drag data window and see changes in other diagrams</li>
+</ul></li>
+<li>Feels like painting one section of the chart and seeing its effects on another, through an “action” that relates the selections and filters between multiple charts.</li>
+</ul>
+<h1 id="interactive-storytelling">Interactive Storytelling</h1>
+<h2 id="modes-of-visualization">Modes of visualization</h2>
+<ol type="1">
+<li>Interactive visualization (reader-driven)
+<ul>
+<li>This visualization does not contain a narrative component, so it would be used to investigate data to answer a user’s question, but does not tell a specific story.</li>
+<li>Used for discovery</li>
+<li>Renders based on input</li>
+</ul></li>
+<li>Presentation visualization (author-driven)
+<ul>
+<li>Used for communication</li>
+<li>Intended for large group / mass audience</li>
+<li>Does not support user input</li>
+</ul></li>
+<li>Interactive Storytelling (in between interactive visualization and presentation visualization)
+<ul>
+<li>Present via interactive webpages (allows user input; engaging)</li>
+<li>Using data to tell a story; narrative</li>
+<li>Allows viewers to explore further</li>
+<li>A popular medium for data journalism</li>
+</ul></li>
+</ol>
+<h1 id="web-page-programming">Web page programming</h1>
+<h2 id="html-css-javascript">HTML &amp; CSS &amp; Javascript</h2>
+<ul>
+<li>Debugging tips
+<ol type="1">
+<li>Breakpoint</li>
+<li>‘Inspect’ to open developer console</li>
+<li>Use console logs</li>
+</ol></li>
+<li>Javascript basics
+<ul>
+<li>Javascript supports arrays with numerical indices but with arbitrarily typed elements</li>
+</ul>
+<pre><code>var values = [4,8,15,16,23,&#39;forty-two&#39;];</code></pre>
+<ul>
+<li>Object support</li>
+</ul>
+<pre><code>var c1 = {name: &#39;USA&#39;, currency: &#39;dollar&#39;};
+document.write(c1.name);</code></pre></li>
+</ul>
+<h2 id="dom-document-object-model">DOM (Document object model)</h2>
+<ul>
+<li>DOM hierarchy
+<ul>
+<li>document
+<ol type="1">
+<li>html
+<ol type="1">
+<li>head
+<ol type="1">
+<li>title</li>
+</ol></li>
+<li>body
+<ol type="1">
+<li>h tag</li>
+<li>p tag</li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ul></li>
+<li>DOM expressions
+<ol type="1">
+<li><code>document</code> - the main DOM object</li>
+<li><code>getElementById</code>: the method that returns the DOM object corresponding to the HTML element with a given id</li>
+<li><code>innerHTML</code> - method that returns the DOM object corresponding to the text</li>
+</ol></li>
+</ul>
+<h2 id="svg-scalable-vector-graphics">SVG (Scalable vector graphics)</h2>
+<ul>
+<li>Embedded in HTML using the <code>&lt;svg&gt;</code> tag</li>
+<li>Origin: upper left corner of canvas</li>
+<li>Items should be put into <code>&lt;g&gt;</code> tags, which can be used to position</li>
+</ul>
+<h1 id="d3-data-driven-documents">D3 (Data-Driven Documents)</h1>
+<ul>
+<li>A JS library</li>
+<li>Features
+<ol type="1">
+<li>Designed to facilitate interactive data visualization</li>
+<li>Designed to work with DOM and associate HTML element with data
+<ul>
+<li>Adds data to the webpage</li>
+<li>Treats DOM as a ‘database’</li>
+</ul></li>
+<li>Designed to associate each data item with a unique element in the web page</li>
+</ol></li>
+<li>D3 merges DOM with a second database, which is the data to be visualized
+<ul>
+<li>Operator <code>.data(data_array)</code> binds an array of data to an array of elements in DOM</li>
+<li>Operator <code>d3.selectAll(query)</code> results in a database query of the HTML document</li>
+<li>Combinations of the above 2 allow D3 to bind a datum to each mark in a chart
+<ul>
+<li>Datum: individual data array value</li>
+<li>Mark: HTML element</li>
+<li>Chart: HTML document</li>
+</ul></li>
+</ul></li>
+<li>D3 methods often return the input container to support <code>chaining</code></li>
+<li>Functions are objects and can be passed as params</li>
+</ul>
+<h2 id="join">Join</h2>
+<ul>
+<li>Joins
+<ol type="1">
+<li>Natural join == inner join</li>
+<li>Antijoins - values present in one database but not in the other
+<ul>
+<li>A <span class="math display">\rhd</span> B means A - B, i.e. return the entries presented in A but not in B</li>
+</ul></li>
+</ol></li>
+<li>Methods
+<ol type="1">
+<li><code>.select(query) / .selectAll</code> - produces query result</li>
+<li><code>.data(data_array)</code> - adds data to be ready to join with query result</li>
+<li><code>.attr()</code> or other update methods - natural (inner) join</li>
+<li><code>.enter()</code> - access the extra items in data comparing to query result (antijoin)
+<ul>
+<li>i.e. data <span class="math display">\rhd</span> query (presented in data but not in query)</li>
+</ul></li>
+<li><code>.append()</code> - add additional items to query result</li>
+<li><code>.exit()</code> - access the extra items in query result comparing to data (antijoin)
+<ul>
+<li>i.e. query <span class="math display">\rhd</span> data</li>
+</ul></li>
+</ol></li>
+</ul>
+<h2 id="selection-methods">Selection Methods</h2>
+<ul>
+<li>Selection Methods
+<ul>
+<li><code>d3.select(selector)</code></li>
+<li><code>d3.selectAll(a).select(b)</code></li>
+<li><code>d3.selectAll(s).filter(f)</code></li>
+</ul></li>
+<li>Methods on selection result
+<ul>
+<li>operate on each element of the selection
+<ul>
+<li>e.g. <code>d3.selectAll('rect').attr("width", 20)</code></li>
+</ul></li>
+<li>Modification methods
+<ol type="1">
+<li><code>selection.attr</code></li>
+<li><code>selection.classed</code></li>
+<li><code>selection.style</code></li>
+<li><code>selection.text</code></li>
+<li><code>selection.html</code></li>
+</ol></li>
+<li>D3 selection helper
+<ol type="1">
+<li><code>selection.each(f)</code></li>
+</ol></li>
+</ul></li>
+<li>Best practices
+<ol type="1">
+<li>Merge pattern: <code>var join = d3.selectAll().data([]);       join.enter().append().merge(join).attr();       join.exit().remove();</code></li>
+<li>Design to contain no elements that match the selection and then use <code>d3.selectAll('').data().enter().append().attr()</code></li>
+</ol></li>
+</ul>
+<h1 id="d3-chart-helpers">D3 Chart helpers</h1>
+<h2 id="scales">Scales</h2>
+<ul>
+<li>e.g.</li>
+</ul>
+<pre><code>var ys = d3.scaleLinear()
+    .domain([0, 1])
+    .range([500, 0]);</code></pre>
+<ul>
+<li>Color scales: <code>.range(["blue", "orange"])</code></li>
+</ul>
+<h2 id="axes">Axes</h2>
+<pre><code>svg.append(&#39;g&#39;)
+    .attr(&#39;transform&#39;, &#39;translate(&#39; + MARGIN + &#39;,&#39; + MARGIN + &#39;)&#39;)
+    .call(d3.axisLeft(ys)
+        .tickFormat(d3.format(&quot;~s&quot;)))</code></pre>
+<h2 id="pie-chart">Pie-chart</h2>
+<ul>
+<li><code>d3.arc()</code></li>
+<li><code>d3.pie()</code> returns a function that maps data values to arc angles</li>
+<li>Pattern:</li>
+</ul>
+<pre><code>svg.select(...)
+    .data(pie([data]))
+    .enter()
+    .append(&#39;path&#39;)
+        .attr(&#39;d&#39;, arc)</code></pre>
+<h1 id="event-based-programming">Event-based programming</h1>
+<h2 id="interactive-computing">Interactive Computing</h2>
+<ul>
+<li>Computing that involves a user</li>
+<li>Dialog
+<ol type="1">
+<li>user speaks</li>
+<li>computer hears</li>
+<li>computer speaks</li>
+<li>user hears</li>
+</ol></li>
+<li>User interface design
+<ol type="1">
+<li>Task analysis
+<ul>
+<li>Steps
+<ol type="1">
+<li>Study the way a person performs the task</li>
+<li>Decompose the task into individual user steps</li>
+<li>Results in a set of basic actions that may be shared among multiple tasks</li>
+</ol></li>
+</ul></li>
+<li>Dialog design
+<ul>
+<li>Steps
+<ol type="1">
+<li>Determine how the user and computer will interact / communicate</li>
+<li>Choose display elements</li>
+<li>Choose UI widgets</li>
+</ol></li>
+</ul></li>
+</ol></li>
+</ul>
+<h2 id="mvc">MVC</h2>
+<ol type="1">
+<li>Model
+<ul>
+<li>Application
+<ul>
+<li>e.g. Database</li>
+</ul></li>
+<li>Can notify and update the view</li>
+</ul></li>
+<li>View
+<ul>
+<li>display</li>
+</ul></li>
+<li>Controller
+<ul>
+<li>Input device and the system of controlling message passing</li>
+<li>Initiates model and view actions</li>
+<li>Responsible for handling (processing) user inputs as events
+<ul>
+<li>e.g. After certain triggers including click, the controller would capture this as events and then notify model</li>
+</ul></li>
+</ul></li>
+</ol>
+<h2 id="event-callback">Event callback</h2>
+<ul>
+<li>For example, <code>submit()</code> callback function will be registered for certain events and later triggered once receiving the event. e.g. when the button is clicked</li>
+</ul>
+<pre><code>&lt;button onclick=&quot;submit()&quot;&gt;Submit&lt;/button&gt;</code></pre>
+<h2 id="js-execution">JS Execution</h2>
+<ul>
+<li>Single threaded (DOM is not thread safe) event based
+<ul>
+<li>in an infinite loop waiting for events to come in</li>
+</ul></li>
+<li>The call stack (code) gets executed first, and then any event from the event queue gets processed</li>
+<li>Ways to avoid busy waiting on resource loading
+<ol type="1">
+<li>Embed callback function to be executed upon finishing loading
+<ul>
+<li>Problem: too many callbacks</li>
+</ul></li>
+<li><code>d3.csv()</code> returns a Promise object
+<ul>
+<li>Code is run when Promise is constructed</li>
+<li><code>then()</code> clause to execute after Promise is completed</li>
+<li>Problem: still looks ugly if nested <code>then()</code></li>
+</ul></li>
+<li>To wait on a resource to be loaded, use <code>async function() {}</code> and <code>await</code> together
+<ul>
+<li>While awating, JS event loop can handle other events</li>
+</ul></li>
+</ol></li>
+</ul>
+<h1 id="interactive-dynamic-web-pages">Interactive &amp; Dynamic Web Pages</h1>
+<h2 id="web-page-interaction-design-specific-for-web">Web page interaction design (specific for web)</h2>
+<ol type="1">
+<li>Task analysis
+<ul>
+<li>Steps
+<ol type="1">
+<li>Study the way a person performs the task</li>
+<li>Decompose the task into individual user steps</li>
+<li>Define set of actions used to perform the steps</li>
+<li>Same actions may be used in different combinations and different orders for different tasks</li>
+</ol></li>
+</ul></li>
+<li>Dialog design
+<ul>
+<li>Steps
+<ol type="1">
+<li>Determine who initiates the dialog (user / system)</li>
+<li>Connect actions to interface elements
+<ul>
+<li>widget</li>
+<li>event</li>
+<li>display acknowledgement</li>
+</ul></li>
+</ol></li>
+</ul></li>
+</ol>
+<h2 id="d3-event-processing">D3 Event Processing</h2>
+<ul>
+<li>D3 event processor: <code>selection.on(event,listener)</code>
+<ul>
+<li>Event: string event type e.g. “click” / “mouseover”</li>
+<li>Listener: callback function triggered by event:</li>
+</ul>
+<pre><code>function(datum, index, group) {
+    this; // is a pointer to current node (in group) 
+    d3.event; // current event
+}</code></pre></li>
+<li>Demonstrating showing tooltip as well as getting coordinate from event</li>
+</ul>
+<pre><code>&lt;div name=“tooltip” opacity=0&gt;&lt;/div&gt; 
+&lt;script&gt;
+d3.selectAll(“rect”).data(d).enter().append(“rect”)
+    .on(&quot;mouseover&quot;, function(d,i) {
+        tooltip.style(&quot;opacity&quot;, 1)
+            .style(&quot;left&quot;,(d3.event.pageX)+&quot;px&quot;)
+            .style(&quot;top&quot;,(d3.event.pageY)+&quot;px&quot;)
+            .html(&quot;Item #&quot;+i+&quot; is &quot;+d);
+    })</code></pre>
+<h2 id="tooltips">Tooltips</h2>
+<ul>
+<li><code>Affordance</code> - hints in the appearance of an object that imply the object’s function
+<ul>
+<li>e.g. button appears raised to users clues that the button can be pressed</li>
+</ul></li>
+<li>Need to allow users to not click very pricisely on a specific point to bring up the tooltip. How to achieve this?
+<ul>
+<li>A Voronoi cell is all of the points closer to that data point than any other data point
+<ul>
+<li>Similar to neighbour</li>
+<li>As long as the cursor is within the voronoi cell, we can bring up the tooltip</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="d3-graph">D3 Graph</h2>
+<ul>
+<li><code>d3.append('g')</code>
+<ul>
+<li>https://developer.mozilla.org/en-US/docs/Web/SVG/Element/g</li>
+</ul></li>
+</ul>
+<h3 id="force-directed-layout-1">Force directed layout</h3>
+<ul>
+<li>Barnes-Hut approximation takes groups of nodes that are further away and treats them as a single atom.</li>
+<li>e.g.</li>
+</ul>
+<pre><code>var simulation = d3.forceSimulation()
+    .force(&quot;link&quot;, d3.forceLink().distance(75)
+        .id(function(d){ return d.value;})) // spring force
+    .force(&quot;charge&quot;, d3.forceManyBody().strength(-100))  // prevent overlapping force
+    .force(&quot;center&quot;, d3.forceCenter(width / 2, height / 2)); // keeps graph towards middle of display
+
+var nodes = {
+    {&quot;value&quot;:4},
+    {&quot;value&quot;:8}
+};
+
+simulation.nodes(nodes);
+
+var links = [{&quot;source&quot;: 8, &quot;target&quot;: 4}];
+
+simulation.force(&quot;link&quot;).links(links);</code></pre>
+<h3 id="dynamic-update-graph">Dynamic Update Graph</h3>
+<ul>
+<li>Users can use <code>d3.drag()</code> to drag nodes from graphs and all the nodes would be updated dynamically</li>
+</ul>
+<h2 id="d3-transitions">D3 Transitions</h2>
+<ul>
+<li>Dynamically updating the visualization based on data change / chart type change
+<ul>
+<li>Achieved by tick events (internal)</li>
+</ul></li>
+<li>Example</li>
+</ul>
+<pre><code>d3.selectAll().data(data).enter().append(&#39;&#39;)
+    .attr(&#39;height&#39;, 0) // begin
+    .transition().duration(3000) // 3000 ms
+    .attr(&#39;height&#39;, 100) // end</code></pre>
+<h1 id="narrative-structure">Narrative Structure</h1>
+<ul>
+<li>Will learn from field of film making and other methods of storytelling</li>
+<li>Narrative visualization
+<ul>
+<li>Designing a story that viewers walk through in a visual manner</li>
+</ul></li>
+<li>Narrative structure includes
+<ol type="1">
+<li>how to set up your scenes</li>
+<li>how to walk somebody through those scenes</li>
+<li>how to allow someone to wander off into their own scenes</li>
+<li>how to communicate your story to them even if they do wander off.</li>
+</ol></li>
+<li>From film making, scenes are set up for storytelling</li>
+</ul>
+<h2 id="elements-of-the-visual-narrative">Elements of the Visual Narrative</h2>
+<ul>
+<li>Tells how to lay out an individual scene of a narrative visualization</li>
+<li>Elements
+<ol type="1">
+<li>Structure
+<ul>
+<li>How is the data presented in a way that makes sense to the user almost immediately</li>
+<li>Primary goal of the visual structure of a scene
+<ul>
+<li>To help the viewer navigate the scene</li>
+</ul></li>
+<li>Sample structure: title, explanation text, chart, more text.</li>
+</ul></li>
+<li>Highlight
+<ul>
+<li>Directing a user’s attention in a scene
+<ul>
+<li>i.e. let user focus on a particular region</li>
+</ul></li>
+<li>Samples: make certain area brighter, use arrows to point certain points, flash effects, use animation, use different colors</li>
+</ul></li>
+<li>Transition
+<ul>
+<li>Keep the viewer from becoming disoriented while moving from one scene to another</li>
+<li>Example Ways: use the same template / same set of colors / same pattern / same layout / same legends of chart</li>
+</ul></li>
+</ol></li>
+</ul>
+<h2 id="elements-of-narrative-structure">Elements of Narrative Structure</h2>
+<ul>
+<li>Tells how to order the scenes to tell a story</li>
+<li>Elements
+<ol type="1">
+<li>Ordering
+<ol type="1">
+<li>Linear
+<ul>
+<li>a defined sequence
+<ul>
+<li>analogy to video</li>
+</ul></li>
+<li>features
+<ol type="1">
+<li>gives author almost full control over the presentation of the data</li>
+</ol></li>
+</ul></li>
+<li>User-directed
+<ul>
+<li>provides more options to the user</li>
+<li>features
+<ol type="1">
+<li>users would still be somewhat constrained</li>
+<li>gives author a lot of control and ability to deliver the appropriate message</li>
+</ol></li>
+</ul></li>
+<li>Random-access
+<ul>
+<li>Allows user to go in any direction</li>
+<li>Drill down hybrid structure (see below) typically allows random-access</li>
+</ul></li>
+</ol></li>
+<li>Interactivity
+<ol type="1">
+<li>Number of ways that user can manipulate visualization</li>
+<li>How the user learns to manipulate visualization
+<ul>
+<li>Affordance e.g. button appears to be different</li>
+</ul></li>
+</ol></li>
+<li>Messaging
+<ul>
+<li>can use that data to tell a story and you can control what story is being told in the way that you present the data to emphasize some aspect of the data</li>
+<li>The messaging is how those lessons that you’ve learned are communicated to the user and how the user of your system could maybe learn that lesson</li>
+</ul></li>
+</ol></li>
+</ul>
+<h2 id="narrative-layouts">Narrative Layouts</h2>
+<ul>
+<li>Visual Ordering Genres
+<ol type="1">
+<li>Video
+<ul>
+<li>Functionality to pause and play</li>
+<li>Most linear one</li>
+</ul></li>
+<li>Magazine
+<ul>
+<li>Functionality to allow user to choose between reading the text / checking the figures</li>
+<li>Control to bounce back and forth</li>
+</ul></li>
+<li>Comic strip
+<ul>
+<li>the layouts of those frames implying a visual ordering of the scenes of the story that’s being told.</li>
+</ul></li>
+<li>Flow chart
+<ul>
+<li>Visual clues for scenes and using arrows for transitions</li>
+</ul></li>
+<li>Slide show
+<ul>
+<li>Press arrows to see transitions across an ordering (e.g. time, space)</li>
+</ul></li>
+<li>Partitioned poster
+<ul>
+<li>Zoomable interface; user can look into a specific partition</li>
+<li>Most reader driven
+<ul>
+<li>as it creates a structure that allows the viewer to work through its frames in an order determined by the viewer.</li>
+</ul></li>
+</ul></li>
+<li>Annotated chart
+<ul>
+<li>Charts with annotations</li>
+</ul></li>
+</ol></li>
+</ul>
+<h1 id="effective-structures-for-narrative-visualization">Effective Structures for narrative visualization</h1>
+<h2 id="narrative-spectrum">Narrative Spectrum</h2>
+<ul>
+<li>Spectrum
+<ol type="1">
+<li>Author Driven (One end)
+<ul>
+<li>e.g. cinema, commercials</li>
+</ul></li>
+<li>Hybrid structures
+<ol type="1">
+<li>Martini glass</li>
+<li>Interactive slide show</li>
+<li>Drill down story</li>
+</ol></li>
+<li>Reader Driven (Another end)
+<ul>
+<li>e.g. Google, Tableau</li>
+</ul></li>
+</ol></li>
+<li>Attributes
+<ol type="1">
+<li>How message is conveyed?
+<ul>
+<li>Message-focused vs query-focused</li>
+</ul></li>
+<li>Forms of story
+<ul>
+<li>Linear vs free form</li>
+</ul></li>
+<li>How story is driven
+<ul>
+<li>Non-interactive vs interactive</li>
+</ul></li>
+</ol></li>
+</ul>
+<h3 id="martini-glass">Martini Glass</h3>
+<ul>
+<li>Rotated martini glass
+<ul>
+<li>The narrow part is the author driven content</li>
+<li>The wider part is the reader driven content
+<ul>
+<li>e.g. highlighting, filtering, path-choosing</li>
+</ul></li>
+</ul></li>
+<li>Can be seen as a slide show followed by free-form exploration</li>
+<li>e.g.
+<ul>
+<li>House renting websites</li>
+</ul></li>
+</ul>
+<h3 id="interactive-slideshow">Interactive Slideshow</h3>
+<ul>
+<li>Users can navigate between slides and do more interaction with a particular slide if interested</li>
+</ul>
+<h3 id="drill-down-story">Drill down story</h3>
+<ul>
+<li>Can look into the charts and find more details into other scenes</li>
+<li>Quite similar to interactive slideshow. Difference:
+<ul>
+<li>Interactive slideshow only provides drill down opportunity at a particular slide
+<ul>
+<li>Messaging is a bit stronger</li>
+</ul></li>
+<li>Drill down provides an overview and drill down opportunities
+<ul>
+<li>More free-form</li>
+</ul></li>
+</ul></li>
+</ul>
+<h1 id="creating-a-narrative-visualization">Creating a Narrative Visualization</h1>
+<h2 id="model-for-narrative-visualization">Model for Narrative Visualization</h2>
+<ol type="1">
+<li>Scenes
+<ul>
+<li>Best practices
+<ol type="1">
+<li>should follow a template to keep the viewer oriented through transitions</li>
+<li>should follow a template to promote a consistent visual structure</li>
+</ol></li>
+<li>analogy a particular slide in presentation</li>
+<li>typically a single chart</li>
+</ul></li>
+<li>Annotations
+<ul>
+<li>the messaging been drawing out a certain aspect of the data in each scene
+<ul>
+<li>Promotes <code>highlighting</code> from visual narrative</li>
+</ul></li>
+<li>The annotations could be cleared between scenes, but they can also be built up in a sequence towards a conclusion</li>
+<li>Best practices
+<ol type="1">
+<li>use to convey an author’s message</li>
+<li>should follow a template to promote a consistent visual structure</li>
+<li>use to highlight interesting data points in a scene</li>
+</ol></li>
+<li>e.g. annotations on a particular point of interest in a chart</li>
+</ul></li>
+<li>Parameters
+<ul>
+<li>the parameters that are the variables used for the narrative visualization / creating charts</li>
+<li>If certain parameter changes caused other parameters to change, a state machine is formed</li>
+<li>e.g. slide number, current state of the visualization</li>
+</ul></li>
+<li>Triggers
+<ul>
+<li>triggers that are the actions that occur as a result of various interactions / transitions of the scenes.</li>
+<li>can be callback functions</li>
+<li>e.g. if the slide number is x, then change certain variables</li>
+</ul></li>
+</ol>
+<h2 id="tableau-narrative-visualization">Tableau narrative visualization</h2>
+<ul>
+<li>In tableau, narrative visualization is called a story.</li>
+</ul>
+<h1 id="declarative-visualization">Declarative Visualization</h1>
+<h2 id="the-grammar-of-graphics">The grammar of graphics</h2>
+<ul>
+<li>A book by Leland Wilkinson
+<ul>
+<li>Approached the specification of a graph of data as forming a sentence from a grammar</li>
+</ul></li>
+<li>Grammar of graphics
+<ul>
+<li>Chart
+<ol type="1">
+<li>Guide
+<ol type="1">
+<li>Axis
+<ol type="1">
+<li>Rule - line and tick marks</li>
+<li>Scale - min and max values, extent of the axes</li>
+<li>Label of axes</li>
+</ol></li>
+<li>Form
+<ol type="1">
+<li>Line - line of interest in the graph
+<ul>
+<li>e.g. line of best fit</li>
+</ul></li>
+<li>Label - annotation of the line</li>
+</ol></li>
+</ol></li>
+<li>Frame (what’s the data being displayed)
+<ul>
+<li>variables</li>
+</ul></li>
+<li>Graph
+<ol type="1">
+<li>Points (e.g. dots &amp; labels in a scatterplot)
+<ol type="1">
+<li>Symbol e.g. dot</li>
+<li>Label</li>
+</ol></li>
+<li>Contour (e.g. a colored density plot)
+<ol type="1">
+<li>Color<br />
+</li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ul></li>
+<li>7 basic components
+<ol type="1">
+<li>Data
+<ul>
+<li>assigning variable names to the data in data source</li>
+</ul></li>
+<li>Transformation
+<ul>
+<li>e.g. sorting, figuring a rank of the variables</li>
+</ul></li>
+<li>Frame
+<ul>
+<li>defines what’s being plotted</li>
+<li>Format: <code>&lt;var&gt;&lt;op&gt;&lt;var&gt;</code> the operation is typically cross product</li>
+<li>e.g. a scatterplot with x in x-axis and y in y-axis</li>
+</ul></li>
+<li>Coord
+<ul>
+<li>e.g. linear, polar</li>
+</ul></li>
+<li>Scale
+<ul>
+<li>coord transformation</li>
+<li>e.g. linear, log</li>
+</ul></li>
+<li>Graph
+<ul>
+<li>specifies the points, lines, area chart, bar chart, etc</li>
+<li>also aesthetics</li>
+</ul></li>
+<li>Guides
+<ul>
+<li>annotations e.g. labels on the axis and points</li>
+</ul></li>
+</ol></li>
+</ul>
+<h2 id="declarative-programming">Declarative Programming</h2>
+<ul>
+<li>Imperative programming
+<ul>
+<li>e.g. <code>C</code></li>
+<li>Sequence of commands running from top to bottom</li>
+<li>Each command changes the system state
+<ol type="1">
+<li>Initial state</li>
+<li>Some variables are placed on stack</li>
+<li>Stack variables change</li>
+<li>Function is returned, and stack is cleared</li>
+</ol></li>
+<li>Order of commands matter</li>
+</ul></li>
+<li>Declarative Programming
+<ul>
+<li>Provides a spec on how the desired state of the system would look like
+<ul>
+<li>e.g. how a web page should look like</li>
+</ul></li>
+<li>Order of commands matter less; less control flow</li>
+<li>Looks more like a database</li>
+<li>e.g. <code>html + CSS</code></li>
+</ul></li>
+<li>How to enable interactivity?
+<ul>
+<li>using reactive programming - programming in response to events from e.g. data stream
+<ul>
+<li>i.e. generate callback functions to react to data from data (event) stream</li>
+</ul></li>
+</ul></li>
+</ul>
+<h1 id="declarative-visualization-languages">Declarative Visualization Languages</h1>
+<ul>
+<li>d3 is also declarative</li>
+</ul>
+<h2 id="vega">Vega</h2>
+<ul>
+<li>Features
+<ol type="1">
+<li>Declarative language for visualization</li>
+<li>Coding consists of high level spec</li>
+<li>Implementation: JSON with JS runtime</li>
+</ol></li>
+<li>Event handling
+<ul>
+<li>Declarative stream operations</li>
+</ul></li>
+<li>Examples
+<ul>
+<li>Embedding Vega in wikipedia with <code>&lt;graph&gt;</code></li>
+</ul></li>
+<li>Constraints
+<ol type="1">
+<li>Vega can be quite lengthy for visualization</li>
+</ol></li>
+</ul>
+<h3 id="vega-chart">Vega chart</h3>
+<pre><code>&lt;script src=&quot;.../vega.js&quot;&gt;&lt;/script&gt;
+...
+&lt;script&gt;
+var chart_spec = {
+    &quot;$schema&quot;:&quot;&quot;,
+    &quot;data&quot;: [{&quot;&quot;:&quot;&quot;}]
+    ...
+};
+vega.embed(&quot;#chart&quot;, chart_spec);
+&lt;/script&gt;</code></pre>
+<h3 id="reactive-vega">Reactive Vega</h3>
+<ul>
+<li>E-FRP: Even-Driven Functionally Reactive Programming
+<ul>
+<li>Values / states change only in response to discrete events</li>
+</ul></li>
+<li>Events would be processed as streams
+<ul>
+<li>A stream is a sequence of events of a type</li>
+</ul></li>
+<li>Reactive Vega uses a grammar to specify interactivity
+<ul>
+<li>Format: <code>{element}:{event}[{constraint}]</code></li>
+<li>e.g. Mouse over a rectangle <code>rect:mousemove</code></li>
+<li>e.g. describing a click on a rectangle whose associated data value X = 1: <code>rect:click[X == 1]</code></li>
+</ul></li>
+<li>Event stream feature
+<ol type="1">
+<li>Concatenation - combine multiple event streams into a single stream</li>
+<li>Filtering based on event attributes</li>
+<li>Prefiltering: <code>[a, b] &gt; c</code>
+<ul>
+<li>Creates a stream containing c events that occur between <code>a</code> and <code>b</code> events
+<ul>
+<li>i.e. [‘a’, ‘c’, ‘b’] would not be filtered out</li>
+</ul></li>
+</ul></li>
+<li>Time interval filtering
+<ul>
+<li><code>event-a{x, y}</code> creates a stream of events that occur between x and y interval</li>
+<li>e.g. <code>mousemove{3ms, 5ms}</code></li>
+</ul></li>
+</ol></li>
+<li>Signal
+<ul>
+<li>Variables that change value based on events</li>
+<li>Supports parameters and triggers</li>
+<li><pre><code>  &quot;signals&quot;: [{
+      &quot;name&quot;: &quot;x&quot;,
+      &quot;value&quot;: {},
+      &quot;on&quot;: [{&quot;events&quot;:stream, &quot;update&quot;:&quot;{}&quot;}]
+  }]</code></pre></li>
+</ul></li>
+</ul>
+<h3 id="vega-lite">Vega-Lite</h3>
+<ul>
+<li>Backing points
+<ul>
+<li>A compact description of user selected data items</li>
+<li>Stores the selection without storing all datapoints
+<ul>
+<li>If a range of data items are selected, the backing points can just be the first and last data items of the selected range.
+<ul>
+<li>The first and last items are sufficient to locate the range</li>
+</ul></li>
+<li>Can also be represented by single data point / predicate (boolean) function</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="ellipsis">Ellipsis</h2>
+<ul>
+<li>A declarative DSL (domain specific language) for specifying narrative data visualization
+<ul>
+<li>DSL
+<ul>
+<li>‘Little’ language with few high level commands</li>
+<li>Focused specifically on narrative visualization</li>
+</ul></li>
+</ul></li>
+<li>Based on JS</li>
+<li>Example</li>
+</ul>
+<pre><code>var vis = el.vis(&#39;my-visualization&#39;)
+    .data(data)
+    .stage() // SVG component
+    .state() // parameters</code></pre>
+<ul>
+<li>Grammar
+<ol type="1">
+<li>Scenes (parameter settings, annotation instances, UI control)</li>
+<li>Annotation templates (enter(), transition(), exit())</li>
+<li>Parameters (constants, vars, functions)</li>
+<li>Triggers (parameters, timer, event)</li>
+</ol></li>
+</ul>
+<h1 id="js-data-structures">JS Data structures</h1>
+<h1 id="d3-references">D3 References</h1>
+<h1 id="js-debugging">JS Debugging</h1>
+<h2 id="js">JS</h2>
+<h2 id="chrome">Chrome</h2>
+<ol type="1">
+<li>Problem: CORS errors in the browser
+<ul>
+<li>Solution: go to directory and run <code>python -m http.server</code> and test via <code>http://localhost:8000/index.html</code></li>
+</ul></li>
+<li>Problem: “The deferred DOM Node could not be resolved to a valid node”
+<ul>
+<li>Solution: close the tab and re-open / restart python server</li>
+</ul></li>
+</ol>
+<h2 id="other">Other</h2>
 <div class="status-banner" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; text-align: center;">
     <div style="display: inline-block; padding: 0.8em 2em 0.5em 2em; background: black; color: white; font-size: 2em;">
         Rendering <svg xmlns="http://www.w3.org/2000/svg" height="1.4em" viewbox="0 0 1200 500" style="vertical-align: text-bottom"><title>LaTeX logo</title><g transform="matrix(45 0 0 45 40 40)" fill="white"><path d="M5.5 4.4C5.5 4.4 5.2 4.4 5.2 4.4 5.1 5.4 5 6.7 3.2 6.7 3.2 6.7 2.4 6.7 2.4 6.7 1.9 6.7 1.9 6.6 1.9 6.3 1.9 6.3 1.9 1 1.9 1 1.9 0.6 1.9 0.5 2.9 0.5 2.9 0.5 3.2 0.5 3.2 0.5 3.2 0.5 3.2 0.2 3.2 0.2 2.8 0.2 1.9 0.2 1.5 0.2 1.1 0.2 0.3 0.2 0 0.2 0 0.2 0 0.5 0 0.5 0 0.5 0.2 0.5 0.2 0.5 1 0.5 1 0.6 1 0.9 1 0.9 1 6.2 1 6.2 1 6.6 1 6.7 0.2 6.7 0.2 6.7 0 6.7 0 6.7 0 6.7 0 7 0 7 0 7 5.2 7 5.2 7 5.2 7 5.5 4.4 5.5 4.4z"/><path d="M5.3 0.2C5.3 0 5.2 0 5.1 0 5 0 4.9 0 4.9 0.2 4.9 0.2 3.3 4.2 3.3 4.2 3.2 4.4 3.1 4.7 2.5 4.7 2.5 4.7 2.5 5 2.5 5 2.5 5 4 5 4 5 4 5 4 4.7 4 4.7 3.7 4.7 3.5 4.6 3.5 4.4 3.5 4.3 3.5 4.3 3.6 4.2 3.6 4.2 3.9 3.4 3.9 3.4 3.9 3.4 5.9 3.4 5.9 3.4 5.9 3.4 6.3 4.4 6.3 4.4 6.3 4.4 6.3 4.5 6.3 4.5 6.3 4.7 5.9 4.7 5.8 4.7 5.8 4.7 5.8 5 5.8 5 5.8 5 7.7 5 7.7 5 7.7 5 7.7 4.7 7.7 4.7 7.7 4.7 7.6 4.7 7.6 4.7 7.1 4.7 7.1 4.7 7 4.5 7 4.5 5.3 0.2 5.3 0.2zM4.9 0.9C4.9 0.9 5.8 3.1 5.8 3.1 5.8 3.1 4 3.1 4 3.1 4 3.1 4.9 0.9 4.9 0.9z"/><path d="M13.3 0.2C13.3 0.2 7.2 0.2 7.2 0.2 7.2 0.2 7 2.5 7 2.5 7 2.5 7.3 2.5 7.3 2.5 7.4 0.9 7.6 0.5 9.1 0.5 9.3 0.5 9.5 0.5 9.6 0.6 9.8 0.6 9.8 0.7 9.8 0.9 9.8 0.9 9.8 6.2 9.8 6.2 9.8 6.5 9.8 6.7 8.8 6.7 8.8 6.7 8.4 6.7 8.4 6.7 8.4 6.7 8.4 7 8.4 7 8.8 6.9 9.8 6.9 10.3 6.9 10.7 6.9 11.7 6.9 12.2 7 12.2 7 12.2 6.7 12.2 6.7 12.2 6.7 11.8 6.7 11.8 6.7 10.7 6.7 10.7 6.5 10.7 6.2 10.7 6.2 10.7 0.9 10.7 0.9 10.7 0.7 10.7 0.6 10.9 0.6 11 0.5 11.3 0.5 11.5 0.5 13 0.5 13.1 0.9 13.2 2.5 13.2 2.5 13.5 2.5 13.5 2.5 13.5 2.5 13.3 0.2 13.3 0.2z"/><path d="M18.7 6.7C18.7 6.7 18.4 6.7 18.4 6.7 18.2 8.2 17.9 8.9 16.2 8.9 16.2 8.9 14.9 8.9 14.9 8.9 14.4 8.9 14.4 8.8 14.4 8.5 14.4 8.5 14.4 5.9 14.4 5.9 14.4 5.9 15.3 5.9 15.3 5.9 16.3 5.9 16.4 6.2 16.4 7 16.4 7 16.6 7 16.6 7 16.6 7 16.6 4.4 16.6 4.4 16.6 4.4 16.4 4.4 16.4 4.4 16.4 5.2 16.3 5.5 15.3 5.5 15.3 5.5 14.4 5.5 14.4 5.5 14.4 5.5 14.4 3.2 14.4 3.2 14.4 2.8 14.4 2.8 14.9 2.8 14.9 2.8 16.2 2.8 16.2 2.8 17.7 2.8 18 3.3 18.1 4.7 18.1 4.7 18.4 4.7 18.4 4.7 18.4 4.7 18.1 2.5 18.1 2.5 18.1 2.5 12.5 2.5 12.5 2.5 12.5 2.5 12.5 2.8 12.5 2.8 12.5 2.8 12.7 2.8 12.7 2.8 13.5 2.8 13.5 2.9 13.5 3.2 13.5 3.2 13.5 8.4 13.5 8.4 13.5 8.8 13.5 8.9 12.7 8.9 12.7 8.9 12.5 8.9 12.5 8.9 12.5 8.9 12.5 9.2 12.5 9.2 12.5 9.2 18.2 9.2 18.2 9.2 18.2 9.2 18.7 6.7 18.7 6.7z"/><path d="M21.7 3.1C21.7 3.1 23 1.1 23 1.1 23.3 0.8 23.6 0.5 24.5 0.5 24.5 0.5 24.5 0.2 24.5 0.2 24.5 0.2 22.1 0.2 22.1 0.2 22.1 0.2 22.1 0.5 22.1 0.5 22.5 0.5 22.7 0.7 22.7 0.9 22.7 1 22.7 1.1 22.6 1.2 22.6 1.2 21.5 2.8 21.5 2.8 21.5 2.8 20.2 0.9 20.2 0.9 20.2 0.9 20.1 0.8 20.1 0.8 20.1 0.7 20.4 0.5 20.8 0.5 20.8 0.5 20.8 0.2 20.8 0.2 20.4 0.2 19.7 0.2 19.3 0.2 19 0.2 18.4 0.2 18 0.2 18 0.2 18 0.5 18 0.5 18 0.5 18.2 0.5 18.2 0.5 18.8 0.5 19 0.5 19.2 0.8 19.2 0.8 21 3.6 21 3.6 21 3.6 19.4 6 19.4 6 19.2 6.2 18.9 6.7 17.9 6.7 17.9 6.7 17.9 7 17.9 7 17.9 7 20.3 7 20.3 7 20.3 7 20.3 6.7 20.3 6.7 19.8 6.7 19.7 6.4 19.7 6.2 19.7 6.1 19.7 6.1 19.8 6 19.8 6 21.2 3.9 21.2 3.9 21.2 3.9 22.8 6.3 22.8 6.3 22.8 6.3 22.8 6.3 22.8 6.4 22.8 6.5 22.6 6.7 22.2 6.7 22.2 6.7 22.2 7 22.2 7 22.5 6.9 23.2 6.9 23.6 6.9 24 6.9 24.5 7 24.9 7 24.9 7 24.9 6.7 24.9 6.7 24.9 6.7 24.7 6.7 24.7 6.7 24.2 6.7 24 6.6 23.8 6.3 23.8 6.3 21.7 3.1 21.7 3.1z"/></g></svg> math...

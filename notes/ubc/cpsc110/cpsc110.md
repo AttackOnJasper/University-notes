@@ -1,4 +1,9 @@
 # CPSC 110
+
+## Goal
+- introduce students to a systematic method for solving hard design problems
+	
+
 ## Expressions
 - Format: ({primitive} {expression/value})
 - e.g. `(* (+ 1 2) 5)`, `(sqrt (+ (sqr 3) (sqr 4)))`

@@ -26,34 +26,45 @@
   </script>
 <div id="TOC">
 <ul>
-<li><a href="#fl-studio">FL Studio</a><ul>
-<li><a href="#fl-studio-overview">FL Studio Overview</a><ul>
+<li><a href="#fl-studio-overview">FL Studio Overview</a></li>
 <li><a href="#terminologies">Terminologies</a></li>
-<li><a href="#menu-bar">Menu Bar</a></li>
+<li><a href="#menu-bar">Menu Bar</a>
+<ul>
+<li><a href="#files">Files</a>
+<ul>
+<li><a href="#export">Export</a></li>
+<li><a href="#import-music">Import Music</a></li>
+</ul></li>
+<li><a href="#edits">Edits</a></li>
+<li><a href="#other">Other</a></li>
 </ul></li>
 <li><a href="#playlist">Playlist</a></li>
-<li><a href="#channel-rack">Channel Rack</a><ul>
+<li><a href="#channel-rack">Channel Rack</a>
+<ul>
 <li><a href="#basics">Basics</a></li>
 <li><a href="#instrument-properties">Instrument Properties</a></li>
 </ul></li>
-<li><a href="#piano-roll">Piano Roll</a><ul>
+<li><a href="#piano-roll">Piano Roll</a>
+<ul>
 <li><a href="#basics-1">Basics</a></li>
 <li><a href="#ghost-channel">Ghost channel</a></li>
 <li><a href="#control-panel">Control panel</a></li>
 </ul></li>
-<li><a href="#midi-settings">Midi settings</a><ul>
+<li><a href="#midi-settings">Midi settings</a>
+<ul>
 <li><a href="#general-midi-settings">General midi settings</a></li>
 <li><a href="#drum-mapping">Drum Mapping</a></li>
-</ul></li>
 <li><a href="#mixer">Mixer</a></li>
-<li><a href="#automation-clip">Automation clip</a><ul>
+<li><a href="#automation-clip">Automation clip</a>
+<ul>
 <li><a href="#why-automation-clip">Why automation clip</a></li>
+</ul></li>
 </ul></li>
 <li><a href="#audio-recording">Audio Recording</a></li>
 <li><a href="#plugins">Plugins</a></li>
-<li><a href="#best-practices">Best Practices</a><ul>
+<li><a href="#best-practices">Best Practices</a>
+<ul>
 <li><a href="#audio">Audio</a></li>
-</ul></li>
 </ul></li>
 </ul>
 </div>
@@ -61,61 +72,75 @@
   <ul class="site_links">
     <span class="divider"></span>
   </ul>
-<h1 id="fl-studio">FL Studio</h1>
-<h2 id="fl-studio-overview">FL Studio Overview</h2>
+<h1 id="fl-studio-overview">FL Studio Overview</h1>
 <ul>
 <li>FL Studio is a full-featured music production environment capable of multi-track audio recording, sequencing and mixing for the creation of professional quality music tracks.</li>
 <li>DAW (Digital Audio Workstation)</li>
-<li>UI sections</li>
+<li>UI sections
+<ul>
 <li>Channel Rack</li>
 <li>Playlist</li>
 <li>Piano Roll</li>
 <li>Mixer</li>
 <li>Browser</li>
+</ul></li>
 </ul>
-<h3 id="terminologies">Terminologies</h3>
-<ul>
-<li>VST (Virtual Studio Technology): an audio plug-in software interface that integrates software synthesizers and effects units into digital audio workstations</li>
+<h1 id="terminologies">Terminologies</h1>
+<ol type="1">
 <li>MIDI (Musical Instrument Digital Interface): a technical standard that describes a communications protocol, digital interface, and electrical connectors that connect a wide variety of electronic musical instruments, computers, and related audio devices for playing, editing and recording music.</li>
-</ul>
-<h3 id="menu-bar">Menu Bar</h3>
-<h4 id="export-music">Export music</h4>
+<li>VST (Virtual Studio Technology): an audio plug-in software interface that integrates software synthesizers and effects units into digital audio workstations</li>
+</ol>
+<h1 id="menu-bar">Menu Bar</h1>
+<h2 id="files">Files</h2>
+<h3 id="export">Export</h3>
 <ul>
-<li>Mode</li>
+<li>Modes
+<ol type="1">
 <li>Pattern</li>
 <li>Full song</li>
-<li>Format</li>
+<li>Project Bones</li>
+</ol></li>
+<li>Format
+<ul>
 <li>Wave: minimal impact to original quality</li>
 <li><strong>OGG</strong>: no gap before start &amp; after end</li>
+</ul></li>
 <li>Bit rate: higher -&gt; better quality</li>
 </ul>
-<h4 id="import-music">Import Music</h4>
+<h3 id="import-music">Import Music</h3>
 <ul>
 <li>All music resources can be directly dragged into panels or tracks</li>
+<li>Note for apple music file format m4a, we need to convert it into wav format in the Music app first.</li>
 </ul>
-<h4 id="edits">Edits</h4>
+<h2 id="edits">Edits</h2>
 <ul>
 <li><strong>Undo / Redo</strong> can be done via <code>EDIT</code> (<code>Ctrl + Z</code>) or History panel on the left</li>
 <li><strong>Copy / Paste / Move</strong> can be done via holding <code>shift</code> and drag the pattern or <code>Ctrl + b</code></li>
 </ul>
-<h4 id="other">Other</h4>
+<h2 id="other">Other</h2>
 <ul>
 <li><code>Beats per bar</code> and <code>Steps per beat</code> can be edited in <code>project settings</code></li>
 <li>Tempo helper should be on at the beginning of beat making phase</li>
 </ul>
-<h2 id="playlist">Playlist</h2>
+<h1 id="playlist">Playlist</h1>
 <ul>
-<li>Zoom</li>
+<li>Zoom
+<ul>
 <li>Vertically: small dot button on the top right</li>
 <li>Horizontally: drag the size of the moving bar</li>
-<li>Magnet button: adjust the closest step that a pattern auto attach to after dragging</li>
+</ul></li>
+<li>Magnet button: adjust the closest step that a pattern auto attach to after dragging
+<ul>
 <li><code>None</code> is not recommended</li>
-<li>Knobs value can be changed by dragging up or down</li>
+</ul></li>
+<li>Knobs value can be changed by dragging up or down
+<ul>
 <li>Most knobs and sliders can be linked to external/internal controllers</li>
+</ul></li>
 <li>Slide button: cut a pattern into two</li>
 </ul>
-<h2 id="channel-rack">Channel Rack</h2>
-<h3 id="basics">Basics</h3>
+<h1 id="channel-rack">Channel Rack</h1>
+<h2 id="basics">Basics</h2>
 <ul>
 <li><strong>Kick</strong>: usually the largest drum in the kit. Its located on the floor in front of you and you use a pedal to strike it</li>
 <li><strong>Clap</strong>: whether it’s the recorded sound of humans hitting their hands together or a synthetic equivalent, it’s a percussive sound that cracks, sizzles and repeats throughout clubs the world over</li>
@@ -124,36 +149,38 @@
 <li>Channel Panning tune button: left ear or right ear</li>
 <li>Volume tune button: control volume</li>
 </ul>
-<h3 id="instrument-properties">Instrument Properties</h3>
+<h2 id="instrument-properties">Instrument Properties</h2>
 <ul>
 <li>In button</li>
 <li>Out button</li>
-<li>Envelope pattern: control when would the sound come out</li>
+<li>Envelope pattern: control when would the sound come out
+<ul>
 <li>ATT tune button: will postpone the head to make the sound volume lower</li>
+</ul></li>
 <li>Filter</li>
 </ul>
-<h2 id="piano-roll">Piano Roll</h2>
-<h3 id="basics-1">Basics</h3>
+<h1 id="piano-roll">Piano Roll</h1>
+<h2 id="basics-1">Basics</h2>
 <ul>
 <li>Hold <code>Command</code> and drag to select a group of keys</li>
 <li>Hold <code>Shift</code> and copy a group of keys to the next bar</li>
 <li><code>Fn</code> + <code>delete</code> to remove all selected notes</li>
 </ul>
-<h3 id="ghost-channel">Ghost channel</h3>
-<p>If you wanna see how the other instrument was implemented in the same pattern, 'ghost channel' button can be toggled to reflect that</p>
-<h3 id="control-panel">Control panel</h3>
+<h2 id="ghost-channel">Ghost channel</h2>
+<p>If you wanna see how the other instrument was implemented in the same pattern, ‘ghost channel’ button can be toggled to reflect that</p>
+<h2 id="control-panel">Control panel</h2>
 <ul>
 <li>Velocity: volume of each key</li>
 <li>Pan: If the sound would come from left or right</li>
 </ul>
-<h2 id="midi-settings">Midi settings</h2>
-<h3 id="general-midi-settings">General midi settings</h3>
+<h1 id="midi-settings">Midi settings</h1>
+<h2 id="general-midi-settings">General midi settings</h2>
 <ul>
 <li>Options -&gt; Midi settings</li>
 </ul>
-<h3 id="drum-mapping">Drum Mapping</h3>
+<h2 id="drum-mapping">Drum Mapping</h2>
 <ul>
-<li>FPC -&gt; Click drop down arrow -&gt; 'Map notes for entire bank'</li>
+<li>FPC -&gt; Click drop down arrow -&gt; ‘Map notes for entire bank’</li>
 </ul>
 <h2 id="mixer">Mixer</h2>
 <ul>
@@ -161,29 +188,29 @@
 <li>On the right side bar of mixer view, mixers can be inserted</li>
 <li><strong>Channel Routing</strong> (right-click on a track in mixer): binds multiple channels into one track / following tracks</li>
 <li>Studio separation tune button: make sounds wider or narrower</li>
-<li>Copy mixer effect to another track: right click the mixer, hold and drag 'save presets as ...' to the track</li>
+<li>Copy mixer effect to another track: right click the mixer, hold and drag ‘save presets as …’ to the track</li>
 </ul>
 <h2 id="automation-clip">Automation clip</h2>
 <ul>
-<li>In channel rack's channel properties view, we can add automation clip by right clicking the pitch tune button</li>
+<li>In channel rack’s channel properties view, we can add automation clip by right clicking the pitch tune button</li>
 <li>Updating a point on automation clip will impact this point and left side</li>
 </ul>
 <h3 id="why-automation-clip">Why automation clip</h3>
 <ul>
 <li>Can edit properties as a whole for multiple consistent patterns</li>
 </ul>
-<h2 id="audio-recording">Audio Recording</h2>
+<h1 id="audio-recording">Audio Recording</h1>
 <ul>
 <li>Playlist -&gt; select a track -&gt; right click -&gt; track mode -&gt; audio track</li>
 <li>In Mixer, select input source and disable the hear back in <strong>Master</strong> track</li>
-<li>Turn on 'Recording' and click 'Play' to start</li>
+<li>Turn on ‘Recording’ and click ‘Play’ to start</li>
 </ul>
-<h2 id="plugins">Plugins</h2>
+<h1 id="plugins">Plugins</h1>
 <ul>
-<li>Press 'F8' opens 'plugin picker'</li>
+<li>Press ‘F8’ opens ‘plugin picker’</li>
 </ul>
-<h2 id="best-practices">Best Practices</h2>
-<h3 id="audio">Audio</h3>
+<h1 id="best-practices">Best Practices</h1>
+<h2 id="audio">Audio</h2>
 <div class="status-banner" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; text-align: center;">
     <div style="display: inline-block; padding: 0.8em 2em 0.5em 2em; background: black; color: white; font-size: 2em;">
         Rendering <svg xmlns="http://www.w3.org/2000/svg" height="1.4em" viewbox="0 0 1200 500" style="vertical-align: text-bottom"><title>LaTeX logo</title><g transform="matrix(45 0 0 45 40 40)" fill="white"><path d="M5.5 4.4C5.5 4.4 5.2 4.4 5.2 4.4 5.1 5.4 5 6.7 3.2 6.7 3.2 6.7 2.4 6.7 2.4 6.7 1.9 6.7 1.9 6.6 1.9 6.3 1.9 6.3 1.9 1 1.9 1 1.9 0.6 1.9 0.5 2.9 0.5 2.9 0.5 3.2 0.5 3.2 0.5 3.2 0.5 3.2 0.2 3.2 0.2 2.8 0.2 1.9 0.2 1.5 0.2 1.1 0.2 0.3 0.2 0 0.2 0 0.2 0 0.5 0 0.5 0 0.5 0.2 0.5 0.2 0.5 1 0.5 1 0.6 1 0.9 1 0.9 1 6.2 1 6.2 1 6.6 1 6.7 0.2 6.7 0.2 6.7 0 6.7 0 6.7 0 6.7 0 7 0 7 0 7 5.2 7 5.2 7 5.2 7 5.5 4.4 5.5 4.4z"/><path d="M5.3 0.2C5.3 0 5.2 0 5.1 0 5 0 4.9 0 4.9 0.2 4.9 0.2 3.3 4.2 3.3 4.2 3.2 4.4 3.1 4.7 2.5 4.7 2.5 4.7 2.5 5 2.5 5 2.5 5 4 5 4 5 4 5 4 4.7 4 4.7 3.7 4.7 3.5 4.6 3.5 4.4 3.5 4.3 3.5 4.3 3.6 4.2 3.6 4.2 3.9 3.4 3.9 3.4 3.9 3.4 5.9 3.4 5.9 3.4 5.9 3.4 6.3 4.4 6.3 4.4 6.3 4.4 6.3 4.5 6.3 4.5 6.3 4.7 5.9 4.7 5.8 4.7 5.8 4.7 5.8 5 5.8 5 5.8 5 7.7 5 7.7 5 7.7 5 7.7 4.7 7.7 4.7 7.7 4.7 7.6 4.7 7.6 4.7 7.1 4.7 7.1 4.7 7 4.5 7 4.5 5.3 0.2 5.3 0.2zM4.9 0.9C4.9 0.9 5.8 3.1 5.8 3.1 5.8 3.1 4 3.1 4 3.1 4 3.1 4.9 0.9 4.9 0.9z"/><path d="M13.3 0.2C13.3 0.2 7.2 0.2 7.2 0.2 7.2 0.2 7 2.5 7 2.5 7 2.5 7.3 2.5 7.3 2.5 7.4 0.9 7.6 0.5 9.1 0.5 9.3 0.5 9.5 0.5 9.6 0.6 9.8 0.6 9.8 0.7 9.8 0.9 9.8 0.9 9.8 6.2 9.8 6.2 9.8 6.5 9.8 6.7 8.8 6.7 8.8 6.7 8.4 6.7 8.4 6.7 8.4 6.7 8.4 7 8.4 7 8.8 6.9 9.8 6.9 10.3 6.9 10.7 6.9 11.7 6.9 12.2 7 12.2 7 12.2 6.7 12.2 6.7 12.2 6.7 11.8 6.7 11.8 6.7 10.7 6.7 10.7 6.5 10.7 6.2 10.7 6.2 10.7 0.9 10.7 0.9 10.7 0.7 10.7 0.6 10.9 0.6 11 0.5 11.3 0.5 11.5 0.5 13 0.5 13.1 0.9 13.2 2.5 13.2 2.5 13.5 2.5 13.5 2.5 13.5 2.5 13.3 0.2 13.3 0.2z"/><path d="M18.7 6.7C18.7 6.7 18.4 6.7 18.4 6.7 18.2 8.2 17.9 8.9 16.2 8.9 16.2 8.9 14.9 8.9 14.9 8.9 14.4 8.9 14.4 8.8 14.4 8.5 14.4 8.5 14.4 5.9 14.4 5.9 14.4 5.9 15.3 5.9 15.3 5.9 16.3 5.9 16.4 6.2 16.4 7 16.4 7 16.6 7 16.6 7 16.6 7 16.6 4.4 16.6 4.4 16.6 4.4 16.4 4.4 16.4 4.4 16.4 5.2 16.3 5.5 15.3 5.5 15.3 5.5 14.4 5.5 14.4 5.5 14.4 5.5 14.4 3.2 14.4 3.2 14.4 2.8 14.4 2.8 14.9 2.8 14.9 2.8 16.2 2.8 16.2 2.8 17.7 2.8 18 3.3 18.1 4.7 18.1 4.7 18.4 4.7 18.4 4.7 18.4 4.7 18.1 2.5 18.1 2.5 18.1 2.5 12.5 2.5 12.5 2.5 12.5 2.5 12.5 2.8 12.5 2.8 12.5 2.8 12.7 2.8 12.7 2.8 13.5 2.8 13.5 2.9 13.5 3.2 13.5 3.2 13.5 8.4 13.5 8.4 13.5 8.8 13.5 8.9 12.7 8.9 12.7 8.9 12.5 8.9 12.5 8.9 12.5 8.9 12.5 9.2 12.5 9.2 12.5 9.2 18.2 9.2 18.2 9.2 18.2 9.2 18.7 6.7 18.7 6.7z"/><path d="M21.7 3.1C21.7 3.1 23 1.1 23 1.1 23.3 0.8 23.6 0.5 24.5 0.5 24.5 0.5 24.5 0.2 24.5 0.2 24.5 0.2 22.1 0.2 22.1 0.2 22.1 0.2 22.1 0.5 22.1 0.5 22.5 0.5 22.7 0.7 22.7 0.9 22.7 1 22.7 1.1 22.6 1.2 22.6 1.2 21.5 2.8 21.5 2.8 21.5 2.8 20.2 0.9 20.2 0.9 20.2 0.9 20.1 0.8 20.1 0.8 20.1 0.7 20.4 0.5 20.8 0.5 20.8 0.5 20.8 0.2 20.8 0.2 20.4 0.2 19.7 0.2 19.3 0.2 19 0.2 18.4 0.2 18 0.2 18 0.2 18 0.5 18 0.5 18 0.5 18.2 0.5 18.2 0.5 18.8 0.5 19 0.5 19.2 0.8 19.2 0.8 21 3.6 21 3.6 21 3.6 19.4 6 19.4 6 19.2 6.2 18.9 6.7 17.9 6.7 17.9 6.7 17.9 7 17.9 7 17.9 7 20.3 7 20.3 7 20.3 7 20.3 6.7 20.3 6.7 19.8 6.7 19.7 6.4 19.7 6.2 19.7 6.1 19.7 6.1 19.8 6 19.8 6 21.2 3.9 21.2 3.9 21.2 3.9 22.8 6.3 22.8 6.3 22.8 6.3 22.8 6.3 22.8 6.4 22.8 6.5 22.6 6.7 22.2 6.7 22.2 6.7 22.2 7 22.2 7 22.5 6.9 23.2 6.9 23.6 6.9 24 6.9 24.5 7 24.9 7 24.9 7 24.9 6.7 24.9 6.7 24.9 6.7 24.7 6.7 24.7 6.7 24.2 6.7 24 6.6 23.8 6.3 23.8 6.3 21.7 3.1 21.7 3.1z"/></g></svg> math...

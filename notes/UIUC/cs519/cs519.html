@@ -12,7 +12,60 @@
   <!-- To automatically render math in text elements, include the auto-render extension: -->
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
         onload="renderMathInElement(document.body);"></script>
-  </head>
+    <script type="text/javascript">
+  window.onload = function() {
+    document.getElementsByClassName("status-banner")[0].style.display = "block";
+    setTimeout(function() {
+      renderMathElements(document.getElementsByClassName("math"));
+      document.getElementsByClassName("status-banner")[0].style.display = "none";
+    }, 50); // delay to allow status banner to show
+  }
+
+  function renderMathElements(mathElements) {
+    var mathOptions = {
+      macros: {
+        "\\set": "\\left\\{ #1 \\right\\}",
+        "\\tup": "\\left\\langle #1 \\right\\rangle",
+        "\\abs": "\\left\\lvert #1 \\right\\rvert",
+        "\\floor": "\\left\\lfloor #1 \\right\\rfloor",
+        "\\ceil": "\\left\\lceil#1 \\right\\rceil",
+        "\\mb": "\\mathbb{#1}",
+        "\\rem": "\\operatorname{rem}",
+        "\\ord": "\\operatorname{ord}",
+        "\\sign": "\\operatorname{sign}",
+        "\\imag": "\\bm{i}",
+        "\\dee": "\\mathop{}\\!\\mathrm{d}",
+        "\\lH": "\\overset{\\text{l'H}}{=}",
+        "\\evalat": "\\left.\\left(#1\\right)\\right|",
+        "\\sech": "\\operatorname{sech}",
+        "\\spn": "\\operatorname{Span}",
+        "\\proj": "\\operatorname{proj}",
+        "\\prp": "\\operatorname{perp}",
+        "\\refl": "\\operatorname{refl}",
+        "\\magn": "\\left\\lVert #1 \\right\\rVert",
+        "\\rank": "\\operatorname{rank}",
+        "\\sys": "\\left[ #1 \\mid #2\\space \\right]",
+        "\\range": "\\operatorname{Range}",
+        "\\adj": "\\operatorname{adj}",
+        "\\cof": "\\operatorname{cof}",
+        "\\coord": "{\\left\\lbrack #1 \\right\\rbrack}_{#2}",
+        "\\diag": "\\operatorname{diag}",
+        "\\formlp": "\\operatorname{Form}(\\mathcal{L}^P)",
+
+        // not yet available in KaTeX
+        "\\operatorname": "\\mathop{\\text{#1}}\\nolimits", //wip: spacing is slightly off
+        "\\not": "\\rlap{\\kern{7.5mu}/}", //wip: slash angle is slightly off
+        "\\bm": "\\mathbf", //wip: should be italic, but isn't
+      },
+      throwOnError: false,
+    };
+    for (var i=0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      katex.render(texText.data, mathElements[i], mathOptions);
+    }
+  }
+  </script>
+</head>
 <body>
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -26,15 +79,246 @@
   </script>
 <div id="TOC">
 <ul>
+<li><a href="#course-overview">Course Overview</a>
+<ul>
+<li><a href="#objectives">Objectives</a></li>
+</ul></li>
 <li><a href="#whats-scientific-visualization">What’s Scientific Visualization</a>
 <ul>
 <li><a href="#disambiguate">Disambiguate</a></li>
 <li><a href="#topics">Topics</a></li>
-<li><a href="#why-visualization">Why visualization</a></li>
+<li><a href="#why-visualization">Why visualization</a>
+<ul>
+<li><a href="#when-to-avoid-visualization">When to avoid visualization</a></li>
+</ul></li>
 </ul></li>
 <li><a href="#representing-colors">Representing Colors</a>
 <ul>
 <li><a href="#digital-images">Digital Images</a></li>
+<li><a href="#display-techs">Display techs</a></li>
+<li><a href="#rgb-color-space">RGB Color Space</a>
+<ul>
+<li><a href="#alpha-channel">Alpha Channel</a></li>
+</ul></li>
+<li><a href="#intensity">Intensity</a></li>
+<li><a href="#file-formats">File formats</a></li>
+<li><a href="#hsv-hue-saturation-and-value-color-space">HSV (Hue, saturation and value) Color Space</a>
+<ul>
+<li><a href="#rgb-to-hsv-conversion">RGB to HSV conversion</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#perceptually-defined-color-spaces">Perceptually-defined color spaces</a>
+<ul>
+<li><a href="#perceptual-color-space">Perceptual Color Space</a></li>
+<li><a href="#color-space">Color Space</a></li>
+<li><a href="#cie-rgb-color-space">CIE RGB Color Space</a>
+<ul>
+<li><a href="#cie-xyz-color-space">CIE XYZ Color Space</a></li>
+<li><a href="#cie-xyy-color-space">CIE xyY Color Space</a></li>
+<li><a href="#cie-xy-chormaticity-diagram">CIE xy Chormaticity Diagram</a></li>
+</ul></li>
+<li><a href="#gamma-correction">Gamma Correction</a></li>
+</ul></li>
+<li><a href="#d-cg">3D CG</a>
+<ul>
+<li><a href="#shading">Shading</a>
+<ul>
+<li><a href="#simple-light-source-models">Simple Light Source Models</a></li>
+<li><a href="#phong-reflection-model">Phong Reflection Model</a></li>
+<li><a href="#blinn-phong-reflectance-model">Blinn-Phong Reflectance Model</a></li>
+</ul></li>
+<li><a href="#rendering-and-visualization">Rendering and Visualization</a>
+<ul>
+<li><a href="#hidden-surface-removal">Hidden surface removal</a></li>
+</ul></li>
+<li><a href="#scalar-field">Scalar Field</a>
+<ul>
+<li><a href="#designing-a-color-map-options">Designing a Color Map Options</a></li>
+<li><a href="#colormap-design-advice">Colormap Design Advice</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#data-taxnomy">Data Taxnomy</a>
+<ul>
+<li><a href="#data-types-structural-or-math-interpretation-of-data">Data types (structural or math interpretation of data)</a></li>
+<li><a href="#dataset-types">Dataset types</a>
+<ul>
+<li><a href="#examples">Examples</a></li>
+</ul></li>
+<li><a href="#attribute">Attribute</a>
+<ul>
+<li><a href="#attribute-types">Attribute types</a></li>
+<li><a href="#ordering-direction">Ordering direction</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#interpolation">Interpolation</a>
+<ul>
+<li><a href="#linear-interpolation">Linear Interpolation</a>
+<ul>
+<li><a href="#bilinear-interpolation">Bilinear Interpolation</a></li>
+<li><a href="#trilinear-interpolation">Trilinear Interpolation</a></li>
+</ul></li>
+<li><a href="#barycentric-interpolation">Barycentric Interpolation</a></li>
+<li><a href="#scattered-data-interpolation">Scattered data interpolation</a>
+<ul>
+<li><a href="#shepards-method">Shepard’s Method</a></li>
+<li><a href="#radial-basis-functions">Radial Basis Functions</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#contour">Contour</a>
+<ul>
+<li><a href="#match-square">Match Square</a></li>
+</ul></li>
+<li><a href="#domain-modeling">Domain Modeling</a>
+<ul>
+<li><a href="#domain-discretization">Domain Discretization</a></li>
+<li><a href="#terminology">Terminology</a></li>
+<li><a href="#mesh-grid">Mesh / Grid</a>
+<ul>
+<li><a href="#grid-types">Grid types</a></li>
+</ul></li>
+<li><a href="#surface-mesh">Surface Mesh</a>
+<ul>
+<li><a href="#properties">Properties</a></li>
+<li><a href="#euler-characteristic">Euler Characteristic</a></li>
+</ul></li>
+<li><a href="#data-structure-for-meshes">Data Structure for meshes</a>
+<ul>
+<li><a href="#halfedge-data-structure">Halfedge data structure</a></li>
+</ul></li>
+<li><a href="#terrain-visualization">Terrain Visualization</a>
+<ul>
+<li><a href="#tin-streaming-to-generate-dem">TIN Streaming to generate DEM</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#marching-cubes">Marching Cubes</a>
+<ul>
+<li><a href="#consistency">Consistency</a></li>
+<li><a href="#correctness">Correctness</a></li>
+</ul></li>
+<li><a href="#dual-methods">Dual Methods</a>
+<ul>
+<li><a href="#dual-matching-squares">Dual Matching Squares</a></li>
+</ul></li>
+<li><a href="#volume-rendering">Volume Rendering</a>
+<ul>
+<li><a href="#ray-casting">Ray Casting</a></li>
+<li><a href="#volume-shading">Volume Shading</a></li>
+<li><a href="#compositing">Compositing</a>
+<ul>
+<li><a href="#over-operator">Over Operator</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#week-7-reading---transfer-function">Week 7 Reading - Transfer Function</a>
+<ul>
+<li><a href="#review-on-tf">Review on TF</a></li>
+<li><a href="#star-in-tf">STAR in TF</a></li>
+</ul></li>
+<li><a href="#segmentation">Segmentation</a>
+<ul>
+<li><a href="#thresholding">Thresholding</a>
+<ul>
+<li><a href="#computing-thresholds">Computing thresholds</a></li>
+</ul></li>
+<li><a href="#segmenting-multiple-objects">Segmenting multiple objects</a></li>
+<li><a href="#graph-cuts">Graph Cuts</a>
+<ul>
+<li><a href="#cut">Cut</a></li>
+<li><a href="#interactive-graph-cuts">Interactive graph cuts</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#transfer-functions">Transfer Functions</a>
+<ul>
+<li><a href="#tf-taxonomy">TF Taxonomy</a>
+<ul>
+<li><a href="#d-tf">1D TF</a></li>
+<li><a href="#md-tf">MD TF</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#glyphs-week-8">Glyphs (Week 8)</a>
+<ul>
+<li><a href="#vector-fields">Vector fields</a></li>
+<li><a href="#glyph-intro">Glyph intro</a>
+<ul>
+<li><a href="#simple-glyph-line-segment-i.e.-hedgehog-plot">Simple glyph: line segment (i.e. hedgehog plot)</a></li>
+<li><a href="#other-2d-glyph">Other 2D Glyph</a></li>
+</ul></li>
+<li><a href="#d-visualization">3D Visualization</a></li>
+<li><a href="#problems">Problems</a></li>
+</ul></li>
+<li><a href="#derived-quantities">Derived Quantities</a>
+<ul>
+<li><a href="#divergence">Divergence</a></li>
+<li><a href="#vorticity">Vorticity</a></li>
+</ul></li>
+<li><a href="#numerical-methods-week-9">Numerical Methods (Week 9)</a>
+<ul>
+<li><a href="#eulers-method">Euler’s Method</a></li>
+<li><a href="#numerical-differentiation">Numerical Differentiation</a></li>
+<li><a href="#rk-runge-kutta-methods">RK (Runge-Kutta) Methods</a></li>
+<li><a href="#sampling">Sampling</a>
+<ul>
+<li><a href="#random-rng">Random (RNG)</a></li>
+<li><a href="#jittered">Jittered</a></li>
+<li><a href="#n-rooks">n-rooks</a></li>
+<li><a href="#multi-jittered-sampling">Multi-Jittered Sampling</a></li>
+<li><a href="#hammersley-sampling">Hammersley Sampling</a></li>
+<li><a href="#halton">Halton</a></li>
+<li><a href="#poisson-disk-sampling">Poisson Disk Sampling</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#visualization-techniques">Visualization Techniques</a>
+<ul>
+<li><a href="#displacement-plots">Displacement Plots</a></li>
+<li><a href="#line-integral-convolution">Line Integral Convolution</a>
+<ul>
+<li><a href="#algorithm">Algorithm</a></li>
+</ul></li>
+<li><a href="#stream-objects">Stream Objects</a>
+<ul>
+<li><a href="#stream-line">Stream Line</a></li>
+<li><a href="#stream-tube">Stream Tube</a></li>
+<li><a href="#stream-ribbon">Stream Ribbon</a></li>
+<li><a href="#unsteady-flows">Unsteady Flows</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#tensor-visualization">Tensor Visualization</a>
+<ul>
+<li><a href="#what-are-tensors">What are tensors</a></li>
+<li><a href="#curvature">Curvature</a>
+<ul>
+<li><a href="#d-curvature">3D curvature</a></li>
+</ul></li>
+<li><a href="#diffusion-tensor">Diffusion Tensor</a>
+<ul>
+<li><a href="#simple-visualization">Simple Visualization</a></li>
+<li><a href="#pca-principal-component-analysis">PCA (Principal Component Analysis)</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#fiber-tracking-tractography">Fiber Tracking (Tractography)</a>
+<ul>
+<li><a href="#moving-least-squares">Moving Least Squares</a></li>
+</ul></li>
+<li><a href="#tree-visualization">Tree Visualization</a>
+<ul>
+<li><a href="#rooted-layout">Rooted Layout</a></li>
+<li><a href="#directed-acyclic-graphs-dags">Directed Acyclic Graphs (DAGs)</a></li>
+<li><a href="#radial-node-link-tree">Radial node-link tree</a></li>
+<li><a href="#bubble-layout">Bubble Layout</a></li>
+<li><a href="#cone-tree">Cone Tree</a></li>
+<li><a href="#force-directed-layout">Force-Directed Layout</a></li>
+</ul></li>
+<li><a href="#large-graph-visualization">Large Graph Visualization</a>
+<ul>
+<li><a href="#edge-filtering">Edge Filtering</a></li>
+<li><a href="#edge-bundling">Edge Bundling</a>
+<ul>
+<li><a href="#hierarchical-edge-bundling">Hierarchical Edge Bundling</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#mesh-simplification">Mesh Simplification</a>
+<ul>
+<li><a href="#vertex-clustering">Vertex Clustering</a></li>
+<li><a href="#edge-collapse">Edge Collapse</a></li>
 </ul></li>
 </ul>
 </div>
@@ -42,20 +326,42 @@
   <ul class="site_links">
     <span class="divider"></span>
   </ul>
+<h1 id="course-overview">Course Overview</h1>
+<h2 id="objectives">Objectives</h2>
+<p>Upon completing the course, you will be able to: 1. Make more effective visualizations for data. 1. Be able to choose the most appropriate visualization method for a given type of data and task. 1. Understand how fundamental principles of design and human cognition inform effective visualizations. 1. Utilize the popular scientific visualization application ParaView. 1. Work with Python and PyVista to visualize scientific data. 1. Understand current research directions and open problems in scientific visualization.</p>
 <h1 id="whats-scientific-visualization">What’s Scientific Visualization</h1>
 <h2 id="disambiguate">Disambiguate</h2>
 <ul>
 <li>Data visualization: the techniques used to communicate data or information by encoding it as visual objects</li>
-<li>Information visualization: a process of transforming data and information that are not inherently spatial into a visual form
+<li>Information visualization:
 <ul>
+<li>The idea of displaying information that doesn’t have some inherent spatial meaning to it.</li>
+<li>A process of transforming data and information that are not inherently spatial into a visual form</li>
 <li>The layout wouldn’t be natural (e.g. would not have order in time / space)</li>
 </ul></li>
-<li>Scientific visualization: using visualization techniques to convey information about data that does have some natural spatial component to it</li>
-<li>Visual analytics: science of analytical reasoning faciliated by interactive visual interfaces</li>
+<li>Scientific visualization
+<ul>
+<li>Using visualization techniques to convey information about data that has some natural spatial component to it</li>
+<li>Typically focuses on spatial data generated by scientific processes</li>
+<li>Info. Vis. vs Sci. Vis.
+<ul>
+<li>More similar than different</li>
+<li>Usually scientific visualization means that you’re looking at data from a physical or a metric space</li>
+<li>Usually information visualization means that you’re looking at more abstract data with no natural location.</li>
+</ul></li>
+</ul></li>
+<li>Visual analytics
+<ul>
+<li>The field that’s concerned with developing tools that a human analyst would use, that combines visual elements along with more advanced data mining elements to allow you to analyze data and come up with conclusions.</li>
+<li>science of analytical reasoning faciliated by interactive visual interfaces</li>
+</ul></li>
 </ul>
 <h2 id="topics">Topics</h2>
 <ol type="1">
-<li>Terrain visualization</li>
+<li>Terrain visualization
+<ul>
+<li>It is a fine-grained detailed visualization of some sort of surface</li>
+</ul></li>
 <li>Volume visualization (spatial e.g. core of an object)</li>
 <li>Isosurface
 <ul>
@@ -81,6 +387,7 @@
 </ul></li>
 <li>Communicate ideas and persuade / inspire</li>
 </ol>
+<h3 id="when-to-avoid-visualization">When to avoid visualization</h3>
 <ul>
 <li>Visualization can be misleading<br />
 </li>
@@ -97,29 +404,1900 @@
 <ul>
 <li>i.e. can specify one color on a pixel</li>
 </ul></li>
-<li>Display techs
+</ul>
+<h2 id="display-techs">Display techs</h2>
 <ol type="1">
 <li>LCD: Liquid Crystal Display
 <ul>
-<li>A transmissive technology that uses light-emitting diodes as a backlight or edge light. That light gets filtered through a substrate to produce the colors that you see</li>
+<li>A transmissive technology that uses light-emitting diodes (LED) as a backlight or edge light. That light gets filtered through a substrate to produce the colors that you see</li>
 <li>Multiple layers. Starting from backlight and then filtered to RGB</li>
+<li>Benefits
+<ol type="1">
+<li>Cheaper</li>
+<li>More energy efficient</li>
+</ol></li>
 </ul></li>
 <li>OLED: Organic light emitting diode
 <ul>
 <li>Different type of diode</li>
-<li>Don’t need backlight, the diode is emissive
+<li>Don’t need LED backlight, the diode is emissive
 <ul>
 <li>use mix of blue / orange-yellow OLED emitters</li>
+<li>Benefits
+<ol type="1">
+<li>Deep black levels
+<ul>
+<li>In LCD, the bright light in one pixel may spill over to other pixels, impacting surrounding area’s light</li>
+</ul></li>
+<li>Excellent viewing angles</li>
+<li>Fast refresh</li>
+<li>Can potentially be manufactored on flexible substrates
+<ul>
+<li>Can generate curved displays</li>
+</ul></li>
+</ol></li>
+</ul></li>
+</ul></li>
+</ol>
+<h2 id="rgb-color-space">RGB Color Space</h2>
+<ul>
+<li>Any set of wavelengths can serve as primaries e.g. RGB
+<ul>
+<li>A 3 wavelength color space cannot produce all the colors a person can see</li>
+</ul></li>
+<li>Each pixel color is specified by a tuple of 3 numbers (of the primaries)</li>
+<li>Color channel: each of the R, G, B values</li>
+</ul>
+<h3 id="alpha-channel">Alpha Channel</h3>
+<ul>
+<li>RGB + Alpha</li>
+<li>Alpha means opacity
+<ul>
+<li>1.0 means opaque</li>
+<li>0.0 means transparent</li>
+</ul></li>
+<li>Useful for simulating semi-transparent surfaces and compositing
+<ul>
+<li>e.g. MRI images</li>
+</ul></li>
+</ul>
+<h2 id="intensity">Intensity</h2>
+<ul>
+<li>the value of a channel. Typically between [0.0 - 1.0] - 0.0 means no light, and 1.0 means full intensity</li>
+<li>Display intensity - represented by 8-bit
+<ul>
+<li>Each channel is an 8-bit unsigned int</li>
+<li>Expressions
+<ol type="1">
+<li>Decimal: 0 - 255</li>
+<li>Hex: 0x00, 0xFF</li>
+</ol></li>
+<li>Can convert to 0 - 1 scale by dividing 255</li>
+</ul></li>
+<li>People can percive far more luminance values than 255.</li>
+<li>HDR (high-dynamic range) displays may use different representations to expand the range of luminance values
+<ul>
+<li>e.g. HDR TV uses 10 bits or 12 bits per color channel</li>
+</ul></li>
+<li>In code, we should keep color values as at least 32-bit floats to
+<ol type="1">
+<li>Reduce impact of quantization on the colors
+<ul>
+<li><strong>Quantization</strong>: when we have a large set of values and we’re mapping them into a smaller set of values.
+<ul>
+<li>e.g. From continuous to discrete</li>
+<li>Could happen during displaying images / storing images as files</li>
+</ul></li>
+</ul></li>
+<li>Allow users to query for the original numerical value to prevent quantization / display differences</li>
+</ol></li>
+</ul>
+<h2 id="file-formats">File formats</h2>
+<ul>
+<li>PNG (Portable Network Graphics) formats</li>
+<li>Structure
+<ol type="1">
+<li>Header</li>
+<li>Chunks
+<ul>
+<li>Each chunk data
+<ol type="1">
+<li>Length</li>
+<li>Chunk type (color type)
+<ol type="1">
+<li>grayscale</li>
+<li>truecolor</li>
+<li>Indexed</li>
+<li>Grayscale and alpha</li>
+<li>Truecolor and alpha</li>
+</ol></li>
+<li>Data</li>
+<li>CRC code</li>
+</ol></li>
+</ul></li>
+</ol></li>
+</ul>
+<h2 id="hsv-hue-saturation-and-value-color-space">HSV (Hue, saturation and value) Color Space</h2>
+<ul>
+<li>an alternative color space; equivalent to RGB in the colors that it can represent</li>
+<li>easier to pick colors - UI/UX is a color wheel (used in drawing tools)</li>
+<li>Components
+<ol type="1">
+<li>Hue [0 - 360]: angle about color wheel
+<ul>
+<li>e.g. 0 == red, 60 == yellow, 120 == green, 240 == blue</li>
+</ul></li>
+<li>Saturation [0 - 1]: distance from gray
+<ul>
+<li>distance from the center of wheel</li>
+</ul></li>
+<li>Value [0 - 1]: distance from black
+<ul>
+<li>0 == black, 1 == bright</li>
+<li>changes the whole wheel</li>
+</ul></li>
+</ol></li>
+</ul>
+<h3 id="rgb-to-hsv-conversion">RGB to HSV conversion</h3>
+<pre><code>Let maxRGB = max(R,G,B)
+Let minRGB = min(R,G,B)
+S = (maxRGB - minRGB) / maxRGB
+V = maxRGB
+H depends on which color is maxRGB</code></pre>
+<h1 id="perceptually-defined-color-spaces">Perceptually-defined color spaces</h1>
+<h2 id="perceptual-color-space">Perceptual Color Space</h2>
+<ul>
+<li>Color is a perceptual phenomenon
+<ul>
+<li>instead of a physical property</li>
+</ul></li>
+<li>Light
+<ul>
+<li>Photon energy is propotional to frequency</li>
+<li>Frequency is inversely propotional to</li>
+<li>Intensity is related to the number of photons received</li>
+</ul></li>
+<li>Eye Cone cells
+<ul>
+<li>5 million cells</li>
+<li>150 hues; can separate 7 million shades of color</li>
+<li>Types
+<ol type="1">
+<li>L cone: sensitivity on yellow or red
+<ul>
+<li>63%</li>
+</ul></li>
+<li>M cone: sensitivity on green
+<ul>
+<li>31%</li>
+</ul></li>
+<li>S cone: sensitivity on blue
+<ul>
+<li>6%</li>
+</ul></li>
+</ol></li>
+</ul></li>
+<li>Eye Rod
+<ul>
+<li>measures intensity; perception of brightness</li>
+<li>80 million</li>
+<li>sensitive, shut down in daylight</li>
+</ul></li>
+<li><span class="math display"> V(\lambda) </span> represents luminosity</li>
+<li>Metamor
+<ul>
+<li>Same perceived color from different distributions</li>
+</ul></li>
+</ul>
+<h2 id="color-space">Color Space</h2>
+<ul>
+<li>A way to specify color</li>
+<li>A color corresponds to some stimulation of L, M, S cones</li>
+<li>To create a color space, given there’s no wavelength stimulates only 1 cone, we need a mixture of wavelengths
+<ul>
+<li>Steps
+<ol type="1">
+<li>Choose 3 discrete wavelengths as primaries</li>
+<li>Mixing 3 wavelengths at different intensities</li>
+</ol></li>
+</ul></li>
+</ul>
+<h2 id="cie-rgb-color-space">CIE RGB Color Space</h2>
+<ul>
+<li>Primaries
+<ol type="1">
+<li>blue</li>
+<li>green</li>
+<li>red</li>
+</ol></li>
+<li>Based on color matching experiment. Contains negative values.</li>
+</ul>
+<h3 id="cie-xyz-color-space">CIE XYZ Color Space</h3>
+<ul>
+<li>Uses linear transformation to remove negative values.</li>
+</ul>
+<h3 id="cie-xyy-color-space">CIE xyY Color Space</h3>
+<ul>
+<li>Use normalized chromaticity values on top of XYZ color space.</li>
+<li>Conversion
+<ul>
+<li><span class="math display"> x = \frac{X}{X+Y+Z} </span></li>
+<li><span class="math display"> y = \frac{Y}{X+Y+Z} </span></li>
+<li><span class="math display"> Y = Y </span></li>
+</ul></li>
+</ul>
+<h3 id="cie-xy-chormaticity-diagram">CIE xy Chormaticity Diagram</h3>
+<ul>
+<li>Depicts all colours visible to an average human</li>
+<li>Horsehoe shape</li>
+<li>Boundary is the spectral locus, which consists of all colors associated with a single wavelength (monospectral light)</li>
+<li>You are seeing the chormaticity diagram shown on a computer screen, which means it was generated using the sRGB color space. Since the sRGB color space cannot display all possible colors in the xyY color space, that means some of the colors shown in the image are incorrectly represented.</li>
+</ul>
+<h2 id="gamma-correction">Gamma Correction</h2>
+<ul>
+<li>RGB gamma correction: <span class="math display"> f(c) = c^{\frac{1}{\gamma}}</span></li>
+<li>sRGB gamma correction: <span class="math display"> f(c) = 1.055c^{\frac{1}{\gamma}} - 0.055 </span></li>
+</ul>
+<h1 id="d-cg">3D CG</h1>
+<h2 id="shading">Shading</h2>
+<ul>
+<li><strong>Shading</strong> the process of determining what colors we’re going to use on the pixels when we render them</li>
+</ul>
+<h3 id="simple-light-source-models">Simple Light Source Models</h3>
+<ol type="1">
+<li>Point source
+<ul>
+<li>e.g. lamp</li>
+</ul></li>
+<li>Directional source
+<ul>
+<li>e.g. sunlight to earth</li>
+</ul></li>
+<li>Ambient light</li>
+</ol>
+<h3 id="phong-reflection-model">Phong Reflection Model</h3>
+<ul>
+<li>A simple model that can be computed rapidly</li>
+<li>Components
+<ol type="1">
+<li>Diffuse - rough surface</li>
+<li>Specular - smooth surface</li>
+<li>Ambient</li>
+</ol></li>
+<li>Vectors from a point on surface
+<ol type="1">
+<li>L - To light</li>
+<li>V - To viewer</li>
+<li>N - Normal vector</li>
+<li>R - To perfect reflector</li>
+</ol></li>
+<li>Summing up 3 components would give the colours to represent the light reflected in RGB values
+<ul>
+<li><span class="math display"> I = k_ai_a + \sum_{m \in lights} (k_d(L_m * N)i_{m,d} + k_s(V \dot R_m)^ai_{m,s}) </span></li>
+</ul></li>
+<li>An attenuation factor can be applied to the diffuse and specular terms</li>
+</ul>
+<h3 id="blinn-phong-reflectance-model">Blinn-Phong Reflectance Model</h3>
+<ul>
+<li>Utilized a normalized halfway vector between viewer and light
+<ul>
+<li><span class="math display"> H = \frac{L + V}{|L + V|}</span></li>
+</ul></li>
+<li>Replaces <span class="math display">(V \dot R)^a</span> with <span class="math display">(N \dot H)^b</span>
+<ul>
+<li>Exponent b ccan be picked to match what users want</li>
+<li>High exponent b would let Blinn-Phong look the same as Phong</li>
+</ul></li>
+<li>Advantages
+<ol type="1">
+<li>More efficient operations</li>
+<li>Closer to physical lighting</li>
+</ol></li>
+</ul>
+<h2 id="rendering-and-visualization">Rendering and Visualization</h2>
+<ul>
+<li>Projection</li>
+<li>Shading</li>
+</ul>
+<h3 id="hidden-surface-removal">Hidden surface removal</h3>
+<ul>
+<li>HSR determines what objects are in front of other objects in the scene and occlude those objects.</li>
+<li>How it’s been determined?
+<ol type="1">
+<li><strong>Z-buffer</strong> a 2D array of Z values on each pixels being displayed</li>
+<li>Fragments will be iterated to record Z values on the 2D array if the Z values are smaller than the ones currently in the array entries
+<ol type="1">
+<li>i.e. the part of the fragment with the least Z-values is retained</li>
+</ol></li>
+</ol></li>
+<li>Z-fighting
+<ul>
+<li>The engine fails to determine which surface is closest</li>
+<li>occurs when surfaces are close to co-planer (i.e. almost on the same plane)</li>
+<li><span class="math display"> \delta z = \frac{f - n}{B} </span></li>
+<li>Ways to fix?
+<ol type="1">
+<li>Separate the surfaces apart</li>
+<li>Move the near and far planes closer s.t. delta Z (bucket depth) would be smaller</li>
+</ol></li>
+</ul></li>
+</ul>
+<h2 id="scalar-field">Scalar Field</h2>
+<ul>
+<li>A scalar is a single quantity (a number)</li>
+<li>A <strong>scalar field</strong> assigns a scalar to every point in a given space</li>
+<li>Pseudo-coloring</li>
+<li>Choropleth</li>
+<li><strong>Contour Lines</strong> are lines in which the function has a constant value and that banding then allows people to better localize the values that they’re looking</li>
+</ul>
+<h3 id="designing-a-color-map-options">Designing a Color Map Options</h3>
+<ol type="1">
+<li>Color Table
+<ul>
+<li>like a hashtable where key is number and value is color</li>
+<li>Suitable for small set of keys</li>
+</ul></li>
+<li>Transfer Function
+<ul>
+<li>More common approach; breaks up colors into RGB scalars</li>
+<li>A <strong>Transfer Function</strong> defines colours at certain scalar values
+<ul>
+<li>The points are called knots</li>
+<li>Then interpolation is performed to decide and assign colors to the knots</li>
+</ul></li>
+</ul></li>
+</ol>
+<h3 id="colormap-design-advice">Colormap Design Advice</h3>
+<ol type="1">
+<li>Design for accessibility - consider colorblind</li>
+<li>Decide whether to use diverging colormap based on the data set</li>
+<li>See if audience has a standard e.g. geography</li>
+<li>Perceptually uniform colormap typically is a good choice</li>
+</ol>
+<h1 id="data-taxnomy">Data Taxnomy</h1>
+<h2 id="data-types-structural-or-math-interpretation-of-data">Data types (structural or math interpretation of data)</h2>
+<ol type="1">
+<li>Items</li>
+<li>Attributes
+<ul>
+<li>Properties of items e.g. measures, observations</li>
+</ul></li>
+<li>Links
+<ul>
+<li>Express relationships</li>
+</ul></li>
+<li>Positions</li>
+<li>Grids</li>
+</ol>
+<h2 id="dataset-types">Dataset types</h2>
+<ul>
+<li>Some ways of organizing the data</li>
+</ul>
+<h3 id="examples">Examples</h3>
+<ol type="1">
+<li>Tables (tabular data)
+<ul>
+<li>Components:
+<ol type="1">
+<li>Items</li>
+<li>Attribute</li>
+</ol></li>
+<li>Flat table (e.g. SQL table)
+<ul>
+<li>One item per row</li>
+<li>Each column is an attribute</li>
+</ul></li>
+<li>Multidimensional table
+<ul>
+<li>Indexing based on multiple keys</li>
+</ul></li>
+</ul></li>
+<li>Networks and Graphs
+<ol type="1">
+<li>Trees</li>
+<li>Directed / undirected graphs</li>
+<li>Network
+<ul>
+<li>graph-based but has a lot of additional information</li>
+</ul></li>
+</ol></li>
+<li>Fields (spatial)
+<ul>
+<li>underlying continuous function that we typically are going to be discreetly sampling using a structure like a grid</li>
+<li>Each cell in the grid contains attributes</li>
+<li>Spatial fields
+<ol type="1">
+<li>scalar</li>
+<li>vector</li>
+<li>tensor</li>
+</ol></li>
+</ul></li>
+<li>Geometry (spatial)</li>
+<li>Cluster, set, lists</li>
+</ol>
+<h2 id="attribute">Attribute</h2>
+<h3 id="attribute-types">Attribute types</h3>
+<ol type="1">
+<li>Categorical</li>
+<li>Ordered
+<ol type="1">
+<li>Ordinal</li>
+<li>QUantitative</li>
+</ol></li>
+</ol>
+<h3 id="ordering-direction">Ordering direction</h3>
+<ol type="1">
+<li>Sequential</li>
+<li>Diverging</li>
+<li>Cyclic</li>
+</ol>
+<h1 id="interpolation">Interpolation</h1>
+<ul>
+<li>Interpolation: a data fitting technique that matches the observed data exactly</li>
+<li>Data fitting
+<ul>
+<li>Why data fitting? To fill in unknown values in the domain based on existing values</li>
+</ul></li>
+<li>Aliasing
+<ul>
+<li>distortion or artifact that results when a signal reconstructed from samples is different from the original continuous signal.</li>
+</ul></li>
+<li>Extrapolation
+<ul>
+<li>Inferring unknown values beyond the range of known values</li>
+<li>Interpolation methods typically work poorly on extrapolation</li>
+</ul></li>
+</ul>
+<h2 id="linear-interpolation">Linear Interpolation</h2>
+<ul>
+<li>Why linear interpolation?
+<ul>
+<li>Simple conceptually and computationally</li>
+</ul></li>
+<li>Don’t use it if you know the underlying function is non-linear</li>
+<li>Given v0 (f(p0)) and v1 (f(p1)), <span class="math display">f(t) = (1-t)v0 + tv1 </span></li>
+<li>Given p0, pi, p1, <span class="math display">t = \frac{pi - p0}{p1 - p0} </span></li>
+</ul>
+<h3 id="bilinear-interpolation">Bilinear Interpolation</h3>
+<ul>
+<li>Use case: 2-dimensional domain unknown values</li>
+<li>Do linear interpolation 2 times
+<ol type="1">
+<li>fix y’s and interpolate over x values</li>
+<li>fix x and interpolate over y</li>
+</ol></li>
+<li>Can interpolate first from either axis</li>
+</ul>
+<h3 id="trilinear-interpolation">Trilinear Interpolation</h3>
+<ul>
+<li>Do linear interpolation 3 times
+<ul>
+<li>Interploate over x, y, z axis</li>
+</ul></li>
+</ul>
+<h2 id="barycentric-interpolation">Barycentric Interpolation</h2>
+<ul>
+<li>Use cases
+<ol type="1">
+<li>Scattered data
+<ul>
+<li>Triangulate first and then interpolate</li>
+</ul></li>
+<li>Triangulated domain</li>
+</ol></li>
+<li>Can interpolate over not only triangles, but any simplex
+<ul>
+<li>A simplex is a convex hull of k plus 1 points in a k-dimensional space.</li>
+<li>e.g. 3-simplex is a triangle, 4-simplex is a tetrahedron</li>
+</ul></li>
+<li>Given 3 vertices a, b, c from a triangle and a point p inside the triangle</li>
+<li>Need to calculate the lambda values, the relative coordinates respect to the vertices of triangle
+<ul>
+<li>Via solving the following equations:
+<ol type="1">
+<li><span class="math display"> p = \lambda_1a + \lambda_1b + \lambda_1c </span>, where p, a, b, c are cartesian coordinates</li>
+</ol></li>
+</ul></li>
+<li>Interpolation: <span class="math display"> f(p) = \lambda_1f(a) + \lambda_1f(b) + \lambda_1f(c) </span></li>
+</ul>
+<h2 id="scattered-data-interpolation">Scattered data interpolation</h2>
+<ul>
+<li>Scattered data is irregularly sampled</li>
+</ul>
+<h3 id="shepards-method">Shepard’s Method</h3>
+<h3 id="radial-basis-functions">Radial Basis Functions</h3>
+<ul>
+<li>Radial function: any function that is dependent on distance from some center. Denoted as <span class="math display"> \phi </span></li>
+<li>Interpolation function
+<ul>
+<li><span class="math display"> f(x) = \sum_{i = 1}^NW_i\phi(x, p_i) </span></li>
+</ul></li>
+<li>Weights can be computed by solving the system of linear equations
+<ul>
+<li>A = <span class="math display"> \begin{bmatrix}
+  \phi(p1, p1) &amp; ... &amp; \phi(p1, pN)  \\ 
+  \phi(p2, p1) &amp; ... &amp; \phi(p2, pN) \\
+  ... &amp; ... &amp; ... \\
+  \phi(pN, p1) &amp; ... &amp; \phi(pN, pN)
+  \end{bmatrix} </span></li>
+<li>Aw = f, where w are weights and f are sample function values</li>
+</ul></li>
+</ul>
+<h1 id="contour">Contour</h1>
+<h2 id="match-square">Match Square</h2>
+<h1 id="domain-modeling">Domain Modeling</h1>
+<h2 id="domain-discretization">Domain Discretization</h2>
+<ul>
+<li>Partition the domain into cells</li>
+<li>There’s often a difference between the mesh that contains the scientific data and a mesh that you’ll use to render.</li>
+</ul>
+<h2 id="terminology">Terminology</h2>
+<ul>
+<li>Data can be separated into meshes (grids)
+<ul>
+<li>Mesh example: triangle, tetrahedral</li>
+</ul></li>
+<li>Cell
+<ul>
+<li>Components
+<ol type="1">
+<li>Vertices</li>
+<li>Edges</li>
+<li>Faces</li>
+</ol></li>
+</ul></li>
+</ul>
+<h2 id="mesh-grid">Mesh / Grid</h2>
+<ul>
+<li>Each meshes will be composed on a set cells s.t. no 2 cells overlap, and the cells cover all domain</li>
+<li>A mesh is not a raster. Instead, it is a breakdown of a surface (any surface) into a set of smaller cells that can be operated on more easily (for example, to project down to 2d). Your mesh is also known as a grid; it partitions our complex data domain into cells which can provide interpolation over a small, simple-shaped spatial region e.g. triangles in a 2d space.
+<ul>
+<li>Raster is the pixelated shapes generated from rasterization</li>
+</ul></li>
+<li>The data for a mesh can be divided into 2 components
+<ol type="1">
+<li>Geometry: the positional data about the vertices i.e. coordinates
+<ul>
+<li>Can be structured or unstructured
+<ul>
+<li>Structured: uniform</li>
+<li>Unstructured: rectilinear</li>
+</ul></li>
+</ul></li>
+<li>Topology: specifies how those vertices are connected together. i.e. connectivity
+<ul>
+<li>Can be structured or unstructured
+<ul>
+<li>Structured: uniform, rectilinear</li>
+<li>Unstructured: Unstructured</li>
+</ul></li>
+</ul></li>
+</ol></li>
+<li>A triangulated irregular network can be classified as
+<ol type="1">
+<li>Polygonal mesh</li>
+<li>Surface mesh</li>
+<li>Unstructured mesh</li>
+</ol></li>
+</ul>
+<h3 id="grid-types">Grid types</h3>
+<ol type="1">
+<li>Linear</li>
+<li>Rectilinear</li>
+<li>Curvilinear</li>
+<li>Unstructured</li>
+</ol>
+<h2 id="surface-mesh">Surface Mesh</h2>
+<h3 id="properties">Properties</h3>
+<ol type="1">
+<li>Manifold
+<ul>
+<li>Every edge connects exactly 2 faces</li>
+</ul></li>
+<li>Orientable
+<ul>
+<li>the vertices for a triangle in a specific order</li>
+</ul></li>
+<li>Watertight
+<ul>
+<li>orientable and manifold</li>
+</ul></li>
+<li>Boundary
+<ul>
+<li>Some edges bound only one face</li>
+</ul></li>
+<li>Ordered
+<ul>
+<li>Vertices in counter clock wise order when viewed from normal</li>
+</ul></li>
+<li>Genus
+<ul>
+<li>Number of handles the surface has</li>
+</ul></li>
+</ol>
+<h3 id="euler-characteristic">Euler Characteristic</h3>
+<ul>
+<li><span class="math display"> V - E + F = 2 * (1 - G) </span></li>
+</ul>
+<h2 id="data-structure-for-meshes">Data Structure for meshes</h2>
+<h3 id="halfedge-data-structure">Halfedge data structure</h3>
+<ul>
+<li>Maintaining 3 tables - vertex, face, halfedge</li>
+<li>Useful for
+<ol type="1">
+<li>Gathering vertices</li>
+<li>One-ring traversal
+<ul>
+<li>One-ring traversal is when we gather up all of the neighboring vertices for a given vertex.</li>
+</ul></li>
+</ol></li>
+<li>Advantages
+<ol type="1">
+<li>Simple, efficient traverals of vertex neighborhoods</li>
+<li>Can be applied to any polygonal mesh</li>
+</ol></li>
+</ul>
+<h2 id="terrain-visualization">Terrain Visualization</h2>
+<ul>
+<li>A DEM is a digital elevation model. It is an image-based format encoding elevation data about a chunk of terrain.
+<ul>
+<li>Raster data set</li>
+<li>A surface mesh</li>
+<li>A uniform mesh</li>
+</ul></li>
+<li>A TIN is a triangulated irregular network. It is a triangle surface mesh that encodes information about a terrain.
+<ul>
+<li>Triangulated surface mesh in unstructured grids</li>
+</ul></li>
+<li>LiDAR: method for measuring distance by shooting laser light and detecting the reflection time</li>
+</ul>
+<h3 id="tin-streaming-to-generate-dem">TIN Streaming to generate DEM</h3>
+<ul>
+<li>Generate DEM from LiDAR via TIN streaming and processing on the fly</li>
+<li>Steps
+<ol type="1">
+<li>Don’t need to sort the data; instead read data from disk directly without ordering</li>
+<li>Finalizer (data pre-processing)
+<ul>
+<li>Purpose
+<ol type="1">
+<li>Compute bounding box</li>
+<li>Create finalization grid
+<ul>
+<li>Count number of points per cell</li>
+</ul></li>
+<li>output finalized points with tags</li>
+</ol></li>
+</ul></li>
+<li>Compute TIN triangles in places where all points have already arrived
+<ul>
+<li>If not all surrounding data is arrived, then we keep those in memory</li>
+<li>Approach for generating TIN triangles: Delaunay Triangulation
+<ul>
+<li>Triangulation in which every triangle has an empty circumscribing circle
+<ul>
+<li>Circumscribing circle - a circle passing through all vertices of the triangle</li>
+<li>Empty circumscribing circle means no other circumscribing circle is within the circle</li>
+</ul></li>
+<li>This can help avoid trigangles with small angles
+<ul>
+<li>Avoid computation error during interpolation</li>
+</ul></li>
+<li>Alg: Incremental Point Insertion</li>
+</ul></li>
+<li>After triangulation, output and deallocate</li>
+</ul></li>
+<li>Raster the chunk and output
+<ul>
+<li>Rasterization</li>
+<li>Resampling
+<ul>
+<li>Want to move from having irregularly spaced samples in the TIN to having a uniform grid of samples that form the DEM</li>
+<li>Via interpolating in uniform grid</li>
+<li>Potential interpolation methods
+<ol type="1">
+<li>Shepard / RBF via radial sampling</li>
+<li>Kriging</li>
+<li>Using triangle interpolation of TIN triangles</li>
+<li>Higher order interpolation</li>
+</ol></li>
+</ul></li>
+</ul></li>
+</ol></li>
+</ul>
+<h1 id="marching-cubes">Marching Cubes</h1>
+<ul>
+<li>To achieve contouring in 3D
+<ul>
+<li>Generates iso-surface instead of iso-line in 2D</li>
+</ul></li>
+<li>Most famous alg. for generating iso-surface</li>
+<li>Idea
+<ul>
+<li>Performing matching squares in 3D</li>
+<li>Use isovalues to determine if there’s an iso-surface cutting the cube cell by comparing with all 8 vertices’ sample values</li>
+</ul></li>
+<li>Bipolar Edge: one vertex’s sample value is greater than the isovalue while the other is less than the isovalue</li>
+<li>Since there are 8 vertices per cube
+<ul>
+<li>256 combinations of configurations</li>
+<li>Can be categorized into 15 cases via
+<ol type="1">
+<li>Complementarity</li>
+<li>Rotation</li>
+</ol></li>
+</ul></li>
+<li>Disadvantages
+<ol type="1">
+<li>Too many triangles generated</li>
+<li>Ringing artifact - generate rings</li>
+<li>Ambiguity
+<ul>
+<li>Largest downside. Similar to matching squares</li>
+</ul></li>
+</ol></li>
+</ul>
+<h2 id="consistency">Consistency</h2>
+<h2 id="correctness">Correctness</h2>
+<h1 id="dual-methods">Dual Methods</h1>
+<ul>
+<li>Another class of contouring algorithms</li>
+</ul>
+<h2 id="dual-matching-squares">Dual Matching Squares</h2>
+<ul>
+<li>Finding the midpoint between the 2 vertices at the intersection between isoline and the boundary (edge)</li>
+<li>14 cases can be put into 2 categories
+<ol type="1">
+<li>case 5 and case 10</li>
+<li>remaining</li>
+</ol></li>
+<li>Advantages
+<ol type="1">
+<li>Better at reproducing sharp features inside the cell</li>
+<li>Simpler to implement</li>
+</ol></li>
+</ul>
+<h1 id="volume-rendering">Volume Rendering</h1>
+<ul>
+<li>Definition: Any rendering process which maps from volume data to an image without introducing binary distinctions / intermediate geometry</li>
+</ul>
+<h2 id="ray-casting">Ray Casting</h2>
+<h2 id="volume-shading">Volume Shading</h2>
+<ul>
+<li>Use Blinn-Phong Reflection Model
+<ul>
+<li>Ambient term is not optional for volume rendering</li>
+</ul></li>
+<li>We will use the gradient vector as the normal vector for volumetric shading</li>
+<li>Normal vector
+<ul>
+<li>Can use gradient vector</li>
+<li>Can compute or approximate gradient vector via central difference formula</li>
+</ul></li>
+</ul>
+<h2 id="compositing">Compositing</h2>
+<ul>
+<li>Definition: the action of accumulating color and opacity along the ray on which we’re integrating</li>
+<li>Compositing allows us to accumulate that color and opacity and generate an image using volume rendering techniques.</li>
+<li>It is one way for us to approximate the volume rendering integral
+<ul>
+<li>Why approximating?
+<ol type="1">
+<li>Lack of computational resources for visualization</li>
+<li>Many sources of error in other places; no need to get 100% accurate. Thus approximating is easier and cheaper</li>
+</ol></li>
+</ul></li>
+<li>What’s compositing?
+<ul>
+<li>Merging 2 pictures together</li>
+</ul></li>
+</ul>
+<h3 id="over-operator">Over Operator</h3>
+<h1 id="week-7-reading---transfer-function">Week 7 Reading - Transfer Function</h1>
+<h2 id="review-on-tf">Review on TF</h2>
+<ul>
+<li>week 2
+<ul>
+<li>A transfer function defines colors at certain scalar values</li>
+</ul></li>
+<li>week 6 Volumetric Shading
+<ul>
+<li>The material values in Blinn-Phong Reflection Model are generated by TF</li>
+</ul></li>
+</ul>
+<h2 id="star-in-tf">STAR in TF</h2>
+<ul>
+<li>A transfer function (TF) maps volumetric data to optical properties</li>
+<li>Curvature attribute for direct volume TFs
+<ul>
+<li>Interpreting isosurface curvature locally
+<ul>
+<li>curvature varies over the surface. As it’s a quantity that is evaluated at a specific point, it is local in nature.</li>
+</ul></li>
+</ul></li>
+<li>2-level volume rendoring
+<ul>
+<li>Different segmented objects can have different compositing modes.</li>
+</ul></li>
+</ul>
+<h1 id="segmentation">Segmentation</h1>
+<ul>
+<li>Partitioning of image or data
+<ul>
+<li>Each partition is
+<ol type="1">
+<li>connected</li>
+<li>homogeneous</li>
+<li>have unique label</li>
+</ol></li>
+</ul></li>
+<li>Connectivity
+<ul>
+<li>How to determine if regions are connected?
+<ol type="1">
+<li>4-connected neighbours (4 directions)</li>
+<li>8-connected neighbours</li>
+<li>use 4-connected and 8-connected interchangably
+<ul>
+<li>e.g. 4-connectivity for foreground and 8-connectivity for background</li>
+</ul></li>
+</ol></li>
+</ul></li>
+<li>Homogeneous regions
+<ul>
+<li>The values of each pixel are consistent with having been generated by a mechanism</li>
+<li>e.g. same color, brightness, motion, texture</li>
+</ul></li>
+<li>Segmentation Methods
+<ol type="1">
+<li>Threshold-based
+<ul>
+<li>simple</li>
+<li>guarantee to form a closed region</li>
+</ul></li>
+<li>Region-based
+<ul>
+<li>clustering</li>
+</ul></li>
+<li>Hybrid methods
+<ul>
+<li>e.g. water flooding</li>
+</ul></li>
+</ol></li>
+</ul>
+<h2 id="thresholding">Thresholding</h2>
+<ul>
+<li>Binary labeling
+<ul>
+<li>Idea: replace each pixel in an image with a black pixel if the pixel intensity is less than some fixed constant</li>
+<li>Features
+<ol type="1">
+<li>Great for segmenting single object / same type objects</li>
+<li>Support notion of background and foreground</li>
+</ol></li>
+<li>Real-world problems
+<ol type="1">
+<li>No uniform illumination</li>
+<li>Imaging devices are typically not equally sensitive across their field of view</li>
+</ol></li>
+</ul></li>
+<li>The above problems can be addressed by <code>local thresholding</code>
+<ul>
+<li>divide up the image into sub-domains and have a separate threshold for each sub-domain.</li>
+<li>Ways to do local thresholding
+<ol type="1">
+<li>Use different thresholds for each blocks</li>
+<li>Moving window</li>
+</ol></li>
+</ul></li>
+</ul>
+<h3 id="computing-thresholds">Computing thresholds</h3>
+<ul>
+<li>In general, the selection of thresholds need to be automated</li>
+<li>Approaches
+<ol type="1">
+<li>Simple way: if lots of constrast, then <span class="math display"> T = i_{avg} + \epsilon </span> i.e. average value + noise</li>
+<li>Better way: histogram analysis
+<ul>
+<li>Try fitting Gaussians to the histogram</li>
+</ul></li>
+<li>Even better: <strong>Otsu’s method</strong>
+<ul>
+<li>The threshold should minimize the sum of individual variances of the 2 distributions
+<ul>
+<li>i.e. minimize intra-class intensity variance</li>
+<li>Searches for the threshold t which minimizes <span class="math display"> \sigma^2_w(t) = w_0(t)\sigma^2_0(t) + w_1(t)\sigma^2_1(t) </span> where w is weight and <span class="math display"> \sigma^2 </span> is variance.
+<ul>
+<li>Weights can be computed from <span class="math display"> w_0(t) = \sum_{i=0}^{t-1}p(i) </span></li>
+</ul></li>
+</ul></li>
+<li>The other way to think about is to maximize the variance of the whole distribution respect to the cut (treating the threshold as the expectation / avg for calculating variance)
+<ul>
+<li>i.e. find t maxing <span class="math display"> w_0(t)w_1(t)[\mu_0(t) - \mu_1(t)]^2 </span></li>
+</ul></li>
+</ul></li>
+</ol></li>
+</ul>
+<h2 id="segmenting-multiple-objects">Segmenting multiple objects</h2>
+<ul>
+<li>Otsu’s method limitations
+<ol type="1">
+<li>Identify multiple objects of the same type (fail to assign unique labels)</li>
+<li>Identify multiple kinds of objects</li>
+</ol></li>
+<li>Alternatives
+<ol type="1">
+<li>Expectation Maximization</li>
+<li>Recursive Region Growing</li>
+<li>Graph-Theoretic Image Segmentation</li>
+</ol></li>
+</ul>
+<h2 id="graph-cuts">Graph Cuts</h2>
+<ul>
+<li>Another approach of segmentation</li>
+<li>A graph cut formally is a set of edges that we delete from the graph that separates the graph into two connected components</li>
+<li>Images are represented as graphs
+<ul>
+<li>Each pixel is a node</li>
+<li>Each pair of pixels has an edge</li>
+</ul></li>
+<li>Affinity
+<ul>
+<li>Will be used as weights to determine if an edge needs to be removed</li>
+<li>Can be thought of as similarity</li>
+<li><span class="math display"> affinity(p_i, p_j) = e^{-\frac{(f(p_i) - f(p_j))^2}{2\sigma^2}} </span>
+<ul>
+<li>f is a distance function e.g. location, color, intensity</li>
+<li><span class="math display"> \sigma^2 </span> is a normalization factor</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="cut">Cut</h3>
+<ul>
+<li>Cut: set of links whose removal makes a graph disconnected</li>
+<li>Cost of cut: sum of the edge weights of the edges being cut</li>
+<li>To find minimum cut
+<ul>
+<li>Will focus on CO algorithm</li>
+</ul></li>
+</ul>
+<h3 id="interactive-graph-cuts">Interactive graph cuts</h3>
+<ul>
+<li>A specific algorithm that uses user input to separate out a foreground object from a background</li>
+<li>User provides hints for alg to recognize foreground color
+<ul>
+<li>The red and blue lines on the images are user inputs indicating foreground versus background.</li>
+</ul></li>
+<li>Algorithm
+<ul>
+<li>Graph construction: adding 2 nodes which are not based on pixels to faciliate max flow (max bandwidth within each graphs) alg
+<ol type="1">
+<li>Add source s vertex (object terminal) and connect to all pixels</li>
+<li>Add sink t vertex (background terminal) and connect to all pixels</li>
+</ol></li>
+<li>Use max flow (equal to min cut) algorithm to compute the cut
+<ul>
+<li>Foreground affinity (edge weight) from scribble pixel to s = infinity (max float achieves, so keeping the foregound pixel with s)</li>
+<li>Foreground affinity from scribble pixel to t = 0</li>
+<li>Background affinity from scribble to s = 0</li>
+<li>Background affinity from scribble to t = infinity</li>
+<li>Foreground affinity from non-scribble to s: <span class="math display"> affinity_{foreground}(p) = -\lambda log P_B(p) </span> where <span class="math display">\lambda</span> is the weighting constant (a parameter for user to set), <span class="math display">P_B(p)</span> is the probability that p is in the background [0, 1]
+<ul>
+<li>When p is a background pixel, then <span class="math display">P_B(p) = 1 </span>, then based on the formula, the foreground affinity (edge weight) would be 0, which makes sense</li>
+<li>How to compute the probabilities on whether a pixel is background / foreground?
+<ul>
+<li>Can use intensity of foreground pixels and compute histogram</li>
+<li>Fit a Gaussian to the histogram and then use the distribution to compute <span class="math display"> P_F(p) = P_F(I_p) </span></li>
+<li>Given <span class="math display"> P_F(p) </span>, we can get <span class="math display"> P_B(p) = 1 - P_F(p) </span></li>
+</ul></li>
+</ul></li>
+<li>Background affinity from non-scribble to t: <span class="math display"> affinity_{background}(p) = -\lambda log P_F(p) </span></li>
+</ul></li>
+</ul></li>
+</ul>
+<h1 id="transfer-functions">Transfer Functions</h1>
+<ul>
+<li>TF is typically used on volumetric data
+<ul>
+<li>Volumetric data: a scalar function from a three-dimensional spatial domain with a one-dimensional range.
+<ul>
+<li>e.g. CT scan</li>
+</ul></li>
+</ul></li>
+<li>A TF defines
+<ol type="1">
+<li>which parts of the data are essential to depict</li>
+<li>how to depict these portions of the volumetric data.</li>
+</ol></li>
+<li>Use cases
+<ol type="1">
+<li>Volumetric rendering - phong reflection model material
+<ul>
+<li>Two-level volume rendering
+<ul>
+<li>Different segmented objects can have different compositing modes.</li>
+</ul></li>
+</ul></li>
+<li>Segementation and classification: feature detection</li>
+</ol></li>
+<li>Challenge
+<ol type="1">
+<li>Come up with which transfer function to use
+<ul>
+<li>Need to look for discontinuity of the data to identify edges or surfaces</li>
+<li>May need to segment multiple features</li>
+<li>May need to create a MD (multi-dim) TF</li>
+</ul></li>
+</ol></li>
+</ul>
+<h2 id="tf-taxonomy">TF Taxonomy</h2>
+<ul>
+<li>TF Categories
+<ol type="1">
+<li>Data-centric
+<ol type="1">
+<li>1D TF</li>
+<li>MD TF</li>
+</ol></li>
+</ol></li>
+</ul>
+<h3 id="d-tf">1D TF</h3>
+<ul>
+<li>Operates on a scalar input value: maps scalar to visual representation (usually color and opacity)</li>
+<li>Most common form of TF</li>
+<li>Does not work well
+<ol type="1">
+<li>If there’s significant overlap in intensity range</li>
+<li>If there’s lots of noise</li>
+</ol></li>
+</ul>
+<h3 id="md-tf">MD TF</h3>
+<ul>
+<li>Separable 2D TF
+<ul>
+<li>two separate 1D functions that are combined only after both 1D functions have been applied separately</li>
+</ul></li>
+<li>Non-separable 2D TF</li>
+<li>MD TF</li>
+<li>Dimensionality Reduction
+<ul>
+<li>Projecting high-dimensional TFs to a lower dimensional space to simplify the design process</li>
+</ul></li>
+</ul>
+<h1 id="glyphs-week-8">Glyphs (Week 8)</h1>
+<h2 id="vector-fields">Vector fields</h2>
+<ul>
+<li>For a vector field, at every point in a given domain, there is going to be a vector component and magnitude defined.
+<ul>
+<li>i.e. a position and direction</li>
+</ul></li>
+<li>Vector visualization challenge
+<ul>
+<li>Have 1 pixel for 2 - 3 scalar values (magnitude + direction) to visualize</li>
+</ul></li>
+</ul>
+<h2 id="glyph-intro">Glyph intro</h2>
+<ul>
+<li>Glyphs are icons that associates a symbol with a vector (a visual representation of vector)
+<ul>
+<li>e.g. spheres, rectangles</li>
+</ul></li>
+<li>General guide
+<ol type="1">
+<li>Need to sub sample the data
+<ul>
+<li>To avoid cluster</li>
+</ul></li>
+<li>Need to avoid uniform sub-sampling; instead, random / quasi-uniform sampling should be used</li>
+</ol></li>
+</ul>
+<h3 id="simple-glyph-line-segment-i.e.-hedgehog-plot">Simple glyph: line segment (i.e. hedgehog plot)</h3>
+<ul>
+<li>Idea
+<ol type="1">
+<li>Draw lines of <span class="math display"> (x, x + kv(x)) </span></li>
+<li>Optionally color map with <span class="math display">||v||</span></li>
+</ol></li>
+<li>It is acceptable to apply a scaling factor to a line segment glyph that represents a vector.
+<ul>
+<li>More scaling: easier to see high-speed areas, but more cluster</li>
+</ul></li>
+<li>Problem: high speed areas would have higher velocity and longer lengths of vectors. To reduce the impact of occlusion and better visualize high speed areas in flows,
+<ol type="1">
+<li>use fewer samples</li>
+<li>use line scaling to decrease line length</li>
+</ol></li>
+</ul>
+<h3 id="other-2d-glyph">Other 2D Glyph</h3>
+<ul>
+<li>Cones and arrows
+<ul>
+<li>Advantages
+<ol type="1">
+<li>show orientation better than lines</li>
+<li>can utilize shading to help separate overlapping glyphs</li>
+</ol></li>
+<li>Drawbacks
+<ol type="1">
+<li>takes more space</li>
+</ol></li>
+</ul></li>
+</ul>
+<h2 id="d-visualization">3D Visualization</h2>
+<ul>
+<li>3D Problems
+<ol type="1">
+<li>More data, same screen space - cluster</li>
+<li>Occlusion - overlapping</li>
+<li>Perspective foreshortening</li>
+<li>Poor viewpoint selection</li>
+</ol></li>
+<li>Alpha blending
+<ul>
+<li>Set opacity of glyphs to a constant value &lt; 1</li>
+<li>Helps reduce perceived occlusion
+<ul>
+<li>High speed area would tend to be more opaque</li>
+</ul></li>
+</ul></li>
+<li>When using alpha compositing on vector field glyphs, high-speed areas tend to be more opaque.</li>
+</ul>
+<h2 id="problems">Problems</h2>
+<ol type="1">
+<li>Hard for users to visually interpolate across a domain</li>
+<li>A glyph takes more space than a pixel</li>
+<li>Sub-sampling may be hard to perform - don’t know how sparsely the resampling is needed</li>
+</ol>
+<h1 id="derived-quantities">Derived Quantities</h1>
+<ul>
+<li>One other approach to vector field visualization is to visualize derived quantities of the vector field.</li>
+</ul>
+<h2 id="divergence">Divergence</h2>
+<ul>
+<li>A derived scalar value: <span class="math display"> div = \frac{dv_x}{dx} + \frac{dv_y}{dy} + \frac{dv_z}{dz} </span> (i.e. sum of partial derivatives)</li>
+<li>Interpretation of divergence
+<ol type="1">
+<li>If div &gt; 0, then there are more outgoing surrounding vectors from vector v</li>
+<li>If div = 0, then all surrounding vectors are passing through v towards the same direction</li>
+</ol></li>
+<li>Gives a good impression of where the flow enters and exits certain domain</li>
+</ul>
+<h2 id="vorticity">Vorticity</h2>
+<ul>
+<li>Describes the local spinning motion of a continuum near some points</li>
+<li><span class="math display"> rot v = (\frac{dv_z}{dy} - \frac{dv_z}{dy}, \frac{dv_x}{dz} - \frac{dv_z}{dx}, \frac{dv_y}{dx} - \frac{dv_x}{dy}) </span></li>
+<li>Interpretation
+<ol type="1">
+<li>If <span class="math display">||rot v|| &gt; 0</span>, then there’s rotational flow</li>
+<li>If rot v == 0, then all urrounding vectors near v are towards the same direction</li>
+</ol></li>
+<li>Useful for flow simulation. e.g. aerodynamics, hydrodynamics</li>
+</ul>
+<h1 id="numerical-methods-week-9">Numerical Methods (Week 9)</h1>
+<h2 id="eulers-method">Euler’s Method</h2>
+<ul>
+<li>Used to solve (approximate the solution for) ODE (ordinary differential equation)</li>
+<li><span class="math display"> X_{n+1} = X_n + hv(X_n, t_n) + O(h^2) </span> where h is the step size, <span class="math display"> v(X_n, t_n) </span> is the vector that’s sampled at <span class="math display">X_n</span> at time <span class="math display">t_n</span>, and <span class="math display"> O(h^2) </span> is the error that’s inherited in the computation</li>
+<li>Sources of <span class="math display"> O(h^2) </span>
+<ol type="1">
+<li>Rounding error</li>
+<li>Truncation error (dominant)
+<ul>
+<li>Local error
+<ul>
+<li>error in one step</li>
+</ul></li>
+<li>Global error
+<ul>
+<li>the cumulative overall error</li>
+<li>Sum of local errors</li>
+</ul></li>
+</ul></li>
+</ol></li>
+<li>Reducing the step-size will typically reduce truncation error but may increase rounding error</li>
+<li>A method is first-order accurate when the local error is order <span class="math display">h^2</span>.</li>
+</ul>
+<h2 id="numerical-differentiation">Numerical Differentiation</h2>
+<ul>
+<li>Differentiation is the process of finding the derivative of a function</li>
+<li>The derivative expresses the rate of change of an output with respect to a change in the input</li>
+<li>Centered Difference Formula: <span class="math display"> f&#39;(x) = \frac{f(X+h) - f(X-h)}{2h} </span></li>
+</ul>
+<h2 id="rk-runge-kutta-methods">RK (Runge-Kutta) Methods</h2>
+<ul>
+<li>Solve ODE numerically and give tabluar result</li>
+<li>Euler’s Method can be thought of as the 1st order RK method</li>
+<li>2nd order RK method: Heun’s 2nd order method
+<ul>
+<li>Local truncation error: <span class="math display"> O(h^3) </span></li>
+</ul></li>
+<li>RK-4
+<ul>
+<li>Local truncation error: <span class="math display"> O(h^5) </span></li>
+</ul></li>
+</ul>
+<h2 id="sampling">Sampling</h2>
+<ul>
+<li>Low discrepancy
+<ul>
+<li>Uniformly distributed</li>
+</ul></li>
+<li>Well distributed
+<ul>
+<li>Uniform distribution</li>
+<li>Projection into 1D along x and y are also uniform</li>
+<li>There’s non-trivial minimum distance between all sample points</li>
+</ul></li>
+<li>Want sampling to be well distributed and not structured</li>
+</ul>
+<h3 id="random-rng">Random (RNG)</h3>
+<ul>
+<li>Problems
+<ol type="1">
+<li>Too iregular</li>
+<li>Oversample some areas</li>
+<li>No minimal distance maintained among the points</li>
+</ol></li>
+</ul>
+<h3 id="jittered">Jittered</h3>
+<ul>
+<li>Generates a sample in each cell</li>
+</ul>
+<h3 id="n-rooks">n-rooks</h3>
+<ul>
+<li>Generates one sample exactly in each row and column</li>
+<li>Feature
+<ol type="1">
+<li>2D distribution worse than jittered, so jittered can still be used</li>
+<li>1D distribution better than jittered</li>
+</ol></li>
+</ul>
+<h3 id="multi-jittered-sampling">Multi-Jittered Sampling</h3>
+<ul>
+<li>Use 2 grids
+<ol type="1">
+<li>Coarse grid: sqrt(n) * sqrt(n)</li>
+<li>Fine grid is n * n</li>
+</ol></li>
+<li>Analogy to soduko</li>
+<li>Features
+<ol type="1">
+<li>Great 1D projections and 2D distributions</li>
+<li>Used a lot in practice</li>
+</ol></li>
+</ul>
+<h3 id="hammersley-sampling">Hammersley Sampling</h3>
+<ul>
+<li>A Quasi-random sequence
+<ul>
+<li>Features
+<ol type="1">
+<li>less random than random or pseudorandom sequences</li>
+<li>deterministic, just like a pseudorandom number generator</li>
+<li>exhibit low discrepancy (i.e. more structural)
+<ul>
+<li>low discrepancy can be viewed as well distributed</li>
+</ul></li>
+</ol></li>
+</ul></li>
+<li>Radical inverse function of integer i to base 2: <span class="math display"> \Phi_2(i) = \sum^n_{j=0}a_j(i) * 2^{-j-1} </span>
+<ul>
+<li>Can be seen as converting the number to binary, then flip the bits, and then add the decimal point at the front</li>
+</ul></li>
+<li>Hammersley Sequence in 2D: <span class="math display"> p_i = (x_i, y_i) = [i/n, \Phi_2(i)]</span></li>
+<li>Issues
+<ol type="1">
+<li>Too regular (too much structure)</li>
+<li>Only 1 sequence exists for a given n</li>
+<li>Need to recompute the whole sequence if adding 1 additional point</li>
+</ol></li>
+</ul>
+<h3 id="halton">Halton</h3>
+<ul>
+<li>the Halton sequence for some n-dimensional domain that we want a sample is defined as taking the radical inverse base of some prime of i along each of the dimensions that we want to sample.</li>
+<li>Better than hammersley</li>
+<li><span class="math display"> p_i = (\Phi_2(i), \Phi_3(i), \Phi_5(i)) </span></li>
+<li>Example
+<ul>
+<li>The 2,3 halton sequence:
+<ol type="1">
+<li>i = 1: p = (0.1 in base 2, 0.1 in base 3)</li>
+<li>i = 2: p = (0.01 in base 2, 0.2 in base 3)</li>
+<li>i = 3: p = (0.11 in base 2, 0.01 in base 3)</li>
+</ol></li>
 </ul></li>
 <li>Features
 <ol type="1">
-<li>Deep black levels</li>
-<li>Excellent viewing angles</li>
-<li>Fast refresh</li>
-<li>Can potentially be manufactored on flexible substrates</li>
+<li>Can easily add in additional points</li>
+</ol></li>
+</ul>
+<h3 id="poisson-disk-sampling">Poisson Disk Sampling</h3>
+<ul>
+<li>Features
+<ol type="1">
+<li>Assure a minimum distance</li>
+<li>Generalizes well in high dimensions</li>
+</ol></li>
+<li>Steps
+<ol type="1">
+<li>Given r - the minimum distance between 2 samele points</li>
+<li>Draw grids where the cell size = <span class="math display"> \frac{r}{\sqrt{n}} </span> where dimensional space is n</li>
+<li>Generate the initial point p0 in a cell</li>
+<li>Draw circles with radius r from the 4 corners of the cell containing p0</li>
+<li>Randomly generate points and discard them if they are too far (further than 2r from center) from circle or within the circle</li>
+</ol></li>
+<li>Issues
+<ol type="1">
+<li>Discrepancy is not low</li>
+</ol></li>
+</ul>
+<h1 id="visualization-techniques">Visualization Techniques</h1>
+<h2 id="displacement-plots">Displacement Plots</h2>
+<ul>
+<li>Sparse VF visualization technique</li>
+<li>They are ineffective if the vector field is tangent to the displacement surface.</li>
+</ul>
+<h2 id="line-integral-convolution">Line Integral Convolution</h2>
+<ul>
+<li>LIC is a dense visualization method for 2D flow visualization
+<ul>
+<li>Hard to do a dense visualization for flow in 3D</li>
+</ul></li>
+<li>Dense visualization method
+<ul>
+<li>use all the pixels in the display available to you</li>
+<li>uncommon for flow visualization</li>
+</ul></li>
+<li><span class="math display"> T(p) = \frac{\int^L_{-L}N(S(p,s))k(s)ds}{\int^L_{-L}k(s)ds} </span> where
+<ul>
+<li>T refers to The output LIC texture</li>
+<li>p refers to A pixel in the texture</li>
+<li>N refers to The input noise texture defined over the domain of the vector field</li>
+<li>k refers to The weighting function</li>
+<li>L refers to The maximal distance of the streamline in the forward or backward direction</li>
+<li>S refers to A streamline passing through the pixel p</li>
+<li><span class="math display"> N(S(p,s)) </span>: grey level of noise texture on the point s of the streamline passing through p</li>
+<li>The whole expression is the weighted sum of grey values divided by the sum of weights</li>
+</ul></li>
+</ul>
+<h3 id="algorithm">Algorithm</h3>
+<ol type="1">
+<li>For each pixel p of the screen image
+<ol type="1">
+<li>Take the vector field and generate a streamline that is centered on that pixel</li>
+<li>Trace it upfield and downfield along the stream line, and we are going to sample the colors in the noise image as we go.</li>
+<li>Take an average of the grey values that the stream line is going through</li>
+<li>Assign the average to the pixel p</li>
+</ol></li>
+</ol>
+<h2 id="stream-objects">Stream Objects</h2>
+<ul>
+<li>Stream objects are referred to a set of visualization techniques for vector fields in which we drop particles into the vector field and trace out the path that they take as they flow along with the field</li>
+<li>Streamlines
+<ul>
+<li>The traces that we generate using the particle-based technique for a steady state vector field</li>
+</ul></li>
+</ul>
+<h3 id="stream-line">Stream Line</h3>
+<h3 id="stream-tube">Stream Tube</h3>
+<h3 id="stream-ribbon">Stream Ribbon</h3>
+<h3 id="unsteady-flows">Unsteady Flows</h3>
+<ol type="1">
+<li>Pathline
+<ul>
+<li>A pathline is the unsteady analog of the streamline.</li>
+<li>Steps
+<ol type="1">
+<li>We insert a single particle and then generate new positions across a bunch of time steps</li>
+<li>Draw a line connecting all of those positions of the particle throughout time in the unsteady flow then we have a pathline.</li>
 </ol></li>
 </ul></li>
+<li>Timeline
+<ul>
+<li>Release multiple particles at one time and connecting the particles at each timestamps</li>
+</ul></li>
+<li>Streakline
+<ul>
+<li>Release particles one-by-one and connecting the particles</li>
+</ul></li>
+</ol>
+<h1 id="tensor-visualization">Tensor Visualization</h1>
+<h2 id="what-are-tensors">What are tensors</h2>
+<ul>
+<li>Can be thought of as a machine that take in some number of vectors and then spit out some other number of vectors, but the output vectors are a linear function of the input vectors.
+<ul>
+<li>e.g. dot product can be viewed as a metric tensor
+<ul>
+<li>A metric tensor allows defining distances and angles near each point of a surface</li>
+</ul></li>
+</ul></li>
+<li>Definition: a tensor is an algebraic object that describes a (multilinear) relationship between sets of algebraic objects related to a vector space.
+<ul>
+<li>The relationship needs to be a linear mapping / linear transformation. i.e. a mapping V -&gt; W between 2 vector spaces preserves vector addition and scalar multiplication</li>
+</ul></li>
+<li>Can also be thought of as a generalized matrix
+<ul>
+<li>Because tensor can be represented via a multi-dimensional array of numbers</li>
+<li>A rank 2 tensor is a matrix (2-D array of numbers)</li>
+</ul></li>
+<li>Thinking from perspective of the information passed from rank-2 tensors
+<ul>
+<li>Tensors can show the variation of magnitude (at some signal at some point in space)</li>
+</ul></li>
+<li>Rank 2 tensors can also be viewed as a function
+<ul>
+<li>at <span class="math display"> x \in R^3 </span> and in a direction <span class="math display"> v \in R^3 </span>, measure some magnitude <span class="math display"> s \in R </span></li>
+</ul></li>
+</ul>
+<h2 id="curvature">Curvature</h2>
+<ul>
+<li>Will focus on rank-2 tensors with 3x3 matrices</li>
+<li>1D Curvature
+<ul>
+<li>Curvature is the 2nd derivative of function f i.e. <span class="math display"> C(x) = \frac{\partial^2f}{\partial{x}^2} </span></li>
+</ul></li>
+<li>2D Curvature
+<ul>
+<li>Here 2D does not mean planar; instead, it means we have 2 variables x and y</li>
+<li><span class="math display"> S \in R^3 </span>
+<ul>
+<li>can write the z coordinates as a function of the XY coordinates i.e. <span class="math display"> z = f(x,y) </span></li>
+<li>thus surface which can be represented by <span class="math display"> z = f(x, y) </span></li>
+</ul></li>
+<li>The curvature would be specific for a point x0 in direction s
+<ul>
+<li>describes how quickly the normal <span class="math display">n_s</span> changes around x0</li>
+</ul></li>
+<li><span class="math display"> C(x, s) = \frac{\partial^2f(x)}{\partial{s}^2} </span> for any direction s</li>
+<li><span class="math display"> C(x_0, s) = \frac{\partial^2f(x)}{\partial{s}^2}(x_0) = s^THs </span>
+<ul>
+<li>H is called the Hessian of f
+<ul>
+<li><span class="math display"> H = \begin{bmatrix}
+       \frac{\partial^2f}{\partial x^2} &amp; \frac{\partial^2f}{\partial x \partial y}  \\
+       \frac{\partial^2f}{\partial y \partial x} &amp; \frac{\partial^2f}{\partial y^2}
+      \end{bmatrix}</span></li>
+</ul></li>
+<li>Given H, can compute the curvature tensor at any point in any direction</li>
+</ul></li>
+<li>Constraints
+<ul>
+<li>Need to construct local coord system (i.e. represent z in terms of x and y), which is hard to do</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="d-curvature">3D curvature</h3>
+<ul>
+<li>General solution for functional surface</li>
+<li>Describe S as an implicit function i.e. f would be a function of x, y, and z</li>
+<li><span class="math display"> C(x0, s) = \frac{\partial^2f(x)}{\partial{s}^2}(x0) = s^THs </span> where H is Hessian of f, x0 is the point on the surface, and s is the direction vector
+<ul>
+<li><span class="math display"> H =    \begin{bmatrix}
+           \frac{\partial^2f}{\partial x^2} &amp; \frac{\partial^2f}{\partial x \partial y} &amp; \frac{\partial^2f}{\partial x \partial z} \\
+           \frac{\partial^2f}{\partial y \partial x} &amp; \frac{\partial^2f}{\partial y^2} &amp; \frac{\partial^2f}{\partial y \partial z} \\
+           \frac{\partial^2f}{\partial z \partial x} &amp; \frac{\partial^2f}{\partial z \partial y} &amp; \frac{\partial^2f}{\partial z^2}
+          \end{bmatrix}</span></li>
+</ul></li>
+</ul>
+<h2 id="diffusion-tensor">Diffusion Tensor</h2>
+<ul>
+<li>Diffusion
+<ul>
+<li>the movement of individual molecules of a substance through a semipermeable barrier from an area of higher concentration to an area of lower concentration</li>
+</ul></li>
+<li>The dataset is typically a volumetric data generated by MRI</li>
+<li>anisotropic material
+<ul>
+<li>The properties of material varies with directions</li>
+</ul></li>
+<li>The diffusion tensor can take a point and a direction and tell us the speed of water motion in the brain tissue at a point in a direction.</li>
+<li><span class="math display"> D(x, s) = \frac{\partial^2f(x)}{\partial{s}^2} </span>, where D is the diffusivity at a point x in direction s</li>
+</ul>
+<h3 id="simple-visualization">Simple Visualization</h3>
+<ul>
+<li>Take slices of interest and visualize each slices</li>
+<li>Problem
+<ul>
+<li>Hard to identify the directions with strong/weak diffusion</li>
+</ul></li>
+</ul>
+<h3 id="pca-principal-component-analysis">PCA (Principal Component Analysis)</h3>
+<ul>
+<li>Can be used to identify the directions with strong/weak diffusion or steep/flat curves</li>
+<li>Steps for 2x2 Hessian (i.e. 2D - x, y)
+<ol type="1">
+<li>Fix a point x0</li>
+<li>calculate tangents (D(x0,s) or C(x0, s)) in all directions s at x0 to find a tangent plane</li>
+<li>Denote <span class="math display"> \alpha </span> as angle of s respects to local coord axis x0
+<ul>
+<li>The angle would be on the surface of the plane (around the normal)</li>
+<li>This allows describing a direction in that tangent plane by parametric vector that is parameterized using alpha</li>
+</ul></li>
+<li><span class="math display"> \frac{\partial^2f}{\partial{s}^2} = s^THs = h_{11}cos^2\alpha + (h_{12} + h_{21})sin\alpha * cos\alpha + h_{22}cos^2\alpha </span></li>
+<li>Our curvature (as function of alpha) is extremal when <span class="math display"> \frac{\partial{C}}{\partial{\alpha}} = 0 </span>
+<ul>
+<li>This is equivalent to <span class="math display"> Hs = \lambda * s &lt;=&gt; (H - \lambda * I)s = 0 </span></li>
+<li>Thus non-trivial solution s != 0 means <span class="math display"> det(H - \lambda * I) = (h_{11} - \lambda)(h_{22} - \lambda) - h_{12}h_{21} = 0</span></li>
+<li>The 2 <span class="math display">\lambda</span> are eigenvalues (i.e. principal values) of the tensor, and the 2 corresponding eigenvectors are the principle directions
+<ul>
+<li>Eigenvectors correspond to extremal (minimal / maximal) directions, and the eigenvalues are the actual minimal / maximal values</li>
+</ul></li>
+</ul></li>
 </ol></li>
+<li>3x3 Hessian
+<ul>
+<li>3 eigenvalue - eigenvector pairs</li>
+<li>Max eigenvalue -&gt; strongest diffusion / steepest curve</li>
+</ul></li>
+<li>Options to use PCA for visualization
+<ol type="1">
+<li>Mean diffusivity <span class="math display"> \mu = \frac{1}{3}(\lambda_1 + \lambda_2 + \lambda_3) </span></li>
+<li>Ways to identify fibers in a domain
+<ol type="1">
+<li>Linear diffusivity: <span class="math display"> c_l = \frac{\lambda_1 - \lambda_2}{\lambda_1 + \lambda_2 + \lambda_3} </span></li>
+<li>Fractional anisotropy: <span class="math display"> FA = \sqrt{\frac{3}{2}}\frac{\sqrt{\sum^3_{i=1}(\lambda_i - \mu)^2}}{\lambda^2_1 + \lambda^2_2 + \lambda^2_3} </span> where <span class="math display"> \mu = \frac{1}{3}(\lambda_1 + \lambda_2 + \lambda_3) </span></li>
+<li>Relative anisotropy: <span class="math display"> RA = \sqrt{\frac{3}{2}}\frac{\sqrt{\sum^3_{i=1}(\lambda_i - \mu)^2}}{\lambda_1 + \lambda_2 + \lambda_3} </span></li>
+</ol></li>
+</ol></li>
+<li>Directional color coding
+<ul>
+<li>With PCA we find the direction with largest change (here expressed as eigenvalues). This direction will dominate the overall direction of the fiber and hence decide if will predominantly look red, green or blue. So you pick the vector in the direction of largest change.
+<ul>
+<li>e.g. R = |e1 * x|, G = |e1 * y|, B = |e1 * z| where e1 is the major eigenvector</li>
+</ul></li>
+</ul></li>
+<li>Shapes used for visualization
+<ol type="1">
+<li>Vector glyphs / hedgehogs
+<ul>
+<li>Seed only points where metrics are large enough (to visualize tissues)</li>
+<li>Problems
+<ol type="1">
+<li>Occlusion</li>
+<li>Only uses major eigenvector</li>
+</ol></li>
+</ul></li>
+<li>Vector PCA
+<ul>
+<li>No glyphs drawn</li>
+<li>No occlusion</li>
+<li>Problems
+<ol type="1">
+<li>Only uses major eigenvector</li>
+</ol></li>
+</ul></li>
+<li>Tensor Glyphs
+<ul>
+<li>Ellipsoid glyph
+<ul>
+<li>Superquadrics are used must often among others</li>
+</ul></li>
+</ul></li>
+</ol></li>
+</ul>
+<h1 id="fiber-tracking-tractography">Fiber Tracking (Tractography)</h1>
+<ul>
+<li>Limitation of DT-MRI (Diffusion tensor MRI): do not attempt to recover the underlying anatomical structures (fiber tracts / axons)</li>
+<li>Use cases for fiber tracking
+<ol type="1">
+<li>quantitative comparisons of specific white matter pathways in disease</li>
+<li>show different pathways in congenital disorders or following recovery</li>
+<li>gain insights into normal brain anatomy</li>
+</ol></li>
+<li>Steps
+<ol type="1">
+<li>Identify seeds in region of high anistropy (fiber location) from PCA
+<ul>
+<li>Via linear diffusivity: <span class="math display"> c_l = \frac{\lambda_1 - \lambda_2}{\lambda_1 + \lambda_2 + \lambda_3} </span></li>
+</ul></li>
+<li>trace streamlines in the direction of major eigenvector from PCA
+<ul>
+<li>Via trilinear component-wise tensor interpolation to reconstruct continuous tensor field</li>
+</ul></li>
+<li>Stop when anistropy is low</li>
+</ol></li>
+</ul>
+<h2 id="moving-least-squares">Moving Least Squares</h2>
+<ul>
+<li>Filtering alg to reduce noise</li>
+<li>Sliding window to try to fit a low degree polynomial by using least squares
+<ul>
+<li>Idea of least squares: minimizes sum of the squared error between expected value and actual value</li>
+</ul></li>
+</ul>
+<h1 id="tree-visualization">Tree Visualization</h1>
+<h2 id="rooted-layout">Rooted Layout</h2>
+<ul>
+<li>Start from root at the top</li>
+<li>Features
+<ol type="1">
+<li>Intuitive to see children and depth</li>
+<li>Can include extra information with different colors / shapes</li>
+</ol></li>
+<li>Issues
+<ol type="1">
+<li>Unbalanced aspect ratio can occur - scalability
+<ul>
+<li>A lot of extra (unused) space in between the branches</li>
+</ul></li>
+</ol></li>
+</ul>
+<h2 id="directed-acyclic-graphs-dags">Directed Acyclic Graphs (DAGs)</h2>
+<ul>
+<li>Looks very like trees, so we can use rooted layout
+<ul>
+<li>One difference: we can have edge crossings in DAG but we should try to minimize</li>
+</ul></li>
+</ul>
+<h2 id="radial-node-link-tree">Radial node-link tree</h2>
+<ul>
+<li>Steps
+<ol type="1">
+<li>layout root at the middle</li>
+<li>layout the next level around a circle of the current level. The proportion of the arc depends on the number of subtree</li>
+</ol></li>
+<li>Features
+<ol type="1">
+<li>Level and sibling info can be easily captured</li>
+<li>More scalable than rooted layout (up to 10K nodes)</li>
+</ol></li>
+<li>Issues
+<ol type="1">
+<li>Nodes close to root get less space</li>
+</ol></li>
+</ul>
+<h2 id="bubble-layout">Bubble Layout</h2>
+<ul>
+<li>Each subtree would have its own cycle, where the center is the root of the subtree</li>
+<li>Features
+<ol type="1">
+<li>Better spreading of the nodes for large trees</li>
+</ol></li>
+<li>Issues
+<ol type="1">
+<li>Hard to identify the depth in the tree</li>
+</ol></li>
+</ul>
+<h2 id="cone-tree">Cone Tree</h2>
+<ul>
+<li>Like a combination of bubble layout and rooted layout; in 3D</li>
+<li>Turned out to be not a good idea</li>
+<li>Features
+<ol type="1">
+<li>Effective in using 3D space</li>
+</ol></li>
+<li>Issues
+<ol type="1">
+<li>3D is tricky - occlusions, perspective shortening</li>
+<li>Navigation was not helpful</li>
+</ol></li>
+</ul>
+<h2 id="force-directed-layout">Force-Directed Layout</h2>
+<ul>
+<li>Treat edges as springs, which exert attractive forces</li>
+<li>Treat nodes as atoms, which exert repulsive forces (electrostatic) forces to other nodes</li>
+<li>FR alg Steps
+<ol type="1">
+<li>Calculate <span class="math display">k = C\sqrt(\frac{area}{number of vertices})</span></li>
+<li>For each iteration
+<ol type="1">
+<li>For every nodes:
+<ol type="1">
+<li>Calculate all attractive forces from its neighbours
+<ul>
+<li><span class="math display"> F_a = \frac{d^2}{k} </span></li>
+</ul></li>
+<li>Calculate all repulsive forces from all other nodes
+<ul>
+<li><span class="math display"> F_r = \frac{k^2}{d} </span></li>
+</ul></li>
+</ol></li>
+</ol></li>
+</ol></li>
+<li>Advantages
+<ol type="1">
+<li>Simple to implement</li>
+<li>Work on any graph</li>
+<li>Interactive</li>
+<li>Effective</li>
+</ol></li>
+<li>Issues
+<ol type="1">
+<li>Runtime slow: <span class="math display"> O(n^3) </span>
+<ul>
+<li>Can be sped up using spatial partitioning and calculating Fr from only near-by nodes</li>
+<li>Can employ multi-level computation</li>
+</ul></li>
+<li>Visual limit: 10k</li>
+<li>Layout may get trapped in local optimal instead of global optimal</li>
+</ol></li>
+</ul>
+<h1 id="large-graph-visualization">Large Graph Visualization</h1>
+<ul>
+<li>Graph Preprocessing</li>
+<li>Clique
+<ul>
+<li>Completely connected subgraph
+<ul>
+<li>i.e. every vertex in the clique has an edge to each other vertex in the clique</li>
+</ul></li>
+</ul></li>
+<li>Betweeness Centrality (BC)
+<ul>
+<li>Vertice: <span class="math display"> g(v) = \sum_{s \not= v \not= t} \frac{\sigma_{st}(v)}{\sigma_{st}} </span> where <span class="math display"> \sigma_{st} </span> is the total number of shortest paths from node s to node t, and <span class="math display"> \sigma_{st}(v) </span> is the number of those paths that pass through node v</li>
+<li>Edge: <span class="math display"> g(e) = \sum_{s \not= t} \frac{\sigma_{st}(e)}{\sigma_{st}} </span>
+<ul>
+<li><span class="math display"> \sigma_{st}(e) </span> is the number of those paths that pass through edge e</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="edge-filtering">Edge Filtering</h2>
+<ul>
+<li>Works well for <strong>scale free graphs</strong>
+<ul>
+<li>the fraction of nodes with degree k follows a power law <span class="math display"> k^{-\alpha} </span>
+<ul>
+<li>i.e. The probability of finding a node with degree k decreases exponentially when k increases</li>
+</ul></li>
+<li>e.g. a social network is thought to be weak scale-free</li>
+</ul></li>
+<li>Steps
+<ol type="1">
+<li>Sort by edge BC and remove the edges that have BC under a threshold starting from the lowest BC</li>
+<li>Recover Connectivity
+<ol type="1">
+<li>Iterate through the removed edges from high BC to low</li>
+<li>Restore the edge if it connects 2 different components</li>
+</ol></li>
+<li>Recompute the layout (typically force-directed layout)</li>
+</ol></li>
+<li>BC is the bottleneck for performance
+<ul>
+<li>Can be approximated via algs</li>
+</ul></li>
+<li>Limitation
+<ol type="1">
+<li>Does not work well for non-power law graphs e.g. planar graph</li>
+</ol></li>
+</ul>
+<h2 id="edge-bundling">Edge Bundling</h2>
+<ul>
+<li>A technique for graph aggregation
+<ul>
+<li>Produces a simpler / smaller ‘cluster graph’ from a large one</li>
+<li>Can be used not only on trees</li>
+</ul></li>
+<li>Idea
+<ul>
+<li>Remove high-BC edges to discover clusters</li>
+</ul></li>
+</ul>
+<h3 id="hierarchical-edge-bundling">Hierarchical Edge Bundling</h3>
+<ul>
+<li>Intended for graphs with relatively few vertices that have many neighbours
+<ul>
+<li>The algorithm assumes social networks are separated into communities (small heavily connected subgraphs) with few edges crossing between them. If the whole graph is heavily connected, the algorithm will not be able to effectively prevent edge crossings in the layout.</li>
+<li>Does not have to be trees</li>
+</ul></li>
+<li>A hierarchy node may contain multiple nodes from the original graph</li>
+<li>All of the vertices of the graph are laid out around the perimeter of the circle</li>
+<li>The constructed vertex hierarchy is used to generate control points
+<ul>
+<li>Control points would control the directions of the parametric curves</li>
+</ul></li>
+<li>Community Discovery
+<ul>
+<li>Will remove high BC edges to discover communities
+<ul>
+<li>Low BC edges - within a community</li>
+<li>High BC edges - connect different communities</li>
+</ul></li>
+</ul></li>
+<li>Balanced Hierarchy Construction
+<ul>
+<li>Steps
+<ol type="1">
+<li>Filter edges (removes edges in BC order from high to low)</li>
+<li>Create subtrees</li>
+<li>Merge communities to a single hierarchy
+<ul>
+<li>Merge from lowest BC edges</li>
+</ul></li>
+<li>Generate hierarchical edge bundles using the hierarchy graph</li>
+</ol></li>
+</ul></li>
+<li>Rebuild the graph
+<ul>
+<li>Steps
+<ol type="1">
+<li>Place low BC edges on perimeter</li>
+<li>Rebuild tree by connecting in order of increasing BC</li>
+</ol></li>
+</ul></li>
+</ul>
+<h1 id="mesh-simplification">Mesh Simplification</h1>
+<ul>
+<li>A technique for dealing with really large amounts of surface mesh data</li>
+<li>A tessellation is a covering of a surface with geometric shapes
+<ul>
+<li>A surface mesh is a tessellation of the true surface</li>
+</ul></li>
+<li>Overtesselated
+<ul>
+<li>Use more meshes than needed</li>
+</ul></li>
+</ul>
+<h2 id="vertex-clustering">Vertex Clustering</h2>
+<ul>
+<li>Steps
+<ol type="1">
+<li>Cluster generation
+<ul>
+<li>Approaches
+<ol type="1">
+<li>Use uniform grid. The vertices fall into the same cell would be clustered</li>
+<li>Hierarchical approach</li>
+<li>Top-down / Bottom-up</li>
+</ol></li>
+</ul></li>
+<li>Compute a representative vertex (within each cluster)
+<ul>
+<li>Metrics
+<ol type="1">
+<li>Avg vertex pos
+<ul>
+<li>Not effective in dealing with sharp edges</li>
+</ul></li>
+<li>Median vertex pos
+<ul>
+<li>A vertex of the original mesh closest to the average position of the vertices in the cluster.</li>
+<li>Better than the avg vertex pos</li>
+</ul></li>
+<li>Error quadrics
+<ul>
+<li>Better than avg / median</li>
+<li>Tries to minimize the sum distances of vertex’ planes
+<ul>
+<li><span class="math display"> p = [x, y, z, 1]^T, q = (a, b, c, d)^T </span> where a b c d are coefficients of the plane (i.e. <span class="math display">ax+by+cz = 0</span>), Individual <span class="math display"> Q_i = qq^T </span></li>
+<li><span class="math display"> \sum_idist(q_i, p)^2 = p^TQ_pp </span>
+<ul>
+<li><span class="math display">Q_p</span> is the sum of all of the 4x4 matrices that are associated with each one of those points. i.e. <span class="math display"> Q_p = \sum_iQ_i</span></li>
+</ul></li>
+<li>Once we have computed <span class="math display">Q_p</span>, the rest of the computations are very fast regardless how many planes there are
+<ul>
+<li><span class="math display"> Q_pp </span> consists of 16 scalar multiplications, and <span class="math display">p^T(result of Q_pp) </span> consists of 4 scalar multiplications</li>
+</ul></li>
+<li>To minimize the sum distances, we can solve the system of linear equations of <span class="math display">Q_pp = [0,0,0,1]^T </span> to get p</li>
+</ul></li>
+</ul></li>
+</ol></li>
+</ul></li>
+<li>Re-generate mesh
+<ul>
+<li>Create edges between the representatives</li>
+</ul></li>
+<li>May need to handle topology changes
+<ul>
+<li>Disconnected components may have vertices included in a cell. For such cases, the components will be connected after clustering</li>
+</ul></li>
+</ol></li>
+<li>Since sheets will be combined via a single vertex, it would no longer be manifold after clustering
+<ul>
+<li>Manifold: A topological space that locally resembles euclidean space near each point</li>
+</ul></li>
+</ul>
+<h2 id="edge-collapse">Edge Collapse</h2>
+<ul>
+<li>Will not introduce topology changes</li>
+<li>Idea
+<ul>
+<li>Can collapse 2 vertices and combine those into a single one</li>
+</ul></li>
+<li>Can use error quadrics to determine the new combined vertex
+<ul>
+<li>Can do a few iterations and in each iteration pick the ones with lowest error quadrics to perform edge collapse</li>
+</ul></li>
+<li>Though slower, edge collapse is in general better than vertex clustering</li>
 </ul>
 <div class="status-banner" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; text-align: center;">
     <div style="display: inline-block; padding: 0.8em 2em 0.5em 2em; background: black; color: white; font-size: 2em;">

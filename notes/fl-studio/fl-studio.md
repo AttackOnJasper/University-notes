@@ -1,6 +1,4 @@
-# FL Studio
-
-## FL Studio Overview
+# FL Studio Overview
 - FL Studio is a full-featured music production environment capable of multi-track audio recording, sequencing and mixing for the creation of professional quality music tracks. 
 - DAW (Digital Audio Workstation) 
 - UI sections
@@ -10,33 +8,37 @@
    - Mixer
    - Browser
 
-### Terminologies
-- VST (Virtual Studio Technology): an audio plug-in software interface that integrates software synthesizers and effects units into digital audio workstations
-- MIDI (Musical Instrument Digital Interface): a technical standard that describes a communications protocol, digital interface, and electrical connectors that connect a wide variety of electronic musical instruments, computers, and related audio devices for playing, editing and recording music.
+# Terminologies
+1. MIDI (Musical Instrument Digital Interface): a technical standard that describes a communications protocol, digital interface, and electrical connectors that connect a wide variety of electronic musical instruments, computers, and related audio devices for playing, editing and recording music.
+1. VST (Virtual Studio Technology): an audio plug-in software interface that integrates software synthesizers and effects units into digital audio workstations
 
 
-### Menu Bar
-#### Export music
-- Mode
-   - Pattern
-   - Full song
+
+# Menu Bar
+## Files
+### Export
+- Modes
+   1. Pattern
+   1. Full song
+   1. Project Bones
 - Format
    - Wave: minimal impact to original quality
    - **OGG**: no gap before start & after end
 - Bit rate: higher -> better quality
 
-#### Import Music
+### Import Music
 - All music resources can be directly dragged into panels or tracks
+- Note for apple music file format m4a, we need to convert it into wav format in the Music app first.
 
-#### Edits
+## Edits
 - **Undo / Redo** can be done via `EDIT` (`Ctrl + Z`) or History panel on the left
 - **Copy / Paste / Move** can be done via holding `shift` and drag the pattern or `Ctrl + b`
 
-#### Other
+## Other
 - `Beats per bar` and `Steps per beat` can be edited in `project settings`
 - Tempo helper should be on at the beginning of beat making phase
 
-## Playlist
+# Playlist
 - Zoom
    - Vertically: small dot button on the top right
    - Horizontally: drag the size of the moving bar
@@ -49,8 +51,8 @@
    
 
 
-## Channel Rack
-### Basics
+# Channel Rack
+## Basics
 - **Kick**: usually the largest drum in the kit. Its located on the floor in front of you and you use a pedal to strike it
 - **Clap**: whether it’s the recorded sound of humans hitting their hands together or a synthetic equivalent, it’s a percussive sound that cracks, sizzles and repeats throughout clubs the world over
 - **Snare**: the drum that sits directly in front of you on a stand and has what are called “snares” on the underside or the “resonance” side and can be engaged and disengaged with a throw off. 
@@ -58,7 +60,7 @@
 - Channel Panning tune button: left ear or right ear
 - Volume tune button: control volume
 
-### Instrument Properties
+## Instrument Properties
 - In button
 - Out button
 - Envelope pattern: control when would the sound come out
@@ -67,27 +69,27 @@
 
 
 
-## Piano Roll
-### Basics
+# Piano Roll
+## Basics
 - Hold `Command` and drag to select a group of keys 
 - Hold `Shift` and copy a group of keys to the next bar
 - `Fn` + `delete` to remove all selected notes 
 
-### Ghost channel
+## Ghost channel
 If you wanna see how the other instrument was implemented in the same pattern, 'ghost channel' button can be toggled to reflect that
 
-### Control panel
+## Control panel
 - Velocity: volume of each key
 - Pan: If the sound would come from left or right
 
 
 
 
-## Midi settings
-### General midi settings
+# Midi settings
+## General midi settings
 - Options -> Midi settings
 
-### Drum Mapping 
+## Drum Mapping 
 - FPC -> Click drop down arrow -> 'Map notes for entire bank'
 
 ## Mixer
@@ -104,14 +106,14 @@ If you wanna see how the other instrument was implemented in the same pattern, '
 ### Why automation clip
 - Can edit properties as a whole for multiple consistent patterns
 
-## Audio Recording
+# Audio Recording
 - Playlist -> select a track -> right click -> track mode -> audio track
 - In Mixer, select input source and disable the hear back in **Master** track
 - Turn on 'Recording' and click 'Play' to start
 
-## Plugins
+# Plugins
 - Press 'F8' opens 'plugin picker'
 
 
-## Best Practices
-### Audio
+# Best Practices
+## Audio
