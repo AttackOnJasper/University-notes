@@ -26,18 +26,138 @@
   </script>
 <div id="TOC">
 <ul>
-<li><a href="#syllabus">Syllabus</a></li>
 <li><a href="#week-1">Week 1</a>
 <ul>
 <li><a href="#what-is-data-science">What is Data Science</a></li>
 <li><a href="#what-is-data-curation">What is Data Curation</a></li>
+<li><a href="#curational-activities-and-objectives">Curational Activities and Objectives</a></li>
+<li><a href="#methods-of-curatorial-action">Methods of curatorial action</a></li>
 </ul></li>
-<li><a href="#week-2-relations">Week 2: Relations</a></li>
-<li><a href="#week-3-tree-and-xml">Week 3: Tree and XML</a></li>
-<li><a href="#week-4-ontologies">Week 4: Ontologies</a></li>
+<li><a href="#week-2-relations">Week 2: Relations</a>
+<ul>
+<li><a href="#data-models">Data models</a>
+<ul>
+<li><a href="#types">Types</a></li>
+</ul></li>
+<li><a href="#storage-repesentation-problems">Storage repesentation problems</a></li>
+<li><a href="#relational-model">Relational model</a>
+<ul>
+<li><a href="#details">Details</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#week-3-tree-and-xml">Week 3: Tree and XML</a>
+<ul>
+<li><a href="#problem">Problem</a></li>
+<li><a href="#solution-1-descriptive-markup">Solution 1: Descriptive Markup</a></li>
+<li><a href="#solution-2-trees">Solution 2: Trees</a></li>
+<li><a href="#xml">XML</a></li>
+</ul></li>
+<li><a href="#week-4-ontologies">Week 4: Ontologies</a>
+<ul>
+<li><a href="#problem-connecting-data-to-information">Problem: connecting data to information</a></li>
+<li><a href="#solution-ontology">Solution: Ontology</a></li>
+<li><a href="#frbr-ontology">FRBR Ontology</a>
+<ul>
+<li><a href="#creating-ontologies">Creating Ontologies</a></li>
+</ul></li>
+<li><a href="#implementing-ontologies-via-rdfs">Implementing Ontologies via RDFS</a></li>
+</ul></li>
 <li><a href="#week-5-data-integration">Week 5: Data integration</a>
 <ul>
 <li><a href="#data-cleaning">Data cleaning</a></li>
+<li><a href="#heterogeneity">Heterogeneity</a></li>
+<li><a href="#schema-integration">Schema Integration</a></li>
+</ul></li>
+<li><a href="#week-6-data-concepts">Week 6: Data concepts</a>
+<ul>
+<li><a href="#dataset-features">Dataset Features</a></li>
+<li><a href="#identity-problems">Identity Problems</a></li>
+<li><a href="#roles-vs-types">Roles vs types</a></li>
+<li><a href="#the-basic-representation-model-ontology">The basic representation model (Ontology)</a>
+<ul>
+<li><a href="#interpretative-frames">Interpretative Frames</a></li>
+<li><a href="#side-note">Side note</a></li>
+</ul></li>
+<li><a href="#whats-data">What’s data?</a></li>
+</ul></li>
+<li><a href="#week-7-metadata">Week 7: Metadata</a>
+<ul>
+<li><a href="#whats-metadata">What’s metadata</a></li>
+<li><a href="#metadata-schemas">Metadata Schemas</a></li>
+<li><a href="#metadata-ambiguities">Metadata Ambiguities</a></li>
+</ul></li>
+<li><a href="#week-8-data-practices">Week 8: Data Practices</a>
+<ul>
+<li><a href="#data-practices">Data practices</a></li>
+<li><a href="#data-sharing">Data Sharing</a></li>
+<li><a href="#data-reuse">Data Reuse</a></li>
+<li><a href="#gdpr-general-data-protection-regulation">GDPR (General Data Protection Regulation)</a></li>
+<li><a href="#data-anonymization">Data Anonymization</a>
+<ul>
+<li><a href="#data-sanitization">Data Sanitization</a></li>
+<li><a href="#data-privacy">Data Privacy</a></li>
+<li><a href="#anonymization-and-pii">Anonymization and PII</a></li>
+<li><a href="#techniques">Techniques</a></li>
+</ul></li>
+<li><a href="#data-integrity">Data Integrity</a>
+<ul>
+<li><a href="#xml-signature">XML Signature</a></li>
+<li><a href="#hashing">Hashing</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#week-9-preservation">Week 9: Preservation</a>
+<ul>
+<li><a href="#whats-data-preservation">What’s data preservation</a></li>
+<li><a href="#challenges">Challenges</a></li>
+<li><a href="#preservation-challenges-is-similar-to-integration-challenges">Preservation challenges is similar to integration challenges</a></li>
+<li><a href="#strategies">Strategies</a></li>
+<li><a href="#preservation-standards">Preservation Standards</a>
+<ul>
+<li><a href="#pds-planetary-data-system">PDS (Planetary Data System)</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#week-10-data-identity">Week 10: Data Identity</a>
+<ul>
+<li><a href="#identification-overview">Identification Overview</a>
+<ul>
+<li><a href="#identifiers">Identifiers</a></li>
+</ul></li>
+<li><a href="#what-to-identify">What to identify</a></li>
+<li><a href="#how-to-identify">How to identify</a>
+<ul>
+<li><a href="#identifier-change">Identifier &amp; Change</a></li>
+</ul></li>
+<li><a href="#canonicalization">Canonicalization</a></li>
+</ul></li>
+<li><a href="#week-11-standards">Week 11: Standards</a>
+<ul>
+<li><a href="#standards-org">Standards Org</a></li>
+<li><a href="#compatibility">Compatibility</a></li>
+</ul></li>
+<li><a href="#week-12-transformations-and-workflows">Week 12: Transformations and Workflows</a>
+<ul>
+<li><a href="#workflow">Workflow</a></li>
+<li><a href="#provenance">Provenance</a></li>
+<li><a href="#workflow-systems">Workflow Systems</a></li>
+<li><a href="#provenance-standards">Provenance Standards</a></li>
+</ul></li>
+<li><a href="#week-13-scientific-communication">Week 13: Scientific Communication</a>
+<ul>
+<li><a href="#scientific-communication">Scientific Communication</a></li>
+</ul></li>
+<li><a href="#week-15-regulations">Week 15: Regulations</a>
+<ul>
+<li><a href="#policies">Policies</a></li>
+<li><a href="#existing-policies">Existing Policies</a></li>
+<li><a href="#privacy">Privacy</a></li>
+</ul></li>
+<li><a href="#xml-overview">XML Overview</a>
+<ul>
+<li><a href="#dtd-document-type-definition">DTD (Document Type Definition)</a>
+<ul>
+<li><a href="#examples">Examples</a></li>
+</ul></li>
+<li><a href="#xsd-xml-schema-definition">XSD (XML Schema Definition)</a></li>
 </ul></li>
 </ul>
 </div>
@@ -45,10 +165,6 @@
   <ul class="site_links">
     <span class="divider"></span>
   </ul>
-<h1 id="syllabus">Syllabus</h1>
-<ul>
-<li>Exercises: 80% (20% each: 1% for peer review; 19% for instructor grading)</li>
-</ul>
 <h1 id="week-1">Week 1</h1>
 <ul>
 <li>Data Curation
@@ -87,7 +203,7 @@
 </ul></li>
 <li>Our definition
 <ul>
-<li>Data science is concerned with all aspects of the creation, management analysis and communication of data focusing particularly on the application of computational methods to digital data</li>
+<li>Data science is concerned with all aspects of the creation, management, analysis, and communication of data focusing particularly on the application of computational methods to digital data</li>
 </ul></li>
 </ol></li>
 <li>Goal: extracting useful knowledge from data</li>
@@ -100,21 +216,1157 @@
 </ul></li>
 <li>Curation activities enable data discovery and retrieval, maintain quality, add value, and provide for re-use over time.</li>
 </ul>
+<h2 id="curational-activities-and-objectives">Curational Activities and Objectives</h2>
+<ol type="1">
+<li>Collection
+<ul>
+<li>Collection and acquisition of data</li>
+<li>e.g. instrument calibration, protocols, procedures, documenting collection activity</li>
+</ul></li>
+<li>Organization
+<ul>
+<li>Employ an appropriate data model and use appropriate standards</li>
+<li>e.g. schema (datatypes, constraints, audit history), abstraction and indirection, standards</li>
+</ul></li>
+<li>Storage
+<ul>
+<li>Support reliable and effective storage</li>
+<li>Aspects: reliability, security, and access</li>
+</ul></li>
+<li>Preservation
+<ul>
+<li>Ensure that data will be understandable and useable in the future</li>
+<li>e.g. documentation of syntax and semantics</li>
+</ul></li>
+<li>Discoverability
+<ul>
+<li>Support the ability to search for and locate relevant data</li>
+<li>e.g. Develop metadata to support searching / ranking</li>
+</ul></li>
+<li>Access
+<ul>
+<li>Support the ability to retrieve and distribute data</li>
+<li>e.g. efficient retrieval and distribution, metadata for file descriptions, control access</li>
+</ul></li>
+<li>Workflow
+<ul>
+<li>Support the ability to systematize work with data</li>
+<li>e.g. (potential automatic generated) documentation of module and workflow execution, scripts</li>
+</ul></li>
+<li>Identification
+<ul>
+<li>Support the ability to identify, authenticate, and validate data</li>
+<li>including
+<ol type="1">
+<li>identification methods</li>
+<li>deciding what to identify (entities and datatypes)</li>
+<li>version control</li>
+<li>authentication</li>
+<li>validation</li>
+</ol></li>
+</ul></li>
+<li>Integration
+<ul>
+<li>Support integration of data from different sources using different data models</li>
+<li>including
+<ol type="1">
+<li>Accommodation of variations in syntax and data element semantics of the data from different sources</li>
+<li>schema alignment</li>
+<li>Integration strategy documentation</li>
+</ol></li>
+</ul></li>
+<li>Reformatting
+<ul>
+<li>Support reformatting for use by different tools or to match new format standards</li>
+</ul></li>
+<li>Reproducibility
+<ul>
+<li>Support ability to reproduce results, ensuring scientific validity and reliability</li>
+<li>Including
+<ol type="1">
+<li>Documenting data collection, management, processing, and analaysis</li>
+</ol></li>
+</ul></li>
+<li>Sharing
+<ul>
+<li>Support sharing data between researchers, teams, and institutions</li>
+<li>Need to take care of
+<ol type="1">
+<li>formats &amp; documentation</li>
+<li>concerns of misuse (e.g. by policies)</li>
+</ol></li>
+</ul></li>
+<li>Communication
+<ul>
+<li>Support representation, publishing, and visualizations that provide insight.</li>
+</ul></li>
+<li>Provenance
+<ul>
+<li>Support identifying what inputs, calculations, and actions are responsible for data values</li>
+<li>Including
+<ol type="1">
+<li>understanding how data values are generated / derived</li>
+</ol></li>
+</ul></li>
+<li>Modification
+<ul>
+<li>Support management of corrections and updates</li>
+<li>Including
+<ul>
+<li>Changes overtime can be tracked and audited</li>
+</ul></li>
+</ul></li>
+<li>Compliance
+<ul>
+<li>Ensure compliance to legal, regulatory, and local policy requirements</li>
+<li>Including
+<ol type="1">
+<li>IP rights</li>
+<li>Privacy</li>
+</ol></li>
+</ul></li>
+<li>Security
+<ul>
+<li>Ensure that data is secure from tampering or inappropriate access and distribution</li>
+<li>Including
+<ol type="1">
+<li>Access control</li>
+<li>User identity and privileges</li>
+<li>Data identity</li>
+<li>Authentication</li>
+<li>Validation</li>
+</ol></li>
+</ul></li>
+</ol>
+<h2 id="methods-of-curatorial-action">Methods of curatorial action</h2>
+<ol type="1">
+<li>Analysis</li>
+<li>Documentation</li>
+<li>System design and implementation</li>
+<li>Policy</li>
+<li>Process</li>
+</ol>
 <h1 id="week-2-relations">Week 2: Relations</h1>
+<h2 id="data-models">Data models</h2>
+<ul>
+<li>Components
+<ol type="1">
+<li>Structure</li>
+<li>Things - values, labels, entities, relationships</li>
+<li>Constraints - types, grammar, enum, cardinality (one-to-one, one-to-many, and many-to-many)</li>
+</ol></li>
+</ul>
+<h3 id="types">Types</h3>
+<ol type="1">
+<li>Relational
+<ul>
+<li>attribute-value pair</li>
+</ul></li>
+<li>Tree
+<ul>
+<li>hierarchical structure</li>
+</ul></li>
+<li>ER
+<ul>
+<li>abstraction, representing the things and relationships of a domain.</li>
+</ul></li>
+</ol>
+<h2 id="storage-repesentation-problems">Storage repesentation problems</h2>
+<ul>
+<li>Problems
+<ol type="1">
+<li>Programs and users are interacting directly with storage</li>
+<li>intrinsic nature of the information is often not reflected in the management systems</li>
+</ol></li>
+<li>Impacts
+<ol type="1">
+<li>Failure of data independence
+<ol type="1">
+<li>changes needed when the storage method changes</li>
+<li>changes needed when new kinds of data need to be represented</li>
+</ol></li>
+</ol></li>
+</ul>
+<h2 id="relational-model">Relational model</h2>
+<ul>
+<li>Idea
+<ul>
+<li>Conceptualize data as relations (tables) and then map those relations to whatever storage methods are being used</li>
+</ul></li>
+<li>Fundamental principles of data organization
+<ol type="1">
+<li>Abstraction
+<ul>
+<li>abstracts away from the transient and varying details of storage and processing and focuses on the essential features of the data itself.</li>
+</ul></li>
+<li>Indirection
+<ul>
+<li>Relational data management systems do not directly interact with the stored data representations, instead they interact indirectly with the stored data representations, via the relational representation that is mapped to the actual storage representation</li>
+</ul></li>
+</ol></li>
+</ul>
+<h3 id="details">Details</h3>
+<ul>
+<li>Keys
+<ol type="1">
+<li>Primary key</li>
+<li>Foreign key</li>
+</ol></li>
+<li>Schema
+<ul>
+<li>a general term for a specification of how data is or will be organized
+<ul>
+<li>may also specify: vocabulary, syntax, data types, attributes, value ranges, etc.</li>
+</ul></li>
+<li>e.g. Swagger, XSD, OpenAPI</li>
+<li>Schema for relation
+<ul>
+<li>e.g. <strong>Table-name</strong> (Id (underscore for PK), attribute1, attribute2)</li>
+</ul></li>
+</ul></li>
+<li>Functional dependencies
+<ul>
+<li>also referred as a redundancy - updating one field would also need to update another field together</li>
+<li>can be fixed via normalization
+<ul>
+<li>create a separate table to store mappings between the redundant data</li>
+</ul></li>
+</ul></li>
+<li><strong>Abstraction</strong> implemented with <strong>indirection</strong> supports <strong>data independence</strong></li>
+</ul>
 <h1 id="week-3-tree-and-xml">Week 3: Tree and XML</h1>
 <ul>
-<li>XML
+<li>Most of info is not stored in database (i.e. relations) but in documents</li>
+<li>Why it is a challenge to represent documents with a relational model?
+<ul>
+<li>Representing the structure of a document in a set of relations is not obvious or natural</li>
+</ul></li>
+</ul>
+<h2 id="problem">Problem</h2>
+<ul>
+<li>Interaction with text is immediately and directly via storage and processing methods</li>
+<li>i.e. No abstraction of storage and processing methods</li>
+<li>Impact
+<ol type="1">
+<li>Operational burden</li>
+<li>Lack of functionality</li>
+<li>Lack of data independence (i.e. no abstraction / indirection)</li>
+</ol></li>
+</ul>
+<h2 id="solution-1-descriptive-markup">Solution 1: Descriptive Markup</h2>
+<ul>
+<li>Descriptive markup is used to (directly) indicate the logical components of a document</li>
+<li>Why it helps on data curation?
+<ol type="1">
+<li>More efficient less error-prone management of processing (layout)</li>
+<li>Supports conversion from one text processing system to another.</li>
+<li>Provides meaningful fields for analysis and retrieval</li>
+<li>Support preservation</li>
+</ol></li>
+<li>Examples
+<ol type="1">
+<li>A macro is defined to abbreviate formatting commands</li>
+<li>Improvement: A macro is defined to identify the logical component of the text itself not the the intended processing, or the appearance of the that component</li>
+</ol></li>
+<li>Descriptive markup describes the logical components of documents. It does not specifiy processing.</li>
+</ul>
+<h2 id="solution-2-trees">Solution 2: Trees</h2>
+<ul>
+<li>OHCO (Ordered Hierarchy of Content Objects) model
+<ul>
+<li>content objects. e.g. chapters, title, sentences</li>
+<li>hierarchy: sentences inside paragraphs, paragraphs inside sections</li>
+<li>ordered: objects proceed or follow one another</li>
+</ul></li>
+<li>Tree
+<ul>
+<li>a directed acyclic graph with ordered branches and all nodes except one having exactly one parent</li>
+</ul></li>
+<li>Tree Model
+<ul>
+<li>combines the tree data structure with descriptive markup node labels</li>
+<li>why it works?
+<ol type="1">
+<li>abstraction
+<ul>
+<li>separate from storage and processing<br />
+</li>
+</ul></li>
+<li>indirection
+<ul>
+<li>indirect relationship to storage and processing</li>
+</ul></li>
+</ol></li>
+</ul></li>
+<li>Differences in abstractions between tree and relational model
+<ul>
+<li>In relational model the focus is on abstracting away from storage, while in the tree model the focus is on abstracting away from processing.</li>
+</ul></li>
+</ul>
+<h2 id="xml">XML</h2>
 <ul>
 <li>Typically implements the tree model, which can be used to
 <ol type="1">
 <li>store text data</li>
 <li>seralize data stored natively in other data models (i.e. interchange, import, and preservation)</li>
 </ol></li>
+<li>Features
+<ol type="1">
+<li>uses a defined set of delimiters with arbitrary element names and attribute value pairs to nest spans of text</li>
+</ol></li>
+<li>A well-formed XML doc
+<ol type="1">
+<li>fits a formal grammer to ensure the doc can be parsed as a tree by XML parser</li>
+<li>Only one element is not the child of any element</li>
+<li>No overlapping elements</li>
+<li>Every start tag has a corresponding end tag</li>
+</ol></li>
+<li>A valid XML doc
+<ol type="1">
+<li>is well-formed</li>
+<li>confrms to the schema declarations on grammar &amp; constraints</li>
+</ol></li>
+<li>2 Main things in XML world
+<ol type="1">
+<li>Schema
+<ul>
+<li>defines a kind of a document via a markup language for document structures by specifying its vocabulary (i.e. the tags) and syntax</li>
+<li>Functionality
+<ol type="1">
+<li>Specifying what elements may and must occur and where they may and must occur.</li>
+<li>Attributes and data types</li>
+</ol></li>
+<li>Examples
+<ol type="1">
+<li>DTD (Document Type Definition)
+<ul>
+<li>Based on BNF (Backus Naur Form) grammars</li>
 </ul></li>
+<li>XSD (XML Schema Definition Language)</li>
+<li>RelaxNG</li>
+</ol></li>
+</ul></li>
+<li>Document Instances
+<ul>
+<li>A particular well-formed XML doc</li>
+</ul></li>
+</ol></li>
+<li>XML Processing</li>
 </ul>
 <h1 id="week-4-ontologies">Week 4: Ontologies</h1>
+<h2 id="problem-connecting-data-to-information">Problem: connecting data to information</h2>
+<ul>
+<li>The same domain of kinds of objects, relationships, properties can be represented via different data models types and different schemas</li>
+<li>In the formal theory of the relational model, an “attribute” is the name of a domain</li>
+<li>The understanding of the domain needs to be captured:
+<ul>
+<li>Benefits of capturing the understanding of domain
+<ol type="1">
+<li>Guides initial schema development</li>
+<li>Constant across schema variations and revisions (within a model type)</li>
+<li>Constant across schemas from different model types</li>
+</ol></li>
+<li>Thus we need an independent neutral way to describe the domain of interest.</li>
+</ul></li>
+<li>The problem: we lack a shared framework that could explicitly and formally map the relevant features in the domain of interest to the relation or tree schemas for data</li>
+</ul>
+<h2 id="solution-ontology">Solution: Ontology</h2>
+<ul>
+<li>Ontology
+<ul>
+<li>an explicit specification of a conceptualization of a domain
+<ul>
+<li>A conceptualization is an abstract, simplified view of the world that we wish to represent for some purpose.</li>
+</ul></li>
+</ul></li>
+<li>Peter Chen 1976
+<ul>
+<li>Conceptualize your domain of interest in terms of its things, relationships, etc., and then map that conceptualization to whatever logical model schemas are being used</li>
+</ul></li>
+<li>Conceptual Schema
+<ul>
+<li>a description of the structure of the domain, a specification of the real world things, attributes, and relationships, in that domain.</li>
+</ul></li>
+<li>Benefits
+<ol type="1">
+<li>support the creation of logical schemas - can be auto generated</li>
+</ol></li>
+<li>RDF (Resource Description Framework)
+<ul>
+<li>A simple model for predication; can be serialized in different languages</li>
+<li>General model for describing that some thing has a particular property with a particular value.</li>
+<li>RDF triple (see more in below sections)
+<ul>
+<li>simple dyadic predication</li>
+</ul></li>
+</ul></li>
+<li>Examples
+<ol type="1">
+<li>ER diagrams</li>
+<li>RDFS (RDF Schema)
+<ul>
+<li>Basic schema concepts that can be used to define schemas for RDF instances</li>
+</ul></li>
+<li>OWL (Web Ontology Language)
+<ul>
+<li>General schema concepts for more advanced schemas</li>
+</ul></li>
+</ol></li>
+</ul>
+<h2 id="frbr-ontology">FRBR Ontology</h2>
+<ul>
+<li>FRBR: Functional Requirements for Bibliographic Records</li>
+</ul>
+<h3 id="creating-ontologies">Creating Ontologies</h3>
+<ol type="1">
+<li>Determining entities
+<ul>
+<li>Isolate the kinds (types) objects (entities) that are of interest.</li>
+</ul></li>
+<li>Identify attributes
+<ul>
+<li>Attribute assignments
+<ul>
+<li>Each entity is assigned a distinctive set of attributes</li>
+<li>Each attribute assignments are disjoint</li>
+</ul></li>
+</ul></li>
+<li>Identify relationships between entities
+<ul>
+<li>types
+<ol type="1">
+<li>“subclass” relationship</li>
+<li>“named” relationship</li>
+</ol></li>
+<li>examples: exemplifies, embodies, realizes, adaption, translation, abridgement, part of</li>
+</ul></li>
+</ol>
+<h2 id="implementing-ontologies-via-rdfs">Implementing Ontologies via RDFS</h2>
+<ul>
+<li>RDF can be expressed as a graph / serialized in XML</li>
+<li>RDF Data Model
+<ul>
+<li>The basic abstract structure in RDF is a triple
+<ol type="1">
+<li>Subject</li>
+<li>Predicate</li>
+<li>Object</li>
+</ol></li>
+<li>The RDF graph is a collection of above triples</li>
+</ul></li>
+<li>RDFS
+<ul>
+<li>a schema language for defining RDF vocabularies</li>
+<li>itself uses RDF triples as its syntax</li>
+<li>can connect an instance the the schema</li>
+</ul></li>
+</ul>
 <h1 id="week-5-data-integration">Week 5: Data integration</h1>
 <h2 id="data-cleaning">Data cleaning</h2>
+<ul>
+<li>Data integration</li>
+<li>Approaches to integration
+<ol type="1">
+<li>Federation
+<ul>
+<li>Leaving datasets that are to be integrated in their original formats but mapping their schemas to a single meta-schema</li>
+</ul></li>
+<li>Derivation
+<ul>
+<li>derive a single dataset and a single schema</li>
+</ul></li>
+</ol></li>
+</ul>
+<h2 id="heterogeneity">Heterogeneity</h2>
+<ul>
+<li>Kinds
+<ol type="1">
+<li>Encoding</li>
+<li>Syntax
+<ul>
+<li>different data description languages for the same model type e.g. XML / JSON</li>
+</ul></li>
+<li>Model
+<ul>
+<li>different model types e.g. relation vs tree vs ER</li>
+</ul></li>
+<li>Representational
+<ul>
+<li>Different modeling choices within a model type e.g. xml - element or attribute?</li>
+</ul></li>
+<li>Semantic
+<ul>
+<li>Synonyms, homonyms, missing relationships, different but related concepts</li>
+<li>most challenging</li>
+</ul></li>
+<li>Processing</li>
+<li>Policy</li>
+</ol></li>
+</ul>
+<h2 id="schema-integration">Schema Integration</h2>
+<ul>
+<li>the process of merging several conceptual schemas into a global conceptual schema that represents all the requirements of the application</li>
+<li>usually takes place at the conceptual level or logical level</li>
+<li>2 kinds of integration problems
+<ol type="1">
+<li>Representational</li>
+<li>Semantic
+<ol type="1">
+<li>synonyms</li>
+<li>homonyms</li>
+<li>conceptual overlaps</li>
+<li>generality variation</li>
+</ol></li>
+</ol></li>
+</ul>
+<h1 id="week-6-data-concepts">Week 6: Data concepts</h1>
+<h2 id="dataset-features">Dataset Features</h2>
+<ol type="1">
+<li>Content
+<ul>
+<li>Observation, DataObject, Value, Data, File and Records</li>
+</ul></li>
+<li>Grouping
+<ul>
+<li>Aggregation, Set, Collection, Organization and Knowledge base</li>
+</ul></li>
+<li>Relatedness
+<ul>
+<li>Common theme, Integratedness, Commonly structured and Logic of a collection</li>
+</ul></li>
+<li>Purpose
+<ul>
+<li>analysis, evidence, explaining, being explained</li>
+</ul></li>
+</ol>
+<h2 id="identity-problems">Identity Problems</h2>
+<ul>
+<li>Identity Problems in data curation
+<ol type="1">
+<li>Archiving</li>
+<li>Preservation
+<ul>
+<li>e.g. what’s the preserved data format</li>
+</ul></li>
+<li>Security
+<ul>
+<li>e.g. If dataset has been tampered</li>
+</ul></li>
+<li>Authentication
+<ul>
+<li>e.g. If this is the data we think it is</li>
+</ul></li>
+<li>Reproducibility
+<ul>
+<li>Does this XML file have the same information as that JSON file?</li>
+</ul></li>
+<li>Provenance
+<ul>
+<li>e.g. if datasets were derived from the same data</li>
+</ul></li>
+<li>Conversions</li>
+</ol></li>
+<li>Representation levels
+<ul>
+<li>levels of encodings, structures, formats, serialization etc
+<ul>
+<li>e.g. UTF-8, RDF triples, N3 serialization</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="roles-vs-types">Roles vs types</h2>
+<ul>
+<li>Roles
+<ul>
+<li>A property is a role if and only if anything that has it could exist and fail to have it</li>
+<li>e.g. being a student is a role because persons are students only in virtue of particular contingent circumstances</li>
+</ul></li>
+<li>Types
+<ul>
+<li>A property is rigid if and only if nothing that has it could exist and fail to have it</li>
+<li>e.g. being a person is a type because persons are persons regardless of contingent circumstances</li>
+</ul></li>
+</ul>
+<h2 id="the-basic-representation-model-ontology">The basic representation model (Ontology)</h2>
+<ul>
+<li>Propositional Content (Semantic level)
+<ul>
+<li>Is expressed by</li>
+</ul></li>
+<li>Symbol Structure (Encoding levels)
+<ul>
+<li>Is encoded by itself</li>
+<li>Is inscribed by (inscription: a physical instantiation of an encoding)</li>
+</ul></li>
+<li>Patterned Matter and Energy (instantiation level)
+<ul>
+<li>represents an instance</li>
+<li>interpretation of the term: a physical matter in energy, patterned in some way or other</li>
+</ul></li>
+</ul>
+<h3 id="interpretative-frames">Interpretative Frames</h3>
+<ul>
+<li>Standards for defining specific expression, encodings, and inscriptions</li>
+</ul>
+<h3 id="side-note">Side note</h3>
+<ul>
+<li>two different symbol structures can express the same proposition</li>
+<li>two different symbol structures can encode the same symbol structure (due to recursion)</li>
+</ul>
+<h2 id="whats-data">What’s data?</h2>
+<ul>
+<li>Data are <strong>propositions asserted as evidence</strong>
+<ul>
+<li>Entity type for data: propositional content</li>
+</ul></li>
+<li>Data is not a type of thing, it is a role</li>
+<li>Data is socially constructed</li>
+<li>Propositions are data only in particular social circumstances.</li>
+<li>Data is relative
+<ul>
+<li>The same proposition can be data supporting a claim in one circumstance, and a claim being supported by data in another circumstance</li>
+</ul></li>
+</ul>
+<h1 id="week-7-metadata">Week 7: Metadata</h1>
+<h2 id="whats-metadata">What’s metadata</h2>
+<ul>
+<li>initial definition: data about data</li>
+<li>better definition: structured data about an object that supports functions associated with the designated object</li>
+<li>Classification by function
+<ol type="1">
+<li>Descriptive</li>
+<li>Administrative
+<ol type="1">
+<li>Technical</li>
+<li>Preservation</li>
+<li>Rights</li>
+</ol></li>
+<li>Structural</li>
+</ol></li>
+<li>Distinction about whether data is metadata is typically pragmatic, but there’s no clear hard distinction</li>
+</ul>
+<h2 id="metadata-schemas">Metadata Schemas</h2>
+<ul>
+<li>A set of data elements, with specified meanings for supporting metadata statements in particular contexts</li>
+<li>vocabulary independent
+<ul>
+<li>Metadata schemas are sometimes purely conceptual</li>
+<li>benefits
+<ol type="1">
+<li>gracefully support different languages</li>
+<li>take advantage of common meanings for common words</li>
+</ol></li>
+<li>The benefts (of indirection) may be outweighed by the advantages of providing a controlled term vocabulary</li>
+</ul></li>
+<li>syntax/serialization independent
+<ul>
+<li>metadata schemas need not specify any particular syntax for applying specified concepts</li>
+<li>Different serialization strategies are needed in different contexts</li>
+</ul></li>
+<li>Example
+<ol type="1">
+<li>Dublin Core</li>
+<li>EXIF</li>
+</ol></li>
+</ul>
+<h2 id="metadata-ambiguities">Metadata Ambiguities</h2>
+<ul>
+<li>Metadata is often used with ambiguous semantics
+<ul>
+<li>e.g. a digital image of paintings could have a format of JPEG or a format of oil painting - this is hard to be understood by machines</li>
+</ul></li>
+</ul>
+<h1 id="week-8-data-practices">Week 8: Data Practices</h1>
+<h2 id="data-practices">Data practices</h2>
+<p>An empirical view of what people creating, analyzing, and managing data actually do. (or would do) so that we can improve efficiency and reliability</p>
+<h2 id="data-sharing">Data Sharing</h2>
+<ul>
+<li>important and valuable to communities beyond the developing community</li>
+<li>Challenges from sharing side
+<ol type="1">
+<li>Data misuse concerns</li>
+<li>Legal / ethical issues</li>
+<li>No incentives</li>
+<li>Laborious effort</li>
+</ol></li>
+</ul>
+<h2 id="data-reuse">Data Reuse</h2>
+<ul>
+<li>definitions
+<ol type="1">
+<li>the use of data collected for one purpose to study a new problem</li>
+<li>the use of data collected by one technical community and being used by another technical community</li>
+</ol></li>
+<li>Comparing to data sharing, data reuse focuses on
+<ul>
+<li>How communities use (or why they don’t use) relevant data that they did not produce and for which they are not the intended consumer</li>
+</ul></li>
+</ul>
+<h2 id="gdpr-general-data-protection-regulation">GDPR (General Data Protection Regulation)</h2>
+<ul>
+<li>Aspects
+<ol type="1">
+<li>Security
+<ul>
+<li>Capability to detect a data breach</li>
+<li>Control and mechanisms to detect and prevent attacks</li>
+</ul></li>
+<li>Data subject rights
+<ul>
+<li>Access requests about identifiers would be free</li>
+</ul></li>
+<li>Consent
+<ul>
+<li>Need to ask customers’ consent to get their data</li>
+</ul></li>
+<li>Privacy</li>
+</ol></li>
+</ul>
+<h2 id="data-anonymization">Data Anonymization</h2>
+<h3 id="data-sanitization">Data Sanitization</h3>
+<ul>
+<li>Removing or obfuscating information that is contained in stored or distributed data</li>
+<li>Why bother
+<ol type="1">
+<li>ensuring conformance with the relevant laws</li>
+<li>minimizing civil liabilities</li>
+<li>safe-guarding trade secrets</li>
+<li>declassifying national security documents</li>
+<li>protecting individual identities.</li>
+</ol></li>
+</ul>
+<h3 id="data-privacy">Data Privacy</h3>
+<ul>
+<li>freedom from observation or from the distribution of collected personal information</li>
+<li>2 conflicting trends
+<ol type="1">
+<li>the rapidly increasing importance of fine-grained digital data to science, business, and government</li>
+<li>increasing concern about protecting personal data in digital format</li>
+</ol></li>
+<li>Consequently, there has been a rapid establishment of more stringent and more complex norms, both for regulating collection and distribution, and for storage and internal use</li>
+</ul>
+<h3 id="anonymization-and-pii">Anonymization and PII</h3>
+<ul>
+<li>Personal Identifiable Information (PII) - Information that can be used to identify a particular individual</li>
+<li>K-Anonymity
+<ul>
+<li>A released dataset is believed to be k-anonymous if the information of each individual is indistinguishable from information of at least k-1 other individuals in the dataset.</li>
+</ul></li>
+</ul>
+<h3 id="techniques">Techniques</h3>
+<ol type="1">
+<li>Masking: Masking replaces meaningful data with arbitrary symbols or with codes
+<ol type="1">
+<li>Redacting</li>
+<li>Replacement with fabricated data similar in format or data datatype (tokenization)</li>
+<li>Encoding</li>
+</ol></li>
+<li>Shuffling: the values within a column are redistributed, breaking the connection between a data value and a person
+<ul>
+<li>Benefits
+<ol type="1">
+<li>the occurrence, number, and ratios of values remain in the data
+<ul>
+<li>Can be used to get group data without revealing individual</li>
+</ul></li>
+</ol></li>
+</ul></li>
+<li>Perturbation: numerical data is rounded and some additional slight numerical variation (“noise”) is added</li>
+<li>Generalization: replaces specific data with more general data.</li>
+<li>Combinations: Anonymization techniques can be combined, to realize adjustments in the protection vs information tradeoff.</li>
+</ol>
+<h2 id="data-integrity">Data Integrity</h2>
+<ul>
+<li>refers to the completeness and consistency in quality of data over its life-cycle, across different platforms and formats</li>
+</ul>
+<h3 id="xml-signature">XML Signature</h3>
+<ul>
+<li>An XML signature or XMLDSIG is an xml syntax for digital signatures defined by the “W3C recommendation XML Signature Syntax and Processing”</li>
+<li>Purpose
+<ol type="1">
+<li>provide integrity, authentication for both message and signer services for data of any type</li>
+</ol></li>
+<li>Use cases
+<ol type="1">
+<li>sign including but not limited to XML documents (other formats: HTML, JPEGs etc.)</li>
+</ol></li>
+<li>Features
+<ol type="1">
+<li>sign certain portions of XML tree rather than the entire document</li>
+</ol></li>
+<li>How it works?
+<ol type="1">
+<li>Apply exclusive canonical algorithm to treat white spaces and non utf-8 characters</li>
+<li>the document is then hashed using a suitable hashing algorithm like SHA or MD5 to create a hash value. This serves as the Digest Value in the blank XML signature syntax
+<ul>
+<li>Digest value binds a resource’s content to the signer’s key and the method (Hash Algorithm) which we used to create this digest value is specified in the digest method element of the signature</li>
+</ul></li>
+</ol></li>
+</ul>
+<h3 id="hashing">Hashing</h3>
+<ul>
+<li>SHA1
+<ul>
+<li>SHA: Secure Hash Algorithm</li>
+<li>160-bit message digest</li>
+</ul></li>
+<li>MD5
+<ul>
+<li>MD: Message Digest</li>
+<li>128-bit message digest</li>
+<li>faster than SHA1</li>
+<li>weaker against brute force attack</li>
+<li>vulnerable against cryptanalysis</li>
+</ul></li>
+</ul>
+<h1 id="week-9-preservation">Week 9: Preservation</h1>
+<ul>
+<li>To ensure that the data can be used effectively and reliably in the future despite lots of changes over time</li>
+<li>Focuses our attention on understanding and credibility, not physical objects</li>
+</ul>
+<h2 id="whats-data-preservation">What’s data preservation</h2>
+<ul>
+<li>Digital Preservation
+<ul>
+<li>Best simple definition: Ensuring reliable communication with the future</li>
+</ul></li>
+<li>More specifically, future users should
+<ol type="1">
+<li>have possession of physical media and encodings</li>
+<li>recognize the originally intended propositional content</li>
+<li>can verify the propositional content is the intended content</li>
+</ol></li>
+</ul>
+<h2 id="challenges">Challenges</h2>
+<ol type="1">
+<li>Obsolescence</li>
+<li>Physical Threats</li>
+<li>Context (medadata) could be lost</li>
+</ol>
+<h2 id="preservation-challenges-is-similar-to-integration-challenges">Preservation challenges is similar to integration challenges</h2>
+<ul>
+<li>Preservation Goals
+<ol type="1">
+<li>Viable</li>
+<li>Renderable - can be correctly viewed, processed, or executed.</li>
+<li>Understandable</li>
+<li>Authenticatable - can be correctly determined that the data is what it purports it be.</li>
+<li>Identifiable</li>
+</ol></li>
+<li>Communication involves communicating about
+<ul>
+<li>encoding (bits, bytes, UTF) through documentation</li>
+<li>syntax via schema and documentation</li>
+<li>propositions via e.g. ontology</li>
+</ul></li>
+<li>Natural language prose</li>
+</ul>
+<h2 id="strategies">Strategies</h2>
+<ol type="1">
+<li>Replication</li>
+<li>Migration
+<ul>
+<li>Keep updating your data to new formats, as needed</li>
+</ul></li>
+<li>Emulation
+<ul>
+<li>Maintain software that emulates the original processing</li>
+</ul></li>
+<li>Normalization
+<ul>
+<li>Normalization vs Migration
+<ul>
+<li>Both need transformations</li>
+<li>Migration creates a chain of data sets with the same data in different formats; normalization is a hub and spokes model</li>
+</ul></li>
+</ul></li>
+</ol>
+<h2 id="preservation-standards">Preservation Standards</h2>
+<ol type="1">
+<li>OAIS (open archival info system)
+<ul>
+<li>high level data archiving standard</li>
+</ul></li>
+<li>PREMIS
+<ul>
+<li>An international standard for metadata to support the preservation of digital objects.</li>
+</ul></li>
+</ol>
+<h3 id="pds-planetary-data-system">PDS (Planetary Data System)</h3>
+<ul>
+<li>6 data centers across US</li>
+<li>Archiving uses OAIS model</li>
+</ul>
+<h1 id="week-10-data-identity">Week 10: Data Identity</h1>
+<h2 id="identification-overview">Identification Overview</h2>
+<ul>
+<li>Identity Problems (Week6)</li>
+<li>The fundamental challenge for determining identity at any level (propositions, description, encodings) is that the relationship of every level of abstraction (propositions, description, encoding-1, encoding-2, . . . encoding-n) is related to 1:M</li>
+</ul>
+<h3 id="identifiers">Identifiers</h3>
+<ul>
+<li>Responsibilities
+<ol type="1">
+<li>Enable discovery and reuse of releveant data sets</li>
+<li>Support management of data sets</li>
+<li>Support workflow and provenance tracking</li>
+<li>Promotes transparency and reproducibility</li>
+<li>Give credit to data producers</li>
+</ol></li>
+<li>Popular identifiers: FORCE11, Data Citation Priciples, The Dataverse Project</li>
+</ul>
+<h2 id="what-to-identify">What to identify</h2>
+<ul>
+<li>All proposition &amp; symbol structures of the data
+<ul>
+<li>Including
+<ol type="1">
+<li>Semantic level (proposition)</li>
+<li>Syntax level (symbol)</li>
+<li>Encoding levels (symbol)</li>
+</ol></li>
+</ul></li>
+<li>No need to identify instantiation level</li>
+</ul>
+<h2 id="how-to-identify">How to identify</h2>
+<ul>
+<li>Bottom-up process
+<ul>
+<li>Identify the bottem bitstream encoding level to indirectly identify higher encoding levels, syntax, or propositional content</li>
+</ul></li>
+</ul>
+<h3 id="identifier-change">Identifier &amp; Change</h3>
+<ul>
+<li>The digital object itself is not changing (even though we say it is). However its relationships are changing, and new things are appearing and playing new roles
+<ul>
+<li>Digital objects do not undergo intrinsic (nonrelational) change; instead, they undergo relational change</li>
+</ul></li>
+<li>Use identifiers to identify, not to describe
+<ul>
+<li>Use non-descriptive (“opaque”) identifiers to identify digital objects (e.g. via adding label)</li>
+</ul></li>
+</ul>
+<h2 id="canonicalization">Canonicalization</h2>
+<ul>
+<li>A central strategy for determining identity of representation or (a reasonable proxy for) propositional content
+<ul>
+<li>a technique for determining representational identity</li>
+<li>a reasonable proxy for propositional identity</li>
+</ul></li>
+<li>Steps
+<ol type="1">
+<li>Convert to a single character encoding and normalize line ends.</li>
+<li>Remove all comments, tabs, non-significant spaces, etc.</li>
+<li>Propagate all attribute defaults indicated in the schema to the elements themselves</li>
+<li>Put attribute/value pairs on elements in alpha order</li>
+<li>Expand all character references</li>
+<li>Remove any internal schema or declarations.</li>
+<li>Now test to see if character sequences are identical.</li>
+</ol></li>
+<li>a fixity checksum on files in canonical normal form is the best shot at sameness of propositional content.</li>
+</ul>
+<h1 id="week-11-standards">Week 11: Standards</h1>
+<ul>
+<li>an alternative to standardizing data description languages
+<ul>
+<li>Standardize how alternative languages can be defined</li>
+</ul></li>
+</ul>
+<h2 id="standards-org">Standards Org</h2>
+<ul>
+<li>W3
+<ul>
+<li>Focuses on creating standards for web devices, web applications and web architecture</li>
+</ul></li>
+<li>DCMI
+<ul>
+<li>Focuses on creating standards for metadata</li>
+</ul></li>
+</ul>
+<h2 id="compatibility">Compatibility</h2>
+<ul>
+<li>Issues of changing standards / conversions
+<ol type="1">
+<li>expensive</li>
+<li>lose information</li>
+<li>break existing applications</li>
+</ol></li>
+<li>Conformances
+<ol type="1">
+<li>data set conformance</li>
+<li>processor conformance</li>
+</ol></li>
+<li>Compatibility relationships</li>
+</ul>
+<h1 id="week-12-transformations-and-workflows">Week 12: Transformations and Workflows</h1>
+<h2 id="workflow">Workflow</h2>
+<ul>
+<li>why data curation is concerned with data set transformations
+<ol type="1">
+<li>Data-intensive science often involves data set transformations, and a major part of data curation is managing, documenting, versioning, and otherwise supporting these transformations that are central to the research process.</li>
+<li>Data curation activities themselves often involve transformation — for instance: format conversion and updates, preservation by migration, use of canonical normal forms, data cleaning, data reduction, etc.</li>
+</ol></li>
+</ul>
+<h2 id="provenance">Provenance</h2>
+<ul>
+<li>General definition: A record of ownership of a work of art or an antique, used as a guide to authenticity or quality</li>
+<li>Computational provenance definition: the sources of information, including entities and processes, involved in producing or delivering an artifact</li>
+<li>Heart of provenance
+<ol type="1">
+<li>Data being used</li>
+<li>Calculations being performed</li>
+</ol></li>
+<li>Levels of provenance
+<ol type="1">
+<li>Black-box</li>
+<li>White-box</li>
+<li>Grey-box
+<ul>
+<li>Identification of datasets and high level processes is available</li>
+</ul></li>
+</ol></li>
+<li>Prospective provenance
+<ul>
+<li>a correct specification the workflow scenario</li>
+</ul></li>
+<li>Retrospective provenance
+<ul>
+<li>generated data on the execution of the workflow scenario</li>
+</ul></li>
+</ul>
+<h2 id="workflow-systems">Workflow Systems</h2>
+<ul>
+<li>Examples
+<ol type="1">
+<li>MapReduce</li>
+<li>Scripts</li>
+<li>Kepler</li>
+</ol></li>
+</ul>
+<h2 id="provenance-standards">Provenance Standards</h2>
+<h1 id="week-13-scientific-communication">Week 13: Scientific Communication</h1>
+<h2 id="scientific-communication">Scientific Communication</h2>
+<ul>
+<li>Challenge: too many papers to read due to the use of tools / data science</li>
+<li>Solutions
+<ol type="1">
+<li>Text mining</li>
+<li>Tools for strategic reading</li>
+</ol></li>
+<li>Specific approaches for supporting scientific publications
+<ol type="1">
+<li>annotating articles with standardized structured terminologies from scientific ontologies</li>
+<li>developing tools that, making use of the above annotations, support searching, navigation, visualization, extraction, and integration with other tools, systems, and datasets.</li>
+<li>promoting the use of standard document formats for scientific publications</li>
+</ol></li>
+<li>Areas of standards
+<ol type="1">
+<li>Domain ontologies
+<ul>
+<li>most in need of ongoing development</li>
+</ul></li>
+</ol></li>
+</ul>
+<h1 id="week-15-regulations">Week 15: Regulations</h1>
+<h2 id="policies">Policies</h2>
+<ul>
+<li>Policies’ grammatical moods are imperative (or prescriptive)</li>
+<li>Types of data policies
+<ol type="1">
+<li>Regulatory
+<ul>
+<li>Conformance is not optional if you wish to participate in the activity in question, and sometime conformance is required regardless.</li>
+</ul></li>
+<li>Exhortative
+<ul>
+<li>Advice</li>
+</ul></li>
+</ol></li>
+</ul>
+<h2 id="existing-policies">Existing Policies</h2>
+<ul>
+<li>NIH
+<ol type="1">
+<li>Sharing</li>
+<li>Responsible Conduct of research</li>
+<li>IP policy</li>
+</ol></li>
+<li>NSF (National Science Foundation)
+<ol type="1">
+<li>Sharing</li>
+<li>DMP - Data Management Plan</li>
+</ol></li>
+<li>Archive
+<ul>
+<li>Easy to support a fixity checksum</li>
+</ul></li>
+</ul>
+<h2 id="privacy">Privacy</h2>
+<ul>
+<li>Privacy protection techniques
+<ol type="1">
+<li>Consent</li>
+<li>Anonymization
+<ol type="1">
+<li>Remove values</li>
+<li>Redaction</li>
+<li>Aggregation</li>
+<li>Statistical disclosure control</li>
+</ol></li>
+</ol></li>
+</ul>
+<h1 id="xml-overview">XML Overview</h1>
+<h2 id="dtd-document-type-definition">DTD (Document Type Definition)</h2>
+<ul>
+<li>defines the structure and the legal elements and attributes of an XML document.</li>
+<li>XML building blocks
+<ol type="1">
+<li>Elements (tags)</li>
+<li>Attributes
+<ul>
+<li>provides extra info about the elements</li>
+<li>always placed inside the opening tag of an element</li>
+<li>key value pairs</li>
+</ul></li>
+<li>Entities
+<ul>
+<li>Some characters have a special meaning in XML</li>
+</ul></li>
+<li>PCDATA
+<ul>
+<li>Parsed character data</li>
+</ul></li>
+<li>CDATA
+<ul>
+<li>Character data</li>
+</ul></li>
+</ol></li>
+</ul>
+<h3 id="examples">Examples</h3>
+<ul>
+<li>Inside XML</li>
+</ul>
+<pre><code>&lt;!DOCTYPE note [
+&lt;!ELEMENT note (to,from,heading,body)&gt;
+&lt;!ELEMENT to (#PCDATA)&gt;
+&lt;!ELEMENT from (#PCDATA)&gt;
+&lt;!ELEMENT heading (#PCDATA)&gt;
+&lt;!ELEMENT body (#PCDATA)&gt;
+]&gt;</code></pre>
+<h2 id="xsd-xml-schema-definition">XSD (XML Schema Definition)</h2>
+<ul>
+<li>describes the structure of an XML doc</li>
+</ul>
+<pre><code>&lt;xs:element name=&quot;note&quot;&gt;
+  &lt;xs:complexType&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element name=&quot;to&quot; type=&quot;xs:string&quot;/&gt;
+      &lt;xs:element name=&quot;from&quot; type=&quot;xs:string&quot;/&gt;
+      &lt;xs:element name=&quot;heading&quot; type=&quot;xs:string&quot;/&gt;
+      &lt;xs:element name=&quot;body&quot; type=&quot;xs:string&quot;/&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+&lt;/xs:element&gt;</code></pre>
 <div class="status-banner" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; text-align: center;">
     <div style="display: inline-block; padding: 0.8em 2em 0.5em 2em; background: black; color: white; font-size: 2em;">
         Rendering <svg xmlns="http://www.w3.org/2000/svg" height="1.4em" viewbox="0 0 1200 500" style="vertical-align: text-bottom"><title>LaTeX logo</title><g transform="matrix(45 0 0 45 40 40)" fill="white"><path d="M5.5 4.4C5.5 4.4 5.2 4.4 5.2 4.4 5.1 5.4 5 6.7 3.2 6.7 3.2 6.7 2.4 6.7 2.4 6.7 1.9 6.7 1.9 6.6 1.9 6.3 1.9 6.3 1.9 1 1.9 1 1.9 0.6 1.9 0.5 2.9 0.5 2.9 0.5 3.2 0.5 3.2 0.5 3.2 0.5 3.2 0.2 3.2 0.2 2.8 0.2 1.9 0.2 1.5 0.2 1.1 0.2 0.3 0.2 0 0.2 0 0.2 0 0.5 0 0.5 0 0.5 0.2 0.5 0.2 0.5 1 0.5 1 0.6 1 0.9 1 0.9 1 6.2 1 6.2 1 6.6 1 6.7 0.2 6.7 0.2 6.7 0 6.7 0 6.7 0 6.7 0 7 0 7 0 7 5.2 7 5.2 7 5.2 7 5.5 4.4 5.5 4.4z"/><path d="M5.3 0.2C5.3 0 5.2 0 5.1 0 5 0 4.9 0 4.9 0.2 4.9 0.2 3.3 4.2 3.3 4.2 3.2 4.4 3.1 4.7 2.5 4.7 2.5 4.7 2.5 5 2.5 5 2.5 5 4 5 4 5 4 5 4 4.7 4 4.7 3.7 4.7 3.5 4.6 3.5 4.4 3.5 4.3 3.5 4.3 3.6 4.2 3.6 4.2 3.9 3.4 3.9 3.4 3.9 3.4 5.9 3.4 5.9 3.4 5.9 3.4 6.3 4.4 6.3 4.4 6.3 4.4 6.3 4.5 6.3 4.5 6.3 4.7 5.9 4.7 5.8 4.7 5.8 4.7 5.8 5 5.8 5 5.8 5 7.7 5 7.7 5 7.7 5 7.7 4.7 7.7 4.7 7.7 4.7 7.6 4.7 7.6 4.7 7.1 4.7 7.1 4.7 7 4.5 7 4.5 5.3 0.2 5.3 0.2zM4.9 0.9C4.9 0.9 5.8 3.1 5.8 3.1 5.8 3.1 4 3.1 4 3.1 4 3.1 4.9 0.9 4.9 0.9z"/><path d="M13.3 0.2C13.3 0.2 7.2 0.2 7.2 0.2 7.2 0.2 7 2.5 7 2.5 7 2.5 7.3 2.5 7.3 2.5 7.4 0.9 7.6 0.5 9.1 0.5 9.3 0.5 9.5 0.5 9.6 0.6 9.8 0.6 9.8 0.7 9.8 0.9 9.8 0.9 9.8 6.2 9.8 6.2 9.8 6.5 9.8 6.7 8.8 6.7 8.8 6.7 8.4 6.7 8.4 6.7 8.4 6.7 8.4 7 8.4 7 8.8 6.9 9.8 6.9 10.3 6.9 10.7 6.9 11.7 6.9 12.2 7 12.2 7 12.2 6.7 12.2 6.7 12.2 6.7 11.8 6.7 11.8 6.7 10.7 6.7 10.7 6.5 10.7 6.2 10.7 6.2 10.7 0.9 10.7 0.9 10.7 0.7 10.7 0.6 10.9 0.6 11 0.5 11.3 0.5 11.5 0.5 13 0.5 13.1 0.9 13.2 2.5 13.2 2.5 13.5 2.5 13.5 2.5 13.5 2.5 13.3 0.2 13.3 0.2z"/><path d="M18.7 6.7C18.7 6.7 18.4 6.7 18.4 6.7 18.2 8.2 17.9 8.9 16.2 8.9 16.2 8.9 14.9 8.9 14.9 8.9 14.4 8.9 14.4 8.8 14.4 8.5 14.4 8.5 14.4 5.9 14.4 5.9 14.4 5.9 15.3 5.9 15.3 5.9 16.3 5.9 16.4 6.2 16.4 7 16.4 7 16.6 7 16.6 7 16.6 7 16.6 4.4 16.6 4.4 16.6 4.4 16.4 4.4 16.4 4.4 16.4 5.2 16.3 5.5 15.3 5.5 15.3 5.5 14.4 5.5 14.4 5.5 14.4 5.5 14.4 3.2 14.4 3.2 14.4 2.8 14.4 2.8 14.9 2.8 14.9 2.8 16.2 2.8 16.2 2.8 17.7 2.8 18 3.3 18.1 4.7 18.1 4.7 18.4 4.7 18.4 4.7 18.4 4.7 18.1 2.5 18.1 2.5 18.1 2.5 12.5 2.5 12.5 2.5 12.5 2.5 12.5 2.8 12.5 2.8 12.5 2.8 12.7 2.8 12.7 2.8 13.5 2.8 13.5 2.9 13.5 3.2 13.5 3.2 13.5 8.4 13.5 8.4 13.5 8.8 13.5 8.9 12.7 8.9 12.7 8.9 12.5 8.9 12.5 8.9 12.5 8.9 12.5 9.2 12.5 9.2 12.5 9.2 18.2 9.2 18.2 9.2 18.2 9.2 18.7 6.7 18.7 6.7z"/><path d="M21.7 3.1C21.7 3.1 23 1.1 23 1.1 23.3 0.8 23.6 0.5 24.5 0.5 24.5 0.5 24.5 0.2 24.5 0.2 24.5 0.2 22.1 0.2 22.1 0.2 22.1 0.2 22.1 0.5 22.1 0.5 22.5 0.5 22.7 0.7 22.7 0.9 22.7 1 22.7 1.1 22.6 1.2 22.6 1.2 21.5 2.8 21.5 2.8 21.5 2.8 20.2 0.9 20.2 0.9 20.2 0.9 20.1 0.8 20.1 0.8 20.1 0.7 20.4 0.5 20.8 0.5 20.8 0.5 20.8 0.2 20.8 0.2 20.4 0.2 19.7 0.2 19.3 0.2 19 0.2 18.4 0.2 18 0.2 18 0.2 18 0.5 18 0.5 18 0.5 18.2 0.5 18.2 0.5 18.8 0.5 19 0.5 19.2 0.8 19.2 0.8 21 3.6 21 3.6 21 3.6 19.4 6 19.4 6 19.2 6.2 18.9 6.7 17.9 6.7 17.9 6.7 17.9 7 17.9 7 17.9 7 20.3 7 20.3 7 20.3 7 20.3 6.7 20.3 6.7 19.8 6.7 19.7 6.4 19.7 6.2 19.7 6.1 19.7 6.1 19.8 6 19.8 6 21.2 3.9 21.2 3.9 21.2 3.9 22.8 6.3 22.8 6.3 22.8 6.3 22.8 6.3 22.8 6.4 22.8 6.5 22.6 6.7 22.2 6.7 22.2 6.7 22.2 7 22.2 7 22.5 6.9 23.2 6.9 23.6 6.9 24 6.9 24.5 7 24.9 7 24.9 7 24.9 6.7 24.9 6.7 24.9 6.7 24.7 6.7 24.7 6.7 24.2 6.7 24 6.6 23.8 6.3 23.8 6.3 21.7 3.1 21.7 3.1z"/></g></svg> math...

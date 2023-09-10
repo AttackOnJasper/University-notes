@@ -1,0 +1,1266 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <title>cs411 | Jasper Wang</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+
+  <!-- The loading of KaTeX is deferred to speed up page rendering -->
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+
+  <!-- To automatically render math in text elements, include the auto-render extension: -->
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+    <script type="text/javascript">
+  window.onload = function() {
+    document.getElementsByClassName("status-banner")[0].style.display = "block";
+    setTimeout(function() {
+      renderMathElements(document.getElementsByClassName("math"));
+      document.getElementsByClassName("status-banner")[0].style.display = "none";
+    }, 50); // delay to allow status banner to show
+  }
+
+  function renderMathElements(mathElements) {
+    var mathOptions = {
+      macros: {
+        "\\set": "\\left\\{ #1 \\right\\}",
+        "\\tup": "\\left\\langle #1 \\right\\rangle",
+        "\\abs": "\\left\\lvert #1 \\right\\rvert",
+        "\\floor": "\\left\\lfloor #1 \\right\\rfloor",
+        "\\ceil": "\\left\\lceil#1 \\right\\rceil",
+        "\\mb": "\\mathbb{#1}",
+        "\\rem": "\\operatorname{rem}",
+        "\\ord": "\\operatorname{ord}",
+        "\\sign": "\\operatorname{sign}",
+        "\\imag": "\\bm{i}",
+        "\\dee": "\\mathop{}\\!\\mathrm{d}",
+        "\\lH": "\\overset{\\text{l'H}}{=}",
+        "\\evalat": "\\left.\\left(#1\\right)\\right|",
+        "\\sech": "\\operatorname{sech}",
+        "\\spn": "\\operatorname{Span}",
+        "\\proj": "\\operatorname{proj}",
+        "\\prp": "\\operatorname{perp}",
+        "\\refl": "\\operatorname{refl}",
+        "\\magn": "\\left\\lVert #1 \\right\\rVert",
+        "\\rank": "\\operatorname{rank}",
+        "\\sys": "\\left[ #1 \\mid #2\\space \\right]",
+        "\\range": "\\operatorname{Range}",
+        "\\adj": "\\operatorname{adj}",
+        "\\cof": "\\operatorname{cof}",
+        "\\coord": "{\\left\\lbrack #1 \\right\\rbrack}_{#2}",
+        "\\diag": "\\operatorname{diag}",
+        "\\formlp": "\\operatorname{Form}(\\mathcal{L}^P)",
+
+        // not yet available in KaTeX
+        "\\operatorname": "\\mathop{\\text{#1}}\\nolimits", //wip: spacing is slightly off
+        "\\not": "\\rlap{\\kern{7.5mu}/}", //wip: slash angle is slightly off
+        "\\bm": "\\mathbf", //wip: should be italic, but isn't
+      },
+      throwOnError: false,
+    };
+    for (var i=0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      katex.render(texText.data, mathElements[i], mathOptions);
+    }
+  }
+  </script>
+</head>
+<body>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-68271407-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+<div id="TOC">
+<ul>
+<li><a href="#week-1-conceptual-modelling">Week 1: Conceptual Modelling</a>
+<ul>
+<li><a href="#er">ER</a>
+<ul>
+<li><a href="#components">Components</a></li>
+<li><a href="#er-vs-uml">ER vs UML</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#mp1">MP1</a>
+<ul>
+<li><a href="#setup-mysql">Setup MySQL</a></li>
+</ul></li>
+<li><a href="#week-2-physical-data-modelling">Week 2: Physical data modelling</a>
+<ul>
+<li><a href="#relational-model">Relational model</a>
+<ul>
+<li><a href="#from-er-to-relational">From ER to Relational</a></li>
+</ul></li>
+<li><a href="#object-based-modelling">Object-based modelling</a></li>
+<li><a href="#nosql-modelling">NoSQL modelling</a></li>
+</ul></li>
+<li><a href="#week-3-computing-on-data">Week 3: Computing on Data</a>
+<ul>
+<li><a href="#relational-algebra">Relational Algebra</a></li>
+<li><a href="#mapreduce">MapReduce</a></li>
+</ul></li>
+<li><a href="#week-4-designing-schemas">Week 4: Designing Schemas</a>
+<ul>
+<li><a href="#functional-dependencies">Functional Dependencies</a></li>
+<li><a href="#keys">Keys</a></li>
+<li><a href="#normal-forms">Normal Forms</a></li>
+</ul></li>
+<li><a href="#mp-3">MP 3</a>
+<ul>
+<li><a href="#mysql-create-table-commands">MySQL create table commands</a></li>
+<li><a href="#load-data">Load Data</a></li>
+</ul></li>
+<li><a href="#week-5-querying-relational-databases">Week 5: Querying relational databases</a>
+<ul>
+<li><a href="#sql">SQL</a></li>
+</ul></li>
+<li><a href="#mp4">MP4</a>
+<ul>
+<li><a href="#section">2.3</a></li>
+<li><a href="#section-1">2.4</a></li>
+<li><a href="#section-2">2.5</a></li>
+<li><a href="#section-3">2.6</a></li>
+<li><a href="#section-4">2.7</a></li>
+<li><a href="#section-5">2.8</a></li>
+</ul></li>
+<li><a href="#week-6-nosql">Week 6: NoSQL</a>
+<ul>
+<li><a href="#mongodb">MongoDB</a></li>
+</ul></li>
+<li><a href="#week-7-neo4j">Week 7: Neo4j</a></li>
+<li><a href="#mp5">MP5</a>
+<ul>
+<li><a href="#mongodb-1">MongoDB</a></li>
+</ul></li>
+<li><a href="#week-8-manipulating-dbs">Week 8: Manipulating DBs</a>
+<ul>
+<li><a href="#organzing-dbs">Organzing DBs</a></li>
+<li><a href="#modifying-dbs">Modifying DBs</a></li>
+<li><a href="#indexes">Indexes</a></li>
+<li><a href="#views">Views</a></li>
+</ul></li>
+<li><a href="#week-9-regulating-databases">Week 9: Regulating Databases</a>
+<ul>
+<li><a href="#key-constraints">Key Constraints</a></li>
+<li><a href="#checks-and-assertions">Checks and Assertions</a></li>
+<li><a href="#triggers">Triggers</a></li>
+</ul></li>
+<li><a href="#week-10---11-accessing-and-indexing-data">Week 10 - 11: Accessing and indexing data</a>
+<ul>
+<li><a href="#indexing">Indexing</a>
+<ul>
+<li><a href="#isam-indexed-sequential-access-method">ISAM (Indexed Sequential Access Method)</a></li>
+<li><a href="#b-tree-also-b">B-tree (also B+)</a></li>
+<li><a href="#hash-indexing">Hash Indexing</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#project">Project</a>
+<ul>
+<li><a href="#dash">Dash</a></li>
+<li><a href="#db-techniques">DB Techniques</a></li>
+</ul></li>
+</ul>
+</div>
+  <h1>Notes by <a href="/">Jasper Wang</a>.</h1>
+  <ul class="site_links">
+    <span class="divider"></span>
+  </ul>
+<h1 id="week-1-conceptual-modelling">Week 1: Conceptual Modelling</h1>
+<ul>
+<li>Steps to build a DB app
+<ol type="1">
+<li>Understand domain / users</li>
+<li>Conceptual data modeling e.g. ER</li>
+<li>Physical data modeling</li>
+<li>Create DB and develop app</li>
+</ol></li>
+<li>Benefits of conceptual modeling
+<ol type="1">
+<li>focus on high-level description</li>
+<li>Use natural expression
+<ul>
+<li>e.g. can sketch diagrams; no need to write in computer languages</li>
+</ul></li>
+<li>Bridge to physical modeling</li>
+</ol></li>
+</ul>
+<h2 id="er">ER</h2>
+<ul>
+<li>ER diagram is the diagram generated by ER modelling</li>
+<li>ER modelling: a diagram language to specify:
+<ol type="1">
+<li>What information the database must hold.</li>
+<li>The components of that information.</li>
+<li>The relationships among the components of that information.</li>
+</ol></li>
+</ul>
+<h3 id="components">Components</h3>
+<ol type="1">
+<li>Entity sets</li>
+<li>Attribute
+<ul>
+<li>a property of an entity</li>
+<li>Each attribute has a simple value</li>
+</ul></li>
+<li>Relationships
+<ul>
+<li>Relates two or more entity sets for their interaction</li>
+<li>Cardinality (or degree): Number of entity sets involved.
+<ol type="1">
+<li>Binary</li>
+<li>Multiway</li>
+</ol></li>
+<li>A relationship can have attributes as well</li>
+<li>Multiplicity of Binary Relationships
+<ol type="1">
+<li>Many-one
+<ul>
+<li>Zero-or-one entity at the “one” side can be related from an entity at the other side</li>
+<li>Zero-or-more entities at the “many” side can be related from an entity at the other side</li>
+<li>One side is denoted as an arrow</li>
+</ul></li>
+<li>One-one</li>
+<li>Many-many</li>
+<li>Exactly one
+<ul>
+<li>round arrow</li>
+</ul></li>
+</ol></li>
+<li>Relationship role
+<ul>
+<li>an entity set may be involved multiple times in a relationship</li>
+<li>It is possible for an entity set to relate to itself</li>
+<li>we can label each involvement with a role</li>
+</ul></li>
+<li>IsA relationship
+<ul>
+<li>Subclass</li>
+</ul></li>
+<li>Constraints
+<ul>
+<li>Types
+<ol type="1">
+<li>Key - unique id</li>
+<li>Referential integrity
+<ul>
+<li>A referenced entity mush exist</li>
+<li>i.e. Exactly one relationship</li>
+</ul></li>
+<li>Domain constraints</li>
+<li>General constraints</li>
+</ol></li>
+</ul></li>
+</ul></li>
+</ol>
+<h3 id="er-vs-uml">ER vs UML</h3>
+<ul>
+<li>UML Allows Binary Associations Only
+<ul>
+<li>K-way Can Be Expressed as K Binaries</li>
+</ul></li>
+</ul>
+<h1 id="mp1">MP1</h1>
+<h3 id="setup-mysql">Setup MySQL</h3>
+<ul>
+<li>Start MySQL server: <code>sudo /usr/local/mysql/support-files/mysql.server start</code></li>
+</ul>
+<h1 id="week-2-physical-data-modelling">Week 2: Physical data modelling</h1>
+<h2 id="relational-model">Relational model</h2>
+<ul>
+<li>Definitions
+<ol type="1">
+<li>Each entry in the relation is called as a tuple / record / row</li>
+<li>Each column in the relation is also called as an attribute / field</li>
+<li>Each attribute has a data type called domain
+<ul>
+<li>The domain must be atomic</li>
+<li>e.g. integer, string, real</li>
+</ul></li>
+<li>Schema
+<ol type="1">
+<li>Relation schema
+<ul>
+<li>Relation name, attribute names, and the domains</li>
+</ul></li>
+<li>Database schema
+<ul>
+<li>A set of relation schemas</li>
+</ul></li>
+</ol></li>
+</ol></li>
+<li>Schema constraints
+<ol type="1">
+<li>Key constraint</li>
+<li>Null constraint</li>
+<li>Default
+<ul>
+<li>the default value if no value is specified</li>
+</ul></li>
+</ol></li>
+</ul>
+<h3 id="from-er-to-relational">From ER to Relational</h3>
+<ul>
+<li>Rules
+<ol type="1">
+<li>Entity Set -&gt; Relation
+<ul>
+<li>Copy attributes and key</li>
+</ul></li>
+<li>Relationship -&gt; Relation
+<ul>
+<li>Attributes: need to store the primary keys of the entities as well as the attributes of the relationship</li>
+<li>Key: only need the primary keys from the entities that cannot be functionally dependent</li>
+</ul></li>
+<li>Combining Many-One Relationships
+<ul>
+<li>Combine the relation of a many-one relationship with the relation of the “many”-side entity set.
+<ul>
+<li>copy attributes from the relationship relation to ‘many’ entity set</li>
+</ul></li>
+</ul></li>
+</ol></li>
+<li>Translating ER subclasses to relational approaches
+<ol type="1">
+<li>ER approach
+<ul>
+<li>i.e. uses the normal ER rules and stores subclass as a relation
+<ul>
+<li>with only the additional attributes</li>
+<li>Primary key is the same as the one for superclass; link to superclass via the key</li>
+</ul></li>
+</ul></li>
+<li>OO approach
+<ul>
+<li>stores the subclass as a relation with all its superclass’ attributes + its own attributes</li>
+</ul></li>
+<li>Null value approach
+<ul>
+<li>stores both superclass and subclass in the same relation</li>
+</ul></li>
+</ol></li>
+</ul>
+<h2 id="object-based-modelling">Object-based modelling</h2>
+<ul>
+<li>Types
+<ol type="1">
+<li>OO Data model</li>
+<li>Object-relational data model
+<ul>
+<li>PostgreSQL</li>
+</ul></li>
+</ol></li>
+</ul>
+<h2 id="nosql-modelling">NoSQL modelling</h2>
+<ul>
+<li>Data models
+<ol type="1">
+<li>Key-value model
+<ul>
+<li>e.g. Redis</li>
+</ul></li>
+<li>Document model
+<ul>
+<li>Documents do not necessarily share the same schema</li>
+<li>JSON: JavaScript Object Notation
+<ul>
+<li>Standard for serializing data object in human-readable format</li>
+</ul></li>
+<li>e.g. MongoDB</li>
+</ul></li>
+<li>Graph model
+<ul>
+<li>relationship as the first class concept</li>
+<li>e.g. Neo4j</li>
+</ul></li>
+</ol></li>
+</ul>
+<h1 id="week-3-computing-on-data">Week 3: Computing on Data</h1>
+<h2 id="relational-algebra">Relational Algebra</h2>
+<ul>
+<li>Algebra with relations as the operands. The output is also a relation</li>
+<li>Types
+<ol type="1">
+<li>Reduction: make a table (relation) smaller
+<ol type="1">
+<li>Selection (filter rows)</li>
+<li>Projection (filter columns)
+<ul>
+<li>duplicates are removed</li>
+</ul></li>
+</ol></li>
+<li>Combination: combine 2 tables
+<ol type="1">
+<li>Union
+<ul>
+<li>operands need to have the same schema</li>
+<li>duplicates are removed</li>
+</ul></li>
+<li>Difference
+<ul>
+<li>operands need to have the same schema</li>
+</ul></li>
+<li>Cartesian product
+<ul>
+<li>attribute names should not clash for the operands. Can use renaming first to ensure.</li>
+</ul></li>
+</ol></li>
+<li>Renaming: change attribute names</li>
+<li>Derived
+<ol type="1">
+<li>Intersect
+<ul>
+<li>Derived from R1 - (R1 - R2)</li>
+</ul></li>
+<li>Theta Join
+<ul>
+<li>Cartesian product then filtered by the theta condition</li>
+</ul></li>
+<li>Natural Join
+<ul>
+<li>Combining all pairs of typles that agree on the ‘common’ attributes</li>
+<li>i.e. natural join == projection of theta join with the condition R1.{common} = R2.{common}</li>
+</ul></li>
+</ol></li>
+</ol></li>
+<li>NoSQL DB does not need to do joins because of
+<ol type="1">
+<li>sub-document embedding</li>
+<li>document referencing</li>
+<li>arrays</li>
+</ol></li>
+</ul>
+<h2 id="mapreduce">MapReduce</h2>
+<ul>
+<li>Steps
+<ol type="1">
+<li>Map</li>
+<li>Group</li>
+<li>Reduce</li>
+</ol></li>
+</ul>
+<h1 id="week-4-designing-schemas">Week 4: Designing Schemas</h1>
+<ul>
+<li>Goodness of a schema depends on the domain characteristics</li>
+<li>Desired properties of a schema
+<ol type="1">
+<li>Minimize redundancy</li>
+<li>Avoid info loss</li>
+<li>Preserve dependency</li>
+<li>Ensure good query performance</li>
+</ol></li>
+<li>A good schema is called a normal form.</li>
+<li>To transform a bad schema into a good one is called normalizing the schema</li>
+</ul>
+<h2 id="functional-dependencies">Functional Dependencies</h2>
+<ul>
+<li>A form of constraint</li>
+<li>Notation: <span class="math display"> A_1, ... A_m \to B_1, ... B_n </span></li>
+<li>Meaning: If any tuples agree on <span class="math display"> 𝐴_1, ... , 𝐴_𝑚 </span> values, then they must also agree on <span class="math display"> 𝐵_1,...,𝐵_n </span>.
+<ul>
+<li>i.e. the mapping is functional. (A many-to-one mapping is called a functional mathematically because the value of A can uniquely determine the value of B.)</li>
+</ul></li>
+<li>Reasoning
+<ul>
+<li>Armstrong’s Axioms
+<ol type="1">
+<li>Reflexivity rule</li>
+<li>Augmentation rule</li>
+<li>Transitivity rule</li>
+</ol></li>
+<li>Derived rules
+<ol type="1">
+<li>Splitting rule</li>
+<li>Combining rule</li>
+</ol></li>
+</ul></li>
+<li>Closure
+<ul>
+<li>All attributes that a set of attributes can functionaly determine</li>
+<li>Denoted as <span class="math display"> A^+ </span></li>
+</ul></li>
+<li>An FD by non-key attributes can cause redundancy.</li>
+</ul>
+<h2 id="keys">Keys</h2>
+<ul>
+<li>Primary key functional determines all attributes of a relation</li>
+<li>Superkey: A set of attributes that contains a key</li>
+</ul>
+<h2 id="normal-forms">Normal Forms</h2>
+<ul>
+<li>First Normal Form
+<ul>
+<li>Each attribute contains only single atomic values</li>
+</ul></li>
+<li>Boyce-Codd Normal form
+<ul>
+<li>A relation R is in BCNF if and only if: Whenever there is a nontrivial FD for R, <span class="math display"> A \to B </span>, then A is a superkey for R.
+<ul>
+<li>A functional dependency for A determines B is trivial if it simply determines itself, when B is a subset of A.</li>
+</ul></li>
+<li>Whenever a set of attributes of R determines another attribute, it should determine all attributes of R.</li>
+<li>BCNF Decomposition
+<ul>
+<li>Decompose into a good DF set and a bad DF set</li>
+<li>Decomposition is lossless</li>
+<li>BCNF may not be dependency preserving</li>
+</ul></li>
+</ul></li>
+</ul>
+<h1 id="mp-3">MP 3</h1>
+<h2 id="mysql-create-table-commands">MySQL create table commands</h2>
+<pre><code>CREATE TABLE Faculty(
+    id INT not null,
+    name VARCHAR(255) not null,
+    position VARCHAR(255),
+    researchInterest VARCHAR(255),
+    email VARCHAR(255),
+    phone VARCHAR(255),
+    photoUrl VARCHAR(255),
+    affiliation_id VARCHAR(255),
+    PRIMARY KEY(id));
+
+CREATE TABLE Affiliation(
+    id INT not null,
+    name VARCHAR(255) not null,
+    photoUrl VARCHAR(255),
+    PRIMARY KEY(id));
+
+CREATE TABLE Keyword(
+    id INT not null,
+    name VARCHAR(255) not null,
+    PRIMARY KEY(id));
+
+CREATE TABLE FacultyContains(
+    faculty_id INT not null,
+    keyword_id INT not null,
+    score DOUBLE not null,
+    PRIMARY KEY(faculty_id, keyword_id));
+
+CREATE TABLE Publication(
+    id INT not null,
+    title VARCHAR(255) not null,
+    venue VARCHAR(255),
+    year INT not null,
+    numCitations INT not null,
+    PRIMARY KEY(id));
+
+CREATE TABLE FacultyPublishes(
+    faculty_id INT not null,
+    publication_id INT not null,
+    PRIMARY KEY(faculty_id, publication_id));
+
+CREATE TABLE PublicationContains(
+    publication_id INT not null,
+    keyword_id INT not null,
+    score DOUBLE not null,
+    PRIMARY KEY(publication_id, keyword_id));
+
+</code></pre>
+<h2 id="load-data">Load Data</h2>
+<pre><code>LOAD DATA LOCAL INFILE &#39;~/Downloads/publication_contains.csv&#39;
+INTO TABLE PublicationContains 
+FIELDS TERMINATED BY &#39;,&#39;  
+ENCLOSED BY &#39;&quot;&#39;
+LINES TERMINATED BY &#39;\n&#39; 
+IGNORE 1 ROWS;</code></pre>
+<h1 id="week-5-querying-relational-databases">Week 5: Querying relational databases</h1>
+<ul>
+<li>Query language: A “computer language” to communicate with a database for asking questions on the information stored within.</li>
+</ul>
+<h2 id="sql">SQL</h2>
+<ul>
+<li>Standard language for querying and manipulating data.</li>
+<li>Declarative language: only say what you want, and not how to get it.</li>
+<li>Benefits
+<ol type="1">
+<li>Easy to use</li>
+<li>Efficient</li>
+</ol></li>
+<li>Features
+<ol type="1">
+<li>Closure property - both input and output are relations (even a scalar value is a relation)</li>
+</ol></li>
+<li>Basic: SELECT … FROM … WHERE …
+<ul>
+<li>In terms of relational algebra: selection &amp; projection</li>
+</ul></li>
+<li>Null values
+<ul>
+<li>Common cases
+<ol type="1">
+<li>Missing value</li>
+<li>Inapplicable</li>
+</ol></li>
+<li>When NULL is compared with any value, the truth value is UNKNOWN.</li>
+<li>Test for NULL: x IS NULL, x IS NOT NULL</li>
+</ul></li>
+<li>Subquery
+<ul>
+<li>Can occur in SELECT / FROM / WHERE</li>
+<li>Operators that deal with a relation
+<ol type="1">
+<li>IN</li>
+<li>EXISTS</li>
+<li>ANY</li>
+<li>ALL</li>
+</ol></li>
+</ul></li>
+<li>Set operators
+<ol type="1">
+<li>UNION</li>
+<li>INTERSECT</li>
+<li>EXCEPT
+<ul>
+<li>Difference</li>
+</ul></li>
+</ol></li>
+<li>Duplicates
+<ul>
+<li>Set vs Bag</li>
+<li>Override bag semantics: DISTINCT</li>
+<li>Override set semantics: ALL</li>
+</ul></li>
+<li>Aggregation
+<ul>
+<li>Operators
+<ol type="1">
+<li>SUM</li>
+<li>AVG</li>
+<li>MIN / MAX</li>
+<li>COUNT</li>
+</ol></li>
+<li>Framework
+<ol type="1">
+<li>FROM-WHERE</li>
+<li>GROUP-BY + attribute (to segregate groups)</li>
+<li>Functions (aggregate groups)</li>
+<li>HAVING + condition (filter groups; applies to each group)</li>
+<li>SELECT</li>
+</ol></li>
+<li>Null does not contribute to aggregation</li>
+</ul></li>
+<li>JOIN</li>
+</ul>
+<h1 id="mp4">MP4</h1>
+<h2 id="section">2.3</h2>
+<pre><code>SELECT k.name, count(p.id)
+FROM keyword as k
+JOIN publication_keyword as pk ON k.id = pk.keyword_id
+JOIN publication as p ON p.id = pk.publication_id
+WHERE p.year &gt;= 2012
+GROUP BY k.name
+ORDER BY count(p.id) DESC
+LIMIT 10;</code></pre>
+<h2 id="section-1">2.4</h2>
+<pre><code>SELECT f.name
+FROM faculty as f
+JOIN faculty_publication as fp ON f.id = fp.faculty_id
+JOIN (select * from publication WHERE publication.year = 2012 AND publication.num_citations &gt; 10) as p ON p.id = fp.publication_id
+GROUP BY f.name
+HAVING count(fp.publication_id) &gt; 10
+ORDER BY trim(f.name);</code></pre>
+<h2 id="section-2">2.5</h2>
+<pre><code>SELECT u.name, count(DISTINCT f.id)
+FROM keyword as k
+JOIN faculty_keyword as fk ON k.id = fk.keyword_id
+JOIN faculty as f ON f.id = fk.faculty_id
+JOIN university as u ON u.id = f.university_id
+WHERE k.name LIKE &#39;%data%&#39;
+GROUP BY u.name
+ORDER BY count(DISTINCT f.id) DESC
+LIMIT 1;</code></pre>
+<h2 id="section-3">2.6</h2>
+<pre><code>SELECT f.name, sum(pk.score * p.num_citations) as &#39;KRC&#39;
+FROM keyword as k
+JOIN publication_keyword as pk ON k.id = pk.keyword_id
+JOIN publication as p ON p.id = pk.publication_id
+JOIN faculty_publication as fp ON p.id = fp.publication_id
+JOIN faculty as f ON f.id = fp.faculty_id
+WHERE k.name = &quot;machine learning&quot;
+GROUP BY f.name
+ORDER BY sum(pk.score * p.num_citations) DESC
+LIMIT 10;</code></pre>
+<h2 id="section-4">2.7</h2>
+<pre><code>SELECT p.title
+FROM keyword as k
+JOIN publication_keyword as pk ON k.id = pk.keyword_id
+JOIN publication as p ON p.id = pk.publication_id
+JOIN faculty_publication as fp ON p.id = fp.publication_id
+WHERE k.name = &quot;machine learning&quot; AND p.year &lt; 2016
+GROUP BY p.id
+ORDER BY count(fp.faculty_id) DESC, p.title
+LIMIT 10;</code></pre>
+<h2 id="section-5">2.8</h2>
+<pre><code>SELECT u.name
+FROM keyword as k
+JOIN faculty_keyword as fk ON k.id = fk.keyword_id
+JOIN faculty as f ON f.id = fk.faculty_id
+JOIN university as u ON u.id = f.university_id
+WHERE (k.name = &#39;machine learning&#39; or k.name = &#39;computer vision&#39; or k.name = &#39;natural language processing&#39; or k.name = &#39;data mining&#39; or k.name = &#39;information retrieval&#39;)
+AND (u.name = &#39;University of Illinois at Urbana Champaign&#39; or u.name = &#39;University of California--Berkeley&#39; or u.name = &#39;Stanford University&#39;)
+GROUP BY u.id
+ORDER BY count(DISTINCT f.id) DESC
+LIMIT 1;</code></pre>
+<h1 id="week-6-nosql">Week 6: NoSQL</h1>
+<h2 id="mongodb">MongoDB</h2>
+<ul>
+<li>Methods
+<ol type="1">
+<li>db.collection.aggregate()</li>
+<li>db.collection.count()</li>
+<li>db.collection.distinct()</li>
+<li>db.collection.mapReduce()</li>
+</ol></li>
+</ul>
+<h1 id="week-7-neo4j">Week 7: Neo4j</h1>
+<ul>
+<li>Cypher
+<ul>
+<li>Query language for Neo4j</li>
+</ul></li>
+</ul>
+<h1 id="mp5">MP5</h1>
+<h2 id="mongodb-1">MongoDB</h2>
+<ul>
+<li><code>show databases</code></li>
+<li><code>use academicworld</code></li>
+<li><code>show collections</code></li>
+<li><code>db.faculty.findOne()</code></li>
+<li>MongoDB
+<ol type="1">
+<li><code>db.faculty.count({position:"Assistant Professor"})</code></li>
+<li><code>db.faculty.find({"affiliation.name": "University of illinois at Urbana Champaign"}, {"name": 1, "phone": 1, "email": 1, "_id": 0}).sort({ "name": 1 }).limit(10);</code></li>
+<li></li>
+</ol>
+<pre><code>db.publications.aggregate([
+    { $unwind: &quot;$keywords&quot; },
+    { $match: { &quot;year&quot;: { $gt: 2011 } } },
+    {
+        $group: {
+        _id: &quot;$keywords.name&quot;,
+        pub_cnt: { $sum: 1 }
+        }
+    },
+    { $sort: { &quot;pub_cnt&quot;: -1 } },
+    { $limit: 10 }
+]);</code></pre>
+<ol type="1">
+<li></li>
+</ol>
+<pre><code>db.faculty.aggregate([
+    {
+        $match: {
+            &quot;affiliation.name&quot;: &quot;University of illinois at Urbana Champaign&quot;
+        } 
+    },
+    {
+        $project: {&quot;_id&quot;: 0, &quot;name&quot;: 1, &quot;publications&quot;: 1}
+    },
+    { $unwind: &quot;$publications&quot; },
+    {
+        $lookup: {
+            &quot;from&quot;: &quot;publications&quot;,
+            &quot;localField&quot;: &quot;publications&quot;,
+            &quot;foreignField&quot;: &quot;id&quot;,
+            &quot;as&quot;: &quot;pubDetails&quot;
+        }
+    },
+    {
+        $project: {&quot;name&quot;: 1, &quot;pubDetails&quot;: { $arrayElemAt: [&quot;$pubDetails&quot;, 0] } }
+    },
+    {
+        $match: {
+            &quot;pubDetails.keywords&quot;: {
+                $elemMatch: {
+                    &quot;name&quot;: &quot;data mining&quot;
+                } 
+            } 
+        }
+    },
+    { $unwind: &quot;$pubDetails.keywords&quot; },
+    { $match: { &quot;pubDetails.keywords.name&quot;: &quot;data mining&quot; } },
+    {
+        $group: {
+            _id: &quot;$name&quot;,
+            KRC: { 
+                $sum: {
+                    &quot;$multiply&quot;: [
+                        &quot;$pubDetails.numCitations&quot;,
+                        &quot;$pubDetails.keywords.score&quot;
+                    ]
+                }
+            }
+        }
+    },
+    { $sort: { &quot;KRC&quot;: -1 } },
+    { $limit: 10 }
+]);</code></pre></li>
+<li>Neo4j
+<ol type="1">
+<li></li>
+</ol>
+<pre><code>MATCH (n)
+WHERE n.position = &quot;Assistant Professor&quot;
+RETURN COUNT(n)</code></pre>
+<ol type="1">
+<li></li>
+</ol>
+<pre><code>MATCH (f:FACULTY)-[r:INTERESTED_IN]-&gt;(k:KEYWORD) 
+RETURN k.name, COUNT(f)
+ORDER BY COUNT(f) DESC
+LIMIT 10;</code></pre>
+<ol type="1">
+<li></li>
+</ol>
+<pre><code>MATCH (f1:FACULTY)-[r1:PUBLISH]-&gt;(p:PUBLICATION)&lt;-[r2:PUBLISH]-(f2:FACULTY),
+    (f1:FACULTY)-[r3:AFFILIATION_WITH]-&gt;(i1:INSTITUTE),
+    (f2:FACULTY)-[r4:AFFILIATION_WITH]-&gt;(i2:INSTITUTE)
+WHERE i1.name = &quot;University of illinois at Urbana Champaign&quot;
+    AND i2.name &lt;&gt; &quot;University of illinois at Urbana Champaign&quot;
+RETURN i2.name, COUNT(distinct f1)
+ORDER BY COUNT(distinct f1) DESC
+LIMIT 10;</code></pre>
+<ol type="1">
+<li></li>
+</ol>
+<pre><code>MATCH (f:FACULTY)-[r1:PUBLISH]-&gt;(p:PUBLICATION)-[lb:LABEL_BY]-&gt;(k:KEYWORD)
+WHERE k.name = &quot;data mining&quot;
+RETURN f.name, SUM(lb.score * p.numCitations) AS accumulated_citation
+ORDER BY accumulated_citation DESC
+LIMIT 1;</code></pre>
+<ol type="1">
+<li></li>
+</ol>
+<pre><code>MATCH
+  (cz:FACULTY {name: &#39;Craig Zilles&#39;})-[r1:AFFILIATION_WITH]-&gt;(i1:INSTITUTE),
+  (f:FACULTY)-[r2:AFFILIATION_WITH]-&gt;(i2:INSTITUTE),
+  p = shortestPath((cz)-[:INTERESTED_IN*]-(f))
+WHERE i1.name = &quot;University of illinois at Urbana Champaign&quot;
+    AND i2.name = &quot;Carnegie Mellon University&quot;
+RETURN p
+LIMIT 5</code></pre></li>
+</ul>
+<h1 id="week-8-manipulating-dbs">Week 8: Manipulating DBs</h1>
+<ul>
+<li>Need to keep DB consistent and up to date.</li>
+<li>DB management process
+<ul>
+<li>Real world -&gt; Data modelling -&gt; Manipulating DB -&gt; Querying DB</li>
+</ul></li>
+<li>DB basic functions: CRUD</li>
+<li>DB data elements: Database, table, schema, tuple, attribute.</li>
+</ul>
+<h2 id="organzing-dbs">Organzing DBs</h2>
+<ul>
+<li>a database consisting of multiple schemas, which consist of multiple tables.
+<ul>
+<li>Schema here refers to a scope / space of data instead of a structure of a table / database</li>
+<li>Schema contains data types, functions, and operators</li>
+</ul></li>
+<li>A constraint is a relationship among data elements that the DBMS is required to enforce.
+<ul>
+<li>Types
+<ol type="1">
+<li>key constraints
+<ul>
+<li>PK, FK</li>
+</ul></li>
+<li>attribute-based constraints
+<ul>
+<li>specific value of an attribute</li>
+</ul></li>
+<li>tuple-based
+<ul>
+<li>specific entry in the table</li>
+</ul></li>
+<li>database-based
+<ul>
+<li>relationship among elements in a DB</li>
+</ul></li>
+</ol></li>
+</ul></li>
+</ul>
+<h2 id="modifying-dbs">Modifying DBs</h2>
+<ul>
+<li>Insert</li>
+<li>Delete</li>
+<li>Update
+<ul>
+<li>Example: <code>UPDATE &lt;name&gt;   SET &lt;list of attribute assignments&gt;    WHERE &lt;condition&gt;;</code></li>
+<li>“Deferred Updates”
+<ol type="1">
+<li>Evaluate WHERE expression and identify every tuple that needs to be updated.</li>
+<li>Update the tuples identified.</li>
+</ol></li>
+</ul></li>
+</ul>
+<h2 id="indexes">Indexes</h2>
+<ul>
+<li>An index is a “map” of a table, telling DBMS where different values are stored.
+<ul>
+<li>Need indexes for the attributes that are frequently used in queries s.t. DBMS can process queries quickly</li>
+</ul></li>
+<li>Creating index
+<ul>
+<li>DBMS may create an index automatically for important attributes</li>
+<li>Users can tell DBMS what attributes to create index for, since users anticipate what queries will be asked</li>
+</ul></li>
+<li>Commands
+<ul>
+<li><code>CREATE INDEX &lt;name&gt; on &lt;table&gt; (&lt;attributes&gt;);</code></li>
+<li><code>SHOW INDEX FROM &lt;table&gt;;</code></li>
+<li><code>ALTER TABLE &lt;table&gt; DROP INDEX &lt;name&gt;;</code></li>
+</ul></li>
+<li>Every time a row is updated, all the indexes on the column(s) affected need to be modified as well. As we have a higher number of indexes, the load at the server rises to keep all the schema objects up to date and this tends to slow things down.</li>
+</ul>
+<h2 id="views">Views</h2>
+<ul>
+<li>A virtual table</li>
+</ul>
+<h1 id="week-9-regulating-databases">Week 9: Regulating Databases</h1>
+<h2 id="key-constraints">Key Constraints</h2>
+<ul>
+<li>PK</li>
+<li>FK
+<ul>
+<li>Referential integrity</li>
+<li>Constraint violations when S (source) references T (target)
+<ol type="1">
+<li>Source change
+<ul>
+<li>Mitigated by rejecting</li>
+</ul></li>
+<li>Target change
+<ul>
+<li>Mitigated by
+<ol type="1">
+<li>Reject</li>
+<li>Cascade</li>
+<li>Set NULL</li>
+</ol></li>
+</ul></li>
+</ol></li>
+<li>FOREIGN KEY declaration provides more thorough referential integrity guarantee than CHECK() does.
+<ul>
+<li>CHECK() is activated only when the source table itself is modified (via INSERT or UPDATE).</li>
+</ul></li>
+</ul></li>
+<li>Unique keys
+<ul>
+<li>PK vs unique keys
+<ol type="1">
+<li>PK can only have one set of attributes</li>
+<li>PK cannot be null</li>
+</ol></li>
+</ul></li>
+</ul>
+<h2 id="checks-and-assertions">Checks and Assertions</h2>
+<ul>
+<li>Checks
+<ol type="1">
+<li>Attribute-based: Constrain the value of a particular attribute in a tuple.
+<ul>
+<li>checked only when the attribute is inserted or updated.</li>
+<li>e.g. price float CHECK (price &gt; 1.0)</li>
+</ul></li>
+<li>Tuple-based: Constrain the value of multiple attributes in a tuple.
+<ul>
+<li>only when a tuple is inserted or updated</li>
+</ul></li>
+</ol></li>
+<li>Assertions
+<ol type="1">
+<li>Database-based
+<ul>
+<li>format: <code>CREATE ASSERTION &lt;name&gt; CHECK ( &lt;condition&gt; );</code>
+<ul>
+<li>Condition may refer to any relation or attribute in the database schema.</li>
+</ul></li>
+<li>declared as part of the database schema</li>
+</ul></li>
+</ol></li>
+</ul>
+<h2 id="triggers">Triggers</h2>
+<ul>
+<li>Checks and Assertions limitations
+<ol type="1">
+<li>timing</li>
+<li>flexibility (on what to check)</li>
+<li>handling</li>
+</ol></li>
+<li>ECA (Event-Condition-Action)
+<ul>
+<li>Event = Preposition (after, before, instead of) + event (insert, delete, update)
+<ul>
+<li>A trigger for a view should be activated using the <code>INSTEAD OF</code> event timing keyword</li>
+</ul></li>
+<li>Condition
+<ul>
+<li><code>REFERENCING [NEW / OLD][ROW / TABLE] AS &lt;name&gt;</code>: the data elements - <code>OLD TABLE</code>: the entire set of deleted rows</li>
+<li><code>FOR EACH ROW / STATEMENT</code></li>
+<li><code>WHEN</code>: define the constraint violation</li>
+</ul></li>
+</ul></li>
+</ul>
+<h1 id="week-10---11-accessing-and-indexing-data">Week 10 - 11: Accessing and indexing data</h1>
+<ul>
+<li>Query processor steps
+<ol type="1">
+<li>Parsing</li>
+<li>Optimization (generate a query plan)</li>
+<li>Processing</li>
+<li>Data Indexing</li>
+<li>Data Accessing
+<ul>
+<li>Buffer mangager deals with “buffering” data in memory for processing.</li>
+<li>storage manager manages I/O to storage.
+<ul>
+<li>row storage vs column storage</li>
+</ul></li>
+</ul></li>
+</ol></li>
+<li>Accessing data on disk
+<ol type="1">
+<li>Random Access
+<ul>
+<li>Cost = seek time + rotational latency + transfer time</li>
+</ul></li>
+<li>Sequential Access
+<ul>
+<li>Cost = transfer time</li>
+</ul></li>
+</ol></li>
+</ul>
+<h2 id="indexing">Indexing</h2>
+<ul>
+<li>An index provides a “map” for locating data
+<ul>
+<li>definition: A data structure that provides a mapping from a search key value to the locations, or pointers, of data that matches the key.</li>
+</ul></li>
+<li>Indexing: the action of building an index
+<ul>
+<li>objective is to store a collection of pointers; then use keys to label these pointers to follow.</li>
+</ul></li>
+<li>DBMS auto manages or lets users manage indexes.</li>
+<li>Dense index: having a pointer to every key value.</li>
+<li>How to store pointers?
+<ol type="1">
+<li>For pointer to a key
+<ul>
+<li>store n pointers and n keys in a disk block</li>
+</ul></li>
+<li>For pointer to a set of keys
+<ul>
+<li>An index block contains n keys and n+1 pointers</li>
+<li>A tree structure</li>
+<li>label each pointer by a range [left, right)</li>
+<li>Fanout: the number of pointers F = n + 1</li>
+<li>e.g. ISAM, B+ tree</li>
+</ul></li>
+</ol></li>
+<li>Index classification
+<ol type="1">
+<li>Clustered vs unclustered</li>
+<li>Dense vs sparse</li>
+<li>Primary vs secondary</li>
+<li>Structure (tree vs hash table)
+<ul>
+<li>Hash Tables are faster on average than B+ Trees for ‘equality’ based lookups (i.e., checking if an attribute is equal to a certain value)</li>
+<li>B+ tree is better in range scan or lookup a prefix of a key</li>
+</ul></li>
+</ol></li>
+</ul>
+<h3 id="isam-indexed-sequential-access-method">ISAM (Indexed Sequential Access Method)</h3>
+<ul>
+<li>Combining above 2 ways to store pointers</li>
+<li>A tree structure</li>
+<li>Lookup - tree traversal</li>
+<li>Cost = height of tree i.e. <span class="math display"> \log_F(N) </span>
+<ul>
+<li>ISAM trees are normally fully packed</li>
+</ul></li>
+<li>Cons - dealing with dynamic data
+<ol type="1">
+<li>Adding new data can result overflow blocks; increasing tree height &amp; lookup time
+<ul>
+<li>overflow blocks would not be sorted automatically</li>
+</ul></li>
+<li>Disk blocks might have empty spaces</li>
+<li>For static hash tables, if we want to resize the table by adding more buckets, we would need to create a new hash function.</li>
+</ol></li>
+</ul>
+<h3 id="b-tree-also-b">B-tree (also B+)</h3>
+<ul>
+<li>Addresses the cons from ISAM on balance of tree and disk block utilization</li>
+<li>New parameter d for degree (aka order)
+<ul>
+<li>determines the size of the node</li>
+<li>common values: 1, 1.5, 2, 2.5</li>
+<li>Max num of keys: = 2d</li>
+<li>Min num of keys: n = d
+<ul>
+<li>Leaf node: n = cell(d)</li>
+<li>Internal node: n = floor(d)</li>
+</ul></li>
+</ul></li>
+<li>Pointer labeling: same as ISAM</li>
+<li>In practice
+<ul>
+<li>Typical degree: 100</li>
+<li>Typical fill-factor: 67%</li>
+<li>Average fanout = 133</li>
+</ul></li>
+<li>Operations
+<ol type="1">
+<li>lookup
+<ul>
+<li>point queries: same as ISAM</li>
+<li>range queries: perform a point query then traverse using ‘next-leaf’ pointers</li>
+</ul></li>
+<li>update
+<ul>
+<li>Principle: When a node becomes too full or too empty, perform “local” changes to maintain the tree in a good shape.
+<ul>
+<li>A “local” change should involve only siblings: Split, re-distributing pointers, merge.</li>
+<li>Goal
+<ol type="1">
+<li>Every node satisfies the node capacity requirement</li>
+<li>Every node has some n + 1 pointers labeled by n keys.</li>
+</ol></li>
+<li>The changes will propagate up the tree recursively if needed</li>
+<li>Adjust keys after local changes
+<ul>
+<li>key = min(right tree)</li>
+</ul></li>
+<li>can result in more than one tree structure</li>
+</ul></li>
+<li>Insertion</li>
+</ul></li>
+</ol></li>
+</ul>
+<h3 id="hash-indexing">Hash Indexing</h3>
+<ul>
+<li>Hash table: Mapping key -&gt; bucket b by hashing</li>
+<li>Hash function: Compute key to hash value mapping</li>
+<li>Bucket: <span class="math display"> n = 2^k </span> as addressed by the hash function</li>
+<li>Static hashing
+<ul>
+<li>Operations
+<ol type="1">
+<li>query</li>
+<li>insertion</li>
+</ol></li>
+<li>Like ISAM, static hashing is good for static data due to overflow blocks</li>
+<li>Static Hash Tables may not always have faster insert than Dynamic Hash Tables.</li>
+</ul></li>
+<li>Dynamic hashing
+<ul>
+<li>Principle of hash-to-bucket organization
+<ul>
+<li>Organize the hash code space, to allocate codes to buckets dynamically, depending on how many buckets are needed.</li>
+<li>Use only i most/least significant bits, i &lt;= k</li>
+<li>Partition into at most <span class="math display">2^i</span> buckets depending on the needs</li>
+</ul></li>
+<li>When a dynamic hash table is being reorganized, we only need to touch the particular bucket that is being split/extended.</li>
+<li>Extensible hash table (MSB)
+<ul>
+<li>can merge more than 2 neighbour buckets</li>
+<li>nub shows the number of bits used i.e. j</li>
+<li>Operations
+<ol type="1">
+<li>lookup (search MSB)</li>
+<li>insertion
+<ul>
+<li>when bucket is full
+<ol type="1">
+<li>split bucket</li>
+<li>double directory</li>
+</ol></li>
+</ul></li>
+</ol></li>
+<li>extensions on the table can be costly and take a long time.</li>
+</ul></li>
+<li>Linear hash table (LSB)
+<ul>
+<li>can merge at most 2 far away buckets</li>
+<li>can have overflow blocks
+<ul>
+<li>number of overflow blocks controlled by average capacity parameter u (requires <span class="math display"> \frac{r}{n} &lt; u </span>) where r is num of keys and n is num of buckets</li>
+</ul></li>
+<li>no directory</li>
+<li>Operations
+<ol type="1">
+<li>lookup
+<ul>
+<li>can perform flipping</li>
+</ul></li>
+<li>insertion
+<ol type="1">
+<li>if full, can use overflow block</li>
+<li>if cannot use overflow, add one more bucket and flipping</li>
+</ol></li>
+</ol></li>
+<li>Extensible Hash Tables require more memory because there are no overflow blocks. This means that the entire directory needs to fit into the main memory</li>
+</ul></li>
+</ul></li>
+</ul>
+<h1 id="project">Project</h1>
+<h2 id="dash">Dash</h2>
+<ul>
+<li>dcc (Dash Core Components)
+<ul>
+<li>Gives you access to many interactive components, including dropdowns, checklists, and sliders.</li>
+<li>Functionalities
+<ol type="1">
+<li>Graph component called <code>dcc.Graph</code>, which is used to render interactive graphs.</li>
+</ol></li>
+</ul></li>
+<li>Controls and Callbacks</li>
+</ul>
+<h2 id="db-techniques">DB Techniques</h2>
+<ul>
+<li>Indexes
+<ul>
+<li><code>CREATE INDEX IF NOT EXISTS keyword_name_index on keyword (name);</code></li>
+<li><code>SHOW INDEX FROM keyword;</code></li>
+<li><code>SHOW INDEX FROM keyword WHERE KEY_NAME = 'keyword_name_index';</code></li>
+<li><code>DROP INDEX keyword_name_index ON keyword;</code></li>
+</ul></li>
+<li>View
+<ul>
+<li>Create a view on university + faculty</li>
+<li><pre><code>  CREATE OR REPLACE VIEW faculty_university AS
+SELECT faculty.id, university.name
+FROM faculty
+JOIN university ON university.id = faculty.university_id;</code></pre></li>
+<li><code>drop view faculty_university;</code></li>
+</ul></li>
+<li>Constraints
+<ul>
+<li>Key constraints via new table</li>
+<li><pre><code>CREATE TABLE IF NOT EXISTS favorite_keyword(
+id INT not null AUTO_INCREMENT,
+keyword_id INT not null,
+PRIMARY KEY(id),
+FOREIGN KEY(keyword_id) REFERENCES keyword(id));</code></pre></li>
+<li><code>INSERT INTO favorite_keyword (keyword_id) VALUES (49323);</code></li>
+<li><pre><code>  drop table favorite_keyword;</code></pre></li>
+</ul></li>
+</ul>
+<div class="status-banner" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; text-align: center;">
+    <div style="display: inline-block; padding: 0.8em 2em 0.5em 2em; background: black; color: white; font-size: 2em;">
+        Rendering <svg xmlns="http://www.w3.org/2000/svg" height="1.4em" viewbox="0 0 1200 500" style="vertical-align: text-bottom"><title>LaTeX logo</title><g transform="matrix(45 0 0 45 40 40)" fill="white"><path d="M5.5 4.4C5.5 4.4 5.2 4.4 5.2 4.4 5.1 5.4 5 6.7 3.2 6.7 3.2 6.7 2.4 6.7 2.4 6.7 1.9 6.7 1.9 6.6 1.9 6.3 1.9 6.3 1.9 1 1.9 1 1.9 0.6 1.9 0.5 2.9 0.5 2.9 0.5 3.2 0.5 3.2 0.5 3.2 0.5 3.2 0.2 3.2 0.2 2.8 0.2 1.9 0.2 1.5 0.2 1.1 0.2 0.3 0.2 0 0.2 0 0.2 0 0.5 0 0.5 0 0.5 0.2 0.5 0.2 0.5 1 0.5 1 0.6 1 0.9 1 0.9 1 6.2 1 6.2 1 6.6 1 6.7 0.2 6.7 0.2 6.7 0 6.7 0 6.7 0 6.7 0 7 0 7 0 7 5.2 7 5.2 7 5.2 7 5.5 4.4 5.5 4.4z"/><path d="M5.3 0.2C5.3 0 5.2 0 5.1 0 5 0 4.9 0 4.9 0.2 4.9 0.2 3.3 4.2 3.3 4.2 3.2 4.4 3.1 4.7 2.5 4.7 2.5 4.7 2.5 5 2.5 5 2.5 5 4 5 4 5 4 5 4 4.7 4 4.7 3.7 4.7 3.5 4.6 3.5 4.4 3.5 4.3 3.5 4.3 3.6 4.2 3.6 4.2 3.9 3.4 3.9 3.4 3.9 3.4 5.9 3.4 5.9 3.4 5.9 3.4 6.3 4.4 6.3 4.4 6.3 4.4 6.3 4.5 6.3 4.5 6.3 4.7 5.9 4.7 5.8 4.7 5.8 4.7 5.8 5 5.8 5 5.8 5 7.7 5 7.7 5 7.7 5 7.7 4.7 7.7 4.7 7.7 4.7 7.6 4.7 7.6 4.7 7.1 4.7 7.1 4.7 7 4.5 7 4.5 5.3 0.2 5.3 0.2zM4.9 0.9C4.9 0.9 5.8 3.1 5.8 3.1 5.8 3.1 4 3.1 4 3.1 4 3.1 4.9 0.9 4.9 0.9z"/><path d="M13.3 0.2C13.3 0.2 7.2 0.2 7.2 0.2 7.2 0.2 7 2.5 7 2.5 7 2.5 7.3 2.5 7.3 2.5 7.4 0.9 7.6 0.5 9.1 0.5 9.3 0.5 9.5 0.5 9.6 0.6 9.8 0.6 9.8 0.7 9.8 0.9 9.8 0.9 9.8 6.2 9.8 6.2 9.8 6.5 9.8 6.7 8.8 6.7 8.8 6.7 8.4 6.7 8.4 6.7 8.4 6.7 8.4 7 8.4 7 8.8 6.9 9.8 6.9 10.3 6.9 10.7 6.9 11.7 6.9 12.2 7 12.2 7 12.2 6.7 12.2 6.7 12.2 6.7 11.8 6.7 11.8 6.7 10.7 6.7 10.7 6.5 10.7 6.2 10.7 6.2 10.7 0.9 10.7 0.9 10.7 0.7 10.7 0.6 10.9 0.6 11 0.5 11.3 0.5 11.5 0.5 13 0.5 13.1 0.9 13.2 2.5 13.2 2.5 13.5 2.5 13.5 2.5 13.5 2.5 13.3 0.2 13.3 0.2z"/><path d="M18.7 6.7C18.7 6.7 18.4 6.7 18.4 6.7 18.2 8.2 17.9 8.9 16.2 8.9 16.2 8.9 14.9 8.9 14.9 8.9 14.4 8.9 14.4 8.8 14.4 8.5 14.4 8.5 14.4 5.9 14.4 5.9 14.4 5.9 15.3 5.9 15.3 5.9 16.3 5.9 16.4 6.2 16.4 7 16.4 7 16.6 7 16.6 7 16.6 7 16.6 4.4 16.6 4.4 16.6 4.4 16.4 4.4 16.4 4.4 16.4 5.2 16.3 5.5 15.3 5.5 15.3 5.5 14.4 5.5 14.4 5.5 14.4 5.5 14.4 3.2 14.4 3.2 14.4 2.8 14.4 2.8 14.9 2.8 14.9 2.8 16.2 2.8 16.2 2.8 17.7 2.8 18 3.3 18.1 4.7 18.1 4.7 18.4 4.7 18.4 4.7 18.4 4.7 18.1 2.5 18.1 2.5 18.1 2.5 12.5 2.5 12.5 2.5 12.5 2.5 12.5 2.8 12.5 2.8 12.5 2.8 12.7 2.8 12.7 2.8 13.5 2.8 13.5 2.9 13.5 3.2 13.5 3.2 13.5 8.4 13.5 8.4 13.5 8.8 13.5 8.9 12.7 8.9 12.7 8.9 12.5 8.9 12.5 8.9 12.5 8.9 12.5 9.2 12.5 9.2 12.5 9.2 18.2 9.2 18.2 9.2 18.2 9.2 18.7 6.7 18.7 6.7z"/><path d="M21.7 3.1C21.7 3.1 23 1.1 23 1.1 23.3 0.8 23.6 0.5 24.5 0.5 24.5 0.5 24.5 0.2 24.5 0.2 24.5 0.2 22.1 0.2 22.1 0.2 22.1 0.2 22.1 0.5 22.1 0.5 22.5 0.5 22.7 0.7 22.7 0.9 22.7 1 22.7 1.1 22.6 1.2 22.6 1.2 21.5 2.8 21.5 2.8 21.5 2.8 20.2 0.9 20.2 0.9 20.2 0.9 20.1 0.8 20.1 0.8 20.1 0.7 20.4 0.5 20.8 0.5 20.8 0.5 20.8 0.2 20.8 0.2 20.4 0.2 19.7 0.2 19.3 0.2 19 0.2 18.4 0.2 18 0.2 18 0.2 18 0.5 18 0.5 18 0.5 18.2 0.5 18.2 0.5 18.8 0.5 19 0.5 19.2 0.8 19.2 0.8 21 3.6 21 3.6 21 3.6 19.4 6 19.4 6 19.2 6.2 18.9 6.7 17.9 6.7 17.9 6.7 17.9 7 17.9 7 17.9 7 20.3 7 20.3 7 20.3 7 20.3 6.7 20.3 6.7 19.8 6.7 19.7 6.4 19.7 6.2 19.7 6.1 19.7 6.1 19.8 6 19.8 6 21.2 3.9 21.2 3.9 21.2 3.9 22.8 6.3 22.8 6.3 22.8 6.3 22.8 6.3 22.8 6.4 22.8 6.5 22.6 6.7 22.2 6.7 22.2 6.7 22.2 7 22.2 7 22.5 6.9 23.2 6.9 23.6 6.9 24 6.9 24.5 7 24.9 7 24.9 7 24.9 6.7 24.9 6.7 24.9 6.7 24.7 6.7 24.7 6.7 24.2 6.7 24 6.6 23.8 6.3 23.8 6.3 21.7 3.1 21.7 3.1z"/></g></svg> math...
+    </div>
+</div>
+<div class="license">
+  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a> This work by <a xmlns:cc="http://creativecommons.org/ns#" href="https://uberi.github.io/" property="cc:attributionName" rel="cc:attributionURL">Jasper Wang</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  Copyright 2013-2018 Jasper Wang.
+</div>
+</body>
+</html>

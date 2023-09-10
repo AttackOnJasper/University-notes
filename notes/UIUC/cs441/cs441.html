@@ -1,0 +1,556 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <title>cs441 | Jasper Wang</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+
+  <!-- The loading of KaTeX is deferred to speed up page rendering -->
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+
+  <!-- To automatically render math in text elements, include the auto-render extension: -->
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+    <script type="text/javascript">
+  window.onload = function() {
+    document.getElementsByClassName("status-banner")[0].style.display = "block";
+    setTimeout(function() {
+      renderMathElements(document.getElementsByClassName("math"));
+      document.getElementsByClassName("status-banner")[0].style.display = "none";
+    }, 50); // delay to allow status banner to show
+  }
+
+  function renderMathElements(mathElements) {
+    var mathOptions = {
+      macros: {
+        "\\set": "\\left\\{ #1 \\right\\}",
+        "\\tup": "\\left\\langle #1 \\right\\rangle",
+        "\\abs": "\\left\\lvert #1 \\right\\rvert",
+        "\\floor": "\\left\\lfloor #1 \\right\\rfloor",
+        "\\ceil": "\\left\\lceil#1 \\right\\rceil",
+        "\\mb": "\\mathbb{#1}",
+        "\\rem": "\\operatorname{rem}",
+        "\\ord": "\\operatorname{ord}",
+        "\\sign": "\\operatorname{sign}",
+        "\\imag": "\\bm{i}",
+        "\\dee": "\\mathop{}\\!\\mathrm{d}",
+        "\\lH": "\\overset{\\text{l'H}}{=}",
+        "\\evalat": "\\left.\\left(#1\\right)\\right|",
+        "\\sech": "\\operatorname{sech}",
+        "\\spn": "\\operatorname{Span}",
+        "\\proj": "\\operatorname{proj}",
+        "\\prp": "\\operatorname{perp}",
+        "\\refl": "\\operatorname{refl}",
+        "\\magn": "\\left\\lVert #1 \\right\\rVert",
+        "\\rank": "\\operatorname{rank}",
+        "\\sys": "\\left[ #1 \\mid #2\\space \\right]",
+        "\\range": "\\operatorname{Range}",
+        "\\adj": "\\operatorname{adj}",
+        "\\cof": "\\operatorname{cof}",
+        "\\coord": "{\\left\\lbrack #1 \\right\\rbrack}_{#2}",
+        "\\diag": "\\operatorname{diag}",
+        "\\formlp": "\\operatorname{Form}(\\mathcal{L}^P)",
+
+        // not yet available in KaTeX
+        "\\operatorname": "\\mathop{\\text{#1}}\\nolimits", //wip: spacing is slightly off
+        "\\not": "\\rlap{\\kern{7.5mu}/}", //wip: slash angle is slightly off
+        "\\bm": "\\mathbf", //wip: should be italic, but isn't
+      },
+      throwOnError: false,
+    };
+    for (var i=0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      katex.render(texText.data, mathElements[i], mathOptions);
+    }
+  }
+  </script>
+</head>
+<body>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-68271407-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+<div id="TOC">
+<ul>
+<li><a href="#week-1">Week 1</a></li>
+<li><a href="#week-2---classification">Week 2 - Classification</a>
+<ul>
+<li><a href="#nn">NN</a>
+<ul>
+<li><a href="#knn">KNN</a></li>
+</ul></li>
+<li><a href="#naive-bayes">Naive Bayes</a></li>
+<li><a href="#cross-validation">Cross validation</a></li>
+</ul></li>
+<li><a href="#week-3---random-forests-svm">Week 3 - Random Forests, SVM</a>
+<ul>
+<li><a href="#random-forests">Random Forests</a></li>
+<li><a href="#svm">SVM</a>
+<ul>
+<li><a href="#stochastic-gradient-descent">Stochastic Gradient Descent</a></li>
+<li><a href="#regularization-constant">Regularization Constant</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#week-4-regression">Week 4 Regression</a>
+<ul>
+<li><a href="#linear-regression">Linear Regression</a>
+<ul>
+<li><a href="#performance">Performance</a></li>
+<li><a href="#transformation">Transformation</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#week-5">Week 5</a>
+<ul>
+<li><a href="#information-criteria">Information Criteria</a></li>
+<li><a href="#m-estimators">M-estimators</a></li>
+<li><a href="#models">Models</a></li>
+<li><a href="#huber-loss">Huber loss</a></li>
+</ul></li>
+<li><a href="#week-6-high-dimensional-data">Week 6 High dimensional data</a>
+<ul>
+<li><a href="#covariance-matrix">Covariance Matrix</a></li>
+<li><a href="#principal-component-analysis">Principal Component Analysis</a></li>
+</ul></li>
+<li><a href="#week-7">Week 7</a>
+<ul>
+<li><a href="#nipals">NIPALS</a></li>
+</ul></li>
+<li><a href="#week-9">Week 9</a>
+<ul>
+<li><a href="#em">EM</a></li>
+</ul></li>
+<li><a href="#week-11">Week 11</a>
+<ul>
+<li><a href="#markov-chain-models">Markov Chain Models</a></li>
+<li><a href="#hmm-hidden-markov-models">HMM (Hidden Markov Models)</a></li>
+<li><a href="#viterbi-algorithm">Viterbi algorithm</a></li>
+</ul></li>
+<li><a href="#week-12">Week 12</a>
+<ul>
+<li><a href="#mean-field-inference">Mean Field Inference</a></li>
+<li><a href="#boltzmann-machine">Boltzmann Machine</a></li>
+<li><a href="#discrete-markov-random-field">Discrete Markov Random Field</a></li>
+<li><a href="#kl-divergence">KL divergence</a></li>
+</ul></li>
+<li><a href="#week-13-neural-networks">Week 13: Neural Networks</a>
+<ul>
+<li><a href="#neural-network">Neural Network</a>
+<ul>
+<li><a href="#softmax-layer">Softmax layer</a></li>
+<li><a href="#cost-function">Cost function</a></li>
+<li><a href="#backpropagation">Backpropagation</a></li>
+</ul></li>
+<li><a href="#dnn">DNN</a></li>
+</ul></li>
+<li><a href="#week-14-cnn">Week 14: CNN</a>
+<ul>
+<li><a href="#convolution">Convolution</a>
+<ul>
+<li><a href="#kernel">Kernel</a></li>
+<li><a href="#stride">Stride</a></li>
+<li><a href="#feature-map">Feature Map</a></li>
+</ul></li>
+<li><a href="#convolutional-layers">Convolutional layers</a></li>
+</ul></li>
+</ul>
+</div>
+  <h1>Notes by <a href="/">Jasper Wang</a>.</h1>
+  <ul class="site_links">
+    <span class="divider"></span>
+  </ul>
+<h1 id="week-1">Week 1</h1>
+<h1 id="week-2---classification">Week 2 - Classification</h1>
+<h2 id="nn">NN</h2>
+<ul>
+<li>stores training examples instead of constructing a general model of training data</li>
+<li>computes the distance from the new example and all the examples in the training set</li>
+<li>what can be done when data features come at different scales?
+<ul>
+<li>recenter the features around 0 and rescale them to have a variance of 1</li>
+</ul></li>
+<li>Issues
+<ol type="1">
+<li>too sensitive to the distribution of the data
+<ul>
+<li>if one of the items in the dataset is missing, the resulting label may change</li>
+<li>can resolve by using KNN</li>
+</ul></li>
+<li>classifying images
+<ul>
+<li>it would be hard to collect a compact training set with enough representative images to achieve good performance</li>
+</ul></li>
+<li>sensitive to potentially irrelevant features</li>
+</ol></li>
+</ul>
+<h3 id="knn">KNN</h3>
+<ul>
+<li>a method that reports the class of the majority of the k-closest elements in the training data to the new example</li>
+</ul>
+<h2 id="naive-bayes">Naive Bayes</h2>
+<ul>
+<li>assumes that the different features are independent from each other conditioned in the class</li>
+<li>constructs a general model of the training data</li>
+<li>computes the probability distribution P(y) of all classes y from the training examples</li>
+<li>When classifying a new test example, the Naive Bayes algorithm reports the class label with maximum probability given the features of the test example</li>
+<li>More accurate when missing entries are kept as 0s than when they are ignored in the computation</li>
+</ul>
+<h2 id="cross-validation">Cross validation</h2>
+<ul>
+<li>An iterative process that splits data into a training set for training the model and a testing set to compute error in each iteration</li>
+<li>Allows us to compare the performance of different options of models to represent the data</li>
+</ul>
+<h1 id="week-3---random-forests-svm">Week 3 - Random Forests, SVM</h1>
+<h2 id="random-forests">Random Forests</h2>
+<ul>
+<li>Based on decision trees</li>
+<li>make a decision based on the classification of all the trees</li>
+<li>Information Gain for a dataset that results in two subsets
+<ul>
+<li>high when each of the resulting subsets have members of only one class</li>
+</ul></li>
+<li>Stopping conditions for a branch of the recursive algorithm to build decision trees include
+<ol type="1">
+<li>when all the elements in a branch correspond to the same class</li>
+<li>when reaching a maximum depth</li>
+</ol></li>
+</ul>
+<h2 id="svm">SVM</h2>
+<ul>
+<li>A binary classifier
+<ul>
+<li>i.e. whose classes are identified through either positive or negative values</li>
+</ul></li>
+<li>Trained with a cost function known as <strong>hinge loss</strong></li>
+<li>Features
+<ol type="1">
+<li>learns a linear decision boundary <span class="math display"> a^Tx + b </span>
+<ul>
+<li>A hyperplane that separates positive data from negative data</li>
+<li>Boundary line: <span class="math display"> x = -\frac{b}{a} </span></li>
+</ul></li>
+<li>easy to train</li>
+<li>fast</li>
+</ol></li>
+<li>Limitations
+<ol type="1">
+<li>Features need to be in real values</li>
+<li>No missing features</li>
+<li>Classes separable through a linear function</li>
+<li>Need enough features</li>
+</ol></li>
+<li>Cost function
+<ul>
+<li>takes prediction value and the corresponding label</li>
+<li>ensures that each example in a linearly separable training set is on the right side of the decision boundary</li>
+<li>C = training error cost + regularization constant * penality
+<ul>
+<li>penalizes errors on query examples</li>
+<li>regularization constant
+<ul>
+<li>found through cross-validation on several options to select the one with best accuracy</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="stochastic-gradient-descent">Stochastic Gradient Descent</h3>
+<ul>
+<li>A method for training SVM</li>
+<li>Prerequisite
+<ol type="1">
+<li>Rescale data s.t. each feature has unit variance</li>
+</ol></li>
+<li>Goal
+<ul>
+<li>Find a and b to minimize cost function</li>
+</ul></li>
+<li>Process
+<ul>
+<li>Iterative process</li>
+<li>searches for the optimal values for the Hinge Loss by following its gradient</li>
+</ul></li>
+<li>estimates the mean gradient from batches samples much smaller than the dataset</li>
+</ul>
+<h3 id="regularization-constant">Regularization Constant</h3>
+<ul>
+<li>Can try different values</li>
+</ul>
+<h1 id="week-4-regression">Week 4 Regression</h1>
+<h2 id="linear-regression">Linear Regression</h2>
+<ul>
+<li>Residual = actual y - predicted y (the difference between a measurement and a prediction)
+<ul>
+<li>Least square residuals
+<ul>
+<li>the difference between the actual value of the dependent variable and the prediction generated by the regression</li>
+</ul></li>
+</ul></li>
+<li>Goal: minimize residual, which is also the mean squared error</li>
+</ul>
+<h3 id="performance">Performance</h3>
+<ul>
+<li>Outliers
+<ul>
+<li>correspond to items in the dataset that are away from most of the other items</li>
+<li>have a higher Cook’s distance than most of the other points</li>
+<li>have higher leverage than most other items in the dataset</li>
+<li>may come from errors when collecting the data, but may also come from infrequent events that are indeed part of the modeled process</li>
+</ul></li>
+<li>Regularization
+<ul>
+<li>requires a regularization coefficient that is determined through cross-validation</li>
+<li>penalizes large values of the coefficients</li>
+</ul></li>
+</ul>
+<h3 id="transformation">Transformation</h3>
+<ul>
+<li>Can be applied to polynomial functions if the explanatory variables incorporate the power terms</li>
+</ul>
+<h1 id="week-5">Week 5</h1>
+<ul>
+<li>In regression models, error due to noise in modeling can be attributed to phenomena inherent to the process being modeled that are impossible to be explained by the input features</li>
+</ul>
+<h2 id="information-criteria">Information Criteria</h2>
+<ul>
+<li>Types
+<ol type="1">
+<li>Akaike info criteria (AIC)</li>
+<li>Bayes info critera (BIC)</li>
+</ol></li>
+<li>Information Criteria metrics have lower cost with both lower number of coefficients and lower error in predictions</li>
+</ul>
+<h2 id="m-estimators">M-estimators</h2>
+<ul>
+<li>Cost function
+<ul>
+<li>gives large weight to errors at points with low residuals</li>
+<li>gives low weight to errors at points with high residuals</li>
+</ul></li>
+</ul>
+<h2 id="models">Models</h2>
+<ul>
+<li>Types
+<ol type="1">
+<li>Logistic Regression models</li>
+<li>Lasso Regression
+<ul>
+<li>may give a value of zero to coefficients of explanatory variables</li>
+<li>may remove correlated explanatory variables</li>
+</ul></li>
+<li>Elastic Net</li>
+</ol></li>
+<li>models that generalize beyond traditional regression assumptions
+<ol type="1">
+<li>Logistic Regression models</li>
+<li>Regression models for probabilities of counts</li>
+</ol></li>
+</ul>
+<h2 id="huber-loss">Huber loss</h2>
+<ul>
+<li>grows quadratically for small values of <span class="math display">u \in [-\sigma, \sigma] </span></li>
+<li>grows linearly for large values of <span class="math display"> u \in \sigma </span></li>
+</ul>
+<h1 id="week-6-high-dimensional-data">Week 6 High dimensional data</h1>
+<ul>
+<li>Difficulties
+<ol type="1">
+<li>distance between data items in higher dimensions are bigger as dimensionality increases</li>
+<li>the number of histogram boxes grow significantly with the number of dimensions</li>
+</ol></li>
+<li>Blob
+<ul>
+<li>is a subset of nearby points that are farther from other points</li>
+<li>can be transformed through affine transformations that preserve collinearity and ratios of distances between points</li>
+</ul></li>
+</ul>
+<h2 id="covariance-matrix">Covariance Matrix</h2>
+<ul>
+<li>The covariance matrix for a dataset with N items and d features
+<ul>
+<li>is a square matrix with d rows and d columns</li>
+<li>each entry hold the covariance between feature i and feature j</li>
+<li>has non-negative eigenvalues</li>
+<li>is symmetric</li>
+</ul></li>
+</ul>
+<h2 id="principal-component-analysis">Principal Component Analysis</h2>
+<ul>
+<li>Functionality
+<ol type="1">
+<li>can construct a representation that uses less features</li>
+<li>the subset of features with the largest eigenvalues in the covariance matrix of the dataset are selected</li>
+<li>the error of the model that results of the selection of s features with respect to the original model can be computed as a function of the eigenvalues that correspond to the d−s not selected features</li>
+</ol></li>
+</ul>
+<h1 id="week-7">Week 7</h1>
+<h2 id="nipals">NIPALS</h2>
+<ul>
+<li>is a good choice to compute a few principal components when X is large</li>
+<li>efficiently computes the largest principal component of X</li>
+</ul>
+<h1 id="week-9">Week 9</h1>
+<h2 id="em">EM</h2>
+<ul>
+<li>data items are clustered based on a mixture of probability distributions</li>
+<li>each cluster is modeled by a probability distribution</li>
+<li>customization to the type of probability distribution being modeled is needed</li>
+<li>E step
+<ul>
+<li>determines the weights that assign points to each specific distribution or cluster</li>
+</ul></li>
+</ul>
+<h1 id="week-11">Week 11</h1>
+<h2 id="markov-chain-models">Markov Chain Models</h2>
+<ul>
+<li>use a set of states for representation purposes
+<ul>
+<li>use probabilistic transitions between states</li>
+</ul></li>
+<li>Features
+<ul>
+<li>may model a number of chains each of them being a biased random walk on the graph that models the states and their transition probabilities</li>
+<li>can be simulated to find the probability of arriving at some state after a number of steps</li>
+<li>can have a probability distribution for the initial states</li>
+<li>require that the sum of probabilities of outgoing edges for a state sum to one</li>
+<li>may have a stationary distribution of states that stabilize and is independent of the initial state for irreducible chains</li>
+</ul></li>
+</ul>
+<h2 id="hmm-hidden-markov-models">HMM (Hidden Markov Models)</h2>
+<ul>
+<li>have an emission distribution that models the probability of an observation in a given state</li>
+<li>associate a set of observations linked to the hidden states</li>
+<li>use a set of Hidden States and Transition Probabilities among them as in Markov Chains</li>
+<li>can be used to infer the Markov chain that most likely produced a sequence of observations</li>
+</ul>
+<h2 id="viterbi-algorithm">Viterbi algorithm</h2>
+<ul>
+<li>uses Maximum a Posteriori Inference to estimate the Markov chain that maximizes the posterior probability of the states conditioned on the observations and the other components of the Hidden Markov Model</li>
+<li>uses a cost function that only considers the logs of pairs of probabilities, one that accounts for the transition probabilities, and the other that accounts for the emission probabilities</li>
+<li>is an algorithm that follows a dynamic programming approach</li>
+</ul>
+<h1 id="week-12">Week 12</h1>
+<h2 id="mean-field-inference">Mean Field Inference</h2>
+<ul>
+<li>uses a simpler probability distribution than the one in the original model</li>
+<li>finds an approximate solution to maximize the posterior probability of the hidden values in the model conditioned on the observations</li>
+<li>reduces the search space by taking advantage of the neighborhood structure of the hidden values</li>
+<li>aims to maximize the intensity in the connections between adjacent nodes</li>
+</ul>
+<h2 id="boltzmann-machine">Boltzmann Machine</h2>
+<ul>
+<li>has only binary hidden values</li>
+<li>has a probability distribution with a very large number of possible hidden values which are computationally too expensive to compute in many practical applications</li>
+<li>is a particular case of Discrete Markov Random Fields</li>
+</ul>
+<h2 id="discrete-markov-random-field">Discrete Markov Random Field</h2>
+<ul>
+<li>extends the Boltzmann Machine to allow for discrete values for the nodes</li>
+</ul>
+<h2 id="kl-divergence">KL divergence</h2>
+<ul>
+<li>is used to develop a tractable distribution to apply Variational Inference</li>
+<li>allows to maximize the likelihood of a dataset under one distribution by minimizing the KL divergence between the two distributions</li>
+<li>measures the dissimilarity between two distributions</li>
+<li>between two distributions Q and P is minimized by minimizing the variational free energy under probability Q</li>
+</ul>
+<h1 id="week-13-neural-networks">Week 13: Neural Networks</h1>
+<h2 id="neural-network">Neural Network</h2>
+<ul>
+<li>a method for classification</li>
+<li>slow to train, even more when it has many layers with many units.</li>
+<li>suitable to identify appropriate features in the data</li>
+<li>performs better when trained with datasets of the “appropriate” size, which is usually large.</li>
+<li>finds piece-wise linear boundaries that separate data items that belong to different classes</li>
+<li>Fully connected layer
+<ul>
+<li>connects each input to every unit in the layer</li>
+</ul></li>
+<li>Linear unit</li>
+<li>ReLU unit
+<ul>
+<li>In combination with the linear weight of the inputs and the bias, splits the inputs into points that are at one side of a boundary or at the other side.</li>
+<li>Activates the unit output so that it transfers the input to the output when the input is positive, otherwise the output is 0</li>
+</ul></li>
+</ul>
+<h3 id="softmax-layer">Softmax layer</h3>
+<ul>
+<li>A generalization of the sigmoid function to N dimensions, where N is the number of classes, and outputs in the layer</li>
+<li>Balances the probabilities among all the outputs in the unit so they sum 1</li>
+<li>Is connected the output of nonlinear units to provide outputs with estimate of the probability of the input to belong to that class</li>
+</ul>
+<h3 id="cost-function">Cost function</h3>
+<ul>
+<li>has a loss component</li>
+<li>is used to find the parameters that minimizes it by exploring its gradient through Stochastic Gradient Descent</li>
+<li>has a regularization component whose parameter λ is used to reduce weights and is found through cross-validation</li>
+</ul>
+<h3 id="backpropagation">Backpropagation</h3>
+<ul>
+<li>searches for the parameters that reduce the loss at the output of a unit (every unit) through stochastic gradient descent</li>
+<li>has a forward pass to propagate inputs to the output</li>
+<li>has a backward pass where the gradient of the loss is propagated from the output towards the input</li>
+</ul>
+<h2 id="dnn">DNN</h2>
+<ul>
+<li>Different layers may have different types of units</li>
+<li>There is a sequence, or stack, of layers</li>
+<li>Negative effects due to redundant units can be prevented through dropout, which allows the network to be robust to redundant units that may be ignored at some layer</li>
+<li>There usually is one input layer, several hidden layers and one output layer with the softmax function</li>
+</ul>
+<h1 id="week-14-cnn">Week 14: CNN</h1>
+<h2 id="convolution">Convolution</h2>
+<ul>
+<li>operates using an input image and a kernel which are both arrays with the same number of dimensions</li>
+<li>features
+<ol type="1">
+<li>commutative operation</li>
+<li>results in a large positive value when the pixels in the image match the corresponding pixels in the kernel</li>
+<li>can be computed for RGB images through a 3D version where each of the color intensities is encoded as a channel</li>
+</ol></li>
+</ul>
+<h3 id="kernel">Kernel</h3>
+<ul>
+<li>an array that encodes a pattern to be identified in the input image</li>
+<li>lays partially outside of the image when the center is within k pixels of any edge, when the kernel has 2 * k + 1 rows or columns and no padding was used</li>
+<li>can be learned in a NN convolutional layer</li>
+</ul>
+<h3 id="stride">Stride</h3>
+<ul>
+<li>When convolutions are taken in strides of length s &gt; 1
+<ul>
+<li>s is the number of steps taken in each dimension to move the kernel to compute the next convolution value</li>
+<li>the size of the output in each dimension is about the size of the input in each dimension divided by s</li>
+</ul></li>
+</ul>
+<h3 id="feature-map">Feature Map</h3>
+<ul>
+<li>Holds the response to a collection of L patterns, or features, in the image and is computed through convolution</li>
+<li>encodes pattern activation in locations in the image</li>
+<li>can be computed using kernels</li>
+</ul>
+<h2 id="convolutional-layers">Convolutional layers</h2>
+<ul>
+<li>implements the convolution operation through units whose weights are kernel values</li>
+<li>can be setup with parameters that include the number of kernels, the number of channels, the stride length and the padding strategy used</li>
+<li>shares the kernel weights among the convolutional units associated to the same slice on the output feature map</li>
+<li>outputs a feature map that encodes in each slice the activation patterns encoded in the kernels whose parameters are learned</li>
+<li>have a receptive field with respect to the input to the network whose size depends on the settings on previous layers on stride lengths and kernel sizes</li>
+<li>trained to learn kernel weights and biases for its units</li>
+</ul>
+<div class="status-banner" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; text-align: center;">
+    <div style="display: inline-block; padding: 0.8em 2em 0.5em 2em; background: black; color: white; font-size: 2em;">
+        Rendering <svg xmlns="http://www.w3.org/2000/svg" height="1.4em" viewbox="0 0 1200 500" style="vertical-align: text-bottom"><title>LaTeX logo</title><g transform="matrix(45 0 0 45 40 40)" fill="white"><path d="M5.5 4.4C5.5 4.4 5.2 4.4 5.2 4.4 5.1 5.4 5 6.7 3.2 6.7 3.2 6.7 2.4 6.7 2.4 6.7 1.9 6.7 1.9 6.6 1.9 6.3 1.9 6.3 1.9 1 1.9 1 1.9 0.6 1.9 0.5 2.9 0.5 2.9 0.5 3.2 0.5 3.2 0.5 3.2 0.5 3.2 0.2 3.2 0.2 2.8 0.2 1.9 0.2 1.5 0.2 1.1 0.2 0.3 0.2 0 0.2 0 0.2 0 0.5 0 0.5 0 0.5 0.2 0.5 0.2 0.5 1 0.5 1 0.6 1 0.9 1 0.9 1 6.2 1 6.2 1 6.6 1 6.7 0.2 6.7 0.2 6.7 0 6.7 0 6.7 0 6.7 0 7 0 7 0 7 5.2 7 5.2 7 5.2 7 5.5 4.4 5.5 4.4z"/><path d="M5.3 0.2C5.3 0 5.2 0 5.1 0 5 0 4.9 0 4.9 0.2 4.9 0.2 3.3 4.2 3.3 4.2 3.2 4.4 3.1 4.7 2.5 4.7 2.5 4.7 2.5 5 2.5 5 2.5 5 4 5 4 5 4 5 4 4.7 4 4.7 3.7 4.7 3.5 4.6 3.5 4.4 3.5 4.3 3.5 4.3 3.6 4.2 3.6 4.2 3.9 3.4 3.9 3.4 3.9 3.4 5.9 3.4 5.9 3.4 5.9 3.4 6.3 4.4 6.3 4.4 6.3 4.4 6.3 4.5 6.3 4.5 6.3 4.7 5.9 4.7 5.8 4.7 5.8 4.7 5.8 5 5.8 5 5.8 5 7.7 5 7.7 5 7.7 5 7.7 4.7 7.7 4.7 7.7 4.7 7.6 4.7 7.6 4.7 7.1 4.7 7.1 4.7 7 4.5 7 4.5 5.3 0.2 5.3 0.2zM4.9 0.9C4.9 0.9 5.8 3.1 5.8 3.1 5.8 3.1 4 3.1 4 3.1 4 3.1 4.9 0.9 4.9 0.9z"/><path d="M13.3 0.2C13.3 0.2 7.2 0.2 7.2 0.2 7.2 0.2 7 2.5 7 2.5 7 2.5 7.3 2.5 7.3 2.5 7.4 0.9 7.6 0.5 9.1 0.5 9.3 0.5 9.5 0.5 9.6 0.6 9.8 0.6 9.8 0.7 9.8 0.9 9.8 0.9 9.8 6.2 9.8 6.2 9.8 6.5 9.8 6.7 8.8 6.7 8.8 6.7 8.4 6.7 8.4 6.7 8.4 6.7 8.4 7 8.4 7 8.8 6.9 9.8 6.9 10.3 6.9 10.7 6.9 11.7 6.9 12.2 7 12.2 7 12.2 6.7 12.2 6.7 12.2 6.7 11.8 6.7 11.8 6.7 10.7 6.7 10.7 6.5 10.7 6.2 10.7 6.2 10.7 0.9 10.7 0.9 10.7 0.7 10.7 0.6 10.9 0.6 11 0.5 11.3 0.5 11.5 0.5 13 0.5 13.1 0.9 13.2 2.5 13.2 2.5 13.5 2.5 13.5 2.5 13.5 2.5 13.3 0.2 13.3 0.2z"/><path d="M18.7 6.7C18.7 6.7 18.4 6.7 18.4 6.7 18.2 8.2 17.9 8.9 16.2 8.9 16.2 8.9 14.9 8.9 14.9 8.9 14.4 8.9 14.4 8.8 14.4 8.5 14.4 8.5 14.4 5.9 14.4 5.9 14.4 5.9 15.3 5.9 15.3 5.9 16.3 5.9 16.4 6.2 16.4 7 16.4 7 16.6 7 16.6 7 16.6 7 16.6 4.4 16.6 4.4 16.6 4.4 16.4 4.4 16.4 4.4 16.4 5.2 16.3 5.5 15.3 5.5 15.3 5.5 14.4 5.5 14.4 5.5 14.4 5.5 14.4 3.2 14.4 3.2 14.4 2.8 14.4 2.8 14.9 2.8 14.9 2.8 16.2 2.8 16.2 2.8 17.7 2.8 18 3.3 18.1 4.7 18.1 4.7 18.4 4.7 18.4 4.7 18.4 4.7 18.1 2.5 18.1 2.5 18.1 2.5 12.5 2.5 12.5 2.5 12.5 2.5 12.5 2.8 12.5 2.8 12.5 2.8 12.7 2.8 12.7 2.8 13.5 2.8 13.5 2.9 13.5 3.2 13.5 3.2 13.5 8.4 13.5 8.4 13.5 8.8 13.5 8.9 12.7 8.9 12.7 8.9 12.5 8.9 12.5 8.9 12.5 8.9 12.5 9.2 12.5 9.2 12.5 9.2 18.2 9.2 18.2 9.2 18.2 9.2 18.7 6.7 18.7 6.7z"/><path d="M21.7 3.1C21.7 3.1 23 1.1 23 1.1 23.3 0.8 23.6 0.5 24.5 0.5 24.5 0.5 24.5 0.2 24.5 0.2 24.5 0.2 22.1 0.2 22.1 0.2 22.1 0.2 22.1 0.5 22.1 0.5 22.5 0.5 22.7 0.7 22.7 0.9 22.7 1 22.7 1.1 22.6 1.2 22.6 1.2 21.5 2.8 21.5 2.8 21.5 2.8 20.2 0.9 20.2 0.9 20.2 0.9 20.1 0.8 20.1 0.8 20.1 0.7 20.4 0.5 20.8 0.5 20.8 0.5 20.8 0.2 20.8 0.2 20.4 0.2 19.7 0.2 19.3 0.2 19 0.2 18.4 0.2 18 0.2 18 0.2 18 0.5 18 0.5 18 0.5 18.2 0.5 18.2 0.5 18.8 0.5 19 0.5 19.2 0.8 19.2 0.8 21 3.6 21 3.6 21 3.6 19.4 6 19.4 6 19.2 6.2 18.9 6.7 17.9 6.7 17.9 6.7 17.9 7 17.9 7 17.9 7 20.3 7 20.3 7 20.3 7 20.3 6.7 20.3 6.7 19.8 6.7 19.7 6.4 19.7 6.2 19.7 6.1 19.7 6.1 19.8 6 19.8 6 21.2 3.9 21.2 3.9 21.2 3.9 22.8 6.3 22.8 6.3 22.8 6.3 22.8 6.3 22.8 6.4 22.8 6.5 22.6 6.7 22.2 6.7 22.2 6.7 22.2 7 22.2 7 22.5 6.9 23.2 6.9 23.6 6.9 24 6.9 24.5 7 24.9 7 24.9 7 24.9 6.7 24.9 6.7 24.9 6.7 24.7 6.7 24.7 6.7 24.2 6.7 24 6.6 23.8 6.3 23.8 6.3 21.7 3.1 21.7 3.1z"/></g></svg> math...
+    </div>
+</div>
+<div class="license">
+  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a> This work by <a xmlns:cc="http://creativecommons.org/ns#" href="https://uberi.github.io/" property="cc:attributionName" rel="cc:attributionURL">Jasper Wang</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  Copyright 2013-2018 Jasper Wang.
+</div>
+</body>
+</html>

@@ -96,9 +96,14 @@
 </ul></li>
 <li><a href="#tr-methods">TR Methods</a>
 <ul>
-<li><a href="#bag-of-words">Bag of words</a></li>
+<li><a href="#retrieval-models">Retrieval Models</a></li>
+<li><a href="#common-stats-in-retrieval-models">Common stats in retrieval models</a></li>
+<li><a href="#retrieval-model-examples">Retrieval Model Examples</a></li>
 </ul></li>
-<li><a href="#vsm-vector-space-model">VSM (Vector Space Model)</a></li>
+<li><a href="#vsm-vector-space-model">VSM (Vector Space Model)</a>
+<ul>
+<li><a href="#vsm-as-a-framework">VSM as a framework</a></li>
+</ul></li>
 <li><a href="#vsm-simple-instantiation">VSM Simple Instantiation</a></li>
 </ul></li>
 <li><a href="#week-2">Week 2</a>
@@ -106,25 +111,125 @@
 <li><a href="#vsm-improved-instantiation">VSM Improved Instantiation</a></li>
 <li><a href="#tf-transformation">TF Transformation</a></li>
 <li><a href="#doc-length-normalization">Doc Length Normalization</a></li>
+<li><a href="#system-implementation-of-tr">System Implementation of TR</a></li>
+<li><a href="#sys-implementation---inverted-index">Sys Implementation - Inverted Index</a>
+<ul>
+<li><a href="#inverted-index-compression">Inverted Index Compression</a></li>
 </ul></li>
-<li><a href="#week-3">Week 3</a></li>
+<li><a href="#sys-implementation---fast-search">Sys Implementation - Fast Search</a></li>
+</ul></li>
+<li><a href="#week-3-evaluation-of-tr-system">Week 3: Evaluation of TR System</a>
+<ul>
+<li><a href="#pr-curve-ap">PR Curve, AP</a></li>
+<li><a href="#map-reciprocal-rank">MAP, Reciprocal rank</a>
+<ul>
+<li><a href="#reciprocal-rank">Reciprocal Rank</a></li>
+</ul></li>
+<li><a href="#multi-level-relevance-judgments---ndcg">Multi-level relevance judgments - nDCG</a></li>
+<li><a href="#practical-issues">Practical Issues</a></li>
+</ul></li>
 <li><a href="#week-4-probabilistic-retrieval-model">Week 4: Probabilistic Retrieval Model</a>
 <ul>
 <li><a href="#statistical-language-model">Statistical Language Model</a>
 <ul>
 <li><a href="#unigram-lm">Unigram LM</a></li>
 </ul></li>
+<li><a href="#unigram-query-likelihood">Unigram Query Likelihood</a></li>
 <li><a href="#smoothing">Smoothing</a></li>
-<li><a href="#smoothing-methods">Smoothing Methods</a></li>
+<li><a href="#specific-smoothing-methods-i.e.-to-determine-p_seenwd-and-coefficient">Specific smoothing Methods (i.e. to determine <span class="math display">p_{Seen}(w|d)</span> and coefficient)</a></li>
 </ul></li>
 <li><a href="#week-5">Week 5</a>
 <ul>
-<li><a href="#web-search">Web Search</a>
+<li><a href="#feedback-in-tr">Feedback in TR</a></li>
+<li><a href="#feedback-in-vsm">Feedback in VSM</a>
 <ul>
-<li><a href="#crawler">Crawler</a></li>
-<li><a href="#indexer">Indexer</a></li>
-<li><a href="#retriever-pagerank">Retriever: PageRank</a></li>
+<li><a href="#rocchio-feedback">Rocchio Feedback</a></li>
 </ul></li>
+<li><a href="#feedback-in-lm-kl-divergence">Feedback in LM: KL divergence</a></li>
+<li><a href="#web-search">Web Search</a></li>
+<li><a href="#crawler">Crawler</a></li>
+<li><a href="#indexer">Indexer</a>
+<ul>
+<li><a href="#mapreduce">MapReduce</a></li>
+</ul></li>
+<li><a href="#retriever">Retriever</a>
+<ul>
+<li><a href="#pagerank">PageRank</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#week-6">Week 6</a>
+<ul>
+<li><a href="#future-of-web-search">Future of Web Search</a></li>
+<li><a href="#content-based-filtering">Content-Based Filtering</a></li>
+<li><a href="#collaborative-filtering">Collaborative Filtering</a></li>
+</ul></li>
+<li><a href="#week-7">Week 7</a>
+<ul>
+<li><a href="#text-mining-and-analytics-overview">Text Mining and Analytics Overview</a></li>
+<li><a href="#text-representation">Text Representation</a></li>
+<li><a href="#word-association-mining">Word Association Mining</a>
+<ul>
+<li><a href="#discovering-paradigmatic-word-associations">Discovering paradigmatic word associations</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#week-8-syntagmatic-word-association-mining-topic-mining">Week 8: Syntagmatic word association mining + Topic mining</a>
+<ul>
+<li><a href="#entropy---syntagmatic-relation-discovery">Entropy - syntagmatic relation discovery</a></li>
+<li><a href="#conditional-entropy">Conditional Entropy</a></li>
+<li><a href="#mutual-information-mi">Mutual Information (MI)</a></li>
+<li><a href="#topic-mining">Topic Mining</a></li>
+<li><a href="#term-as-topic">Term as Topic</a></li>
+<li><a href="#probabilistic-topic-models">Probabilistic Topic Models</a></li>
+<li><a href="#ml-estimate">ML estimate</a></li>
+<li><a href="#bayesian-estimation">Bayesian estimation</a></li>
+</ul></li>
+<li><a href="#week-9">Week 9</a>
+<ul>
+<li><a href="#mixture-of-unigram-lms">Mixture of Unigram LMs</a></li>
+<li><a href="#mixture-model-estimation">Mixture Model estimation</a></li>
+<li><a href="#expectation-maximization-alg">Expectation-Maximization Alg</a></li>
+<li><a href="#plsa---probabilistic-latent-semantic-analysis">PLSA - Probabilistic Latent Semantic Analysis</a>
+<ul>
+<li><a href="#em-computation">EM Computation</a></li>
+<li><a href="#plsa-with-prior-knowledge">PLSA with Prior knowledge</a></li>
+<li><a href="#best-practices">Best practices</a></li>
+</ul></li>
+<li><a href="#lda---latent-dirichlet-allocation">LDA - Latent Dirichlet Allocation</a></li>
+</ul></li>
+<li><a href="#week-10-text-clustering-text-categorization">Week 10: Text Clustering &amp; Text Categorization</a>
+<ul>
+<li><a href="#text-clustering">Text clustering</a></li>
+<li><a href="#similarity-based-clustering">Similarity-based clustering</a>
+<ul>
+<li><a href="#hac-hierarchical-agglomerative-clustering">HAC (Hierarchical Agglomerative Clustering)</a></li>
+<li><a href="#k-means">k-means</a></li>
+<li><a href="#clustering-evaluation">Clustering Evaluation</a></li>
+</ul></li>
+<li><a href="#text-categorization">Text categorization</a>
+<ul>
+<li><a href="#methods">Methods</a></li>
+<li><a href="#naïve-bayes">Naïve Bayes</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#week-11">Week 11</a>
+<ul>
+<li><a href="#discriminative-classifer">Discriminative Classifer</a>
+<ul>
+<li><a href="#logistic-regression">Logistic Regression</a></li>
+<li><a href="#knn">KNN</a></li>
+</ul></li>
+<li><a href="#text-categorization-evaluation">Text Categorization Evaluation</a></li>
+<li><a href="#opinion-mining-and-sentiment-analysis">Opinion Mining and Sentiment Analysis</a></li>
+<li><a href="#sentiment-classification">Sentiment Classification</a></li>
+<li><a href="#feature-construction">Feature construction</a></li>
+</ul></li>
+<li><a href="#week-12-text-based-prediction">Week 12: Text-based prediction</a>
+<ul>
+<li><a href="#joint-mining-of-text-and-non-text-data">Joint mining of text and non-text data</a></li>
+<li><a href="#contextual-text-mining">Contextual Text Mining</a></li>
+<li><a href="#cplsa-contextual-probabilistic-latent-semantic-analysis">CPLSA (Contextual Probabilistic Latent Semantic Analysis)</a></li>
+<li><a href="#network-supervised-topic-modeling">Network Supervised Topic Modeling</a></li>
+<li><a href="#casual-topic-mining">Casual Topic Mining</a></li>
 </ul></li>
 </ul>
 </div>
@@ -148,23 +253,56 @@
 </ul></li>
 </ul>
 <h2 id="natural-language-content-analysis">Natural Language Content Analysis</h2>
+<ul>
+<li>Computers have to understand natural languages to some extent, in order to make use of the data for further analysis</li>
+<li>Translation (from English to French) relies more on NLP than comparison in the same langauge</li>
+</ul>
 <h3 id="natural-language-processing">Natural Language Processing</h3>
 <ul>
 <li>Progression
 <ol type="1">
-<li>Lexical analysis (speech tagging): figure out which words are nouns, verbs, adjectives, etc.</li>
+<li>Lexical analysis (speech/POS tagging): figure out which words are nouns, verbs, adjectives, etc.</li>
+<li>Parsing: determine the structure of a sentence</li>
 <li>Syntactic analysis</li>
 <li>Semantic analysis</li>
 <li>(Optional) Inference</li>
-<li>Pragmatic analysis: why someone say this sentence</li>
+<li>Pragmatic analysis (speech act analysis): why someone say this sentence</li>
+</ol></li>
+<li>Types of challenges
+<ol type="1">
+<li>Word-level ambiguity
+<ul>
+<li>Same word can have different meanings / different forms (verb or noun)</li>
+</ul></li>
+<li>Syntactic ambiguity
+<ul>
+<li>Refers to multiple possible structures of the same sentence or phrase</li>
+<li>e.g. Prepostional phrase attachment ambiguity</li>
+</ul></li>
+<li>Anaphora resolution
+<ul>
+<li>e.g. ‘A ask B to do something for himself.’ (himself = A or B)</li>
+</ul></li>
+<li>Presupposition</li>
 </ol></li>
 </ul>
 <h3 id="state-of-art">State of art</h3>
 <ul>
-<li>Can do lexical analysis and partial syntactic analysis pretty well</li>
+<li>Can do lexical analysis and partial syntactic analysis pretty well, to some extent in semantics, and fairly bad in inference / speech act analysis</li>
+<li>Robust &amp; general NLP tends to be shallow</li>
+<li>Deep understanding does not scale up</li>
 </ul>
 <h3 id="nlp-for-text-retrieval">NLP for text retrieval</h3>
 <h2 id="text-access">Text Access</h2>
+<ul>
+<li>Push</li>
+<li>Pull
+<ul>
+<li>user takes initiative</li>
+<li>typically request ad hoc (temporary) information</li>
+<li>Query vs Browsing</li>
+</ul></li>
+</ul>
 <h2 id="tr-text-retrieval-problem">TR (Text Retrieval) Problem</h2>
 <ul>
 <li>TR (Text Retrieval)
@@ -198,8 +336,8 @@
 <h3 id="formal-formulation">Formal Formulation</h3>
 <ol type="1">
 <li>Vocab: <span class="math display"> V = {w_1, w_2, ... }</span> of language</li>
-<li>Query: <span class="math display"> q = q_1, q_2, ... q_m, where q_i \in V </span> (i.e. a sequence of words)</li>
-<li>Document: <span class="math display"> d_i = d_{i1}, ..., d_{im_j}, where d_{ij} \in V </span> (i.e. each document is a sequence of words, but typically is longer than a query)</li>
+<li>Query: <span class="math display"> q = q_1, q_2, ... q_m </span> where <span class="math display"> q_i \in V </span> (i.e. a sequence of words)</li>
+<li>Document: <span class="math display"> d_i = d_{i1}, ..., d_{im_j}</span> where <span class="math display">d_{ij} \in V </span> (i.e. each document is a sequence of words, but typically is longer than a query)</li>
 </ol>
 <h3 id="solving-tr-problems">Solving TR Problems</h3>
 <ol type="1">
@@ -207,60 +345,327 @@
 <li>Document ranking
 <ul>
 <li><span class="math display"> f(d, q) </span> where d is one of the docs, and q is the query. f returns a score which will be evaluated against a threshold</li>
-<li>generally preferred</li>
+<li>generally preferred becuase
+<ol type="1">
+<li>help users prioritize examination of search results
+<ul>
+<li>not all relevant docs are equally relevant</li>
+</ul></li>
+<li>Bypass the difficulty in determining absolute relevance</li>
+</ol></li>
 <li>challenge: define an effective ranking function</li>
 </ul></li>
 </ol>
 <h2 id="tr-methods">TR Methods</h2>
+<ul>
+<li>Design of ranking fucntion requires a computational definition of relevance</li>
+</ul>
+<h3 id="retrieval-models">Retrieval Models</h3>
 <ol type="1">
 <li>Similarity-based models</li>
-<li>Probabilistic models</li>
-<li>Probabilistic inference model</li>
-<li>Axiomatic model</li>
-</ol>
-<h3 id="bag-of-words">Bag of words</h3>
+<li>Probabilistic models
 <ul>
-<li><span class="math display"> f(q, d) = \sum_{i = 1 ... n} g(q_i, d) </span> where g is the weight of each words, which represents how well the doc matches each of the query words
-<ul>
-<li>Thus the total score depends on the score of each word</li>
+<li><span class="math display">f(d,q) = p(R=1|d,q) </span> where <span class="math display"> R \in {0, 1} </span> is a random variable representing relevance</li>
 </ul></li>
+<li>Probabilistic inference model
+<ul>
+<li><span class="math display"> f(q,d) = p(d \to q) </span></li>
+</ul></li>
+<li>Axiomatic model
+<ul>
+<li><span class="math display">f(d,q)</span> must satisfy a set of constraints</li>
+</ul></li>
+</ol>
+<h3 id="common-stats-in-retrieval-models">Common stats in retrieval models</h3>
+<ul>
 <li>Term frequency
 <ul>
 <li>how many times does a word occur in a doc</li>
 <li>also denoted as <span class="math display"> c(w, d) </span></li>
+</ul></li>
+<li>Document length
+<ul>
+<li>How long is d</li>
 </ul></li>
 <li>Document frequency
 <ul>
 <li>how many docs contain the word</li>
 <li>also denoted as <span class="math display"> df(w) </span></li>
 </ul></li>
+</ul>
+<h3 id="retrieval-model-examples">Retrieval Model Examples</h3>
+<ol type="1">
+<li>Bag of words
+<ul>
+<li><span class="math display"> f(q, d) = \sum_{i = 1 ... n} g(q_i, d) </span> where g is the weight of each words, which represents how well the doc matches each of the query words
+<ul>
+<li>Thus the total score depends on the score of each word</li>
+</ul></li>
 <li>Certain information about text is lost
 <ol type="1">
 <li>word ordering</li>
 <li>phrases formed by multiple words</li>
 </ol></li>
-</ul>
+</ul></li>
+<li>Pivoted length normalization</li>
+<li>BM25 (most popular)</li>
+<li>Query likelihood</li>
+<li>PL2</li>
+</ol>
 <h2 id="vsm-vector-space-model">VSM (Vector Space Model)</h2>
 <ul>
-<li>A similarity based model</li>
+<li>A similarity based model: <span class="math display"> f(q,d) = similarity(q,d) </span></li>
+<li>Steps
+<ol type="1">
+<li>assume that all our documents and the query will be placed in this vector space</li>
+<li>measure the similarity between query and every other documents</li>
+</ol></li>
+</ul>
+<h3 id="vsm-as-a-framework">VSM as a framework</h3>
+<ul>
+<li>Components
+<ol type="1">
+<li>Term is used to represent a basic concept; it can be a word / phrase
+<ul>
+<li>Each term defines one dimension</li>
+</ul></li>
+<li>N terms define an N-dimensional space</li>
+<li>Query vector: <span class="math display"> q=(x_1, ... x_N) </span>, where x is query term weight</li>
+<li>Doc vector: <span class="math display"> d=(y_1, ... y_N) </span></li>
+</ol></li>
+<li>It’s a framework because the following is left to be determined by the user
+<ol type="1">
+<li>which basic concept to choose</li>
+<li>how to assign term weights</li>
+<li>how to define similarity measure</li>
+</ol></li>
 </ul>
 <h2 id="vsm-simple-instantiation">VSM Simple Instantiation</h2>
+<ul>
+<li>BOW (bag of words) as basic concept + bit vector (1 if word is present) as term weight + dot product as similarity measure</li>
+<li>Cosine similarity is a better similarity measure than L2 distance</li>
+</ul>
 <h1 id="week-2">Week 2</h1>
 <h2 id="vsm-improved-instantiation">VSM Improved Instantiation</h2>
+<ul>
+<li>Bag of words with phrases is in general sufficient</li>
+<li>Dot product works well as well for similarity measure</li>
+<li>Thus the only improvement area would be term weight</li>
+<li>Steps
+<ol type="1">
+<li>Term frequency as term weight to give more credit for multiple occurrences</li>
+<li>Adding IDF (inverse document frequency) on top of term frequency to penalize words with high global count</li>
+</ol></li>
+<li>i.e. <span class="math display"> y_i = c(W_i, d) * IDF(W_i) </span>, where <span class="math display"> IDF(W) = \log(\frac{M+1}{k}) </span> where M is number of docs and k is the number of docs where W is presented</li>
+<li>The term weight can be referred as TF-IDF</li>
+<li>Stop words
+<ul>
+<li>Very common words including ‘the’, ‘is’, ‘which’</li>
+</ul></li>
+</ul>
 <h2 id="tf-transformation">TF Transformation</h2>
+<ul>
+<li>Problem of TF-IDF: documents with high single word count would have a very high score</li>
+<li>Solution: TF transformation
+<ul>
+<li>Best Method: BM25
+<ul>
+<li><span class="math display"> TF(w,d) = \frac{(k+1)x}{x+k} </span> where TF(w,d) is the new term frequency weight, k is a parameter and also k+1 is the upper bound, and x is the original TF i.e. c(w,d)</li>
+</ul></li>
+</ul></li>
+</ul>
 <h2 id="doc-length-normalization">Doc Length Normalization</h2>
 <ul>
-<li>Pivoted Length Normalization</li>
+<li>Besides TF-IDF and TF transformation, we also want to penalize a long doc with a doc length normalizer</li>
+<li>Pivoted Length Normalization
+<ul>
+<li>Average doc length as pivot</li>
+<li>normalizer = <span class="math display"> 1 - b + b\frac{|d|}{avdl} </span> where b is a constant <span class="math display">\in [0,1]</span> and avdl is the avg doc length</li>
+<li>When b increases from 0 to 1, the amount of reward / penalization increases</li>
+</ul></li>
 </ul>
-<h1 id="week-3">Week 3</h1>
+<h2 id="system-implementation-of-tr">System Implementation of TR</h2>
+<ol type="1">
+<li>Tokenizer
+<ul>
+<li>Tokenization
+<ol type="1">
+<li>Normalization: words with similar meanings should be mapped to the same indexing term</li>
+<li>Stemming: mapping all inflectional forms of words to the same root form</li>
+</ol></li>
+<li>Benefits
+<ol type="1">
+<li>Reduces the number of terms</li>
+<li>Improves performance by mapping words into the same term</li>
+<li>Extracts words as lexical units from strings of text</li>
+</ol></li>
+</ul></li>
+<li>Indexer</li>
+<li>Scorer</li>
+<li>Feedback</li>
+</ol>
+<h2 id="sys-implementation---inverted-index">Sys Implementation - Inverted Index</h2>
+<ul>
+<li>Inverted index (aka postings list, postings file, or inverted file) is a database index storing a mapping from content, such as words or numbers, to its locations in a table</li>
+<li>Challenge: build a huge index with limited memory</li>
+<li>Steps
+<ol type="1">
+<li>map terms &amp; docs to integers</li>
+<li>sort by doc id by loading one doc at a time to memory</li>
+<li>sort by term id within each doc</li>
+<li>merge sort by term id across all docs</li>
+</ol></li>
+</ul>
+<h3 id="inverted-index-compression">Inverted Index Compression</h3>
+<ol type="1">
+<li>TF Compression
+<ul>
+<li>small number for frequent words</li>
+</ul></li>
+<li>Doc ID compression
+<ul>
+<li>d-gap - store differences
+<ul>
+<li>decoding: get x1 to get first doc, then decode by adding the differences</li>
+</ul></li>
+</ul></li>
+<li>Integer
+<ol type="1">
+<li>Binary: equal length coding (same as binary number)</li>
+<li>Unary: x-1 one bits followed by 0
+<ul>
+<li>e.g. 5 - 11110</li>
+</ul></li>
+<li>gamma-code
+<ul>
+<li>unary code for 1 + floor(logx) followed by uniform code for <span class="math display"> x-2^{floor(logx)} </span> in floor(logx) bits
+<ul>
+<li>Encoding example: 5 -&gt; floor(log5) = 2. Prefix = unary(3) = 110. Suffix = 1 in 2 bits. Thus 5 = 11001</li>
+<li>Decoding: 11001 - split into 110 and 01, then we can get <span class="math display"> 2^(3-1) + 1  = 5 </span></li>
+</ul></li>
+</ul></li>
+<li>delta-code
+<ul>
+<li>same as gamma, but the prefix is replaced with gamma code
+<ul>
+<li>Encoding example: 5 -&gt; floor(log5) = 2. Prefix = gamma(3) = 101. Suffix = 1 in 2 bits. Thus 5 = 10101</li>
+</ul></li>
+</ul></li>
+</ol></li>
+</ol>
+<h2 id="sys-implementation---fast-search">Sys Implementation - Fast Search</h2>
+<ul>
+<li><span class="math display"> f(q,d) = f_a(h(g(t_1, d, q), ..., g(t_k, d, q)), f_d(d), f_q(q)) </span>
+<ul>
+<li><span class="math display">f_a </span> is aggregator function</li>
+<li><span class="math display">g</span> gives the weight of a matched query term <span class="math display">t_i</span> in doc d</li>
+<li><span class="math display">h</span> function aggregates all the weights</li>
+<li><span class="math display">f_d(d), f_q(q)</span> are query level and doc level factors, which are pre-computed</li>
+</ul></li>
+</ul>
+<h1 id="week-3-evaluation-of-tr-system">Week 3: Evaluation of TR System</h1>
+<ul>
+<li>Precision
+<ul>
+<li>Ratio of relevant docs in result docs i.e. retrieved relevant docs / retrieved all</li>
+</ul></li>
+<li>Recall
+<ul>
+<li>Ratio of returned relevant docs of all relevant docs</li>
+</ul></li>
+<li>Ideal results: precision = recall = 1
+<ul>
+<li>In reality, high recall typically has low precision</li>
+</ul></li>
+<li>F measure
+<ul>
+<li>Combine precision and recall</li>
+<li>Parameter weights between precision and recall
+<ul>
+<li>high value parameter: weighs more on recall</li>
+</ul></li>
+<li><span class="math display"> F_1 = \frac{2PR}{P + R}</span></li>
+</ul></li>
+</ul>
+<h2 id="pr-curve-ap">PR Curve, AP</h2>
+<ul>
+<li>AP
+<ul>
+<li>Computing the area under the PR curve and then divide by the total number of relevant docs</li>
+<li>A standard measure for comparing ranking methdods because
+<ol type="1">
+<li>combines precision and recall</li>
+<li>sensitive to the rank of every relevant doc</li>
+</ol></li>
+</ul></li>
+</ul>
+<h2 id="map-reciprocal-rank">MAP, Reciprocal rank</h2>
+<ul>
+<li>MAP: arithmetic mean of AP over a set of queries
+<ul>
+<li>arithmetic mean could have bias since the sum is dominated by large values</li>
+</ul></li>
+<li>gMAP: geometric mean of AP over a set of queries
+<ul>
+<li>gMAP is affected more by low values</li>
+<li>More useful for improving search engines with difficult queries</li>
+</ul></li>
+</ul>
+<h3 id="reciprocal-rank">Reciprocal Rank</h3>
+<ul>
+<li>Only one relevant doc in the collection
+<ul>
+<li>AP = Reciprocal rank = 1/r, where r is the rank position of the single relevant doc</li>
+</ul></li>
+</ul>
+<h2 id="multi-level-relevance-judgments---ndcg">Multi-level relevance judgments - nDCG</h2>
+<ul>
+<li>AP, MAP, gMAP don’t work as they only work for binary judgments; instead, nDCG is used</li>
+<li>DCG
+<ul>
+<li>Discounted cumulative gain</li>
+<li>Discounted means penalizing low ranked docs to give more weights to high ranked docs</li>
+</ul></li>
+<li>nDCG
+<ul>
+<li>Normalized means to use the ideal ranking to compute a theoretic upper bound and then normalize the actual gain value with the bound</li>
+<li>i.e. <span class="math display"> nDCG = \frac{DCG}{Ideal DCG} </span></li>
+<li>Range: 0 - 1</li>
+<li>Can compare 2 systems performed on a set of queries</li>
+</ul></li>
+</ul>
+<h2 id="practical-issues">Practical Issues</h2>
+<ul>
+<li>Testing challenges
+<ol type="1">
+<li>Query: need many representative queries</li>
+<li>Judgments - completeness vs. minimal human work</li>
+<li>Measures: capture the perceived utility of users</li>
+<li>Docs: need many representative docs</li>
+</ol></li>
+<li>Statistical Significance Test</li>
+<li>Pooling
+<ul>
+<li>avoids judging all docs</li>
+</ul></li>
+</ul>
 <h1 id="week-4-probabilistic-retrieval-model">Week 4: Probabilistic Retrieval Model</h1>
 <ul>
-<li>Model: <span class="math display"> f(d,q) = p(R=1|d,q), R \in {0,1} \approx p(q|d, R=1) </span>
+<li>Models: <span class="math display"> f(d,q) = p(R=1|d,q), R \in {0,1} </span>
 <ul>
+<li>R is a random variable representing relevance</li>
 <li><span class="math display"> p(R=1|d,q) </span>: given the query q and returned doc d, the probability that d is relavant</li>
+</ul></li>
+<li>Model types
+<ol type="1">
+<li>Classic probabilistic model: BM25</li>
+<li>Language Model: query likelihood
+<ul>
+<li><span class="math display"> f(d,q) \approx p(q|d, R=1) </span></li>
 <li><span class="math display"> p(q|d, R=1) </span>: given the relavant doc d, how likely would the user enters query q to retrieve d.</li>
 </ul></li>
-<li>Language Model: query likelihood</li>
+<li>Divergence-from-randomness model: PL2</li>
+</ol></li>
 </ul>
 <h2 id="statistical-language-model">Statistical Language Model</h2>
 <ul>
@@ -268,9 +673,17 @@
 <li>Stat LM features
 <ol type="1">
 <li>Context dependent</li>
+<li>A generative model - can sample words from the LM to form a doc</li>
 </ol></li>
 <li>LM benefits
 <ol type="1">
+<li>Quantify the uncertainties in natural language</li>
+<li>Distinguish between words with very similar sounds</li>
+</ol></li>
+<li>Use cases
+<ol type="1">
+<li>Representing topics</li>
+<li>Discovering word associations</li>
 <li>speech recognition</li>
 <li>text categorization</li>
 <li>information retrieval</li>
@@ -278,26 +691,141 @@
 </ul>
 <h3 id="unigram-lm">Unigram LM</h3>
 <ul>
+<li>Simplest language model</li>
 <li>Features
 <ol type="1">
 <li>Ignore context</li>
-<li>Generating each word independently</li>
+<li>Generating each word independently - easy to compute conditional probability
+<ul>
+<li>i.e. <span class="math display"> p(w_1,w_2,w_3) = p(w_1)*p(w_2)*p(w_3) </span></li>
+</ul></li>
 <li>Order does not matter</li>
 </ol></li>
-<li>Unigram Query Likelihood
+<li>Maximum Likelihood Estimator
 <ul>
-<li><span class="math display"> p(q|d) = p(w_1,w_2,w_3,...|d) = p(w_1)*p(w_2)*p(w_3)... </span></li>
+<li><span class="math display"> p(w|\theta) = p(w|d) = \frac{c(w,d)}{|d|} </span></li>
+</ul></li>
+</ul>
+<h2 id="unigram-query-likelihood">Unigram Query Likelihood</h2>
+<ul>
+<li><span class="math display"> p(q|d) = p(w_1,w_2,w_3,...|d) = p(w_1|d)*p(w_2|d)*p(w_3|d)... = \frac{c(w_1,d)}{|d|} * \frac{c(w_2, d)}{|d|} </span> (due to independence)</li>
+<li>Use estimated document language model <span class="math display">p(w|d)</span> (to prevent 0 probability) and log (to avoid having a lot of small probabilities)
+<ul>
+<li><span class="math display"> f(q,d) = log(p(q|d)) = \sum^n_{i=1}log(p(w_i|d)) = \sum_{w \in V}c(w,q) * log(p(w|d)) </span></li>
+</ul></li>
+<li>How to estimate <span class="math display">p(w|d)</span>?
+<ul>
+<li>Smoothing</li>
 </ul></li>
 </ul>
 <h2 id="smoothing">Smoothing</h2>
-<h2 id="smoothing-methods">Smoothing Methods</h2>
+<ul>
+<li>Ensures that p(w|d) &gt; 0 even if c(w,d) = 0</li>
+<li>Challenge: how to assign probability to an unseen word
+<ul>
+<li>Solution: let the proability to be propotional to a reference LM e.g. collection LM</li>
+</ul></li>
+<li>Rewriting the query likelihood formula with smoothing
+<ul>
+<li><span class="math display"> f(q,d) = log(p(q|d)) = \sum_{w \in V}c(w,q) * log(p(w|d)) = \sum_{w \in V, c(w,d)&gt;0}c(w,q)log(p_{Seen}(w|d)) + \sum_{w \in V}c(w,q)log(\alpha * p(w|C)) - \sum_{w \in V, c(w,d)&gt;0}c(w,q)log(\alpha * p(w|C)) = \sum_{w \in V, c(w,d)&gt;0}c(w,q)log(\frac{p_{Seen}(w|d)}{\alpha * p(w|C)}) + |q|log(\alpha) + \sum_{w \in V}log(p(w|C)) </span> where <span class="math display">\alpha</span> is a parameter controlling the degree of collection LM probability</li>
+<li>i.e. Sum of ML estimator for matched query words in d + collection LM probability for all query words - collection LM probability for the matched query words</li>
+</ul></li>
+</ul>
+<h2 id="specific-smoothing-methods-i.e.-to-determine-p_seenwd-and-coefficient">Specific smoothing Methods (i.e. to determine <span class="math display">p_{Seen}(w|d)</span> and coefficient)</h2>
 <ol type="1">
-<li>Linear Interpolation (Jelinek-Mercer) Smoothing</li>
-<li>Dirichlet Prior (Bayesian) Smoothing</li>
+<li>Linear Interpolation (Jelinek-Mercer) Smoothing
+<ul>
+<li><span class="math display"> p(w|d) = (1 - \lambda)\frac{c(w,d)}{|d|} + \lambda * p(w|C) </span> where <span class="math display">\lambda</span> is between 0 and 1</li>
+<li>does not incorporate doc length normalization</li>
+</ul></li>
+<li>Dirichlet Prior (Bayesian) Smoothing
+<ul>
+<li><span class="math display"> p(w|d) = \frac{|d|}{|d| + \mu}\frac{c(w,d)}{|d|} + \frac{\mu}{|d| + \mu}p(w|c) </span></li>
+<li>has a dynamic coefficient (not like the above <span class="math display">\lambda</span>) which depends on doc length</li>
+<li>When u decreases, p is closer to the ML estimate derived from the doc i.e. <span class="math display"> \frac{c(w,d)}{|d|} </span></li>
+<li>incoporates doc length normalization</li>
+</ul></li>
 </ol>
 <h1 id="week-5">Week 5</h1>
+<h2 id="feedback-in-tr">Feedback in TR</h2>
+<ul>
+<li>Types
+<ol type="1">
+<li>Relevance feedback
+<ul>
+<li>Explicit relevance judgements by users</li>
+</ul></li>
+<li>Pseudo / Blind / Auto Feedback
+<ul>
+<li>e.g. top-k initial results are simply assumed to be relevant</li>
+<li>No user activity is required</li>
+</ul></li>
+<li>Implicit feedback
+<ul>
+<li>User-clicked docs are assumed to be relevant</li>
+</ul></li>
+</ol></li>
+</ul>
+<h2 id="feedback-in-vsm">Feedback in VSM</h2>
+<ul>
+<li>Method: Query modification
+<ol type="1">
+<li>Adding new terms (query expansion)</li>
+<li>Adjusting weights of old terms</li>
+</ol></li>
+</ul>
+<h3 id="rocchio-feedback">Rocchio Feedback</h3>
+<ul>
+<li>Steps
+<ol type="1">
+<li>Projecting all queries and docs in a 2D space</li>
+<li>Try to move query to the centroid of relevant docs</li>
+</ol></li>
+<li>Formula
+<ul>
+<li>new query = original query + centroid of rel docs - centroid of non-rel docs</li>
+</ul></li>
+<li>In Practice
+<ul>
+<li>Often truncate the vector (consider a small number of words with highest weights) for efficiency<br />
+</li>
+<li>Avoid over-fitting
+<ul>
+<li>need to ensure that the original query terms have sufficiently large weights in feedback</li>
+</ul></li>
+<li>Can be used for relevance feedback / pseudo feedback
+<ul>
+<li>beta (param for centroid of rel docs) should be set to a larger value for relevance feedback</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="feedback-in-lm-kl-divergence">Feedback in LM: KL divergence</h2>
+<ul>
+<li>Generalize query likelihood via KL divergence retrieval model</li>
+<li>Use Query LM: <span class="math display"> p(w|\theta_Q) </span> instead of c(w,q) in query likelihood
+<ul>
+<li>Query LM can be estimated in different ways including using feedback</li>
+<li>If we use <span class="math display"> p(w|\theta_Q) = \frac{c(w, Q)}{|Q|} </span>, then this is identical to query likelihood, thus it’s a generalization</li>
+</ul></li>
+<li>Computing Feedback LM <span class="math display"> \theta_F </span> using generative mixture model
+<ul>
+<li>Have a set of feedback docs (clicked by / judged by users)</li>
+<li><span class="math display"> \log{p(F|\theta)} = \sum\sum{c(w,d)\log{[(1-\lambda)p(w|\theta) + \lambda * p(w|C)]}} </span></li>
+<li>Use Maximum Likelihood: <span class="math display"> \theta_F = argmax_{\theta}\log{p(F|\theta)} </span></li>
+<li>lambda small -&gt; more common words</li>
+</ul></li>
+</ul>
 <h2 id="web-search">Web Search</h2>
-<h3 id="crawler">Crawler</h3>
+<ul>
+<li>Fetch pages via a page’s outbound links and then add those to a queue</li>
+<li>Challenges
+<ol type="1">
+<li>Scalability</li>
+<li>Spam</li>
+<li>Dynamics - pages updated very quickly</li>
+</ol></li>
+</ul>
+<h2 id="crawler">Crawler</h2>
 <ul>
 <li>Crawling Strategies
 <ol type="1">
@@ -306,8 +834,19 @@
 <li>balances server load automatically</li>
 </ul></li>
 <li>Parallel crawling</li>
-<li>Focused crawling</li>
-<li>Incremental (repeated) crawling</li>
+<li>Focused crawling
+<ul>
+<li>Target a subset of pages</li>
+<li>Typically given a query</li>
+</ul></li>
+<li>Incremental (repeated) crawling
+<ul>
+<li>learn from past experience</li>
+<li>What kind of pages should have a higher priority for recrawling in incremental crawling?
+<ul>
+<li>frequently updated / accessed pages</li>
+</ul></li>
+</ul></li>
 </ol></li>
 <li>Crawling Senarios
 <ol type="1">
@@ -330,30 +869,1135 @@
 </ol></li>
 <li>A crawler that only follows hyperlinks cannot identify hidden pages that do not have any incoming links</li>
 </ul>
-<h3 id="indexer">Indexer</h3>
+<h2 id="indexer">Indexer</h2>
 <ul>
 <li>Components
 <ol type="1">
-<li>GFS</li>
-<li>MapReduce
+<li>GFS
 <ul>
-<li>Framework for parallel programming</li>
-<li>Benefits
-<ol type="1">
-<li>Create index in parallel</li>
-</ol></li>
+<li>Chunk size: 64 MB</li>
 </ul></li>
+<li>MapReduce</li>
 </ol></li>
 </ul>
-<h3 id="retriever-pagerank">Retriever: PageRank</h3>
+<h3 id="mapreduce">MapReduce</h3>
 <ul>
-<li>Random jumping
+<li>Framework for parallel programming</li>
+<li>Features
+<ol type="1">
+<li>Abstraction</li>
+<li>Built-in fault tolerance</li>
+<li>Auto load balancing</li>
+</ol></li>
+<li>Benefits
+<ol type="1">
+<li>Minimize effort for creating simple parallel processing tasks</li>
+<li>Create index in parallel</li>
+</ol></li>
+<li>Architecture
 <ul>
+<li>Input: a number of key value pairs</li>
+<li>Steps:
+<ol type="1">
+<li>Each key value pair will be sent to a map function</li>
+<li>Map function will procee the KV pair and generate some other KV pairs with different keys</li>
+<li>All outputs from all map functions will be collected and sorted based on keys</li>
+<li>The KV pairs with the same keys will be grouped together, so there will be key - value array pairs</li>
+<li>Send the pairs to the Reduce function(s). Reduce will then produce a new list of key value pairs</li>
+</ol></li>
+<li>Developers only need to specify map function &amp; reduce function</li>
+</ul></li>
+</ul>
+<h2 id="retriever">Retriever</h2>
+<ul>
+<li>Challenge of ranking algs for web search
+<ol type="1">
+<li>Different info needs</li>
+<li>Docs with additional info</li>
+<li>Info quality varies</li>
+</ol></li>
+<li>Anchor text
+<ul>
+<li>Description of a link that’s pointing to another website</li>
+<li>Can be thought of as a summary</li>
+<li>Analogy to the title that people put when bookmarking a page</li>
+</ul></li>
+<li>Authority page
+<ul>
+<li>Page with no outgoing links and many incoming links</li>
+</ul></li>
+<li>Hub page
+<ul>
+<li>Page with no incoming links and many outgoing links</li>
+</ul></li>
+</ul>
+<h3 id="pagerank">PageRank</h3>
+<ul>
+<li>Main idea: count links to perceive a web page’s popularity
+<ul>
+<li>Assigns weights to the links</li>
+<li>Smoothing - assign pseudo links to pages that have no ingress links</li>
+</ul></li>
+<li>Indirect links
+<ul>
+<li>page being linked by a popular website with many in-links should get more score</li>
+</ul></li>
+<li>Random jumping (surfing)
+<ul>
+<li>Idea: at any page, jump to random page with alpha prob, or randomly pick a link to follow with (1 - alpha) prob.</li>
 <li>Benefits
 <ol type="1">
 <li>Prevent zero-outlink nodes to receive all probability</li>
 <li>Allow disconnected pages to have non-zero probability</li>
 </ol></li>
+</ul></li>
+<li>Normalization does not affect the ranking from PageRank algorithm</li>
+</ul>
+<h1 id="week-6">Week 6</h1>
+<h2 id="future-of-web-search">Future of Web Search</h2>
+<ul>
+<li>DUS triangle: data, user, service</li>
+</ul>
+<h2 id="content-based-filtering">Content-Based Filtering</h2>
+<ul>
+<li>Recommender is similar to filtering system that makes a binary delivery decision</li>
+<li>2 ways of deciding whether to recommend (can be combined)
+<ol type="1">
+<li>Content-based filtering: item similarity</li>
+<li>Collaborative filtering: user similarity</li>
+</ol></li>
+<li>Components
+<ul>
+<li>Binary classifier
+<ul>
+<li>User interest profile</li>
+<li>Utility function
+<ul>
+<li>Linear utility = x * #good - y * #bad
+<ul>
+<li>x high, y low -&gt; aggressive deliver</li>
+<li>x low, y high -&gt; conservative deliver</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>Feedback</li>
+<li>Learning</li>
+</ul></li>
+<li>Challenges
+<ol type="1">
+<li>How to make decision</li>
+<li>Initialization</li>
+<li>Learning</li>
+</ol></li>
+<li>Reuse retrieval system
+<ul>
+<li>use retrieval techniques to score docs</li>
+<li>Use score threshold for filtering decision</li>
+<li>Challenges
+<ol type="1">
+<li>Censored data - judgment only available to delivered docs</li>
+<li>Little labeled data - difficult for ML training</li>
+<li>Exploration vs Exploitation tradeoff
+<ul>
+<li>want to explore the space of user interest (e.g. deliver non relevant docs to users)</li>
+<li>but too much exploration could lead to exploitation (deviate too much from user’s interest)</li>
+</ul></li>
+</ol></li>
+</ul></li>
+<li>Empirical Utility Optimization
+<ul>
+<li>Idea
+<ol type="1">
+<li>Compute utility for each score threshold</li>
+<li>Choose the threshold with max utility</li>
+</ol></li>
+<li>Problem: overfitting training sample
+<ul>
+<li>Solution: Beta-Gamma Threshold Learning
+<ul>
+<li>Idea: heuristic adjustment (lowering) of utility threshold</li>
+<li>Set the threshold between optimal and 0 utility</li>
+<li><span class="math display"> \theta = \alpha * \theta_{zero} + (1 - \alpha) * \theta_{optimal} </span>
+<ul>
+<li><span class="math display"> \alpha = \beta + (1 - \beta) * e^{-N * \gamma}</span>, where <span class="math display">\beta, \gamma \in [0, 1]</span>, and N is the number of training examples.</li>
+<li>The larger N is, alpha would be closer to beta, which means the threshold would be closer to optimal theta, i.e. less exploration.</li>
+</ul></li>
+<li>Benefits
+<ol type="1">
+<li>Address exploration-exploitation tradeoff</li>
+<li>Emprically effective</li>
+</ol></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="collaborative-filtering">Collaborative Filtering</h2>
+<ul>
+<li>Assumptions
+<ol type="1">
+<li>Users with the same interest will have similar preferences</li>
+<li>Users with similar preferences probably share the same interest</li>
+<li>Sufficiently large number of user preferences are available
+<ul>
+<li>Otherwise there would be cold start problem</li>
+</ul></li>
+</ol></li>
+<li>Task
+<ol type="1">
+<li>Generate a sparse matrix with users as rows and object as columns</li>
+<li>Each non-empty entry is a rating of user i on object j</li>
+<li>Predict ratings for the empty entries via approximation</li>
+</ol></li>
+<li>Idea
+<ol type="1">
+<li>Taking average of other users’ ratings on the object with weights on different users depending on user similarity</li>
+</ol></li>
+<li>User similarity measures (will not be biased by the user activity or contents of items)
+<ol type="1">
+<li>Pearson correlation coefficient
+<ul>
+<li>sum over commonly rated items</li>
+<li>basically measures whether the two users tended to all give higher ratings to similar items or lower ratings to similar items.</li>
+</ul></li>
+<li>Cosine measure
+<ul>
+<li>treat the rating vectors as vectors in the vector space</li>
+<li>measure the angle and compute the cosine of the angle of the two vectors</li>
+</ul></li>
+<li>Inverse User Frequency
+<ul>
+<li>to emphasize more on similarity on items that are not viewed by many users.</li>
+<li>similar to IDF</li>
+</ul></li>
+</ol></li>
+</ul>
+<h1 id="week-7">Week 7</h1>
+<h2 id="text-mining-and-analytics-overview">Text Mining and Analytics Overview</h2>
+<ul>
+<li>Text mining almost identical to text analytics
+<ul>
+<li>Goal of both is to turn text data into high-quality information or actionable knowledge (e.g. help take certain action / make decision)
+<ol type="1">
+<li>minimize human effort</li>
+<li>helps decision making</li>
+</ol></li>
+<li>Mining emphasizes more on the process.</li>
+<li>Analytics emphasizes more on the result.</li>
+</ul></li>
+<li>The goal of text mining is also to revert the process of generating text data.
+<ul>
+<li>We hope to be able to uncover some aspect of text generation during text mining.</li>
+</ul></li>
+<li>NLP is the foundation for text mining</li>
+</ul>
+<h2 id="text-representation">Text Representation</h2>
+<ul>
+<li>Text Representation determines what kind of mining algorithms can be applied</li>
+<li>Types
+<ol type="1">
+<li>String</li>
+<li>Words (array)
+<ul>
+<li>Word relation analysis; topic analysis; sentiment analysis (opinion mining)</li>
+</ul></li>
+<li>Words + syntactic structure
+<ul>
+<li>Syntactic graph analysis (structure of a sentence)</li>
+</ul></li>
+<li>Words + syntactic structure + entities &amp; relation
+<ul>
+<li>Knowledge graph analysis; information network analysis</li>
+</ul></li>
+<li>Words + syntactic structure + entities &amp; relation + logic predicates
+<ul>
+<li>Integrative analysis of scattered knowledge; logic inference</li>
+</ul></li>
+</ol></li>
+<li>Benefits
+<ol type="1">
+<li>Improves accuracy of NLP tasks</li>
+<li>Useful for many TR and TM application</li>
+</ol></li>
+</ul>
+<h2 id="word-association-mining">Word Association Mining</h2>
+<ul>
+<li>A &amp; B have paradigmatic relation if they can be substituted for each other</li>
+<li>A &amp; B have syntagmatic relation if they can be combined with each other</li>
+<li>The two basic and complementary relations can be generalized to describe relations of any items in a language</li>
+<li>Benefits of mining word associations
+<ol type="1">
+<li>useful for improving NLP tasks’ accuracy
+<ul>
+<li>related tasks: POS tagging, entity recognition, acronym expansion, grammar learning</li>
+</ul></li>
+<li>useful for text retrieval applications</li>
+</ol></li>
+</ul>
+<h3 id="discovering-paradigmatic-word-associations">Discovering paradigmatic word associations</h3>
+<ul>
+<li>Idea: check whether context is similar</li>
+<li>Terms
+<ul>
+<li>Left context - words occur on the left
+<ul>
+<li>left1(w): a list of possible words that can occur right before w</li>
+</ul></li>
+<li>Right context - words occur on the right
+<ul>
+<li>right1(w): a list of possible words that can occur right after w</li>
+</ul></li>
+<li>General context - all words in the sentence / words around the word
+<ul>
+<li>window8(w): all possible words in the window of 8 words around w</li>
+</ul></li>
+</ul></li>
+<li>Steps
+<ol type="1">
+<li>Let word context be ‘Pseudo Document’ (imaginary doc)
+<ul>
+<li>e.g. left1(w), right1(w), window2(w)</li>
+</ul></li>
+<li>Compute similarity between contexts
+<ul>
+<li>i.e. sim(w1, w2) = sim(left1(w1), left2(w2)) + sim(right1(w1), right1(w2)) + …</li>
+</ul></li>
+<li>High similarity means 2 words are paradigmatically related</li>
+</ol></li>
+<li>VSM can model the context for relation discovery
+<ul>
+<li>Steps
+<ol type="1">
+<li>Each word in the vocab is represented as a dimension in VSM</li>
+<li>We can represent a ‘pseudo doc’ (context) of a word (e.g. w1) as a vector
+<ul>
+<li>i.e. <span class="math display"> d_1 = (x_1, ..., x_N) </span></li>
+<li>The value of vector in a dimension <span class="math display">x_i</span> could depend on the frequencies of the word corresponding to the dimension</li>
+</ul></li>
+<li>Compare 2 vectors to approximate the context similarity</li>
+</ol></li>
+<li>2 pending decisions
+<ol type="1">
+<li>What values should be in each vector d1</li>
+<li>How to compare the similarity between the 2 vectors</li>
+</ol></li>
+<li>Solution: EOWC (Expected Overlap of Words in Context)
+<ul>
+<li>Idea:
+<ul>
+<li>let <span class="math display">x_i = \frac{c(w_i, d1)}{|d1|} </span> i.e. probability that a randomly picked word from d1 is wi</li>
+<li><span class="math display"> sim(d1, d2) = d1.d2 = x_1y_1 + ... + x_Ny_N </span> i.e. Dot product on the probabilities that the randomly picked words from d1 and d2 are identical</li>
+</ul></li>
+<li>Pros
+<ol type="1">
+<li>The more overlap the two context documents have, the higher the similarity would be</li>
+</ol></li>
+<li>Cons
+<ol type="1">
+<li>favors matching one frequent term</li>
+<li>treats every word equally</li>
+</ol></li>
+<li>Improvements
+<ol type="1">
+<li>TR sublinear transformation for computing vector
+<ul>
+<li>BM25 is most effective
+<ul>
+<li>b (0 - 1) controls length normalization</li>
+<li>k (&gt; 0) controls the extend of the transformation (upper bound)</li>
+</ul></li>
+<li>to prevent matching one frequent term very well</li>
+</ul></li>
+<li>IDF term weighting for computing similarity
+<ul>
+<li>i.e. <span class="math display"> sim = \sum^N_{i=1}IDF(w_i)x_iy_i </span></li>
+<li>to penalize popular words</li>
+</ul></li>
+</ol></li>
+</ul></li>
+</ul></li>
+</ul>
+<h1 id="week-8-syntagmatic-word-association-mining-topic-mining">Week 8: Syntagmatic word association mining + Topic mining</h1>
+<h2 id="entropy---syntagmatic-relation-discovery">Entropy - syntagmatic relation discovery</h2>
+<ul>
+<li>Idea: check correlated occurrences
+<ul>
+<li>look for the words that <strong>tend to occur together</strong> with the words</li>
+</ul></li>
+<li>Word Prediction Formal definition
+<ul>
+<li>Binary random variable <span class="math display"> X_w \in [0, 1] </span>, X = 1 -&gt; w is present
+<ul>
+<li>p(x = 1): probability that w is present</li>
+<li><span class="math display"> p(X_w = 1) + p(X_w = 0) = 1 </span></li>
+</ul></li>
+</ul></li>
+<li>Entropy
+<ul>
+<li>Measures randomness of X</li>
+<li><span class="math display"> H(X_w) = \sum_{v \in 0, 1}-p(X_w = v)\log{p(X_w=v)} </span></li>
+<li>Entropy is between 0 and 1.
+<ul>
+<li>0 entropy -&gt; no randomness i.e. w is either present all the time or not present all the time</li>
+<li>1 entropy -&gt; high randomness; whether w is presented is fully random (50% chance)</li>
+</ul></li>
+</ul></li>
+<li>High entropy words are harder to predict</li>
+</ul>
+<h2 id="conditional-entropy">Conditional Entropy</h2>
+<ul>
+<li>Intuition: knowing the presence of one word may reduce the randomness of another word’s presence</li>
+<li>i.e. <span class="math display"> p(X_{w1} = 1) \to p(X_{w1} = 1 | X_{w2} = 1) </span></li>
+<li>H(X|Y): entropy of X given we know Y</li>
+<li>Features
+<ol type="1">
+<li><span class="math display"> H(X) &gt;= H(X|Y) &gt;= 0 </span></li>
+</ol></li>
+<li>Can be used to capture syntagmatic relation
+<ul>
+<li>When X is closely related to Y, H(X|Y) is small</li>
+<li>When X is not related to Y, H(X|Y) is closer to H(X)</li>
+</ul></li>
+<li>Steps for mining syntagmatic relation
+<ol type="1">
+<li>For each word w1
+<ol type="1">
+<li>Compute H(w1|w2) for every other word w2</li>
+<li>Sort in ascending order</li>
+<li>Use threshold to get top-ranked candidates (the smaller the better)</li>
+</ol></li>
+</ol></li>
+<li>Problem
+<ul>
+<li>Cannot compare H(w1|w2) and H(w3|w1) directly (as upper bounds are different).
+<ul>
+<li>To compare, we need mutual information. See below.</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="mutual-information-mi">Mutual Information (MI)</h2>
+<ul>
+<li>Concept: the amount of entropy reduction of X (or Y) due to knowing Y (or X)</li>
+<li><span class="math display"> I(X; Y) = H(X) - H(X|Y) = H(Y) - H(Y|X) </span></li>
+<li>Properties
+<ol type="1">
+<li>I is non-negative</li>
+<li>I is symmetric - I(X;Y) == I(Y:X)</li>
+<li>I(X; Y) == 0 iff X and Y are independent</li>
+</ol></li>
+<li>Can also be used for syntagmatic relation mining
+<ul>
+<li>syntagmatic related == high MI</li>
+</ul></li>
+<li>MI measures the divergence of the actual joint distribution from the expected distribution under the independence assumption
+<ul>
+<li>The larger the divergence is, the higher the MI would be.</li>
+<li>Can rewrite MI using KL-divergence</li>
+</ul></li>
+<li>Computation of MI
+<ul>
+<li>only need to know <span class="math display">p(X_{W1}=1)</span>, <span class="math display">p(X_{W2}=1)</span>, and <span class="math display">p(X_{W1}=1, X_{W2}=1)</span>.
+<ul>
+<li>Those can be estimated via term frequencies</li>
+</ul></li>
+<li>Smoothing: add small constants to accommodate 0 counts</li>
+</ul></li>
+</ul>
+<h2 id="topic-mining">Topic Mining</h2>
+<ul>
+<li>Topic: main idea discussed in text data</li>
+<li>Application examples
+<ol type="1">
+<li>What are current research topics?</li>
+<li>What are Twitter users talking about today?</li>
+</ol></li>
+<li>Tasks
+<ol type="1">
+<li>discover k topics</li>
+<li>figure out which docs cover which topics</li>
+</ol></li>
+<li>Formal Definition of Topic Mining
+<ul>
+<li>Input
+<ul>
+<li>A collection of N text docs C = {d1, …, dN}</li>
+<li>Number of topics k</li>
+</ul></li>
+<li>Output
+<ul>
+<li>k topics <span class="math display"> \theta_i ... \theta_k </span></li>
+<li>Coverage of topics in each doc di <span class="math display"> {\pi_{i1}, ... \pi_{ik}} </span></li>
+<li><span class="math display">\pi_{ij}</span> = prob. of di covering topic <span class="math display"> \theta_j </span></li>
+</ul></li>
+</ul></li>
+<li>Question: how to define topic <span class="math display"> \theta </span>?</li>
+</ul>
+<h2 id="term-as-topic">Term as Topic</h2>
+<ul>
+<li>Let <span class="math display"> \theta </span> be an individual term</li>
+<li>Mining steps
+<ol type="1">
+<li>Get candidate terms from C</li>
+<li>Pass terms to a scoring function</li>
+<li>Pick k terms as topics with the highest scores but try to minimize redundancy</li>
+</ol></li>
+<li>Computing topic coverage
+<ul>
+<li><span class="math display"> \pi_{ij} </span> = count of term j in doc i / count of all topics in doc i</li>
+</ul></li>
+<li>Problems
+<ol type="1">
+<li>Cannot represent complicated topics</li>
+<li>Hard to capture variations of vocabulary (e.g. related words)</li>
+<li>Word sense ambiguity (same word can have different meanings)</li>
+</ol></li>
+</ul>
+<h2 id="probabilistic-topic-models">Probabilistic Topic Models</h2>
+<ul>
+<li>Improved idea: topic = <strong>word distribution</strong></li>
+<li>Fixing the problems above via
+<ol type="1">
+<li>using multiple words</li>
+<li>adding weights on words (probabilities)</li>
+<li>splitting an ambiguous word (the same word will have different probs in different distributions)</li>
+</ol></li>
+<li>Probabilistic Topic Mining
+<ul>
+<li>Input
+<ul>
+<li>A collection of N text docs C = {d1, …, dN}</li>
+<li>Vocabulary set V = {w1, … wM}</li>
+<li>Number of topics k (can be a hypothesis)</li>
+</ul></li>
+<li>Output
+<ul>
+<li>k topics, each a word distribution <span class="math display"> \theta_i ... \theta_k </span></li>
+<li>Coverage of topics in each doc di <span class="math display"> {\pi_{i1}, ... \pi_{ik}} </span></li>
+<li><span class="math display">\pi_{ij}</span> = prob. of di covering topic <span class="math display"> \theta_j </span></li>
+</ul></li>
+</ul></li>
+<li>To compute the result, we can use Generative Model
+<ul>
+<li>Idea:
+<ol type="1">
+<li>design a model to represent how our data is generated <span class="math display"> P(Data | Model, \Lambda) </span>
+<ul>
+<li>The parameters will be denoted as captialized lambda <span class="math display">\Lambda</span></li>
+<li><span class="math display">\Lambda = (\{\theta_1 ... \theta_k\}, \{\pi_{11}, ... \pi_{1k}\}, ... \{\pi_{N1}, ... \pi_{NK}\}) </span></li>
+</ul></li>
+<li>We can use ML estimate to fit the new generative model to our data
+<ul>
+<li><span class="math display"> \Lambda^* = argmax_{\Lambda}p(Data | Model, \Lambda) </span>
+<ul>
+<li>i.e. find the parameter set that gives our data set the highest probability</li>
+</ul></li>
+</ul></li>
+<li>The recovered parameter values from the best generative model would then become the output of the topic mining alg. i.e. the topic</li>
+</ol></li>
+</ul></li>
+<li>Problem: how to get rid of the common words?
+<ul>
+<li>Solution: see mixture model in week 9</li>
+</ul></li>
+</ul>
+<h2 id="ml-estimate">ML estimate</h2>
+<ul>
+<li>One way to estimate the parameters from generative model
+<ul>
+<li>choose the parameters where the data likelihood is maximized</li>
+</ul></li>
+<li><span class="math display"> \hat{\theta} = argmax_{\theta}p(X | \theta) </span> (check the last section for example)</li>
+</ul>
+<h2 id="bayesian-estimation">Bayesian estimation</h2>
+<ul>
+<li>Another approach to estimate the parameters from generative model besides ML estimate</li>
+<li>Problem of ML estimate
+<ol type="1">
+<li>does not work on a small set of data (may lead to overfitting)</li>
+<li>unseen words would have 0 probability</li>
+</ol></li>
+<li>Baysian uses the data and the prior knowledge (<span class="math display"> p(\theta) </span>) about the data</li>
+<li>Bayes Rule
+<ul>
+<li><span class="math display"> p(X|Y) = \frac{p(Y|X)p(X)}{p(Y)} </span></li>
+</ul></li>
+<li>Estimation (based on bayes rule)
+<ul>
+<li><span class="math display"> \hat{\theta} = argmax_{\theta}P(\theta|X) = argmax_{\theta}P(X|\theta)P(\theta) </span>
+<ul>
+<li>AKA MAP (Maximum a Posteriori) estimate - maximize the posterior estimate (instead of only <span class="math display">P(X|\theta)</span>)</li>
+</ul></li>
+</ul></li>
+<li>Benefits
+<ol type="1">
+<li>Allows for inferring any ‘derived value’ from <span class="math display">\theta</span></li>
+</ol></li>
+</ul>
+<h1 id="week-9">Week 9</h1>
+<h2 id="mixture-of-unigram-lms">Mixture of Unigram LMs</h2>
+<ul>
+<li>Probability of generating w from a mixture generative model: <span class="math display"> p(w)=p(\theta_d)p(w|\theta_d) + p(\theta_B)p(w| \theta_B) </span></li>
+</ul>
+<h2 id="mixture-model-estimation">Mixture Model estimation</h2>
+<ul>
+<li>Can be used to factor out common words</li>
+<li>‘Collaboration’ and ‘Competition’
+<ul>
+<li>Assume d = w1w2, <span class="math display"> p(\theta_d) = p(\theta_B) = 0.5 </span> i.e. 50% chance to choose between background LM and doc LM to generate the doc</li>
+<li><span class="math display"> p(d|\Lambda) = 1/4 * (p(w_1|\theta_d) + p(w_1| \theta_B)) * (p(w_2|\theta_d) + p(w_2| \theta_B)) </span></li>
+<li>Constraints:
+<ul>
+<li><span class="math display"> p(w_1|\theta_d) + p(w_2| \theta_B) = p(w_1| \theta_d) + p(w_2| \theta_d) = 1 </span></li>
+</ul></li>
+<li>Note: if x + y = constant, then xy is maximized when x = y</li>
+<li>Thus to maximize the product,
+<ul>
+<li><span class="math display"> p(w_1|\theta_d) + p(w_1| \theta_B) </span> should equal to <span class="math display"> p(w_2|\theta_d) + p(w_2| \theta_B) </span></li>
+<li>i.e. <span class="math display"> p(w_1|\theta_d) = p(w_2| \theta_B) </span>, and <span class="math display"> p(w_1| \theta_B) = p(w_2|\theta_d) </span></li>
+</ul></li>
+</ul></li>
+<li>Behaviors
+<ol type="1">
+<li>Every component model attempts to assign high probabilities to highly frequent words in the data (to “collaboratively maximize likelihood”)
+<ul>
+<li>Different component models tend to “bet” high probabilities on different words</li>
+<li>If <span class="math display"> p(w1|\theta_B)&gt; p(w2|\theta_B) </span>, then <span class="math display"> p(w1|\theta_d) &lt; p(w2|\theta_d) </span></li>
+</ul></li>
+<li>High frequency words get higher <span class="math display"> p(w|\theta_d)</span></li>
+<li>The probability of choosing each component “regulates” the collaboration/competition between the component models
+<ul>
+<li>If one distribution has larger probability to be chosen, then high probabilities in that distribution would be increased</li>
+</ul></li>
+</ol></li>
+</ul>
+<h2 id="expectation-maximization-alg">Expectation-Maximization Alg</h2>
+<ul>
+<li>Intuition task
+<ul>
+<li>Computing the estimate of word distribution (i.e. <span class="math display">p(w|\theta_d)</span>, word probabilities within the model) in <span class="math display"> \theta_d </span> given all other parameters, including
+<ol type="1">
+<li>Mixture model with a background distribution, and <span class="math display"> p(\theta_B) = 0.5 </span></li>
+<li>Assume we know which words are from which distribution</li>
+</ol></li>
+<li>Solution: count all words that are from the distribution d and calculate probabilities based on counts and normalize</li>
+</ul></li>
+<li>In practice the 2nd assumption above is not known, but we can infer which words are from which distribution
+<ul>
+<li>We have some prior to help infer
+<ul>
+<li>Prior means knowledge possessed before observing a word</li>
+<li>i.e. probability of choosing which distribution to use i.e. <span class="math display"> P(\theta_d) = 0.5 </span></li>
+</ul></li>
+<li>Then by Bayes rule, we combine prior with likelihood i.e. compare <span class="math display"> p(\theta_d)p(w|\theta_d) </span> and <span class="math display"> p(\theta_B)p(w| \theta_B) </span> to see if w is more likely to be generated from d or from B.</li>
+</ul></li>
+<li>Alg steps
+<ol type="1">
+<li>Assign hidden variables z to each occurrences of words indicating whether the word is from background model B or d
+<ul>
+<li>z = 0 -&gt; w is generated from d topic</li>
+<li>z = 1 -&gt; w is from background model</li>
+</ul></li>
+<li>Initialize <span class="math display"> p(w|\theta_d) </span> with random values</li>
+<li>Iteratively improve the estimates of hidden parameters z using
+<ol type="1">
+<li>E-step: to augment the data with additional information
+<ul>
+<li>Predicts values of hidden variables via normalized probability via Bayes rule based on the current values of <span class="math display"> p(w|\theta_d) </span> i.e. predict the value of z (whether the word is from B or d)</li>
+</ul></li>
+<li>M-step: Revise the values of <span class="math display"> p(w | \theta_d) </span> based on the predicted z values from E-step via ML estimator
+<ul>
+<li>Maximizes the joint likelihood given the predicted values of unseen data</li>
+</ul></li>
+</ol></li>
+<li>Stop when likelihood does not change</li>
+</ol></li>
+<li>EM alg converges to a local maximum</li>
+</ul>
+<h2 id="plsa---probabilistic-latent-semantic-analysis">PLSA - Probabilistic Latent Semantic Analysis</h2>
+<ul>
+<li>Useful for mining multiple topics
+<ul>
+<li>It’s a mxture model with k unigram LMs (k topics)</li>
+</ul></li>
+<li>Use cases
+<ol type="1">
+<li>Clustering of terms &amp; docs</li>
+<li>Associate topics with different contexts</li>
+</ol></li>
+<li>Input: C (collection of docs), k (num of topics), V (vocab set)</li>
+<li>Output: k topics, proportion of each topic in each doc</li>
+<li>Generating text with multiple topics
+<ul>
+<li>To generate a document, a distribution of topic weights (multinomial distribution) is assumed, which is considered part of the model.</li>
+<li>To generate a word, a topic is drawn from the document’s topic weight distribution, and a word is drawn according to the topic’s word distribution.</li>
+<li><span class="math display"> p(\theta_B) = \lambda_B </span> i.e. the probability of choosing background model to generate w</li>
+<li>Probability of observing w in d is the sum of probabilities over all distributions
+<ul>
+<li><span class="math display"> p_d(w) = \lambda_Bp(w|\theta_B) + (1 - \lambda_B)\sum^k_{j=1}\pi_{d,j}p(w|\theta_j) </span>
+<ul>
+<li>this will be used in E-step</li>
+</ul></li>
+<li>The coverage <span class="math display"> \pi </span> and word distribution <span class="math display"> p(w|\theta_j) </span> need to be estimated</li>
+</ul></li>
+</ul></li>
+<li>Can use EM to compute the ML estimates for the above unknown parameters</li>
+</ul>
+<h3 id="em-computation">EM Computation</h3>
+<ul>
+<li>E-step (augment)
+<ul>
+<li><span class="math display"> Z_{d,w} \in {B, 1, 2, ... k} </span> denoting which distribution is the word w in doc d generated from</li>
+<li><span class="math display"> p(z_{d,w} = j) = \frac{\pi_{d,j}p(w|\theta_j)}{\sum^k_{j=1}\pi_{d,j}p(w|\theta_j)} </span>
+<ul>
+<li>Use Bayes rule and apply the formula from the last section</li>
+</ul></li>
+</ul></li>
+<li>M-step
+<ul>
+<li>Revise the <span class="math display"> p(w|\theta) </span> values based on updated <span class="math display"> Z_{d, w} </span></li>
+</ul></li>
+</ul>
+<h3 id="plsa-with-prior-knowledge">PLSA with Prior knowledge</h3>
+<ul>
+<li>Can incorporate prior knowledge as priors</li>
+<li>Can use the MAP estimate
+<ul>
+<li><span class="math display"> \Lambda^* = argmax_{\Lambda}p(\Lambda)p(Data, \Lambda) </span></li>
+</ul></li>
+</ul>
+<h3 id="best-practices">Best practices</h3>
+<ul>
+<li>large collection of documents to train PLSA:
+<ul>
+<li>Train PLSA on a small subset collection of documents and use the model to initialize, and for other documents randomly initialize the documents’ topic weights</li>
+</ul></li>
+</ul>
+<h2 id="lda---latent-dirichlet-allocation">LDA - Latent Dirichlet Allocation</h2>
+<ul>
+<li>PLSA Issues
+<ol type="1">
+<li>Not a generative model</li>
+<li>Too many parameters; complex model
+<ul>
+<li>Many local maxima -&gt; overfitting</li>
+</ul></li>
+</ol></li>
+<li>LDA
+<ul>
+<li>Generative model for PLSA via a Dirichlet prior</li>
+<li>Bayesian version of PLSA</li>
+</ul></li>
+</ul>
+<h1 id="week-10-text-clustering-text-categorization">Week 10: Text Clustering &amp; Text Categorization</h1>
+<h2 id="text-clustering">Text clustering</h2>
+<ul>
+<li>Task: group similar objects together</li>
+<li>Users need to specify the perspective (‘bias’ / criteria) for assessing similarity</li>
+<li>Why clustering?
+<ol type="1">
+<li>Useful for text mining and exploratory text analysis</li>
+<li>Get a sense about overall content</li>
+<li>Link text objects</li>
+</ol></li>
+<li>Use Cases
+<ol type="1">
+<li>Define concept, theme, topic</li>
+<li>Clustering websites</li>
+<li>Hierarchy generation</li>
+</ol></li>
+<li>Model-based clustering
+<ul>
+<li>difficult to substitue a different similarity measure</li>
+</ul></li>
+</ul>
+<h2 id="similarity-based-clustering">Similarity-based clustering</h2>
+<ul>
+<li>Objectives:
+<ol type="1">
+<li>Maximize intra-group similarity i.e. objects within the group should be similar</li>
+<li>Minimize inter-group similarity i.e. objects in different groups should not be similar<br />
+</li>
+</ol></li>
+<li>Strategies
+<ol type="1">
+<li>Progressively construct a hierarchy of clusters</li>
+<li>Start with an initial tentative clustering and iteratively improve it
+<ul>
+<li>e.g. k-means</li>
+</ul></li>
+</ol></li>
+</ul>
+<h3 id="hac-hierarchical-agglomerative-clustering">HAC (Hierarchical Agglomerative Clustering)</h3>
+<ul>
+<li>Steps
+<ol type="1">
+<li>Gradually group similar objects together in a bottom-up fashion to form a hierarchy</li>
+<li>Stop when some stopping criterion is met</li>
+</ol></li>
+<li>Group similarity measures
+<ol type="1">
+<li>Single-link algorithm: s(g1,g2)= similarity of the closest pair
+<ul>
+<li>optimistic; loose cluster; sensitive to outliers</li>
+</ul></li>
+<li>Complete-link algorithm: s(g1,g2)= similarity of the farthest pair
+<ul>
+<li>check the worst case; tight cluster; sensitive to outliers</li>
+</ul></li>
+<li>Average-link algorithm: s(g1,g2)= average of similarity of all pairs</li>
+</ol></li>
+</ul>
+<h3 id="k-means">k-means</h3>
+<ul>
+<li>Idea
+<ul>
+<li>Represent each text object as a term vector and assume a similarity function defined on two objects</li>
+<li>Similar to EM alg.</li>
+</ul></li>
+<li>Steps
+<ol type="1">
+<li>Start with k randomly selected vectors and assume they are the centroids of k clusters</li>
+<li>repeat until converge:
+<ol type="1">
+<li>Assign every vector to a cluster whose centroid is the closest to the vector</li>
+<li>Re-compute the centroid for each cluster based on the newly assigned vectors in the cluster</li>
+</ol></li>
+</ol></li>
+<li>Converges to local minimum</li>
+</ul>
+<h3 id="clustering-evaluation">Clustering Evaluation</h3>
+<ol type="1">
+<li>Direct
+<ul>
+<li>Assess ‘correctness’</li>
+</ul></li>
+<li>Indirect
+<ul>
+<li>Compare the performance of the clustering system and the baseline in terms of any performance measure for the application</li>
+</ul></li>
+</ol>
+<h2 id="text-categorization">Text categorization</h2>
+<ul>
+<li>Task: classify a text object into 1 or more of predefined categories after training the model with a labeled training set.</li>
+<li>Categories
+<ol type="1">
+<li>“Internal” categories that characterize a text object</li>
+<li>“External” categories that characterize an entity associated with the text object
+<ul>
+<li>e.g. author, time</li>
+</ul></li>
+</ol></li>
+<li>Use cases
+<ol type="1">
+<li>enrich text representation
+<ul>
+<li>Text can now be represented in multiple levels (keywords + categories)</li>
+<li>facilitate aggregation of text content</li>
+</ul></li>
+<li>infer properties of entities associated with text</li>
+</ol></li>
+</ul>
+<h3 id="methods">Methods</h3>
+<ol type="1">
+<li>Manual
+<ul>
+<li>Idea: Determine the category based on rules that are carefully designed to reflect the domain knowledge about the categorization problem</li>
+<li>Works well when categories are easily distinguished and very well defined</li>
+<li>Problems
+<ol type="1">
+<li>Labor intensive</li>
+<li>Cannot handle uncertainty in rules; not robust</li>
+</ol></li>
+</ul></li>
+<li>‘Automatic’
+<ul>
+<li>Input:
+<ol type="1">
+<li>Annotated data sets with category labels</li>
+<li>A set of features that can potentially provide a “clue”</li>
+</ol></li>
+<li>Processer:
+<ul>
+<li>Use machine learning to learn “soft rules” for categorization
+<ul>
+<li>Figure out which features are most useful</li>
+</ul></li>
+</ul></li>
+<li>Output:
+<ul>
+<li>The classifer to predict category</li>
+</ul></li>
+<li>Generative vs Discriminative
+<ul>
+<li>Generative classifiers learn what the data “looks” like in each category
+<ul>
+<li>compute p(Y|X) based on p(X|Y) and p(Y) by using Bayes Rule</li>
+<li>e.g. Naive Bayes</li>
+</ul></li>
+<li>Discriminative classifiers (learn what features separate categories)
+<ul>
+<li>attempt to model p(Y|X) directly</li>
+<li>e.g. Logistic Regression, SVM, kNN</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ol>
+<h3 id="naïve-bayes">Naïve Bayes</h3>
+<ul>
+<li>Idea:
+<ul>
+<li><span class="math display"> p(\theta | d) = \frac{p(\theta) * p(d | \theta)}{p(d)} = \frac{p(\theta) * p(d | \theta)}{\sum^k_{j=1}p(d|theta_j)p(\theta_j)} </span></li>
+</ul></li>
+<li>Steps
+<ol type="1">
+<li>Given a list of documents with categories labeled as training data</li>
+<li>Approximate <span class="math display">p(\theta)</span> and <span class="math display">p(w|\theta)</span> from the training data
+<ul>
+<li><span class="math display"> p(\theta) = </span> num of training docs belong to category i / num of all training docs</li>
+<li><span class="math display"> p(w|\theta) = </span> word count of w in the training docs belong to category i / global word count w in all training docs</li>
+</ul></li>
+<li>Classifier: <span class="math display"> category(d) = argmax_i(p(\theta_i|d)) = argmax_i(\log{p(\theta_i)} + \sum_{w \ in V}c(w,d)\log{p(w|\theta_i)}) </span></li>
+</ol></li>
+<li>Smoothing
+<ul>
+<li>Why needed?
+<ol type="1">
+<li>Address data sparseness</li>
+<li>Incorporate prior</li>
+<li>Achieve discriminative weighting (i.e., IDF weighting)</li>
+</ol></li>
+</ul></li>
+</ul>
+<h1 id="week-11">Week 11</h1>
+<h2 id="discriminative-classifer">Discriminative Classifer</h2>
+<h3 id="logistic-regression">Logistic Regression</h3>
+<ul>
+<li>Input
+<ol type="1">
+<li>Predictors X with M features</li>
+</ol></li>
+<li>Goal: Modeling p(Y|X) directly
+<ul>
+<li>Process: estimate parameters <span class="math display">\beta</span> with ML estimate</li>
+</ul></li>
+<li>Output: Binary classifier outputing Y, which indicates if category of a d is <span class="math display">theta_1</span> or <span class="math display">theta_2</span></li>
+<li>can be regarded as a generalization of a Naïve Bayes</li>
+</ul>
+<h3 id="knn">KNN</h3>
+<ul>
+<li>Idea:
+<ol type="1">
+<li>Find k examples in the training set that are most similar to the text object to be classified</li>
+<li>Assign the category that is most common in these neighbor text objects</li>
+</ol></li>
+<li>Need a similarity function</li>
+</ul>
+<h2 id="text-categorization-evaluation">Text Categorization Evaluation</h2>
+<ul>
+<li>Idea: comapre the system categorization decisions with the human-made categorization decisions</li>
+<li>human answer: +/-; system answer: y/n
+<ul>
+<li>TP: true positive - y(+)</li>
+<li>FP: false pos - y(-)</li>
+<li>FN: false neg - n(+)</li>
+<li>TN: true neg</li>
+</ul></li>
+<li>Classification Accuracy
+<ul>
+<li>num of correct decisions / num of decisions made</li>
+<li>cons
+<ol type="1">
+<li>some decisions have more weights than others</li>
+<li>not effective with imbalanced test set</li>
+</ol></li>
+</ul></li>
+<li>Per doc evaluation
+<ul>
+<li>Precision: TP / (TP + FP)
+<ul>
+<li>When system says ‘yes’, how many are correct?</li>
+</ul></li>
+<li>Recall: TP / (TP + FN)
+<ul>
+<li>How many categories out of total categories of the doc are captured?</li>
+</ul></li>
+</ul></li>
+<li>Per category evaluation
+<ul>
+<li>Precision: TP / (TP + FP)
+<ul>
+<li>When system says ‘yes’, how many are correct?</li>
+</ul></li>
+<li>Recall: TP / (TP + FN)
+<ul>
+<li>How many docs out of all docs within the category are captured?</li>
+</ul></li>
+</ul></li>
+<li>F-measure
+<ul>
+<li><span class="math display"> F_1 = \frac{2PR}{P+R} </span></li>
+</ul></li>
+<li>Micro-averaging
+<ul>
+<li>pooling all decisions</li>
+</ul></li>
+<li>Macro-averaging
+<ul>
+<li>average over precision / recall / f</li>
+</ul></li>
+<li>Can aggregate over the categories</li>
+</ul>
+<h2 id="opinion-mining-and-sentiment-analysis">Opinion Mining and Sentiment Analysis</h2>
+<ul>
+<li>Opinion: a subjective statement describing what a person believes or thinks about something</li>
+<li>Opinion representations
+<ol type="1">
+<li>holder</li>
+<li>target</li>
+<li>content</li>
+<li>context</li>
+<li>sentiment
+<ul>
+<li>What does the opinion tell us about the opinion holder’s feeling</li>
+</ul></li>
+</ol></li>
+<li>Why mine opinion?
+<ol type="1">
+<li>decision support</li>
+<li>understand people e.g. preferences</li>
+<li>‘voluntary survey’ - gather information</li>
+</ol></li>
+<li>Task
+<ul>
+<li>Input: text data</li>
+<li>Output: A set of opinion representations -&gt; opinion sentiment</li>
+</ul></li>
+</ul>
+<h2 id="sentiment-classification">Sentiment Classification</h2>
+<ul>
+<li>Input: opinionated text object</li>
+<li>Output: A sentiment tag/label
+<ul>
+<li>Polarity analysis</li>
+<li>Emotion analysis</li>
+</ul></li>
+<li>Any text categorization method can be used</li>
+<li>Additional features needed for sentiment tagging
+<ol type="1">
+<li>Character n-grams
+<ul>
+<li>Unigrams are often very effective, but not for sentiment analysis</li>
+</ul></li>
+<li>Word n-grams
+<ul>
+<li>unigrams
+<ul>
+<li>check one word at a time</li>
+</ul></li>
+<li>bigrams
+<ul>
+<li>check 2 consecutive words at a time</li>
+</ul></li>
+<li>trigrams</li>
+</ul></li>
+<li>POS (part of speech) tag n-grams</li>
+<li>Word classes</li>
+<li>Frequent patterns in text</li>
+<li>Parse tree-based</li>
+<li>Pattern discover alg.</li>
+</ol></li>
+</ul>
+<h2 id="feature-construction">Feature construction</h2>
+<ul>
+<li>Domain knowledge, error analysis, and machine learning are all useful for text categorization</li>
+</ul>
+<h1 id="week-12-text-based-prediction">Week 12: Text-based prediction</h1>
+<h2 id="joint-mining-of-text-and-non-text-data">Joint mining of text and non-text data</h2>
+<ul>
+<li>Non-text data provides context for text mining</li>
+<li>Text data help interpret patterns discovered from non-text data</li>
+</ul>
+<h2 id="contextual-text-mining">Contextual Text Mining</h2>
+<ul>
+<li>Why?
+<ul>
+<li>Text often has rich context information
+<ol type="1">
+<li>direct context</li>
+<li>indrect context</li>
+</ol></li>
+<li>Context can be used to
+<ol type="1">
+<li>Partition text data for comparative analysis</li>
+<li>Provide meaning to the discovered topics</li>
+</ol></li>
+</ul></li>
+</ul>
+<h2 id="cplsa-contextual-probabilistic-latent-semantic-analysis">CPLSA (Contextual Probabilistic Latent Semantic Analysis)</h2>
+<ul>
+<li>Extension of PLSA</li>
+<li>Idea
+<ul>
+<li>Explicitly add interesting context variables into a generative model
+<ul>
+<li>Context influences both coverage and content variation of topics</li>
+</ul></li>
+<li>Model the conditional likelihood of text given context i.e. p(data | context variables)</li>
+</ul></li>
+<li>Use cases
+<ol type="1">
+<li>analyzing the impact of an event
+<ul>
+<li>compare the text content before an event and the content after the event</li>
+</ul></li>
+<li>Discovering temporal trends of topics in text</li>
+<li>Revealing how the coverage of topics in different locations evolves over time
+<ul>
+<li>e.g. the trending topics in different countries in Twitter with the location information provided</li>
+</ul></li>
+</ol></li>
+</ul>
+<h2 id="network-supervised-topic-modeling">Network Supervised Topic Modeling</h2>
+<ul>
+<li>The context of a text article can form a network
+<ul>
+<li>text data can be associated with nodes (NetPLSA), edges, paths, subnets, etc.</li>
+</ul></li>
+<li>Benefits of joint analysis of text and network context
+<ol type="1">
+<li>Network imposes constraints on topics in text</li>
+<li>Text helps characterize the content associated with each subnetwork</li>
+</ol></li>
+<li>Idea
+<ul>
+<li>Context network imposes constraints on topics &amp; model parameters</li>
+<li>The text at two adjacent nodes of the network tends to cover similar topics</li>
+<li>Topic distributions are smoothed over adjacent nodes</li>
+</ul></li>
+<li>Use cases</li>
+<li>NetPLSA
+<ul>
+<li>leverages the power of both the text and the network structure to mine topics</li>
+</ul></li>
+</ul>
+<h2 id="casual-topic-mining">Casual Topic Mining</h2>
+<ul>
+<li>Mine the “cause” (strong correlated event) of an event</li>
+<li>Input
+<ol type="1">
+<li>Text (text stream)</li>
+<li>Time series</li>
+</ol></li>
+<li>Iterative Causal Topic Modeling with Time Series Feedback
+<ul>
+<li>Idea: do an iterative adjustment of topic, discovered by topic models using time series to induce a product.</li>
+</ul></li>
+<li>Use cases
+<ol type="1">
+<li>discovering topics whose coverage in Twitter has strong correlations with airline prices</li>
+</ol></li>
+<li>Measuring casuality
+<ul>
+<li>Granger Causality Test is often useful</li>
 </ul></li>
 </ul>
 <div class="status-banner" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; text-align: center;">

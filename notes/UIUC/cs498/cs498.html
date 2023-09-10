@@ -1,0 +1,3137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <title>cs498 | Jasper Wang</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+
+  <!-- The loading of KaTeX is deferred to speed up page rendering -->
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+
+  <!-- To automatically render math in text elements, include the auto-render extension: -->
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+    <script type="text/javascript">
+  window.onload = function() {
+    document.getElementsByClassName("status-banner")[0].style.display = "block";
+    setTimeout(function() {
+      renderMathElements(document.getElementsByClassName("math"));
+      document.getElementsByClassName("status-banner")[0].style.display = "none";
+    }, 50); // delay to allow status banner to show
+  }
+
+  function renderMathElements(mathElements) {
+    var mathOptions = {
+      macros: {
+        "\\set": "\\left\\{ #1 \\right\\}",
+        "\\tup": "\\left\\langle #1 \\right\\rangle",
+        "\\abs": "\\left\\lvert #1 \\right\\rvert",
+        "\\floor": "\\left\\lfloor #1 \\right\\rfloor",
+        "\\ceil": "\\left\\lceil#1 \\right\\rceil",
+        "\\mb": "\\mathbb{#1}",
+        "\\rem": "\\operatorname{rem}",
+        "\\ord": "\\operatorname{ord}",
+        "\\sign": "\\operatorname{sign}",
+        "\\imag": "\\bm{i}",
+        "\\dee": "\\mathop{}\\!\\mathrm{d}",
+        "\\lH": "\\overset{\\text{l'H}}{=}",
+        "\\evalat": "\\left.\\left(#1\\right)\\right|",
+        "\\sech": "\\operatorname{sech}",
+        "\\spn": "\\operatorname{Span}",
+        "\\proj": "\\operatorname{proj}",
+        "\\prp": "\\operatorname{perp}",
+        "\\refl": "\\operatorname{refl}",
+        "\\magn": "\\left\\lVert #1 \\right\\rVert",
+        "\\rank": "\\operatorname{rank}",
+        "\\sys": "\\left[ #1 \\mid #2\\space \\right]",
+        "\\range": "\\operatorname{Range}",
+        "\\adj": "\\operatorname{adj}",
+        "\\cof": "\\operatorname{cof}",
+        "\\coord": "{\\left\\lbrack #1 \\right\\rbrack}_{#2}",
+        "\\diag": "\\operatorname{diag}",
+        "\\formlp": "\\operatorname{Form}(\\mathcal{L}^P)",
+
+        // not yet available in KaTeX
+        "\\operatorname": "\\mathop{\\text{#1}}\\nolimits", //wip: spacing is slightly off
+        "\\not": "\\rlap{\\kern{7.5mu}/}", //wip: slash angle is slightly off
+        "\\bm": "\\mathbf", //wip: should be italic, but isn't
+      },
+      throwOnError: false,
+    };
+    for (var i=0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      katex.render(texText.data, mathElements[i], mathOptions);
+    }
+  }
+  </script>
+</head>
+<body>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-68271407-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+<div id="TOC">
+<ul>
+<li><a href="#week-1">Week 1</a>
+<ul>
+<li><a href="#cloudonomics">Cloudonomics</a>
+<ul>
+<li><a href="#utility-pricing">Utility Pricing</a></li>
+<li><a href="#benefits-common-infrastructure">Benefits Common Infrastructure</a></li>
+</ul></li>
+<li><a href="#big-data">Big Data</a></li>
+<li><a href="#tiers-of-cloud-services">Tiers of Cloud Services</a>
+<ul>
+<li><a href="#iaas">IaaS</a></li>
+<li><a href="#paas">PaaS</a></li>
+<li><a href="#saas">SaaS</a></li>
+<li><a href="#mbaas">MBaaS</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#week-2-network">Week 2 Network</a>
+<ul>
+<li><a href="#web-intro">Web Intro</a></li>
+<li><a href="#vpc">VPC</a></li>
+</ul></li>
+<li><a href="#week-3-serverless">Week 3 Serverless</a>
+<ul>
+<li><a href="#faas">FaaS</a>
+<ul>
+<li><a href="#lambda">Lambda</a></li>
+<li><a href="#elastic-beanstalk">Elastic Beanstalk</a></li>
+</ul></li>
+<li><a href="#s3">S3</a></li>
+<li><a href="#nosql">NoSQL</a></li>
+<li><a href="#dropbox">Dropbox</a>
+<ul>
+<li><a href="#api">API</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#week-4">Week 4</a>
+<ul>
+<li><a href="#mapreduce">MapReduce</a></li>
+<li><a href="#hadoop">Hadoop</a>
+<ul>
+<li><a href="#data-pipeline">Data pipeline</a></li>
+<li><a href="#yarn-yet-another-resource-negotiator">YARN (Yet Another Resource Negotiator)</a></li>
+<li><a href="#docker">Docker</a></li>
+</ul></li>
+<li><a href="#apache-spark">Apache Spark</a>
+<ul>
+<li><a href="#rdd-resilient-distributed-datasets">RDD (Resilient Distributed Datasets)</a></li>
+</ul></li>
+<li><a href="#hdfs-hadoop-distributed-file-system">HDFS (Hadoop Distributed File System)</a></li>
+</ul></li>
+<li><a href="#week-5-storage">Week 5: Storage</a>
+<ul>
+<li><a href="#file-system">File System</a></li>
+<li><a href="#block-storage">Block storage</a>
+<ul>
+<li><a href="#instance-store">Instance Store</a></li>
+<li><a href="#virtual-block-stores">Virtual Block Stores</a></li>
+</ul></li>
+<li><a href="#object-storage">Object Storage</a>
+<ul>
+<li><a href="#s3-1">S3</a></li>
+<li><a href="#swift-apache-open-stack-blob-service">Swift (Apache Open Stack Blob Service)</a></li>
+</ul></li>
+<li><a href="#file-system-1">File System</a>
+<ul>
+<li><a href="#clustered-file-system">Clustered File System</a></li>
+<li><a href="#cloud-based-fs">Cloud-based FS</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#week-6">Week 6</a>
+<ul>
+<li><a href="#relational">Relational</a>
+<ul>
+<li><a href="#managed-relational-databases">Managed Relational Databases</a></li>
+</ul></li>
+<li><a href="#newsql">NewSQL</a>
+<ul>
+<li><a href="#google-cloud-spanner">Google Cloud Spanner</a></li>
+<li><a href="#azure-cosmosdb">Azure CosmosDB</a></li>
+</ul></li>
+<li><a href="#nosql-1">NoSQL</a></li>
+<li><a href="#mp6">MP6</a></li>
+</ul></li>
+<li><a href="#week-7">Week 7</a>
+<ul>
+<li><a href="#cache">Cache</a></li>
+<li><a href="#elasticache">ElastiCache</a>
+<ul>
+<li><a href="#memcached">Memcached</a></li>
+<li><a href="#redis-remote-dictionary-server">Redis (REmote DIctionary Server)</a></li>
+</ul></li>
+<li><a href="#scalable-data-storage">Scalable Data Storage</a>
+<ul>
+<li><a href="#hbase">HBase</a></li>
+<li><a href="#sparksql">SparkSQL</a></li>
+<li><a href="#hive">HIVE</a></li>
+</ul></li>
+<li><a href="#message-queues">Message Queues</a></li>
+</ul></li>
+<li><a href="#week-10-cloud-analytics">Week 10: Cloud Analytics</a>
+<ul>
+<li><a href="#terms">Terms</a></li>
+<li><a href="#data-cubes">Data Cubes</a></li>
+<li><a href="#columnar-storage">Columnar Storage</a></li>
+<li><a href="#modern-data-warehouses">Modern Data Warehouses</a></li>
+<li><a href="#data-lake">Data Lake</a></li>
+<li><a href="#other-analytics-services">Other Analytics Services</a>
+<ul>
+<li><a href="#aws-glue">AWS Glue</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#week-11-graph-processing-and-machine-learning">Week 11: Graph Processing and Machine Learning</a>
+<ul>
+<li><a href="#graph-db">Graph DB</a></li>
+<li><a href="#graph-processing">Graph Processing</a>
+<ul>
+<li><a href="#pregel">Pregel</a></li>
+<li><a href="#apache-giraph">Apache Giraph</a></li>
+<li><a href="#spark-graphx">Spark GraphX</a></li>
+</ul></li>
+<li><a href="#ml-in-clouds">ML in clouds</a>
+<ul>
+<li><a href="#ml-workflows">ML Workflows</a></li>
+</ul></li>
+<li><a href="#cloud-ml-offerings">Cloud ML Offerings</a></li>
+<li><a href="#human-in-the-loop-ai">Human-in-the-loop AI</a></li>
+<li><a href="#unstructured-data-ml">Unstructured data ML</a></li>
+<li><a href="#apache-spark-1">Apache Spark</a></li>
+</ul></li>
+<li><a href="#week-12-streaming">Week 12: Streaming</a>
+<ul>
+<li><a href="#apache-storm">Apache Storm</a></li>
+<li><a href="#approaching-guarantee-message-processing">Approaching guarantee message processing</a></li>
+<li><a href="#spark-streaming">Spark Streaming</a></li>
+<li><a href="#lambda-and-kappa-architecture">Lambda and Kappa architecture</a></li>
+<li><a href="#streaming-ecosystem">Streaming ecosystem</a></li>
+</ul></li>
+<li><a href="#week-13-virtualization">Week 13: Virtualization</a>
+<ul>
+<li><a href="#terms-1">Terms</a></li>
+<li><a href="#types-of-virtualizations">Types of virtualizations</a></li>
+<li><a href="#full-virtualization">Full Virtualization</a>
+<ul>
+<li><a href="#software-based-virtualizations">Software-based virtualizations</a></li>
+<li><a href="#hardware-assisted">Hardware assisted</a></li>
+</ul></li>
+<li><a href="#os-level-virtualization-containers">OS-Level Virtualization / Containers</a>
+<ul>
+<li><a href="#docker-1">Docker</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#week-14-container-orchestration-and-infrastructure-as-code">Week 14: Container Orchestration and Infrastructure as Code</a>
+<ul>
+<li><a href="#docker-foundations">Docker Foundations</a></li>
+<li><a href="#docker-swarm-orchestration">Docker Swarm Orchestration</a></li>
+<li><a href="#docker-networking">Docker Networking</a></li>
+<li><a href="#service-discovery-in-docker-swarm">Service Discovery in Docker Swarm</a></li>
+<li><a href="#external-load-balancing-in-docker-swarm">External load balancing in Docker Swarm</a></li>
+<li><a href="#ways-to-map-host-to-container">Ways to map host to container</a></li>
+<li><a href="#docker-compose-single-host">Docker Compose (single host)</a></li>
+</ul></li>
+<li><a href="#week-15-kubernates">Week 15: Kubernates</a>
+<ul>
+<li><a href="#terms-2">Terms</a></li>
+<li><a href="#architecture">Architecture</a></li>
+<li><a href="#pod">Pod</a></li>
+<li><a href="#higher-level-resource-abstractions">Higher Level Resource Abstractions</a></li>
+<li><a href="#kubernetes-service">Kubernetes Service</a></li>
+<li><a href="#networking">Networking</a></li>
+<li><a href="#kubernates-vs-docker-swarm">Kubernates vs Docker Swarm</a></li>
+</ul></li>
+<li><a href="#week-16-future-developments-in-the-cloud">Week 16: Future Developments in the Cloud</a></li>
+</ul>
+</div>
+  <h1>Notes by <a href="/">Jasper Wang</a>.</h1>
+  <ul class="site_links">
+    <span class="divider"></span>
+  </ul>
+<h1 id="week-1">Week 1</h1>
+<ul>
+<li>Software defined architecture
+<ul>
+<li>provides a layer of virtualization between the software and its users</li>
+<li>allows consumers to interact with a simple application interface while benefiting from complex systems that run hidden in the background.</li>
+</ul></li>
+</ul>
+<h2 id="cloudonomics">Cloudonomics</h2>
+<h3 id="utility-pricing">Utility Pricing</h3>
+<ul>
+<li>Notions
+<ol type="1">
+<li>A - Avg demand</li>
+<li>B - Baseline (owned) cost (i.e. owning cost per unit time)</li>
+<li>C - Cloud unit cost (i.e. renting cost per unit time)</li>
+<li>P - Peak demand</li>
+<li>t - time needed</li>
+<li>U - Utility Premium</li>
+</ol></li>
+<li>Total cloud cost: <span class="math display"> C_T = A * C * t </span></li>
+<li>Total baseline cost: <span class="math display"> B_T = P * B * t </span></li>
+<li>Utility Premium: U = C / B</li>
+<li>When is the cloud cheaper?
+<ul>
+<li><span class="math display"> C_T = A * C * t = A * U * B * t </span></li>
+<li>If <span class="math display"> C_T &lt; B_T </span>, then A * U &lt; P
+<ul>
+<li>i.e. When Utility Premium is less than ratio of Peak Demand to Average Demand, Cloud computing is beneficial</li>
+<li>In practice, demands are often highly spiky</li>
+</ul></li>
+</ul></li>
+<li>Often a hybrid model is the best</li>
+</ul>
+<h3 id="benefits-common-infrastructure">Benefits Common Infrastructure</h3>
+<ul>
+<li>Coefficient of variation <span class="math display">C_v = \frac{\sigma}{\mu}</span>
+<ul>
+<li>Measure of smoothness. Smaller -&gt; smoother</li>
+<li>Adding n independent variables reduces <span class="math display">C_v </span> by <span class="math display">\frac{1}{\sqrt{n}}</span></li>
+</ul></li>
+<li>Multiplexing jobs with different distributions may reduce the coefficient of variation <span class="math display">C_v</span>
+<ul>
+<li>n independent jobs -&gt; Aggregate <span class="math display"> C_v = \frac{1}{\sqrt{n}}C_v </span></li>
+<li>Multiplexing demand in a cloud infrastructure leads to higher utilization</li>
+</ul></li>
+<li>Cloud providers prefer variable jobs that have negative correlation</li>
+</ul>
+<h2 id="big-data">Big Data</h2>
+<ul>
+<li>Properties
+<ol type="1">
+<li>Volume</li>
+<li>Velocity</li>
+<li>Variety</li>
+<li>Veracity
+<ul>
+<li>conformity to facts; accuracy</li>
+</ul></li>
+</ol></li>
+</ul>
+<h2 id="tiers-of-cloud-services">Tiers of Cloud Services</h2>
+<p>Multiplexing demands - the physical hardware is shared between multiple tenants. Like a rental car being driven by multiple people as per their time slots.</p>
+<h3 id="iaas">IaaS</h3>
+<ul>
+<li>when cloud provider provides a virtualized computer e.g. processing, hard drive, disk, network</li>
+<li>users need to set up OS, security features, etc.</li>
+<li>e.g. EC2, S3, Azure, Google cloud platform compute engine</li>
+<li>Benefits comparing to on-prem
+<ol type="1">
+<li>No need to run data center</li>
+<li>Ops. expenses and Capital expenses</li>
+<li>Use instances when needed (based on demands)</li>
+</ol></li>
+<li>Pricing
+<ol type="1">
+<li>On-demand</li>
+<li>Reserved</li>
+<li>Spot Pricing</li>
+</ol></li>
+<li>Sub-categories
+<ol type="1">
+<li>Metal as a service</li>
+<li>Container orchestration</li>
+</ol></li>
+</ul>
+<h3 id="paas">PaaS</h3>
+<ul>
+<li>Main goal is to run the user’s distributed web service in a managed environment</li>
+<li>Cloud provider provides a managed environment. The cloud provider handles OS upgrades, auto-scaling, etc
+<ul>
+<li>e.g. Load balancers, Queues</li>
+</ul></li>
+<li>e.g. Azure App service, Google App Engine, Elastic BeanStalk</li>
+<li>Concerns of PaaS vs IaaS
+<ul>
+<li>Choosing PaaS means that it’s harder to move the application from the cloud provider to another</li>
+</ul></li>
+</ul>
+<h3 id="saas">SaaS</h3>
+<h3 id="mbaas">MBaaS</h3>
+<ul>
+<li>Provides a way for mobile web applications to link to backend storage</li>
+</ul>
+<h1 id="week-2-network">Week 2 Network</h1>
+<h2 id="web-intro">Web Intro</h2>
+<ul>
+<li>Layers
+<ol type="1">
+<li>Application
+<ul>
+<li>Protocols
+<ol type="1">
+<li>HTTP / HTTPS</li>
+<li>FTP / SFTP</li>
+</ol></li>
+</ul></li>
+<li>Transport
+<ul>
+<li>handles packetizing of data</li>
+<li>protocols
+<ol type="1">
+<li>TCP
+<ul>
+<li>keeps track of data segments and handles failures</li>
+</ul></li>
+<li>UDP
+<ul>
+<li>use case: Voice over IP (VoIP)</li>
+</ul></li>
+</ol></li>
+</ul></li>
+<li>Internet
+<ul>
+<li>gets message from one machine to another</li>
+</ul></li>
+<li>Link</li>
+</ol></li>
+<li>Middleware
+<ul>
+<li>Software that provides services to applications beyond those generally available at the operating system</li>
+</ul></li>
+<li>RMI
+<ul>
+<li>remote method invocation</li>
+</ul></li>
+<li>SOA (Service Oriented Architecture)
+<ul>
+<li>The philosophy of encapsulating application logic in services with a uniformly defined interface and making these publicly available via discovery mechanisms</li>
+<li>Benefits
+<ol type="1">
+<li>reusable code</li>
+<li>interaction</li>
+<li>scalability</li>
+<li>reduce costs</li>
+</ol></li>
+</ul></li>
+<li>Big data RPC Frameworks
+<ol type="1">
+<li>Google Protocol Buffer
+<ul>
+<li>The system automatically generates interfaces functioning as communication stubs in your choice of programming language</li>
+</ul></li>
+<li>Apache Thrift
+<ul>
+<li>scalable and easy to use the auto-generated RPC functions</li>
+</ul></li>
+</ol></li>
+<li>SOAP (Simple object access protocol)
+<ul>
+<li>Send method execution requests to a remote object</li>
+<li>Evolved from XML-RPC</li>
+<li>XML (WSDL) as schema
+<ul>
+<li>Data representation for (un)marshalling on different machines and programming languages</li>
+</ul></li>
+<li>it follows objects, rules, and constraints, SOAP is a more strict protocol than REST</li>
+</ul></li>
+<li>REST
+<ul>
+<li>A style of software architecture for distributed hypermedia systems such as the World Wide Web</li>
+<li>Create, Update, Read, and Remove objects over the web</li>
+<li>Main concepts
+<ol type="1">
+<li>Nouns (resources e.g. URL)</li>
+<li>Verbs (e.g. GET, POST)</li>
+<li>Representations (e.g. XML)</li>
+</ol></li>
+</ul></li>
+<li>Async RPC
+<ul>
+<li>Web 2.0 supports bidirectional client - server communication</li>
+<li>Websocket
+<ul>
+<li>Part of HTML 5 standard</li>
+<li>Can handle interactive sessions better than RESTful architecture</li>
+<li>Use cases: chat, stock price update, collaborative doc editing</li>
+<li>WebSocket is an application protocol, running on top of TCP
+<ul>
+<li>URI: <code>ws://</code></li>
+</ul></li>
+<li>Phases
+<ol type="1">
+<li>Open handshake</li>
+<li>Data transfer</li>
+<li>Close handshake</li>
+</ol></li>
+<li>Javascript W3C WebSocket API event types
+<ol type="1">
+<li>Open</li>
+<li>Close</li>
+<li>Message</li>
+<li>Error</li>
+</ol></li>
+<li>Cloud provider examples
+<ol type="1">
+<li>API gateway</li>
+<li>Salesforce</li>
+</ol></li>
+</ul></li>
+</ul></li>
+<li>HTTP/2 Streaming API
+<ul>
+<li>Use cases: streaming video content, games</li>
+</ul></li>
+</ul>
+<h2 id="vpc">VPC</h2>
+<ul>
+<li>What’s VPC for?
+<ul>
+<li>Allow many different users have their own private network in the cloud</li>
+</ul></li>
+<li>VPC’s IP range can be defined</li>
+<li>VPC network does not use ARP while Physical Ethernet Network implements ARP.</li>
+<li>Benefits
+<ol type="1">
+<li>security</li>
+<li>flexibility</li>
+<li>data control</li>
+</ol></li>
+<li>Subnets
+<ul>
+<li>VPC is sub-divided into logically separated segments</li>
+<li>Has a smaller CIDR (Classless Inter-Domain Routing) range comparing to VPC</li>
+<li>Can have its own routing table</li>
+<li>Public subnet vs private subnet</li>
+</ul></li>
+<li>Address allocation of private internets
+<ul>
+<li>the following three blocks of the IP address space are reserved for private internets
+<ol type="1">
+<li>10.0.0.0/8</li>
+<li>172.16.0.0/12</li>
+<li>192.168.0.0/16</li>
+</ol></li>
+</ul></li>
+<li>Gateways
+<ol type="1">
+<li>Internet gateway</li>
+<li>NAT (Network Address Translation) gateway
+<ul>
+<li>Virtual router or a gateway in a public subnet that enables instances in a private subnet to interact with the internet</li>
+<li>Works in Internet layer</li>
+<li>How it works?
+<ul>
+<li>looks at the IP packet header and change the IPV4 address with its own address</li>
+</ul></li>
+<li>Types
+<ol type="1">
+<li>NAT instance (EC2)</li>
+<li>NAT gateway (requires elastic IP)</li>
+</ol></li>
+</ul></li>
+<li>Bastion host
+<ul>
+<li>Use a bastion host to access private machines hosted in a private network in a VPC</li>
+</ul></li>
+<li>VPG (Virtual Private Gateway)
+<ul>
+<li>For site-to-site VPN connections</li>
+<li>The subnet is known as a VPN-only subnet</li>
+</ul></li>
+<li>VPC peering</li>
+</ol></li>
+<li>Security
+<ol type="1">
+<li>Security groups
+<ul>
+<li>EC2 instance level firewall</li>
+<li>One or more security groups can be associated with each EC2 instance</li>
+<li>A security group ID can be specified as a source IP to allow communication from all the instances that are attached to that security group</li>
+</ul></li>
+<li>NACL (Network Access Control Lists)
+<ul>
+<li>Stateless subnet level firewall</li>
+<li>Every VPC has a default NACL</li>
+<li>Every subnet must be associated to one NACL</li>
+</ul></li>
+</ol></li>
+</ul>
+<h1 id="week-3-serverless">Week 3 Serverless</h1>
+<ul>
+<li>Categories
+<ul>
+<li>Compute
+<ol type="1">
+<li>PaaS
+<ul>
+<li>e.g. Elastic Beanstalk, Google App Engine, Azure App service</li>
+</ul></li>
+<li>FaaS (Function)
+<ul>
+<li>e.g. Lambda</li>
+</ul></li>
+<li>CaaS (Container)
+<ul>
+<li>e.g. ECS, EKS (Kubernates), Fargate</li>
+</ul></li>
+</ol></li>
+<li>Storage
+<ol type="1">
+<li>BLOB (Binary Large OBjects).
+<ul>
+<li>e.g. S3</li>
+</ul></li>
+<li>Key / value.
+<ul>
+<li>e.g. DynamoDb, Cloudant, Kassandra</li>
+</ul></li>
+</ol></li>
+</ul></li>
+</ul>
+<h2 id="faas">FaaS</h2>
+<ul>
+<li>Functions are events that are collected by the cloud backend and trigger your function</li>
+<li>deployment should be stateless, and rely on an external storage service for state storage.</li>
+</ul>
+<h3 id="lambda">Lambda</h3>
+<ul>
+<li>Features
+<ol type="1">
+<li>500 MB of /tmp storage space</li>
+<li>RPC
+<ul>
+<li>can declare a route through Amazon API Gateway.</li>
+</ul></li>
+<li>Function should finish in a certain time (3 - 300 sec)</li>
+<li>Multi-threading support</li>
+</ol></li>
+<li>Config
+<ol type="1">
+<li>Can set how much memory is needed (From 128 MB to 1.5GB)</li>
+</ol></li>
+</ul>
+<h3 id="elastic-beanstalk">Elastic Beanstalk</h3>
+<ul>
+<li>Deploy and scale web applications easily</li>
+</ul>
+<h2 id="s3">S3</h2>
+<ul>
+<li>Online file storage web service offered by AWS</li>
+<li>Features
+<ol type="1">
+<li>Provides web service interfaces including REST, SOAP</li>
+<li>Files up to 5 TB</li>
+<li>Files are stored in buckets; a bucket has a flat directory structure</li>
+</ol></li>
+<li>weak consistency model
+<ul>
+<li>Upon writing a new object to S3, the object might not appear in the list, and S3 might report “key does not exist.”</li>
+<li>Upon updating an existing object in S3 and immediately attempt to read it, users may see the previous version</li>
+<li>Upon deleting an object in S3 and immediately attempt to read it, user may still see it</li>
+</ul></li>
+</ul>
+<h2 id="nosql">NoSQL</h2>
+<ul>
+<li>examples of NOSQL key/value store cloud offerings
+<ol type="1">
+<li>DynamoDB
+<ul>
+<li>Can think of as a massively distributed B-Tree data structure in the cloud</li>
+</ul></li>
+<li>CosmosDB</li>
+</ol></li>
+</ul>
+<h2 id="dropbox">Dropbox</h2>
+<h3 id="api">API</h3>
+<ul>
+<li>Types
+<ol type="1">
+<li>Drop-in
+<ul>
+<li>Functions: create / retrieve files</li>
+</ul></li>
+<li>Core
+<ul>
+<li>Functions: search, revisions, restoring files</li>
+</ul></li>
+</ol></li>
+<li>Auth: OAuth</li>
+</ul>
+<h1 id="week-4">Week 4</h1>
+<ul>
+<li>Challenges with traditional programming models MPI (Message Passing Interface)
+<ol type="1">
+<li>Deadlock</li>
+<li>Inefficient communication mismanagement</li>
+<li>Load imbalance</li>
+<li>No fault tolerance</li>
+</ol></li>
+<li>Thus MapReduce is introduced to
+<ol type="1">
+<li>use distributed storage</li>
+<li>push computations down to storage (to avoid bottleneck of eternet bandwidth)</li>
+</ol></li>
+</ul>
+<h2 id="mapreduce">MapReduce</h2>
+<ul>
+<li>Features
+<ol type="1">
+<li>Automatic parallelization and distribution
+<ul>
+<li>System takes care of load balancing</li>
+</ul></li>
+<li>Fault tolerance</li>
+<li>I/O scheduling</li>
+<li>Status and monitoring</li>
+<li>Easy to write parallel code</li>
+</ol></li>
+<li>Storage
+<ul>
+<li>Distributed File System</li>
+</ul></li>
+<li>Map
+<ul>
+<li>Perform a function on individual values in a data set to create a new list of values</li>
+<li>(IN_KEY, IN_VALUE) -&gt; LIST(OUT_KEY, INTERMEDIATE_VALUE)</li>
+</ul></li>
+<li>Reduce
+<ul>
+<li>Combine values in a data set to create a new value</li>
+<li>Typically takes results from the Map function
+<ul>
+<li>Combines all intermediate values for a particular key</li>
+</ul></li>
+<li>(IN_KEY, IN_VALUE) -&gt; LIST(OUT_KEY, INTERMEDIATE_VALUE)</li>
+</ul></li>
+<li>Challenges
+<ol type="1">
+<li>May be hard to express problem in MapReduce</li>
+<li>May be hard to utilize data parallism</li>
+</ol></li>
+</ul>
+<h2 id="hadoop">Hadoop</h2>
+<ul>
+<li>Components
+<ol type="1">
+<li>Job tracker (on master machine)
+<ul>
+<li>Master node</li>
+</ul></li>
+<li>Task tracker (on worker machines)</li>
+</ol></li>
+<li>Steps
+<ol type="1">
+<li>Client submits a job</li>
+<li>JobTracker breaks input file into k 64MB chunks and assigns work to Task trackers on map-machines</li>
+<li>JobTracker gets notification from Task trackers that map have been completed and then notify reduce-machines</li>
+<li>Task trackers on map-machines and reduce-machines exchange map-output</li>
+<li>Reduce-machines work on reduce task</li>
+<li>reduce() output may go to a distributed file system (e.g. HDFS)</li>
+</ol></li>
+<li>Init
+<ol type="1">
+<li>Split input file into 64MB sections</li>
+<li>Fork off program onto multiple machines</li>
+<li>Master assigns idle workder machines to either Map or Reduce tasks</li>
+</ol></li>
+</ul>
+<h3 id="data-pipeline">Data pipeline</h3>
+<ul>
+<li>System that transforms events into a usable format</li>
+<li>Why migrate to hadoop?
+<ol type="1">
+<li>Multi-tenant internal clusters handling TB/day</li>
+<li>Fault-tolerant</li>
+<li>Scaling</li>
+</ol></li>
+</ul>
+<h3 id="yarn-yet-another-resource-negotiator">YARN (Yet Another Resource Negotiator)</h3>
+<ul>
+<li>Hadoop issues
+<ol type="1">
+<li>Bottlenecked by JobTracker if cluster has too many nodes</li>
+<li>MapReduce abused by other application frameworks</li>
+<li>Iterative algorithms were sub-optimal</li>
+</ol></li>
+<li>Architecture
+<ol type="1">
+<li>RM (Resource Manager)</li>
+<li>NM (Node Manager)</li>
+<li>AM (Application Master)
+<ul>
+<li>RM launches an AM container via an NM for each application submitted to the cluster</li>
+<li>AM requests containers via RM; launches containers via NM</li>
+<li>Uses headroom provided by RM to avoid livelocks</li>
+<li>Responsible for job history</li>
+</ul></li>
+<li>Containers</li>
+</ol></li>
+</ul>
+<h3 id="docker">Docker</h3>
+<ul>
+<li>Mount a local folder: <code>docker run -v /Users/daochenw/Desktop/grad/CS498/MPs/MP4/MP4_HadoopMapReduce_Template/PythonTemplate:/python -it sample_image.v1 bin/bash</code></li>
+<li>For MP5: <code>docker run -v /Users/daochenw/Desktop/grad/CS498/MPs/MP5_SparkMapReduce_Template/PythonTemplate:/python -it mp5 bin/bash</code></li>
+<li>For MP7:
+<ul>
+<li>java: <code>docker run -v /Users/daochenw/Desktop/grad/CS498/MPs/MP7/MP7_HBase_Template/JavaTemplate:/mp7 -it mp7 bin/bash</code></li>
+<li>python: <code>docker run -v /Users/daochenw/Desktop/grad/CS498/MPs/MP7/MP7_HBase_Template/PythonTemplate:/mp7 -it mp7 bin/bash</code></li>
+<li>After starting docker
+<ol type="1">
+<li><code>zkServer.sh start</code></li>
+<li><code>start-hbase.sh</code></li>
+<li>For python, <code>hbase thrift start &amp;</code></li>
+<li><code>python TablePartA.py</code></li>
+</ol></li>
+</ul></li>
+<li>For MP8:
+<ul>
+<li>python: <code>docker run -v /Users/daochenw/Desktop/grad/CS498/MPs/MP8_SparkSQL_Template/python:/mp8 --name mp8-cntr -it mp8 bin/bash</code></li>
+</ul></li>
+</ul>
+<h2 id="apache-spark">Apache Spark</h2>
+<ul>
+<li>Hadoop issues
+<ol type="1">
+<li>Repeated data access to HDFS</li>
+<li>No optimization to data caching</li>
+</ol></li>
+<li>Use cases
+<ol type="1">
+<li>Iterative alg.</li>
+<li>Interactive data mining</li>
+</ol></li>
+<li>Features
+<ol type="1">
+<li>Integrate with Scala</li>
+<li>Can interactively use with Scala interpreter</li>
+</ol></li>
+<li>Frameworks built on top of Spark
+<ol type="1">
+<li>GraphX
+<ul>
+<li>Google message passing model for graph computation</li>
+</ul></li>
+<li>SparkSQL
+<ul>
+<li>Database query engine</li>
+<li>Compatible with Apache Hive</li>
+</ul></li>
+</ol></li>
+<li>Implementation
+<ul>
+<li>Runs on Apache Mesos or YARN</li>
+<li>Can read from any Hadoop input source</li>
+<li>Scheduler
+<ul>
+<li>Dryad-like DAGs</li>
+<li>Benefits
+<ol type="1">
+<li>Improve locality of computation and data</li>
+<li>Reduce shuffling of data over network</li>
+</ol></li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="rdd-resilient-distributed-datasets">RDD (Resilient Distributed Datasets)</h3>
+<ul>
+<li>Immutable, partitioned collections of objects</li>
+<li>Features
+<ol type="1">
+<li>Allow apps to keep working sets in memory for efficient reuse</li>
+<li>Can be cached</li>
+</ol></li>
+<li>Transformations: map, filter, groupBy, join</li>
+<li>Actions: count, reduce, collect, save</li>
+<li>Fault tolerance
+<ul>
+<li>maintain lineage information that can be used to reconstruct lost partitions</li>
+<li>RDD does lazy transformation i.e. won’t change data until the actual update action occurs</li>
+</ul></li>
+</ul>
+<h2 id="hdfs-hadoop-distributed-file-system">HDFS (Hadoop Distributed File System)</h2>
+<ul>
+<li>Features
+<ol type="1">
+<li>Massive throughput</li>
+<li>Optimized for reads, sequential writes and appends</li>
+<li>Replicates files</li>
+</ol></li>
+<li>Typical usage pattern
+<ol type="1">
+<li>Huge files (100s of GB to TB)</li>
+<li>Data is rarely updated in place</li>
+<li>Reads and appends are common</li>
+</ol></li>
+<li>Implementation
+<ul>
+<li>DataNode Servers
+<ul>
+<li>Split files into contiguous chunks of 16 - 64 MB</li>
+<li>Each chunk replicated</li>
+</ul></li>
+<li>NameNode servers</li>
+</ul></li>
+</ul>
+<h1 id="week-5-storage">Week 5: Storage</h1>
+<ul>
+<li>Storage Virtualization
+<ul>
+<li>The process of presenting a logical view of the physical storage resources to a host computer system</li>
+<li>Types
+<ol type="1">
+<li>Block virtualization</li>
+<li>File virtualization</li>
+</ol></li>
+</ul></li>
+</ul>
+<h2 id="file-system">File System</h2>
+<ul>
+<li>Middleware between the physical storage device and programs running on top of the OS</li>
+<li>Block storage
+<ul>
+<li>when the physical device is shown to the operating system as just a medium to store blocks of data</li>
+</ul></li>
+<li>Layers
+<ol type="1">
+<li>Physical
+<ul>
+<li>Processes physical blocks being read or written</li>
+<li>Handles buffering and memory management</li>
+<li>Interacts with the device drivers</li>
+</ul></li>
+<li>Virtual
+<ul>
+<li>e.g. multiple hard-drives</li>
+</ul></li>
+<li>Logical
+<ul>
+<li>user interaction layer</li>
+</ul></li>
+</ol></li>
+<li>inode
+<ul>
+<li>Provides locations of the data blocks and attributes about the file
+<ul>
+<li>Internally the data content of a file is stored as a sequence of file system blocks
+<ul>
+<li>Each block is a fixed number of bytes</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>inode table records where each inode is located, indexed by number</li>
+<li>Directories are special files listing the names and inode numbers of files under the folder</li>
+<li>POSIX (Portable Operating System Interface) file systems
+<ul>
+<li>organized as directories (folders) containing files (documents)</li>
+<li>APIs
+<ol type="1">
+<li>Mount</li>
+<li>Open</li>
+<li>Seek</li>
+<li>Write
+<ul>
+<li>Strong consistent</li>
+</ul></li>
+<li>mkdir</li>
+</ol></li>
+</ul></li>
+</ul>
+<h2 id="block-storage">Block storage</h2>
+<h3 id="instance-store">Instance Store</h3>
+<ul>
+<li>Sizes
+<ol type="1">
+<li>SDD: 80 - 320 GB</li>
+<li>HDD: up to 1680 GB</li>
+</ol></li>
+<li>Benefits
+<ol type="1">
+<li>higher performance and bandwidth to the instance.</li>
+<li>persist if reboot the machine</li>
+</ol></li>
+<li>Limitations
+<ol type="1">
+<li>the data stored on the drive does not persist, it’s ephemeral
+<ul>
+<li>data lost when the disk drive fails or when the instance is stopped or terminated</li>
+<li>can use HDFS / backup by S3 to get reliability</li>
+</ul></li>
+</ol></li>
+<li>Use cases
+<ol type="1">
+<li>An application that stores 200 GBs of binary data for a few minutes and doesn’t need it to be persistent if the instance running it fails</li>
+</ol></li>
+</ul>
+<h3 id="virtual-block-stores">Virtual Block Stores</h3>
+<ul>
+<li><p>The physical machine running the virtual machine is separate from the physical machine hosting the data</p></li>
+<li><p>Features</p>
+<ol type="1">
+<li>Highly available and reliable</li>
+<li>Up to 16TB</li>
+<li>Supports encryption</li>
+</ol></li>
+<li><p>Limitation</p>
+<ol type="1">
+<li>Data transfer is limited by network bandwidth</li>
+</ol></li>
+<li><p>e.g. EBS, Google Cloud Persistent Disk</p></li>
+<li><p>EBS</p>
+<ul>
+<li>A single EC2 instance can be attached to more than 1 EBS volume</li>
+</ul></li>
+</ul>
+<h2 id="object-storage">Object Storage</h2>
+<ul>
+<li>CAP: Consistency, Availability, Partition Tolerance
+<ul>
+<li>Consistency: Every read receives the most recent write or an error</li>
+<li>Availability: Every request receives a (non-error) response, without the guarantee that it contains the most recent write</li>
+<li>Partition tolerance: The system continues to operate despite an arbitrary number of messages being dropped (or delayed) by the network between nodes</li>
+<li>No way to maintain all 3 components</li>
+<li>Consistency can be sacrificed</li>
+</ul></li>
+<li>POSIX compliance generally introduces performance penalty at scale, so cloud object storage typically is not POSIX compliant</li>
+<li>BLOB: a collection of binary data stored as a single entity in a database management system.</li>
+</ul>
+<h3 id="s3-1">S3</h3>
+<ul>
+<li>Features
+<ol type="1">
+<li>High availability and partition tolerance</li>
+<li>High bandwidth: 25GB/s</li>
+<li>Cheap cost
+<ul>
+<li>Because of the relaxed consistency requirements of S3, building the distributed system to support it is much easier</li>
+</ul></li>
+<li>Data can be accessed outside of cloud via REST call</li>
+</ol></li>
+</ul>
+<h3 id="swift-apache-open-stack-blob-service">Swift (Apache Open Stack Blob Service)</h3>
+<ul>
+<li>Can store an operating system and application binaries remotely</li>
+<li>Features
+<ol type="1">
+<li>API support (GET, PUT)</li>
+<li>MD5 Checksums with each object</li>
+<li>Auditing and active replication</li>
+</ol></li>
+<li>Use cases
+<ol type="1">
+<li>Unstructured object data like operating system’s data and binaries</li>
+<li>An application that works with 80 GBs of images on in-house data center</li>
+</ol></li>
+</ul>
+<h2 id="file-system-1">File System</h2>
+<h3 id="clustered-file-system">Clustered File System</h3>
+<ul>
+<li>allows files to be accessed using the same interfaces and semantics as local files</li>
+<li>Features
+<ol type="1">
+<li>Fencing (concurrency)</li>
+</ol></li>
+<li>Limitations
+<ol type="1">
+<li>POSIX compliant - hard to maintain CAP on a cluster</li>
+</ol></li>
+<li>Examples
+<ol type="1">
+<li>NFS (Network File System)</li>
+<li>SMB</li>
+<li>Lustre</li>
+<li>Ceph
+<ul>
+<li>Use cases
+<ol type="1">
+<li>Updating structured data frequently</li>
+</ol></li>
+</ul></li>
+</ol></li>
+</ul>
+<h3 id="cloud-based-fs">Cloud-based FS</h3>
+<ul>
+<li>EFS</li>
+</ul>
+<h1 id="week-6">Week 6</h1>
+<h2 id="relational">Relational</h2>
+<ul>
+<li>Features
+<ol type="1">
+<li>ACID (Atomicity, Consistency, Isolation, and Durability)</li>
+<li>Replication</li>
+<li>OLTP (online transaction processing) workload</li>
+</ol></li>
+<li>Benefits
+<ol type="1">
+<li>allow data recovery for computer / server</li>
+<li>querying and finding data is easy</li>
+<li>cheap comparing to cache</li>
+</ol></li>
+<li>Sharding
+<ul>
+<li>Split data set by certain criteria and store such shards on separate clusters</li>
+<li>common way to split a database is splitting tables that are not joined in the same query onto different hosts</li>
+</ul></li>
+<li>Traditional RDBMS (Relational DB Management System)
+<ul>
+<li>rely on B+Trees, replication, etc. to optimize usage</li>
+</ul></li>
+</ul>
+<h3 id="managed-relational-databases">Managed Relational Databases</h3>
+<ul>
+<li>Features
+<ol type="1">
+<li>Fully managed instances</li>
+<li>Read replicas</li>
+<li>Availability through failover</li>
+<li>Encryption at rest and in transport</li>
+</ol></li>
+<li>Replication
+<ul>
+<li>A feature allowing the contents of one or more servers (masters) to be mirrored on one or more servers (slaves)</li>
+<li>Benefits
+<ol type="1">
+<li>Scalability</li>
+<li>Backup</li>
+</ol></li>
+<li>Options
+<ol type="1">
+<li>Classical MySQL Replication</li>
+<li>MySQL Group Replication</li>
+<li>Multi Master - Galera</li>
+<li>MySQL(NDB) Cluster</li>
+</ol></li>
+<li>Binary log
+<ul>
+<li>Maintained in master node</li>
+<li>Contains a record of all changes to the databases</li>
+<li>Slaves read (pull mode) the binary log from each master in order to access the data to replicate.</li>
+</ul></li>
+<li>Relay log
+<ul>
+<li>keeps track of the position in the master’s binry log of the last event applied on the slave</li>
+</ul></li>
+<li>Order of applying changes in slaves
+<ol type="1">
+<li>in-order</li>
+<li>out-of-order</li>
+</ol></li>
+<li>Replication Nature
+<ol type="1">
+<li>Async (standard)</li>
+<li>Semi-sync
+<ul>
+<li>Master waits for at least one ACK before committing
+<ul>
+<li>If no ACK received and timeout, master reverts to async</li>
+</ul></li>
+<li>Slower commits than async</li>
+</ul></li>
+<li>GTIDs (global transaction IDs) based Replication
+<ul>
+<li>Guarantees consistency between master and slave</li>
+</ul></li>
+<li>Multi-Source Replication
+<ul>
+<li>one server has many masters from which it replicates</li>
+</ul></li>
+</ol></li>
+<li>Replicas
+<ol type="1">
+<li>Read replica
+<ul>
+<li>for scalability</li>
+<li>nature: async</li>
+</ul></li>
+<li>Multi-AZ
+<ul>
+<li>for high availability</li>
+<li>nature
+<ol type="1">
+<li>sync for non-Aurora</li>
+<li>async for Aurora</li>
+</ol></li>
+</ul></li>
+<li>Multi-region
+<ul>
+<li>for disaster recovery</li>
+<li>nature: async</li>
+</ul></li>
+</ol></li>
+</ul></li>
+<li>Multi Master Cluster
+<ul>
+<li>Synchronous replication</li>
+<li>Examples: Galera (MySQL, MariaDB)</li>
+</ul></li>
+<li>Aurora
+<ul>
+<li>a database cloud-based, cloud native database solution built on top of MySQL</li>
+<li>Deuteronomy (Research done by Microsoft)
+<ul>
+<li>2 components
+<ol type="1">
+<li>Transaction Component</li>
+<li>Data Component</li>
+</ol></li>
+</ul></li>
+<li>Features
+<ol type="1">
+<li>API compatible with MySQL or Postgres</li>
+<li>redo logging
+<ul>
+<li>stores redo log in database
+<ul>
+<li>write redo log records to the distributed storage layer, and the storage takes care of constructing page images</li>
+</ul></li>
+<li>addresses write amplification</li>
+</ul></li>
+<li>Replication and Quorum
+<ul>
+<li>Addresses the problems of component failures and performance degradation</li>
+<li>Write to as many replicas as appropriate to ensure that a quorum read always finds the latest data</li>
+</ul></li>
+<li>Fast repair
+<ul>
+<li>When a segment fails, the repair of a single protection group only requires moving 10 GB of data, which is done in seconds</li>
+<li>When multiple protection groups must be repaired, the entire storage fleet participates in the repair process.</li>
+</ul></li>
+<li>Multi-Master
+<ul>
+<li>No more single point of failure</li>
+</ul></li>
+</ol></li>
+<li>Quorum Read
+<ul>
+<li>Expensive and should be avoided</li>
+<li>Needed during recovery on a database instance restart</li>
+</ul></li>
+<li>DB Engine Impl
+<ul>
+<li>a fork of ‘community’ MySQL/InnoDB</li>
+<li>InnoDB includes
+<ol type="1">
+<li>IO Subsystem</li>
+<li>the transaction subsystem</li>
+<li>the lock manager</li>
+<li>a B+ Tree impl</li>
+<li>the associated notion of a “mini transaction” (MTR)</li>
+</ol></li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="newsql">NewSQL</h2>
+<ul>
+<li>A class of relational database management systems</li>
+<li>Features
+<ol type="1">
+<li>Strong consistency (sacrifices some availability)</li>
+<li>ACID</li>
+</ol></li>
+<li>HW-based Time Synchronization providers
+<ol type="1">
+<li>NTP</li>
+<li>Google Spanner</li>
+<li>Azure</li>
+<li>Amazon Time Sync Service</li>
+</ol></li>
+</ul>
+<h3 id="google-cloud-spanner">Google Cloud Spanner</h3>
+<ul>
+<li>Spanner
+<ul>
+<li>A distributed data layer that uses optimized sharded Paxos to guarantee consistency</li>
+</ul></li>
+<li>Features
+<ol type="1">
+<li>2PC (two-phase commit)</li>
+<li>TrueTime (external consistency)
+<ul>
+<li>Heavy use of hardware-assisted clock synchronization using GPS and atomic clocks to ensure global consistency</li>
+<li>Timestamps become intervals, not single values</li>
+</ul></li>
+<li>Focuses on CP (sacrifices some A - A is in 5 9s range)</li>
+<li>Stale reads
+<ul>
+<li>offer similar performance benefits as eventual consistency but with much stronger consistency guarantees</li>
+<li>does not block writes</li>
+</ul></li>
+</ol></li>
+<li>Paxos
+<ul>
+<li>Spanner uses the Paxos algorithm to shard (partition) data across hundreds of servers</li>
+</ul></li>
+</ul>
+<h3 id="azure-cosmosdb">Azure CosmosDB</h3>
+<ul>
+<li>Globally distributed, multi-model (i.e. many different APIs) database</li>
+<li>Features
+<ol type="1">
+<li>Wire compatible with Cassandra</li>
+<li>Many API support</li>
+<li>Replicated State Machine (RSM) for concurrency</li>
+<li>Write-optimized</li>
+<li>Automatically indexes everything it ingests</li>
+</ol></li>
+<li>Indexing
+<ul>
+<li>BW-Tree indexing
+<ul>
+<li>Log Structure Record</li>
+<li>Atom-record-sequence (ARS) system</li>
+</ul></li>
+</ul></li>
+<li>Consistency Models
+<ol type="1">
+<li>Strong</li>
+<li>Bounded-staleness</li>
+<li>Session</li>
+<li>Consistent Prefix</li>
+<li>Eventual</li>
+</ol></li>
+</ul>
+<h2 id="nosql-1">NoSQL</h2>
+<ul>
+<li>NoSQL: not only SQL</li>
+<li>Categories
+<ol type="1">
+<li>Key-value
+<ul>
+<li>Examples
+<ol type="1">
+<li>DynamoDB</li>
+<li>CosmosDB</li>
+</ol></li>
+</ul></li>
+<li>Graph DB</li>
+<li>Wide Column (BigTable)</li>
+<li>Document</li>
+</ol></li>
+<li>Wide Column key-value Databases
+<ul>
+<li>Examples
+<ol type="1">
+<li>Google BigTable</li>
+<li>AWS managed Casandra</li>
+</ol></li>
+</ul></li>
+<li>In Memory (Cache) Databases
+<ol type="1">
+<li>AWS ElastiCache</li>
+<li>Azure</li>
+<li>Google</li>
+<li>IBM</li>
+</ol></li>
+</ul>
+<h2 id="mp6">MP6</h2>
+<ul>
+<li>Connect to RDS
+<ul>
+<li><code>mysql -h dw30-mp6-db-instance-1.ce4vqhqipu92.us-east-1.rds.amazonaws.com -P 3306 -u admin -p</code></li>
+</ul></li>
+<li>Create the DB table</li>
+</ul>
+<pre><code>CREATE TABLE `sys`.`hero_db` (
+  `id` INT NOT NULL,
+  `hero` VARCHAR(20) NULL,
+  `power` VARCHAR(20) NULL,
+  `name` VARCHAR(20) NULL,
+  `xp` VARCHAR(20) NULL,
+  `color` VARCHAR(20));</code></pre>
+<ul>
+<li>General DB commands
+<ol type="1">
+<li><code>show databases;</code></li>
+<li><code>describe sys.hero_db;</code></li>
+<li><code>select * from sys.hero_db LIMIT 5;</code></li>
+<li><code>DELETE FROM sys.herodb WHERE id &gt;= 26;</code></li>
+</ol></li>
+</ul>
+<h1 id="week-7">Week 7</h1>
+<h2 id="cache">Cache</h2>
+<ul>
+<li>Concepts
+<ul>
+<li>Principle of locality
+<ul>
+<li>Tendency of the processor to access the same set of memory locations repetitively over a short period of time</li>
+<li>Types
+<ol type="1">
+<li>Spatial locality
+<ul>
+<li>certain values are stored very closely in memory</li>
+</ul></li>
+<li>Temporal locality
+<ul>
+<li>accessing the same value repeatedly across a certain period of time</li>
+</ul></li>
+</ol></li>
+</ul></li>
+<li>Caching locations
+<ol type="1">
+<li>Processor (CPU)
+<ul>
+<li>L1, L2, L3 cache</li>
+<li>TLB (Translation Lookaside Buffer)
+<ul>
+<li>VM address translation</li>
+</ul></li>
+</ul></li>
+<li>OS
+<ul>
+<li>VM</li>
+<li>RAM acts as the “cache” for the SSD</li>
+</ul></li>
+<li>Distributed system
+<ol type="1">
+<li>CDN Caching</li>
+<li>Web Server Caching</li>
+<li>Database Caching</li>
+<li>Application Caching</li>
+</ol></li>
+</ol></li>
+<li>Cache Hit</li>
+<li>Cache Miss</li>
+</ul></li>
+<li>Cache replacement policies
+<ol type="1">
+<li>LRU (least recently used)</li>
+<li>TLRU (time-aware LRU)
+<ul>
+<li>TTU: time to use</li>
+</ul></li>
+<li>LFU (Least Frequently Used)</li>
+<li>FIFO</li>
+</ol></li>
+<li>TTL
+<ul>
+<li>hacky solution for coherence problem</li>
+</ul></li>
+<li>Cache writing / updating policies
+<ol type="1">
+<li>Cache aside
+<ul>
+<li>lazy loading</li>
+<li>Suitable for read-heavy Applications</li>
+<li>e.g. Memcached</li>
+</ul></li>
+<li>Write thru
+<ul>
+<li>Pros
+<ol type="1">
+<li>No stale data</li>
+<li>Read is fast</li>
+</ol></li>
+<li>Cons
+<ol type="1">
+<li>Cache churn</li>
+</ol></li>
+<li>Suitable for write-heavy Applications, where data loss is not acceptable</li>
+</ul></li>
+<li>Write back
+<ul>
+<li>lazy writing</li>
+</ul></li>
+<li>Write around
+<ul>
+<li>Writing is only done to the underlying data source</li>
+</ul></li>
+</ol></li>
+<li>Cache sharding
+<ul>
+<li>Memcached
+<ul>
+<li>Consistent hashing ring alg.</li>
+</ul></li>
+<li>Redis
+<ul>
+<li>up to 250 / 500 shards</li>
+</ul></li>
+<li>Problems
+<ol type="1">
+<li>Resharding</li>
+<li>Celebrity (one data is accessed much more frequently than others; hot partition)</li>
+<li>Join and de-normalization
+<ul>
+<li>Once data is sharded, it’s hard to perform join operations across all shards.</li>
+</ul></li>
+</ol></li>
+</ul></li>
+<li>Cache Coherency
+<ul>
+<li>Whenever cache is distributed, with the same data in more than one place</li>
+<li>Protocols
+<ol type="1">
+<li>Write-invalidate</li>
+<li>Write-Update</li>
+</ol></li>
+<li>Machisms
+<ol type="1">
+<li>Snooping</li>
+<li>Directory-based</li>
+<li>TTL: Eventually consistent caches</li>
+</ol></li>
+</ul></li>
+</ul>
+<h2 id="elasticache">ElastiCache</h2>
+<h3 id="memcached">Memcached</h3>
+<ul>
+<li>Features
+<ol type="1">
+<li>Simple key-value storage model</li>
+<li>Simple data model</li>
+<li>No data (persistent) storage</li>
+<li>Multi-threaded</li>
+<li>Auto discovery
+<ul>
+<li>Client only needs to connect to the configuration endpoint (a single URL). The Auto Discovery library handles connecting to all of the other nodes</li>
+<li>Cache node failures are automatically detected; failed nodes are automatically replaced.</li>
+</ul></li>
+</ol></li>
+</ul>
+<h3 id="redis-remote-dictionary-server">Redis (REmote DIctionary Server)</h3>
+<ul>
+<li>Features
+<ol type="1">
+<li>dictionary data model</li>
+<li>supports strings, list of strings, set of strings</li>
+<li>non-blocking I/O</li>
+<li>100,000+ reads/writes per sec</li>
+</ol></li>
+<li>General use cases
+<ol type="1">
+<li>Data that don’t mind losing</li>
+<li>Key-value pairs</li>
+</ol></li>
+<li>Use cases
+<ol type="1">
+<li>Session store</li>
+<li>Logging</li>
+</ol></li>
+<li>ElastiCache for Redis
+<ul>
+<li>Replication Group
+<ul>
+<li>Each replication group has 1 or more node groups</li>
+<li>Each node group can have 1 master shard and up to 5 other read replicas</li>
+</ul></li>
+</ul></li>
+<li>Redis vs Memcached
+<ul>
+<li>Memcached is generally used to store small and static data, such as HTML code pieces
+<ul>
+<li>Memory management is efficient and simple</li>
+<li>Data models are simple</li>
+</ul></li>
+<li>Redis supports more complex data structures
+<ul>
+<li>Fast performance, Persistent storage, Read replicas, Encryption</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="scalable-data-storage">Scalable Data Storage</h2>
+<h3 id="hbase">HBase</h3>
+<ul>
+<li>Distributed column-oriented data store built on top of HDFS
+<ul>
+<li>also a column database</li>
+</ul></li>
+<li>Why bother?
+<ul>
+<li>provide storage for Hadoop Distributed Computing</li>
+</ul></li>
+<li>HDFS is good for batch processing (scans over big files)</li>
+<li>Limitations of HDFS
+<ol type="1">
+<li>slow record lookup</li>
+<li>incremental addition of small batches</li>
+<li>does not support in-place update</li>
+</ol></li>
+<li>HBase addresses the above limitations</li>
+<li>BigTable is the data model in HBase
+<ul>
+<li>a sparse (not all data entries need to be filled), distributed, persistent multi-dimensional (multiple versions) sorted map
+<ul>
+<li>Map indexed by a row key, column key, and a timestamp (timestamp is required)</li>
+</ul></li>
+</ul></li>
+<li>Components
+<ol type="1">
+<li>Tables</li>
+<li>Column families
+<ul>
+<li>Dynamic columns</li>
+</ul></li>
+</ol></li>
+<li>Building blocks
+<ol type="1">
+<li>HDFS</li>
+<li>ApacheZooKeeper</li>
+<li>HFile
+<ul>
+<li>Stored in HDFS</li>
+<li>Sequence of blocks on disk plus an index for block lookup
+<ul>
+<li>on disk file format representing a map from a string to a string</li>
+</ul></li>
+<li>Persistent, ordered immutable map from keys to values</li>
+</ul></li>
+<li>HRegion
+<ul>
+<li>Dynamically partitioned range of rows</li>
+<li>Built from multiple HFiles</li>
+</ul></li>
+</ol></li>
+<li>HRegion Assignment
+<ul>
+<li>HBase Master keeps track of
+<ol type="1">
+<li>Set of live HRegion servers</li>
+<li>Assignment of HRegions to HRegion servers</li>
+<li>Unassigned HRegions</li>
+</ol></li>
+<li>Each HRegion is assigned to one HRegion server at a time</li>
+</ul></li>
+</ul>
+<h3 id="sparksql">SparkSQL</h3>
+<ul>
+<li>Structured Data Processing in Apache Spark</li>
+<li>Built on top of RDD data abstraction</li>
+<li>DataSet
+<ul>
+<li>A distributed collection of data</li>
+<li>provides the benefits of RDDs</li>
+</ul></li>
+<li>DataFrame
+<ul>
+<li>A DataFrame is a Dataset organized into named columns</li>
+<li>Analogy to a table in a relational DB</li>
+</ul></li>
+</ul>
+<h3 id="hive">HIVE</h3>
+<ul>
+<li>Similar to an SQL database</li>
+<li>HQL, a variant of SQL
+<ul>
+<li>supports complicated queries on structured data</li>
+<li>No UPDATE or DELETE support</li>
+</ul></li>
+<li>Components
+<ol type="1">
+<li>Shell</li>
+<li>Driver</li>
+<li>Compiler</li>
+<li>Execution engine</li>
+<li>Metastore
+<ul>
+<li>uses a traditional database to store its metadata including schema, location in HDFS, etc.</li>
+<li>also has partitioning information</li>
+</ul></li>
+</ol></li>
+</ul>
+<h2 id="message-queues">Message Queues</h2>
+<ul>
+<li>SQS
+<ul>
+<li>put-get-delete paradigm
+<ul>
+<li>requires a consumer to state that it has finished processing the message pulled from the queue</li>
+<li>the message data is kept with the queue and gets deleted from the queue only after confirmation that it has been processed</li>
+</ul></li>
+<li>message delivery
+<ul>
+<li>At least once
+<ul>
+<li>If the client does not respond back to the queue in a specific amount of time, SQS makes it visible again</li>
+<li>Standard queue</li>
+</ul></li>
+<li>Exactly once
+<ul>
+<li>FIFO queue</li>
+</ul></li>
+</ul></li>
+<li>Short pull vs long pull</li>
+</ul></li>
+<li>SNS
+<ul>
+<li>Topics</li>
+<li>Content
+<ol type="1">
+<li>Subject</li>
+<li>TTL</li>
+<li>Payload</li>
+</ol></li>
+</ul></li>
+<li>Kafka
+<ul>
+<li>A distributed, partitioned, replicated publish subscribe system providing commit log service</li>
+<li>broker
+<ul>
+<li>A cluster comprised of one or more servers where Kafka is run</li>
+</ul></li>
+<li>Features
+<ol type="1">
+<li>Communication uses TCP</li>
+<li>messages strictly ordered (within partitions)</li>
+</ol></li>
+<li>Use cases
+<ol type="1">
+<li>PubSub</li>
+<li>Streaming data</li>
+</ol></li>
+<li>Kafka Server Cluster Implementation
+<ul>
+<li>Each topic has partitions</li>
+<li>partition is replicated across a configurable number of servers
+<ul>
+<li>Each partition is an ordered, immutable append-only structure</li>
+</ul></li>
+<li>Zookeeper is used to keep the servers consistent</li>
+</ul></li>
+<li>Offset
+<ul>
+<li>The position from where the consumer should start consuming</li>
+<li>Consumer Offsets are per Topic/Partition/ConsumerGroup</li>
+</ul></li>
+<li>Consumer Rebalance
+<ul>
+<li>Each partition will be consumed by exactly one consumer in the entire group</li>
+</ul></li>
+</ul></li>
+</ul>
+<h1 id="week-10-cloud-analytics">Week 10: Cloud Analytics</h1>
+<h2 id="terms">Terms</h2>
+<ol type="1">
+<li>Analytics
+<ul>
+<li>the discovery, interpretation, and communication of meaningful patterns in data</li>
+</ul></li>
+<li>Business Intelligence (BI)
+<ul>
+<li>Set of technologies and processes that use data to understand and analyze business performance</li>
+<li>Typically refer to the necessary but relatively simple questions that will need to be answered frequently</li>
+</ul></li>
+<li>Data Analytics
+<ul>
+<li>the science of examining data to draw conclusions</li>
+<li>A subset of BI</li>
+</ul></li>
+<li>Advanced Analytics
+<ul>
+<li>More complex statistical techniques and machine learning generate predictions and identify key performance indicators</li>
+<li>e.g. Fraud detection and recommender systems</li>
+</ul></li>
+<li>OLTP
+<ul>
+<li>typically involve most or all of the columns in a row for a small number of records</li>
+<li>Each query returns a small number of records</li>
+<li>RDBMS is suitable</li>
+</ul></li>
+<li>OLAP
+<ul>
+<li>typically read only a few columns for a very large number of rows</li>
+<li>Data warehouse is suitable</li>
+</ul></li>
+</ol>
+<h2 id="data-cubes">Data Cubes</h2>
+<ul>
+<li>A Datacube is a data structure (a sophisticated nested array)</li>
+<li>Idea
+<ul>
+<li>transform multi-dimensional data into a 2-D array</li>
+</ul></li>
+<li>Features
+<ol type="1">
+<li>compression schemes
+<ul>
+<li>SQL databases and data warehouses had to be organized in a way that made for easier cube creation</li>
+</ul></li>
+<li>dimensional modelling
+<ul>
+<li>common access patterns for OLAP have been identified
+<ul>
+<li>e.g. Kimball dimensional modeling, Inmon-style entity-relationship modeling</li>
+</ul></li>
+</ul></li>
+</ol></li>
+<li>Operations
+<ol type="1">
+<li>Slicing
+<ul>
+<li>picking a rectangular subset of a cube by choosing a single value for one of its dimensions, creating a new cube with one fewer dimension</li>
+</ul></li>
+<li>Dicing
+<ul>
+<li>produces a subcube by picking specific values of multiple dimensions</li>
+</ul></li>
+<li>Drill up / down
+<ul>
+<li>allows the user to navigate among levels of data ranging from the most summarized (up) to the most detailed (down)</li>
+</ul></li>
+<li>Roll up
+<ul>
+<li>summarizing the data along a dimension</li>
+</ul></li>
+<li>Pivot
+<ul>
+<li>allows an analyst to rotate the cube in space to see its various faces</li>
+</ul></li>
+</ol></li>
+<li>Benefits
+<ol type="1">
+<li>Helps OLAP</li>
+<li>extreme performance advantage over row-oriented RDBMS</li>
+<li>offer richer analysis capabilities than RDBMSs</li>
+</ol></li>
+<li>Limitations
+<ol type="1">
+<li>OLAP cubes require that data teams manage complicated pipelines to transform data from a SQL database into OLAP cubes</li>
+<li>Columnar DBs allow performing similar OLAP workloads at equally good performance levels without the requirement to extract and build new cubes</li>
+</ol></li>
+<li>As of today, OLAP cubes refer specifically to contexts in which these data structures far outstrip the size of the hosting computer’s main memory</li>
+</ul>
+<h2 id="columnar-storage">Columnar Storage</h2>
+<ul>
+<li>aka column-oriented systems, column-stores</li>
+<li>each data element of a record is stored in a column</li>
+<li>Benefits
+<ol type="1">
+<li>Less I/O operations if only reading a few columns</li>
+<li>a good fit for analytical workloads that compute aggregates
+<ul>
+<li>Read optimized</li>
+</ul></li>
+<li>Hardware Optimization
+<ol type="1">
+<li>Improves cache utilization and utilizes SIMD (vectorized instructions)</li>
+<li>Compression
+<ul>
+<li>Storing values that have the same data type together offers a better compression ratio</li>
+</ul></li>
+</ol></li>
+</ol></li>
+<li>Features
+<ol type="1">
+<li>Metadata
+<ul>
+<li>identify which data points from other columns it is associated with (to help reconstruct data tuples)</li>
+</ul></li>
+</ol></li>
+<li>Column Store File Format
+<ol type="1">
+<li>Apache Parquet
+<ul>
+<li>an open source file format for Hadoop</li>
+</ul></li>
+<li>Apache ORC (Optimized Row Columnar format)</li>
+<li>RCFile</li>
+</ol></li>
+<li>Examples
+<ol type="1">
+<li>MonetDB</li>
+<li>C-Store</li>
+<li>SybaseIQ</li>
+</ol></li>
+<li>Column-oriented databases should not be mixed up with wide column stores (e.g. BigTable)
+<ul>
+<li>Data represented as a multi-dimensional map</li>
+<li>Columns are grouped into column families; inside each column family, data is stored row-wise</li>
+<li>best for storing data retrieved by a key or a sequence of keys</li>
+</ul></li>
+<li>Limitations
+<ol type="1">
+<li>Update performance is poor
+<ul>
+<li>Need to every column in order to update one row</li>
+</ul></li>
+</ol></li>
+</ul>
+<h2 id="modern-data-warehouses">Modern Data Warehouses</h2>
+<ul>
+<li>Data Warehouses Architecture motivation
+<ol type="1">
+<li>Cloud</li>
+<li>MPP (Massively parallel processing)</li>
+<li>Columnar storage</li>
+<li>Vectorized processing</li>
+</ol></li>
+<li>Columnar-based Data Warehouses
+<ol type="1">
+<li>MariaDB</li>
+<li>PostgreSQL</li>
+<li>Google BigQuery</li>
+<li>AWS Redshift
+<ul>
+<li>Based on PostgreSQL</li>
+<li>Blocks are immutable</li>
+</ul></li>
+<li>Microsoft Azure Synapse
+<ul>
+<li>T-SQL based analytics</li>
+<li>Deep integration with Apache Spark &amp; Power BI</li>
+</ul></li>
+</ol></li>
+</ul>
+<h2 id="data-lake">Data Lake</h2>
+<ul>
+<li>a new type of data repository for storing massive amounts of raw data in its native form, in a single location
+<ul>
+<li>addresses the limitation of data warehouse - cannot store unstructured big data projects (Petabytes)</li>
+</ul></li>
+<li>Use case
+<ul>
+<li>store all data types and analyze that data to make evidence-based business decisions</li>
+</ul></li>
+<li>Benefits
+<ol type="1">
+<li>combine the power of analytics with the flexibility of big data models and the agility and limitless resources of the cloud</li>
+</ol></li>
+<li>Components
+<ol type="1">
+<li>Object Storage
+<ul>
+<li>e.g. S3</li>
+</ul></li>
+<li>Data Pipeline
+<ul>
+<li>e.g. AWS Data Pipeline</li>
+</ul></li>
+<li>Data Lake Schema Discovery
+<ul>
+<li>e.g. Glue</li>
+</ul></li>
+<li>SQL Exploration and Query
+<ul>
+<li>e.g. Athena</li>
+</ul></li>
+<li>Lake Formation
+<ul>
+<li>Automated tools to orchestrate the data transfer, discovery, ETL and analytics steps</li>
+<li>e.g. AWS Lake Formation</li>
+</ul></li>
+</ol></li>
+</ul>
+<h2 id="other-analytics-services">Other Analytics Services</h2>
+<ul>
+<li>Serverless Analytics
+<ul>
+<li>e.g. Azure Analysis services, Redshift Spectrum, Athena</li>
+</ul></li>
+<li>Search-based Analytics
+<ul>
+<li>ELK Stack
+<ol type="1">
+<li>ElasticSearch</li>
+<li>Logstash</li>
+<li>Kibana</li>
+</ol></li>
+</ul></li>
+<li>Big Data Analytics
+<ul>
+<li>e.g. Managed Hadoop, Spark, Hive</li>
+</ul></li>
+<li>Graphical BI
+<ul>
+<li>e.g. Tableau, QuickSight, PowerBI</li>
+</ul></li>
+</ul>
+<h3 id="aws-glue">AWS Glue</h3>
+<ul>
+<li>AWS Glue is a serverless data integration service that allows analytics users to discover, prepare, move, and integrate data from multiple sources.</li>
+<li>Data sources: Amazon Redshift, Amazon S3, Amazon RDS, and Amazon DynamoDB</li>
+<li>Terminologies
+<ol type="1">
+<li>Data catalog
+<ul>
+<li>The persistent metadata store</li>
+<li>Contains table definitions, job definitions, and other control information</li>
+<li>Each AWS account has one AWS Glue Data Catalog per region</li>
+</ul></li>
+<li>Classifier
+<ul>
+<li>Determines the schema of your data</li>
+<li>Glue provides classifiers for common file types, such as CSV, JSON, AVRO, XML</li>
+</ul></li>
+<li>Crawler
+<ul>
+<li>A program that
+<ol type="1">
+<li>connects to a data store (source or target)</li>
+<li>progresses through a prioritized list of classifiers to determine the schema for the data</li>
+<li>then creates metadata tables in the AWS Glue Data Catalog.</li>
+</ol></li>
+</ul></li>
+<li>Glue studio
+<ul>
+<li>A graphical interface for users to create and edit your AWS Glue jobs visually</li>
+</ul></li>
+</ol></li>
+<li>Documentation
+<ul>
+<li>https://docs.aws.amazon.com/glue/latest/dg/components-key-concepts.html</li>
+</ul></li>
+<li>SQL (via Athena)</li>
+</ul>
+<pre><code>SELECT f1.airline as Airline, f1.origin_airport as Origin_Airport, f1.destination_airport as Stopover_Airport, f2.destination_airport as Destination_Airport, f1.departure_delay as Origin_Departure_Delay, f1.arrival_delay as Stopover_Arrival_Delay, f2.departure_delay as Stopover_Departure_Delay, f2.arrival_delay as Destination_Arrival_Delay
+FROM &quot;AwsDataCatalog&quot;.&quot;mp9-db&quot;.&quot;flights&quot; f1
+JOIN &quot;AwsDataCatalog&quot;.&quot;mp9-db&quot;.&quot;flights&quot; f2
+ON f1.airline = f2.airline
+AND f1.destination_airport = f2.origin_airport
+WHERE f1.origin_airport = &#39;SFO&#39;
+AND f2.destination_airport = &#39;JFK&#39;
+AND f2.day*24*60 + (f2.scheduled_departure / 100)*60 + (f2.scheduled_departure % 100) + f2.departure_delay - (f1.day*24*60 + (f1.scheduled_departure / 100)*60 + (f1.scheduled_departure % 100) + f1.departure_delay + f1.elapsed_time + ((f1.scheduled_arrival / 100)*60 + (f1.scheduled_arrival % 100) - ((f1.scheduled_departure / 100)*60 + (f1.scheduled_departure % 100) + f1.scheduled_time)%(24*60))) BETWEEN 60 and 180
+AND f1.cancelled = 0
+AND f2.cancelled = 0</code></pre>
+<h1 id="week-11-graph-processing-and-machine-learning">Week 11: Graph Processing and Machine Learning</h1>
+<ul>
+<li>Graph Basics
+<ul>
+<li>Node</li>
+<li>Edges</li>
+<li>Local traversal
+<ul>
+<li>one that starts at a particular vertex (or small set of vertices) and touches a small set of connected vertices.</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="graph-db">Graph DB</h2>
+<ul>
+<li>A graph database is any storage system that provides index-free adjacency
+<ul>
+<li>with an explicit graph structure</li>
+<li>Index-free adjacency: each node directly stores references to its adjacent nodes rather than relying on indexes or pointers</li>
+</ul></li>
+<li>Features
+<ol type="1">
+<li>Associative data sets</li>
+<li>Structure of object-oriented applications</li>
+<li>Do not require join operators</li>
+<li>Scales well</li>
+<li>Can be faster than relational, particularly for graph-type queries</li>
+</ol></li>
+<li>Addresses the following RMDBS limitation
+<ul>
+<li>hard to identify related data among different tables e.g. 1-to-many, many-to-many</li>
+<li>need to use join operations</li>
+</ul></li>
+<li>Categories
+<ol type="1">
+<li>OLTP-based graph systems
+<ul>
+<li>allow the user to query the graph in real-time</li>
+<li>Examples
+<ol type="1">
+<li>Neo4j
+<ul>
+<li>An open-source, NoSQL, native graph database that provides an ACID-compliant transactional backend</li>
+<li>Cypher,a declarative query language similar to SQL, but optimized for graphs</li>
+</ul></li>
+<li>TinkerPop &amp; Gremlin
+<ul>
+<li>Supports both OLTP queries and OLAP algorithms</li>
+<li>A traversal in Gremlin is a series of chained steps like BFS</li>
+</ul></li>
+<li>Amazon Neptune</li>
+<li>Azure CosmosDB</li>
+</ol></li>
+</ul></li>
+<li>OLAP-based graph systems
+<ul>
+<li>the entire graph is processed</li>
+<li>Bulk Synchronous Parallel (BSP) programming model
+<ul>
+<li>Pregel -&gt; Giraph -&gt; Spark GraphX -&gt; GraphFrames</li>
+</ul></li>
+</ul></li>
+</ol></li>
+</ul>
+<h2 id="graph-processing">Graph Processing</h2>
+<ul>
+<li>Limitation of MapReduce on graph processing
+<ol type="1">
+<li>Graph computations involve local data (small part of graph surrounding a vertex)</li>
+<li>The connectivity between vertices is sparse
+<ul>
+<li>The data may not all fit into one node</li>
+</ul></li>
+<li>each computational stage will produce much communication between stages</li>
+</ol></li>
+<li>Limitation of existing shared memory parallel graph algorithms
+<ol type="1">
+<li>No fault-tolerance</li>
+</ol></li>
+</ul>
+<h3 id="pregel">Pregel</h3>
+<ul>
+<li>One of the first systems to do graph processing on a distributed system</li>
+<li>Input &amp; output: directed graphs</li>
+<li>Idea: Repeats until every computation at each vertex votes to halt</li>
+<li>features
+<ol type="1">
+<li>vertex based</li>
+<li>implemented using C++</li>
+<li>No guarantees on message delivery order</li>
+<li>Messages in Pregel are delivered exactly once.</li>
+</ol></li>
+<li>Superstep
+<ul>
+<li>Each iteration of computation</li>
+<li>Within each superstep, the following operations can be applied on a vertex
+<ol type="1">
+<li>Can get/set Vertex value</li>
+<li>Can get/set outgoing edges values</li>
+<li>Can send/receive messages</li>
+</ol></li>
+</ul></li>
+<li>Architecture
+<ul>
+<li>Master
+<ul>
+<li>maintains workers</li>
+<li>recovers faults of workers</li>
+<li>provides web UI monitoring</li>
+</ul></li>
+<li>Worker</li>
+<li>Execution
+<ol type="1">
+<li>master assigns a partition of the input to each worker</li>
+<li>master instructs each worker to perform a superstep
+<ul>
+<li>Each worker loops through vertices</li>
+<li>Messages are delivered before the end of the superstep</li>
+</ul></li>
+</ol></li>
+<li>Storage
+<ul>
+<li>Persistent data - Distributed storage</li>
+<li>Temporary data - Local disk</li>
+</ul></li>
+</ul></li>
+<li>Fault Tolerance
+<ul>
+<li>Checkpointing
+<ul>
+<li>The master periodically instructs the workers to save the state of their partitions to persistent storage</li>
+</ul></li>
+<li>Failure detection
+<ul>
+<li>Using regular “ping” messages</li>
+</ul></li>
+<li>Recovery
+<ul>
+<li>Master reassigns graph partitions to the currently available workers</li>
+<li>Workers all reload their partition state from most recent available checkpoint</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="apache-giraph">Apache Giraph</h3>
+<ul>
+<li>Open source based on pregel</li>
+<li>Giraph Framework
+<ol type="1">
+<li>ZooKeeper
+<ul>
+<li>responsible for computation state</li>
+<li>ensures eventual consistency</li>
+<li>scaling</li>
+</ul></li>
+<li>JobTracker (Master)
+<ul>
+<li>responsible for coordination</li>
+<li>organizes tracker</li>
+</ul></li>
+<li>TaskTracker
+<ul>
+<li>contains workers</li>
+<li>worker responsible for vertices</li>
+</ul></li>
+<li>Worker</li>
+</ol></li>
+</ul>
+<h3 id="spark-graphx">Spark GraphX</h3>
+<ul>
+<li>an Apache Spark’s graph processing module</li>
+<li>Idea: parallel computation on all of the vertices of a graph, or all of the edges of a graph</li>
+<li>Operators
+<ol type="1">
+<li>Create a graph
+<ul>
+<li>Input: RDD of vertices and RDD of edges</li>
+</ul></li>
+<li>Query the vertices and edges of a graph</li>
+<li>Transformations
+<ol type="1">
+<li>Reverse</li>
+<li>Subgraph</li>
+<li>mapVertices</li>
+<li>mapEdges</li>
+</ol></li>
+<li>Join</li>
+<li>Computation</li>
+</ol></li>
+</ul>
+<h2 id="ml-in-clouds">ML in clouds</h2>
+<ul>
+<li>Data Mining &amp; Machine Learning are subsets of AI</li>
+<li>AI applications: info retrieval, stats, biology, linear algebra, marketing</li>
+</ul>
+<h3 id="ml-workflows">ML Workflows</h3>
+<ul>
+<li>OSEMN Data Science Model
+<ol type="1">
+<li>Obtain</li>
+<li>Scrub
+<ul>
+<li>Data Preparation and Data Wrangling</li>
+</ul></li>
+<li>Explore
+<ul>
+<li>Inspect data, data wrangling, analyze data</li>
+</ul></li>
+<li>Model
+<ul>
+<li>Feature engineering</li>
+<li>Model training</li>
+<li>Evaluation</li>
+</ul></li>
+<li>Interpret</li>
+</ol></li>
+<li>Hyper Parameters
+<ul>
+<li>Parameters about the training of the model
+<ul>
+<li>e.g. number of iterations</li>
+</ul></li>
+<li>AutoML strategies (for tuning hyper parameters)
+<ol type="1">
+<li>Grid search</li>
+<li>Random search</li>
+<li>Gradient descent</li>
+</ol></li>
+</ul></li>
+<li>AutoML
+<ul>
+<li>AutoML strategies + Auto select algorithms</li>
+<li>Examples
+<ol type="1">
+<li>Azure ML</li>
+<li>Google AutoML</li>
+<li>AWS Sagemaker autopilot</li>
+</ol></li>
+</ul></li>
+</ul>
+<h2 id="cloud-ml-offerings">Cloud ML Offerings</h2>
+<ul>
+<li>ML frameworks
+<ul>
+<li>Mahout (big data)</li>
+</ul></li>
+<li>Managed Platforms
+<ol type="1">
+<li>Google Cloud AI platform
+<ul>
+<li>Managed notebooks</li>
+<li>AI Platform Training</li>
+<li>Kubeflows</li>
+</ul></li>
+<li>Azure ML
+<ul>
+<li>Managed platform</li>
+<li>Managed Jupyter notebooks</li>
+</ul></li>
+<li>AWS SageMaker
+<ul>
+<li>Process
+<ol type="1">
+<li>Label</li>
+<li>Build</li>
+<li>Train &amp; Tune</li>
+<li>Deploy &amp; manage</li>
+</ol></li>
+<li>Training alg.s are packaged as Docker images</li>
+</ul></li>
+</ol></li>
+</ul>
+<h2 id="human-in-the-loop-ai">Human-in-the-loop AI</h2>
+<ul>
+<li>use selective inclusion of human participation</li>
+<li>Benefits
+<ol type="1">
+<li>Gain in transparency</li>
+<li>Human judgment</li>
+<li>No need to build the perfect AI system</li>
+</ol></li>
+<li>Offerings
+<ol type="1">
+<li>SageMaker Ground Truth</li>
+</ol></li>
+</ul>
+<h2 id="unstructured-data-ml">Unstructured data ML</h2>
+<ul>
+<li>Vision
+<ul>
+<li>AWS Rekognition</li>
+</ul></li>
+<li>Voice
+<ul>
+<li>Polly, Lex</li>
+</ul></li>
+<li>Language
+<ul>
+<li>Polly, Lex</li>
+</ul></li>
+</ul>
+<h2 id="apache-spark-1">Apache Spark</h2>
+<ul>
+<li>Collection of ML libraries</li>
+<li>Algorithms
+<ul>
+<li>Collaborative filtering
+<ul>
+<li>Have multiple filters working together to extract just the information you want.</li>
+<li>Algs
+<ul>
+<li>Alternating Least Squares</li>
+<li>Stochastic Gradient Descent</li>
+</ul></li>
+<li>Example: recommendation engine working based on the user preferences and others with similar preferences</li>
+</ul></li>
+<li>Clustering
+<ul>
+<li>K-means
+<ul>
+<li>Can use MapReduce to iterate centroid computation</li>
+<li>Optimizations</li>
+</ul></li>
+</ul></li>
+<li>Classification
+<ul>
+<li>Naive Bayes
+<ul>
+<li>a simple multiclass classification algorithm with the assumption of independence between every pair of features.</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>FPM (Frequent Pattern Mining)
+<ul>
+<li>use case: Finding the frequent item sets frequently bought together</li>
+<li>FP-growth algorithm</li>
+</ul></li>
+</ul>
+<h1 id="week-12-streaming">Week 12: Streaming</h1>
+<ul>
+<li>Prior data processing mechanisms cannot deal with data in real-time
+<ul>
+<li>e.g. MapReduce, Hadoop</li>
+</ul></li>
+<li>Cloud stream engines
+<ol type="1">
+<li>Apache Storm</li>
+<li>Twitter Heron</li>
+<li>Apache Flink</li>
+</ol></li>
+</ul>
+<h2 id="apache-storm">Apache Storm</h2>
+<ul>
+<li>Features
+<ol type="1">
+<li>Guaranteed data processing</li>
+<li>Horizontal scalability</li>
+<li>Fault tolerance</li>
+<li>lambda architecture</li>
+</ol></li>
+<li>Concepts
+<ol type="1">
+<li>Streams
+<ul>
+<li>Unbounded sequences of tuples</li>
+</ul></li>
+<li>Spout
+<ul>
+<li>Source of Streams</li>
+</ul></li>
+<li>Bolts
+<ul>
+<li>Containers that processes input streams and produces new streams</li>
+<li>can perform transformation, filter, aggregation, join, etc.</li>
+</ul></li>
+<li>Topologies
+<ul>
+<li>Network of spouts and bolts</li>
+</ul></li>
+</ol></li>
+<li>Grouping ways (when a tuple is emitted, which task does it go to?)
+<ol type="1">
+<li>Shuffle grouping
+<ul>
+<li>pick a random task</li>
+</ul></li>
+<li>Fields grouping
+<ul>
+<li>consistent hashing on a subset of tuple fields</li>
+</ul></li>
+<li>All grouping
+<ul>
+<li>send to all tasks</li>
+</ul></li>
+<li>Global grouping
+<ul>
+<li>pick task with lowest id</li>
+</ul></li>
+</ol></li>
+<li>Components
+<ol type="1">
+<li>Nimbus (master node)</li>
+<li>Zookeeper
+<ul>
+<li>Cluster coordination</li>
+</ul></li>
+<li>Supervisor
+<ul>
+<li>Worker processes</li>
+</ul></li>
+<li>Cluster
+<ul>
+<li>Structure
+<ul>
+<li>Clojure (functional programming language) and Java</li>
+</ul></li>
+</ul></li>
+<li>Scheduler
+<ul>
+<li>IScheduler
+<ul>
+<li>interface; has schedule method to be implemented</li>
+</ul></li>
+<li>Multitenant scheduler
+<ul>
+<li>A specific implementation of the IScheduler interface that is designed to support multi-tenancy in a Storm cluster</li>
+<li>Multi-tenancy refers to the ability to run multiple topologies from multiple users on a single Storm cluster</li>
+</ul></li>
+</ul></li>
+</ol></li>
+<li>Thrift
+<ul>
+<li>framework for scalable cross-language services development</li>
+<li>can also use thrift compiler for storm</li>
+</ul></li>
+</ul>
+<h2 id="approaching-guarantee-message-processing">Approaching guarantee message processing</h2>
+<ol type="1">
+<li>None</li>
+<li>At Least Once
+<ul>
+<li>Methods
+<ol type="1">
+<li>tuple trees
+<ul>
+<li>A spout tuple is not fully processed until all tuples in the tree have been completed</li>
+<li>Acker tasks keep track of the tree, and the tree will be replayed if not completed within a timeout</li>
+<li>Anchoring
+<ul>
+<li>when emit occurs (i.e. an output is emitted), anchoring creates a new edge in the tuple tree</li>
+<li>An ack call marks a single node in the tree as complete</li>
+</ul></li>
+</ul></li>
+</ol></li>
+<li>Upon failure
+<ul>
+<li>can double process events</li>
+<li>requires having a spout that supports replay.</li>
+</ul></li>
+</ul></li>
+<li>Exactly Once
+<ul>
+<li>needs to store the state of storm tasks</li>
+<li>Trident
+<ul>
+<li>state is a first-class citizen</li>
+<li>provides a high level API</li>
+<li>no acking required</li>
+</ul></li>
+</ul></li>
+</ol>
+<h2 id="spark-streaming">Spark Streaming</h2>
+<ul>
+<li>Stateful Stream processing</li>
+<li>Process
+<ol type="1">
+<li>Window a bit of data (Chop up the live stream into batches of X seconds; X &gt;= 0.5)</li>
+<li>Run a batch</li>
+<li>Repeat</li>
+</ol></li>
+<li>Advantages
+<ol type="1">
+<li>Rich ecosystem of big data tools</li>
+</ol></li>
+<li>Disadvantages
+<ol type="1">
+<li>Not really streaming (latency 1s)</li>
+</ol></li>
+<li>Use case
+<ul>
+<li>Potential for combining batch processing and streaming processing in the same system</li>
+</ul></li>
+</ul>
+<h2 id="lambda-and-kappa-architecture">Lambda and Kappa architecture</h2>
+<ul>
+<li>Lambda
+<ul>
+<li>A parallel processing pipeline of two branches: a stream processing pipeline and a batch processing pipeline</li>
+<li>Has real time processing of events that come into the data pipeline</li>
+<li>e.g. storm</li>
+</ul></li>
+<li>Kappa
+<ul>
+<li>idea: fix the streaming pipeline to a point that it can handle failures
+<ul>
+<li>Only one stream processing (+ batch processing) pipeline but with the ability to handle failures</li>
+</ul></li>
+<li>Can use Microbatch for state</li>
+<li>e.g. spark</li>
+</ul></li>
+</ul>
+<h2 id="streaming-ecosystem">Streaming ecosystem</h2>
+<ul>
+<li>General steps
+<ol type="1">
+<li>Gather the Data
+<ul>
+<li>NiFi
+<ul>
+<li>Great visual UI to design a data flow</li>
+</ul></li>
+</ul></li>
+<li>Distributed Queue
+<ul>
+<li>pub-sub model</li>
+</ul></li>
+<li>Distributed Processing</li>
+<li>Micro batch processing / SQL / ML</li>
+<li>OLAP
+<ul>
+<li>e.g. Druid</li>
+</ul></li>
+</ol></li>
+</ul>
+<h1 id="week-13-virtualization">Week 13: Virtualization</h1>
+<ul>
+<li>Virtualization: allows distributed computing models without creating dependencies on physical resources
+<ul>
+<li>creates a layer of abstraction between the physical resource and the software that runs on it</li>
+</ul></li>
+<li>Process Isolation
+<ul>
+<li>a virtualized idealized machine should allow each process to think that they basically own that idealized machine.</li>
+</ul></li>
+<li>To isolate processes from each other, the OS has two modes
+<ol type="1">
+<li>Kernel Mode
+<ul>
+<li>Privileged instructions execute only in kernel mode</li>
+<li>Run in CPU ring 0</li>
+</ul></li>
+<li>User Mode
+<ul>
+<li>User process operate in user mode</li>
+<li>When the user application requests a service from the OS, or an interrupt occurs, or a system call is made, there will be a transition from user to kernel mode to fulfill the requests</li>
+<li>Run in CPU ring 3</li>
+</ul></li>
+</ol></li>
+</ul>
+<h2 id="terms-1">Terms</h2>
+<ol type="1">
+<li>Privileged Instruction
+<ul>
+<li>an instruction that requires a higher level of privilege or access than a typical user or application would have
+<ul>
+<li>When a privileged instruction is executed, the CPU checks whether the process is allowed or not. If not allowed, CPU would issue General Protection Fault (GPF)</li>
+</ul></li>
+<li>often used to manage system resources or perform low-level operations that are critical to the functioning of the system</li>
+</ul></li>
+<li>Privileged Operations
+<ul>
+<li>Certain operations are not allowed in user mode code</li>
+<li>Examples: HLT, INVLPG, LIDT, MOV CR registers</li>
+</ul></li>
+<li>Process
+<ul>
+<li>An image of the program’s executable machine code</li>
+</ul></li>
+<li>Sensitive instruction
+<ul>
+<li>instructions or operations that have the potential to cause harm or unintended consequences if they are not executed properly.</li>
+<li>e.g. loading memory mapping tables, accessing I/O devices, interrupts</li>
+</ul></li>
+</ol>
+<h2 id="types-of-virtualizations">Types of virtualizations</h2>
+<ul>
+<li>Emulation
+<ul>
+<li>write a software program that would basically emulate that CPU and emulate everything else</li>
+<li>e.g. GBA emulator, Android emulator, Xcode iPhone emulator</li>
+</ul></li>
+<li>Full
+<ul>
+<li>The VM simulates enough hardware to allow an unmodified “guest” OS to be run in isolation
+<ul>
+<li>e.g. set up VM by running a guest OS in an X86 host platform</li>
+</ul></li>
+<li>The VM looks and feels exactly like a real computer</li>
+<li>Creates virtual barriers between multiple virtual environments running in the same physical environment</li>
+<li>e.g. VirtualBox, Virtual PC, VMWare, QEMU</li>
+<li>Types
+<ol type="1">
+<li>Software</li>
+<li>Hardware</li>
+</ol></li>
+</ul></li>
+<li>MicroVMs
+<ul>
+<li>Virtualize the absolute minimum kernel of computing</li>
+<li>Used by AWS Lambda and Fargate</li>
+</ul></li>
+<li>OS level
+<ul>
+<li>e.g. Containers</li>
+</ul></li>
+</ul>
+<h2 id="full-virtualization">Full Virtualization</h2>
+<h3 id="software-based-virtualizations">Software-based virtualizations</h3>
+<h4 id="paravirtualization">Paravirtualization</h4>
+<ul>
+<li>A technique in which a modified guest OS kernel communicates to the hypervisor its intent to perform privileged CPU and memory operations</li>
+<li>First approach to oftware-only Virtualization</li>
+<li>The virtual machine does not necessarily simulate hardware, but instead offers a special API that can only be used by modifying the “guest” OS</li>
+<li>e.g. Xen
+<ul>
+<li>Invasive changes to the kernel to run Linux as a paravirtualized guest</li>
+<li>Concepts
+<ul>
+<li>Dom0 (Control Domain)
+<ul>
+<li>GuestOS basically asks the Xen hypervisor in the Dom0 to do priv. instructions on behalf of them so they don’t need to talk to hardware themselves.</li>
+</ul></li>
+<li>Guest Domain
+<ul>
+<li>User apps</li>
+</ul></li>
+<li>Driver / Stub / Service Domain
+<ul>
+<li>A “driver, device” model or “control service in a box”</li>
+<li>De-privileged and isolated</li>
+<li>Talk to Xen provided virtual mem / network</li>
+</ul></li>
+</ul></li>
+<li>EC2 was relying on Xen</li>
+</ul></li>
+</ul>
+<h4 id="binary-translation">Binary Translation</h4>
+<ul>
+<li>modifies sensitive instructions (ring 0) on the fly to virtualizable (“safe”) instructions</li>
+<li>performed on the binary code that gets executed on the processor</li>
+</ul>
+<h3 id="hardware-assisted">Hardware assisted</h3>
+<ul>
+<li>sometimes the hardware, the CPU, has hardware features that help full virtualization</li>
+<li>Terms
+<ol type="1">
+<li>VMM: virtual machine manager (hypervisor)</li>
+<li>MMU: memory management unit</li>
+</ol></li>
+<li>Generations
+<ol type="1">
+<li>Guest mode is introduced to support direct execution of guest code including privileged kernel code
+<ul>
+<li>A new instruction <strong>vmrun</strong> transfers from host to guest mode.</li>
+<li>Limitation
+<ul>
+<li>lacks explicit support for memory virtualization (i.e. does not virtualize MMU)</li>
+</ul></li>
+</ul></li>
+<li>Many issues of the first-gen are resolved</li>
+<li>accelerates nested virtualization of VMMs
+<ul>
+<li>introduces IOMMU virtualization</li>
+</ul></li>
+</ol></li>
+</ul>
+<h2 id="os-level-virtualization-containers">OS-Level Virtualization / Containers</h2>
+<ul>
+<li>Isolation problem of OS
+<ul>
+<li>OS apparently don’t do a good job of providing isolation</li>
+<li>Initially hypervisor was used to address this</li>
+<li>Now docker / containers are better solutions for some use cases</li>
+</ul></li>
+<li>Idea: “Virtualizing” a physical server at OS level, enabling multiple isolated and secure virtualized servers to run on a single physical server
+<ul>
+<li>No more hypervisors / guest OS</li>
+</ul></li>
+<li>Can be treated as OS level virtualization; however, it’s not virtualization as virtualization requires relies on hypervisors and all sorts of additional technology trap and emulate
+<ul>
+<li>Processes think they see a virtual kernel, but are all sharing the same real kernel under the hood</li>
+<li>Can refer to as ‘light-weight’ virtualization</li>
+</ul></li>
+<li>e.g. Solaris Containers, FreeBSD Jails, Linux Containers (Docker - 2013)</li>
+<li>VM vs Containers
+<ul>
+<li>VM
+<ul>
+<li>1 real HW, many virtual HW, many OS</li>
+</ul></li>
+<li>Containers
+<ul>
+<li>1 real HW, no virtual HW, one kernel</li>
+<li>higher density</li>
+<li>dynamic resource allocation</li>
+<li>native performance; almost no overhead</li>
+</ul></li>
+</ul></li>
+<li>The liunx features that enable connectors
+<ol type="1">
+<li>cgroups (control groups)
+<ul>
+<li>Linux kernel feature which limits, isolates and measures resource usage of a group of processes</li>
+<li>Cloud provider can use it to limit CPU, RAM on a container</li>
+<li>Process
+<ol type="1">
+<li>Create a control group and assign resource limits on it
+<ul>
+<li>Controllers mounted in the cgroups file system</li>
+</ul></li>
+<li>Add a process id to the group</li>
+</ol></li>
+</ul></li>
+<li>Namespaces
+<ul>
+<li>wraps a global system resource in an abstraction that makes it appear to the processes within the namespace that they have their own isolated instance of the global resource</li>
+</ul></li>
+<li>Unionfs (Union file system)
+<ul>
+<li>can appear to merge the contents of several directories (branches), while keeping the physical content separate</li>
+<li>Backbone of container images</li>
+<li>Provides layer capabilities</li>
+</ul></li>
+</ol></li>
+<li>chroot() does NOT provide secure isolation</li>
+</ul>
+<h3 id="docker-1">Docker</h3>
+<ul>
+<li>An engine that allows you to do containers</li>
+<li>Docker image
+<ul>
+<li>a stack of immutable or read-only layers</li>
+<li>In run-time, the docker engine adds a R/W layer on top of the stack of immutable layers</li>
+</ul></li>
+<li>Graph Driver
+<ul>
+<li>The driver to handle the cache of Docker image layer (cache stored by the local instance of Docker engine)</li>
+</ul></li>
+<li>Docker Architecture
+<ul>
+<li>Linux OS
+<ul>
+<li>Components: cgroups, namespaces, unionfs</li>
+</ul></li>
+<li>Runtime
+<ul>
+<li>Components
+<ol type="1">
+<li>containerd
+<ul>
+<li>based on runc</li>
+</ul></li>
+<li>runc
+<ul>
+<li>low-level functionality of the container runtime</li>
+<li>Spawns and runs containers according to the Open Container Initiative (OCI) specification</li>
+</ul></li>
+</ol></li>
+</ul></li>
+<li>Docker engine
+<ul>
+<li>Components
+<ol type="1">
+<li>Libcontainerd</li>
+<li>Libnetwork</li>
+<li>graph</li>
+<li>plugins</li>
+<li>A REST interface over which all container operations can be automated
+<ul>
+<li>Docker CLI uses the REST interface</li>
+</ul></li>
+</ol></li>
+</ul></li>
+</ul></li>
+<li>Container Network Model
+<ul>
+<li>Formalizes the steps required to provide networking for containers while providing an abstraction that can be used to support multiple network drivers</li>
+<li>Components
+<ol type="1">
+<li>Sandbox
+<ul>
+<li>contains the configuration of a container’s network stack.</li>
+</ul></li>
+<li>Endpoint
+<ul>
+<li>An Endpoint joins a Sandbox to a Network.
+<ul>
+<li>Can be thought as a virtual network adaptor</li>
+</ul></li>
+</ul></li>
+<li>Network
+<ul>
+<li>A group of Endpoints that are able to communicate with each-other directly</li>
+<li>Implementation: Linux bridge, VLAN</li>
+</ul></li>
+</ol></li>
+<li>Default drivers in Docker Libnetwork
+<ol type="1">
+<li>Bridge</li>
+<li>Host</li>
+<li>Overlay</li>
+<li>macvlan</li>
+</ol></li>
+</ul></li>
+</ul>
+<h1 id="week-14-container-orchestration-and-infrastructure-as-code">Week 14: Container Orchestration and Infrastructure as Code</h1>
+<h2 id="docker-foundations">Docker Foundations</h2>
+<ul>
+<li>Dockerfile
+<ul>
+<li>A mechanism that tells Docker Engine what layers you want to have in a particular image and how they are built one layer on top of another.</li>
+<li>Multi stage
+<ul>
+<li>allows us to not include unnecessary intermediate layers</li>
+</ul></li>
+</ul></li>
+<li>Besides using Dockerfile to create container image, one can also start a container using existing image and install necessary packages on top of it to create a new image.</li>
+</ul>
+<h2 id="docker-swarm-orchestration">Docker Swarm Orchestration</h2>
+<ul>
+<li>An application may have different components running on different containers
+<ul>
+<li>We need an orchestra conductor to guide various containers running together</li>
+</ul></li>
+<li>We can utilize Docker Swarm / Docker Compose</li>
+<li>Docker Swarm
+<ul>
+<li>Docker native orchestrator</li>
+<li>Declarative model; users define the desired state</li>
+<li>State
+<ol type="1">
+<li>image name and tag</li>
+<li>num of containers in the service</li>
+<li>ports exposed to clients outside of swarm</li>
+</ol></li>
+<li>Task states
+<ul>
+<li>examples: NEW, PENDING, and COMPLETE</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="docker-networking">Docker Networking</h2>
+<ul>
+<li>Bridge
+<ul>
+<li>default networking when <code>--network</code> is not specified</li>
+<li>connects container to the <code>my-net</code> network</li>
+<li>All containers in <code>my-net</code> network have access to all other ports
+<ul>
+<li>This is risky operation as it allows unrelated services to communicate</li>
+</ul></li>
+<li>Ports can be published from container so that external clients can access</li>
+</ul></li>
+<li>Overlay
+<ul>
+<li>creates a distributed network among multiple Docker daemon hosts</li>
+<li>overlays the host-specific networks</li>
+</ul></li>
+</ul>
+<h2 id="service-discovery-in-docker-swarm">Service Discovery in Docker Swarm</h2>
+<ul>
+<li>DNS lookup</li>
+<li>For most situations, you should connect to the service name, which is load-balanced and handled by all containers (“tasks”) backing the service.</li>
+</ul>
+<h2 id="external-load-balancing-in-docker-swarm">External load balancing in Docker Swarm</h2>
+<ul>
+<li>Internal load balancing: when one container or one service wants to talk about another service on the same network
+<ul>
+<li>Done via VIP</li>
+</ul></li>
+<li>Routing Mesh
+<ul>
+<li>Features
+<ol type="1">
+<li>enables each node in the swarm to accept connections on published ports for any service running in the swarm.</li>
+<li>uses port based service discovery and load balancing.</li>
+<li>auto route the incoming traffic to a node that has a service task running on it.</li>
+</ol></li>
+<li>Services using the routing mesh are running in virtual IP (VIP) mode.</li>
+<li>By default all nodes participate in an ingress routing mesh.</li>
+</ul></li>
+<li>Docker acts as a load balancer for swarm services (can think of swarm services as a single super computer)</li>
+<li>External load balancing methods
+<ol type="1">
+<li>Routing mesh
+<ul>
+<li>HAProxy</li>
+</ul></li>
+<li>Disables VIP endpoint mode, which allows a DNS query for the service name returning a list of IP addresses</li>
+</ol></li>
+</ul>
+<h2 id="ways-to-map-host-to-container">Ways to map host to container</h2>
+<ol type="1">
+<li>Bind mount
+<ul>
+<li>Directory on host machie is mounted into a container</li>
+<li>Persistent data storage</li>
+</ul></li>
+<li>Volume
+<ul>
+<li>Virtualized disk drive managed by Docker</li>
+<li>Persistent storage abstraction</li>
+<li>Removed when container is removed</li>
+</ul></li>
+<li>tmpfs
+<ul>
+<li>temp file system</li>
+<li>storage is not on host machine or within the container</li>
+<li>use cases
+<ol type="1">
+<li>security reasons</li>
+<li>protect the performance of the container</li>
+</ol></li>
+</ul></li>
+</ol>
+<h2 id="docker-compose-single-host">Docker Compose (single host)</h2>
+<ul>
+<li>Main tool by Docker for container orchestration</li>
+<li>Uses <code>docker-compose.yml</code> (declarative way)</li>
+<li>Used by AWS ECS and Azure ACI</li>
+</ul>
+<h1 id="week-15-kubernates">Week 15: Kubernates</h1>
+<ul>
+<li>A platform for distributed systems to orchestrate the deployment, scaling, and management of container-based applications</li>
+<li>Features
+<ol type="1">
+<li>primary responsibility: container orchestration</li>
+<li>replace dead, unresponsive, or unhealthy containers</li>
+</ol></li>
+<li>Advantages</li>
+<li>Building blocks</li>
+</ul>
+<h2 id="terms-2">Terms</h2>
+<ol type="1">
+<li>Cluster
+<ul>
+<li>A collection of hosts (nodes) that provide compute, memory, storage, and networking resources</li>
+</ul></li>
+<li>Nodes
+<ul>
+<li>host (virtual / physical machines)</li>
+</ul></li>
+</ol>
+<h2 id="architecture">Architecture</h2>
+<ul>
+<li>Components
+<ul>
+<li>Master node (Control plane)
+<ul>
+<li>responsible for the global state of the cluster, cluster-level scheduling of pods, and handling of events</li>
+<li>User define num of master nodes</li>
+<li>Features
+<ol type="1">
+<li>horizontal scaling</li>
+</ol></li>
+<li>Components
+<ol type="1">
+<li>API server</li>
+<li>Controller manager</li>
+<li>Scheduler</li>
+<li>etcd
+<ul>
+<li>distributed highly available consistent key-value store</li>
+<li>Used to store the state of the cluster</li>
+</ul></li>
+</ol></li>
+<li>kubectl (command line tool) converts user commands to API calls</li>
+</ul></li>
+<li>Worker node
+<ul>
+<li>Components
+<ol type="1">
+<li>kubelet
+<ul>
+<li>communicates with master node and manages the pods</li>
+</ul></li>
+<li>kube-proxy
+<ul>
+<li>Manages routing of requests and traffic for both the node and the pods</li>
+</ul></li>
+<li>container-runtime
+<ul>
+<li>The component that interacts with the OS, launches containers, and manages namespaces</li>
+</ul></li>
+</ol></li>
+</ul></li>
+</ul></li>
+<li>Kubernetes runs workloads by placing containers into Pods to run on (worker) Nodes</li>
+<li>Namespace
+<ul>
+<li>Kubernetes supports multiple virtual clusters backed by the same physical cluster</li>
+<li>These virtual clusters are namespaces</li>
+<li>NOT the same as Linux namespace feature</li>
+</ul></li>
+</ul>
+<h2 id="pod">Pod</h2>
+<ul>
+<li>A special Kubernetes construct that groups one or more containers that share some namespaces</li>
+<li>Smallest control unit in Kubernetes</li>
+<li>Pod container design patterns
+<ul>
+<li>Single Node patterns
+<ol type="1">
+<li>Sidecar
+<ul>
+<li>2 containers: app &amp; sidecar</li>
+<li>Sidecar container augments and improves the app container
+<ul>
+<li>e.g. adding HTTPS on top of HTTP, dynamic configuration</li>
+</ul></li>
+</ul></li>
+<li>Ambassador
+<ul>
+<li>app container only talks to ambassador container, and ambassador container talks to external services on behalf of app container</li>
+</ul></li>
+<li>Adapter</li>
+</ol></li>
+</ul></li>
+</ul>
+<h2 id="higher-level-resource-abstractions">Higher Level Resource Abstractions</h2>
+<ul>
+<li>Labels
+<ul>
+<li>Labels are key/value pairs that are attached to object
+<ul>
+<li>e.g. pods</li>
+</ul></li>
+<li>Functions
+<ol type="1">
+<li>can be used to organize and select subsets of objects</li>
+<li>enable users to map their own organizational structures onto system objects</li>
+</ol></li>
+</ul></li>
+<li>Label Selectors
+<ul>
+<li>used to select objects based on their labels</li>
+<li>core grouping primitive in Kubernetes</li>
+</ul></li>
+</ul>
+<h2 id="kubernetes-service">Kubernetes Service</h2>
+<ul>
+<li>An abstraction which defines a logical set of Pods running somewhere in your cluster, that all provide the same functionality.
+<ul>
+<li>e.g. A pool of HTTP servers</li>
+</ul></li>
+<li>Functions
+<ol type="1">
+<li>manages pods’ life cycles</li>
+</ol></li>
+<li>The service pattern is micro-service</li>
+</ul>
+<h2 id="networking">Networking</h2>
+<ul>
+<li>kube-proxy (on worker node)
+<ul>
+<li>functions
+<ol type="1">
+<li>watches the Kubernetes control plane for the addition and removal of Service and Endpoint objects (e.g. a pod)</li>
+<li>responsible for implementing a form of virtual IP for Services</li>
+</ol></li>
+<li>Every node in a Kubernetes cluster runs a kube-proxy.</li>
+<li>Modes
+<ol type="1">
+<li>User space proxy mode</li>
+<li>iptables proxy mode</li>
+<li>IPVS proxy mode</li>
+</ol></li>
+</ul></li>
+<li>Users don’t need to take care of mapping container ports to host ports.</li>
+</ul>
+<h2 id="kubernates-vs-docker-swarm">Kubernates vs Docker Swarm</h2>
+<ul>
+<li>Docker swarm
+<ul>
+<li>a little bit more opinionated i.e. it kind of assumes that a certain way of doing networking</li>
+<li>Each task has only 1 container</li>
+<li>Networking happens thru routing mesh</li>
+<li>SDNs are used to firewall containers</li>
+</ul></li>
+<li>Kubernates
+<ul>
+<li>allows customize a lot of things</li>
+<li>Each pods can have 1 or more containers</li>
+<li>Networking has more flexibility; Service provides an abstraction that defines a logical set of pods and a policy</li>
+<li>A single flat network is used</li>
+<li>Cannot directly run a container in Kubernetes cluster</li>
+</ul></li>
+</ul>
+<h1 id="week-16-future-developments-in-the-cloud">Week 16: Future Developments in the Cloud</h1>
+<ul>
+<li>Thirteen Predictions
+<ol type="1">
+<li>Adoption of cloud computing will continue to grow rapidly</li>
+<li>The cloud will become more global</li>
+<li>Regulated industries will move to the cloud
+<ul>
+<li>e.g. GDPR</li>
+</ul></li>
+<li>Storage capacity will continue to increase rapidly. SSD’s share of the market will grow, but there will still be a lot of HDD and magnetic tape in use</li>
+<li>The cloud will continue to support AI, and there is a symbiotic / mutually-beneficial relationship between AI and clouds
+<ul>
+<li>Digital Transformation</li>
+</ul></li>
+<li>The data center accelerator market growth will explode</li>
+<li>The future of cloud computing access is mobile</li>
+<li>FaaS will continue to grow in popularity and use
+<ul>
+<li>According to Gartner, IaaS is likely to grow the fastest over the next few years</li>
+</ul></li>
+<li>Low-code / No-code / Citizen Development will become increasingly important to the industry, as it is a way to help deal with the predicted 1 million software developer shortfall in the U.S.</li>
+<li>Increased adoption of clouds means increased risks of security breaches
+<ul>
+<li>Threats
+<ol type="1">
+<li>Incomplete data deletion</li>
+<li>Vulnerabilities in management APIs</li>
+<li>Multi-tenant data leakage due to failure of separation of control</li>
+<li>Insider abuse</li>
+</ol></li>
+<li>IaaS is preferred for security reason</li>
+</ul></li>
+<li>IoT will grow and help fuel the growth of the cloud industry</li>
+<li>Hybrid clouds / multi clouds/ omni clouds will become more feasible and widely-used
+<ul>
+<li>Containers become mainstream</li>
+<li>Anthos
+<ul>
+<li>mostly based on Kubernates</li>
+</ul></li>
+</ul></li>
+<li>The demand for cloud professionals will grow</li>
+</ol></li>
+</ul>
+<div class="status-banner" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; text-align: center;">
+    <div style="display: inline-block; padding: 0.8em 2em 0.5em 2em; background: black; color: white; font-size: 2em;">
+        Rendering <svg xmlns="http://www.w3.org/2000/svg" height="1.4em" viewbox="0 0 1200 500" style="vertical-align: text-bottom"><title>LaTeX logo</title><g transform="matrix(45 0 0 45 40 40)" fill="white"><path d="M5.5 4.4C5.5 4.4 5.2 4.4 5.2 4.4 5.1 5.4 5 6.7 3.2 6.7 3.2 6.7 2.4 6.7 2.4 6.7 1.9 6.7 1.9 6.6 1.9 6.3 1.9 6.3 1.9 1 1.9 1 1.9 0.6 1.9 0.5 2.9 0.5 2.9 0.5 3.2 0.5 3.2 0.5 3.2 0.5 3.2 0.2 3.2 0.2 2.8 0.2 1.9 0.2 1.5 0.2 1.1 0.2 0.3 0.2 0 0.2 0 0.2 0 0.5 0 0.5 0 0.5 0.2 0.5 0.2 0.5 1 0.5 1 0.6 1 0.9 1 0.9 1 6.2 1 6.2 1 6.6 1 6.7 0.2 6.7 0.2 6.7 0 6.7 0 6.7 0 6.7 0 7 0 7 0 7 5.2 7 5.2 7 5.2 7 5.5 4.4 5.5 4.4z"/><path d="M5.3 0.2C5.3 0 5.2 0 5.1 0 5 0 4.9 0 4.9 0.2 4.9 0.2 3.3 4.2 3.3 4.2 3.2 4.4 3.1 4.7 2.5 4.7 2.5 4.7 2.5 5 2.5 5 2.5 5 4 5 4 5 4 5 4 4.7 4 4.7 3.7 4.7 3.5 4.6 3.5 4.4 3.5 4.3 3.5 4.3 3.6 4.2 3.6 4.2 3.9 3.4 3.9 3.4 3.9 3.4 5.9 3.4 5.9 3.4 5.9 3.4 6.3 4.4 6.3 4.4 6.3 4.4 6.3 4.5 6.3 4.5 6.3 4.7 5.9 4.7 5.8 4.7 5.8 4.7 5.8 5 5.8 5 5.8 5 7.7 5 7.7 5 7.7 5 7.7 4.7 7.7 4.7 7.7 4.7 7.6 4.7 7.6 4.7 7.1 4.7 7.1 4.7 7 4.5 7 4.5 5.3 0.2 5.3 0.2zM4.9 0.9C4.9 0.9 5.8 3.1 5.8 3.1 5.8 3.1 4 3.1 4 3.1 4 3.1 4.9 0.9 4.9 0.9z"/><path d="M13.3 0.2C13.3 0.2 7.2 0.2 7.2 0.2 7.2 0.2 7 2.5 7 2.5 7 2.5 7.3 2.5 7.3 2.5 7.4 0.9 7.6 0.5 9.1 0.5 9.3 0.5 9.5 0.5 9.6 0.6 9.8 0.6 9.8 0.7 9.8 0.9 9.8 0.9 9.8 6.2 9.8 6.2 9.8 6.5 9.8 6.7 8.8 6.7 8.8 6.7 8.4 6.7 8.4 6.7 8.4 6.7 8.4 7 8.4 7 8.8 6.9 9.8 6.9 10.3 6.9 10.7 6.9 11.7 6.9 12.2 7 12.2 7 12.2 6.7 12.2 6.7 12.2 6.7 11.8 6.7 11.8 6.7 10.7 6.7 10.7 6.5 10.7 6.2 10.7 6.2 10.7 0.9 10.7 0.9 10.7 0.7 10.7 0.6 10.9 0.6 11 0.5 11.3 0.5 11.5 0.5 13 0.5 13.1 0.9 13.2 2.5 13.2 2.5 13.5 2.5 13.5 2.5 13.5 2.5 13.3 0.2 13.3 0.2z"/><path d="M18.7 6.7C18.7 6.7 18.4 6.7 18.4 6.7 18.2 8.2 17.9 8.9 16.2 8.9 16.2 8.9 14.9 8.9 14.9 8.9 14.4 8.9 14.4 8.8 14.4 8.5 14.4 8.5 14.4 5.9 14.4 5.9 14.4 5.9 15.3 5.9 15.3 5.9 16.3 5.9 16.4 6.2 16.4 7 16.4 7 16.6 7 16.6 7 16.6 7 16.6 4.4 16.6 4.4 16.6 4.4 16.4 4.4 16.4 4.4 16.4 5.2 16.3 5.5 15.3 5.5 15.3 5.5 14.4 5.5 14.4 5.5 14.4 5.5 14.4 3.2 14.4 3.2 14.4 2.8 14.4 2.8 14.9 2.8 14.9 2.8 16.2 2.8 16.2 2.8 17.7 2.8 18 3.3 18.1 4.7 18.1 4.7 18.4 4.7 18.4 4.7 18.4 4.7 18.1 2.5 18.1 2.5 18.1 2.5 12.5 2.5 12.5 2.5 12.5 2.5 12.5 2.8 12.5 2.8 12.5 2.8 12.7 2.8 12.7 2.8 13.5 2.8 13.5 2.9 13.5 3.2 13.5 3.2 13.5 8.4 13.5 8.4 13.5 8.8 13.5 8.9 12.7 8.9 12.7 8.9 12.5 8.9 12.5 8.9 12.5 8.9 12.5 9.2 12.5 9.2 12.5 9.2 18.2 9.2 18.2 9.2 18.2 9.2 18.7 6.7 18.7 6.7z"/><path d="M21.7 3.1C21.7 3.1 23 1.1 23 1.1 23.3 0.8 23.6 0.5 24.5 0.5 24.5 0.5 24.5 0.2 24.5 0.2 24.5 0.2 22.1 0.2 22.1 0.2 22.1 0.2 22.1 0.5 22.1 0.5 22.5 0.5 22.7 0.7 22.7 0.9 22.7 1 22.7 1.1 22.6 1.2 22.6 1.2 21.5 2.8 21.5 2.8 21.5 2.8 20.2 0.9 20.2 0.9 20.2 0.9 20.1 0.8 20.1 0.8 20.1 0.7 20.4 0.5 20.8 0.5 20.8 0.5 20.8 0.2 20.8 0.2 20.4 0.2 19.7 0.2 19.3 0.2 19 0.2 18.4 0.2 18 0.2 18 0.2 18 0.5 18 0.5 18 0.5 18.2 0.5 18.2 0.5 18.8 0.5 19 0.5 19.2 0.8 19.2 0.8 21 3.6 21 3.6 21 3.6 19.4 6 19.4 6 19.2 6.2 18.9 6.7 17.9 6.7 17.9 6.7 17.9 7 17.9 7 17.9 7 20.3 7 20.3 7 20.3 7 20.3 6.7 20.3 6.7 19.8 6.7 19.7 6.4 19.7 6.2 19.7 6.1 19.7 6.1 19.8 6 19.8 6 21.2 3.9 21.2 3.9 21.2 3.9 22.8 6.3 22.8 6.3 22.8 6.3 22.8 6.3 22.8 6.4 22.8 6.5 22.6 6.7 22.2 6.7 22.2 6.7 22.2 7 22.2 7 22.5 6.9 23.2 6.9 23.6 6.9 24 6.9 24.5 7 24.9 7 24.9 7 24.9 6.7 24.9 6.7 24.9 6.7 24.7 6.7 24.7 6.7 24.2 6.7 24 6.6 23.8 6.3 23.8 6.3 21.7 3.1 21.7 3.1z"/></g></svg> math...
+    </div>
+</div>
+<div class="license">
+  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a> This work by <a xmlns:cc="http://creativecommons.org/ns#" href="https://uberi.github.io/" property="cc:attributionName" rel="cc:attributionURL">Jasper Wang</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  Copyright 2013-2018 Jasper Wang.
+</div>
+</body>
+</html>
