@@ -1,13 +1,11 @@
 # AWS Cloud
 ## Architecture Evolution
-* Traditional Client-Server Architecture
-	* Enable multiple distributed systems connecting together
+* Traditional Client-Server Architecture: enable multiple distributed systems connecting together
 * Traditional Data center challenges
 	* Server sprawl(space)
 	* Cooling
 	* Power
-* Evolution: Cloud
-	* e.g. Instead of storing stuff in PC, we store in Google Drive, Dropbox, etc.
+* Evolution: Cloud. e.g. Instead of storing stuff in PC, we store in Google Drive, Dropbox, etc.
 
 ## AWS History
 * 'Invention requires 2 things: 1. The ability to try a lot of experiments, and 2. not having to live with the collateral damage of failed experiments.' - Andy Jassy
@@ -23,7 +21,7 @@
 ## Overview
 * Cloud service categories
     * IaaS - Infrastructure as a Service
-    	* Parts or all of the infrastructure is provided by a 3rd party
+    	* Parts or all of the infrastructure is provided by the cloud provider
         * Provide basic building blocks: hardware, computer, storage
         * Very flexible
         * e.g. EC2
@@ -1768,14 +1766,39 @@ Deploy and manage HPC clusters
 * Storage array
 	* Used in many data centers
 	* Many hard drives / volume
-* Evolutions
-	* Bulk storage
-		* 'Giant hard drive'
-		* No access to underlying storage OS
-		* e.g. Dropbox, Google Drive, S3
-	* Block-based storage
-		* Just like storage used with the computer, where the computer would see the volume where OS & applications can be installed 
-		* e.g. Amazon EBS - attaches to an EC2 instance
+
+## Concepts
+1. IOPS
+	- measures how fast we can read / write to a device
+1. Throughput
+	- measures how much data can be moved at a time
+1. Consistency Models
+	1. ACID
+		- atomic (all or nothing)
+		- consistent (valid transaction)
+		- isolated
+		- durable (completed transaction must stick around)
+	1. BASE
+		- basic availability
+		- soft state
+		- eventual consistency
+
+## Evolutions
+* Bulk storage
+	* 'Giant hard drive'
+	* No access to underlying storage OS
+	* e.g. Dropbox, Google Drive, S3
+* Block-based storage
+	* Just like storage used with the computer, where the computer would see the volume where OS & applications can be installed 
+	* e.g. Amazon EBS - attaches to an EC2 instance
+
+## Data Storage Types
+1. Persistent
+	- e.g. S3, RDS, DynamoDB
+1. Transient
+	- e.g. SNS, SQS
+1. Ephemeral
+	- e.g. EC2 Instance Store, Memcached
 
 ## Data Warehousing
 * For BI
@@ -1787,7 +1810,7 @@ Deploy and manage HPC clusters
 		* Pulls large number of records + apply aggregated functions
 		* e.g. Redshift
 
-## Data Storage Types
+## Database Types
 1. Relational
 	- Row, columnar 
 1. Non-relational
@@ -1798,11 +1821,11 @@ Deploy and manage HPC clusters
 
 
 # S3 (Simple Storage Service)
-* A cloud **bulk storage** service, where you can remotely store a large sum of data. (Similar to Google drive & dropbox)
+* A cloud **bulk object storage** service, where you can remotely store a large sum of data. (Similar to Google drive & dropbox)
 * S3 does not reside in any VPCs; it's a global service
 - Features
 	- CORS
-	- CRR
+	- CRR (Cross Region Replication)
 	- Encryption At Rest
 	- Transfer Acceleration
 	* Pre-signed URL
@@ -1815,6 +1838,11 @@ Deploy and manage HPC clusters
 		* Can be configured to send to same bucket
 	* MFA
 		* Can be configured in bucket policy with condition `aws:MultiFactorAuthPresent`
+	- Events: trigger notifications to SNS / SQS / Lambda
+- Facts
+	1. Max object size: 5 TB
+	1. Largest object in a single PUT: 5 GB
+	1. Recommended to use multi-part uploads if > 100 MB
 * Benefits
 	* Fast
 	* Highly scalable - unlimited storage
@@ -1847,6 +1875,10 @@ Deploy and manage HPC clusters
 * Data Consistency
 	* Read after Write for PUTS of new objects: be able to view directly after upload a new object
 	* Eventual Consistency for override PUTS and DELETES: updating existing file could take time to propagate the change
+- Security
+	1. Resource-based: object ACL, Bucket policy
+	1. User-based: IAM policies
+	1. MFA before delete
 
 
 ## Storage Tiers
@@ -1870,7 +1902,7 @@ Deploy and manage HPC clusters
 		* will have limited management fee
 		* meant to change storage class based on usage and cost-efficiency
 		* Minimum storage duration: 30 days
-	* **Glacier** long term storage; archiving
+	* **Glacier** long term storage; archiving (also a service by itself)
 		* Minimum storage duration: 90 days
 		* $0.004/GB for storage cost
 		* Retrieval 
@@ -1888,9 +1920,12 @@ Deploy and manage HPC clusters
 * **S3 Lifecycle Policy** 
 	* helps transition objects to another Amazon S3 storage tier
 		* e.g. when xxx days old, move to another tier
-	* Incomplete uploads
-		* Would not be deleted automatically by S3
+	* Incomplete uploads would not be deleted automatically by S3
 		* Can create S3 lifecycle config to abort incomplete multipart uploads
+	- Use cases
+		1. Optimize storage costs
+		1. Adhere to data retention policies
+		1. Keep S3 volumes well-maintained
 	- Actions
 		1. Filter
 		1. Transition
@@ -1973,7 +2008,10 @@ Deploy and manage HPC clusters
 	* Existing files would not be replicated automatically; subsequent updated files would be replicated
 	* Deleting versions would not be replicated 
 * Use cases
-	* Disaster Recovery
+	1. Disaster Recovery
+	1. Compliance
+	1. Latency 
+
 
 
 ## Management
@@ -2032,16 +2070,17 @@ Deploy and manage HPC clusters
 	* Compilance - even root account cannot delete the object for a fixed retention period
 	* Legal Holds - can be deleted by any users who have **s3:PutObjectLegalHold** permission
 * Glacier Vault Lock
-	* Cannot be changed once updated
+	* Immutable: cannot be changed once updated
 	- Implemented via IAM policies
 	- Lock controls
 		1. Time-based retention
 		1. `Undeleteable`
+		1. Enabling MFA
 	- Operations
 		1. Initiate lock
 			- Attaching a vault lock policy to the vault
 			- Lock is set to an `InProgress` state and a lock ID is returned
-			- Can validate the lock within 24 hours
+			- Can validate the lock within 24 hours to either abort or complete the lock. 
 		1. Complete lock
 			- Change `InProgress` to `Locked` (immutable)
 * Modificating locked objects
@@ -2083,6 +2122,7 @@ Deploy and manage HPC clusters
    				* can use 'Policy generator'
 	1. Object policy
 	1. IAM policies
+		- can grant cross account permissions
 	1. Service Control Policy (from AWS Orgnization)
 * client / server authentication
 * Logging
@@ -2172,6 +2212,7 @@ Deploy and manage HPC clusters
     * check message integrity: HTTPS / MD5
     * enable server logging / SDK logging
     * call put first (no charge) instead of get
+    - save cost and efficiency by using S3 endpoints instead of sending data using public internet
 * Do NOT 
     * retrieve metadata or list very frequently
 

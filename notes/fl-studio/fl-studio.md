@@ -112,6 +112,15 @@ If you wanna see how the other instrument was implemented in the same pattern, '
 - Turn on 'Recording' and click 'Play' to start
 
 # Plugins
+
+## Types
+1. Generator
+   - Can make sounds
+   - Can add directly to channel rack
+1. Effects
+   - Used in mixer
+
+## Commands
 - Press 'F8' opens 'plugin picker'
 
 

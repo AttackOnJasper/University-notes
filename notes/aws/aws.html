@@ -278,8 +278,11 @@
 </ul></li>
 <li><a href="#storage-overview">Storage Overview</a>
 <ul>
-<li><a href="#data-warehousing">Data Warehousing</a></li>
+<li><a href="#concepts">Concepts</a></li>
+<li><a href="#evolutions">Evolutions</a></li>
 <li><a href="#data-storage-types">Data Storage Types</a></li>
+<li><a href="#data-warehousing">Data Warehousing</a></li>
+<li><a href="#database-types">Database Types</a></li>
 </ul></li>
 <li><a href="#s3-simple-storage-service">S3 (Simple Storage Service)</a>
 <ul>
@@ -636,20 +639,14 @@
 <h1 id="aws-cloud">AWS Cloud</h1>
 <h2 id="architecture-evolution">Architecture Evolution</h2>
 <ul>
-<li>Traditional Client-Server Architecture
-<ul>
-<li>Enable multiple distributed systems connecting together</li>
-</ul></li>
+<li>Traditional Client-Server Architecture: enable multiple distributed systems connecting together</li>
 <li>Traditional Data center challenges
 <ul>
 <li>Server sprawl(space)</li>
 <li>Cooling</li>
 <li>Power</li>
 </ul></li>
-<li>Evolution: Cloud
-<ul>
-<li>e.g. Instead of storing stuff in PC, we store in Google Drive, Dropbox, etc.</li>
-</ul></li>
+<li>Evolution: Cloud. e.g. Instead of storing stuff in PC, we store in Google Drive, Dropbox, etc.</li>
 </ul>
 <h2 id="aws-history">AWS History</h2>
 <ul>
@@ -671,7 +668,7 @@
 <ul>
 <li>IaaS - Infrastructure as a Service
 <ul>
-<li>Parts or all of the infrastructure is provided by a 3rd party</li>
+<li>Parts or all of the infrastructure is provided by the cloud provider</li>
 <li>Provide basic building blocks: hardware, computer, storage</li>
 <li>Very flexible</li>
 <li>e.g. EC2
@@ -3356,7 +3353,35 @@
 <li>Used in many data centers</li>
 <li>Many hard drives / volume</li>
 </ul></li>
-<li>Evolutions
+</ul>
+<h2 id="concepts">Concepts</h2>
+<ol type="1">
+<li>IOPS
+<ul>
+<li>measures how fast we can read / write to a device</li>
+</ul></li>
+<li>Throughput
+<ul>
+<li>measures how much data can be moved at a time</li>
+</ul></li>
+<li>Consistency Models
+<ol type="1">
+<li>ACID
+<ul>
+<li>atomic (all or nothing)</li>
+<li>consistent (valid transaction)</li>
+<li>isolated</li>
+<li>durable (completed transaction must stick around)</li>
+</ul></li>
+<li>BASE
+<ul>
+<li>basic availability</li>
+<li>soft state</li>
+<li>eventual consistency</li>
+</ul></li>
+</ol></li>
+</ol>
+<h2 id="evolutions">Evolutions</h2>
 <ul>
 <li>Bulk storage
 <ul>
@@ -3369,8 +3394,22 @@
 <li>Just like storage used with the computer, where the computer would see the volume where OS &amp; applications can be installed</li>
 <li>e.g. Amazon EBS - attaches to an EC2 instance</li>
 </ul></li>
-</ul></li>
 </ul>
+<h2 id="data-storage-types">Data Storage Types</h2>
+<ol type="1">
+<li>Persistent
+<ul>
+<li>e.g. S3, RDS, DynamoDB</li>
+</ul></li>
+<li>Transient
+<ul>
+<li>e.g. SNS, SQS</li>
+</ul></li>
+<li>Ephemeral
+<ul>
+<li>e.g. EC2 Instance Store, Memcached</li>
+</ul></li>
+</ol>
 <h2 id="data-warehousing">Data Warehousing</h2>
 <ul>
 <li>For BI</li>
@@ -3388,7 +3427,7 @@
 </ul></li>
 </ul></li>
 </ul>
-<h2 id="data-storage-types">Data Storage Types</h2>
+<h2 id="database-types">Database Types</h2>
 <ol type="1">
 <li>Relational
 <ul>
@@ -3402,12 +3441,12 @@
 </ol>
 <h1 id="s3-simple-storage-service">S3 (Simple Storage Service)</h1>
 <ul>
-<li>A cloud <strong>bulk storage</strong> service, where you can remotely store a large sum of data. (Similar to Google drive &amp; dropbox)</li>
+<li>A cloud <strong>bulk object storage</strong> service, where you can remotely store a large sum of data. (Similar to Google drive &amp; dropbox)</li>
 <li>S3 does not reside in any VPCs; it’s a global service</li>
 <li>Features
 <ul>
 <li>CORS</li>
-<li>CRR</li>
+<li>CRR (Cross Region Replication)</li>
 <li>Encryption At Rest</li>
 <li>Transfer Acceleration</li>
 <li>Pre-signed URL
@@ -3430,7 +3469,14 @@
 <ul>
 <li>Can be configured in bucket policy with condition <code>aws:MultiFactorAuthPresent</code></li>
 </ul></li>
+<li>Events: trigger notifications to SNS / SQS / Lambda</li>
 </ul></li>
+<li>Facts
+<ol type="1">
+<li>Max object size: 5 TB</li>
+<li>Largest object in a single PUT: 5 GB</li>
+<li>Recommended to use multi-part uploads if &gt; 100 MB</li>
+</ol></li>
 <li>Benefits
 <ul>
 <li>Fast</li>
@@ -3488,6 +3534,12 @@
 <li>Read after Write for PUTS of new objects: be able to view directly after upload a new object</li>
 <li>Eventual Consistency for override PUTS and DELETES: updating existing file could take time to propagate the change</li>
 </ul></li>
+<li>Security
+<ol type="1">
+<li>Resource-based: object ACL, Bucket policy</li>
+<li>User-based: IAM policies</li>
+<li>MFA before delete</li>
+</ol></li>
 </ul>
 <h2 id="storage-tiers">Storage Tiers</h2>
 <ul>
@@ -3524,7 +3576,7 @@
 <li>meant to change storage class based on usage and cost-efficiency</li>
 <li>Minimum storage duration: 30 days</li>
 </ul></li>
-<li><strong>Glacier</strong> long term storage; archiving
+<li><strong>Glacier</strong> long term storage; archiving (also a service by itself)
 <ul>
 <li>Minimum storage duration: 90 days</li>
 <li>$0.004/GB for storage cost</li>
@@ -3556,11 +3608,16 @@
 <ul>
 <li>e.g. when xxx days old, move to another tier</li>
 </ul></li>
-<li>Incomplete uploads
+<li>Incomplete uploads would not be deleted automatically by S3
 <ul>
-<li>Would not be deleted automatically by S3</li>
 <li>Can create S3 lifecycle config to abort incomplete multipart uploads</li>
 </ul></li>
+<li>Use cases
+<ol type="1">
+<li>Optimize storage costs</li>
+<li>Adhere to data retention policies</li>
+<li>Keep S3 volumes well-maintained</li>
+</ol></li>
 <li>Actions
 <ol type="1">
 <li>Filter</li>
@@ -3688,9 +3745,11 @@
 <li>Deleting versions would not be replicated</li>
 </ul></li>
 <li>Use cases
-<ul>
+<ol type="1">
 <li>Disaster Recovery</li>
-</ul></li>
+<li>Compliance</li>
+<li>Latency</li>
+</ol></li>
 </ul>
 <h2 id="management-6">Management</h2>
 <ol type="1">
@@ -3781,12 +3840,13 @@
 </ul></li>
 <li>Glacier Vault Lock
 <ul>
-<li>Cannot be changed once updated</li>
+<li>Immutable: cannot be changed once updated</li>
 <li>Implemented via IAM policies</li>
 <li>Lock controls
 <ol type="1">
 <li>Time-based retention</li>
 <li><code>Undeleteable</code></li>
+<li>Enabling MFA</li>
 </ol></li>
 <li>Operations
 <ol type="1">
@@ -3794,7 +3854,7 @@
 <ul>
 <li>Attaching a vault lock policy to the vault</li>
 <li>Lock is set to an <code>InProgress</code> state and a lock ID is returned</li>
-<li>Can validate the lock within 24 hours</li>
+<li>Can validate the lock within 24 hours to either abort or complete the lock.</li>
 </ul></li>
 <li>Complete lock
 <ul>
@@ -3865,7 +3925,10 @@
 </ul></li>
 </ul></li>
 <li>Object policy</li>
-<li>IAM policies</li>
+<li>IAM policies
+<ul>
+<li>can grant cross account permissions</li>
+</ul></li>
 <li>Service Control Policy (from AWS Orgnization)</li>
 </ol></li>
 <li>client / server authentication</li>
@@ -4008,6 +4071,7 @@
 <li>check message integrity: HTTPS / MD5</li>
 <li>enable server logging / SDK logging</li>
 <li>call put first (no charge) instead of get</li>
+<li>save cost and efficiency by using S3 endpoints instead of sending data using public internet</li>
 </ul></li>
 <li>Do NOT
 <ul>

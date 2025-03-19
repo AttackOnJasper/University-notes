@@ -1235,7 +1235,7 @@ LIMIT 5</code></pre></li>
 <li>View
 <ul>
 <li>Create a view on university + faculty</li>
-<li><pre><code>  CREATE OR REPLACE VIEW faculty_university AS
+<li><pre><code>  CREATE VIEW faculty_university AS
 SELECT faculty.id, university.name
 FROM faculty
 JOIN university ON university.id = faculty.university_id;</code></pre></li>
